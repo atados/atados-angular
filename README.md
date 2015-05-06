@@ -6,6 +6,10 @@ www
 
 Frontend app para nova versão do atados.com.br programado com AngularJS.
 
+## O que precisa estar intalado
+- [node.js](http://nodejs.org)
+- [Ruby](http://ruby-lang.org)
+
 ## Para rodar o projeto
 
 	git clone https://github.com/atados/www.git
@@ -13,6 +17,7 @@ Frontend app para nova versão do atados.com.br programado com AngularJS.
 	sudo npm install -g grunt-cli
 	npm install
 	bower install
+    bundle
 	grunt serve
 
 
