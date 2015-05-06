@@ -61,7 +61,7 @@
     "phantom": "git://github.com/sgentle/phantomjs-node.git#e029778ec4"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": "~0.10.0"
   },
   "scripts": {
     "test": "grunt test"
