@@ -111,7 +111,7 @@
 
   <div class="col-sm-6">
     <h3>Sobre o ato</h3>
-    <div ng-bind-html="project.details | noHTML | newlines"></div>
+    <div ng-bind-html="project.details | noHTML | newlines" linkify="twitter"></div>
 
     <div ng-if="project.roles" id="project-roles">
       <h3 ng-if="project.role.length > 0">Cargos</h3>
