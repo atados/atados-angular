@@ -5,7 +5,7 @@
 var app = angular.module('atadosApp');
 
 app.factory('Auth', function($http, Cookies, Cleanup, api, accessTokenCookie, authApi, grantType) {
-  
+
   function setAuthHeader(accessToken) {
     if (accessToken) {
       $http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
@@ -104,3 +104,30 @@ app.factory('Auth', function($http, Cookies, Cleanup, api, accessTokenCookie, au
     }
   };
 });
+
+
+app.factory('authInterceptorService', ['$q', '$window', '$injector', 'Cookies', function ($q, $window, $injector, Cookies){
+  var responseError = function (rejection) {
+    if (rejection.status === 403) {
+      var $http = $injector.get('$http');
+
+      Cookies.delete('access_token');
+      delete $http.defaults.headers.common.Authorization;
+
+      var current_location = $window.location.pathname;
+      $window.location.href = '/#session-expired';
+
+      // If the user is at the home, we need to force the reload
+      if (current_location === '/') {
+        $window.location.reload();
+      }
+
+      return {};
+    }
+    return $q.reject(rejection);
+  };
+
+  return {
+      responseError: responseError
+  };
+}]);

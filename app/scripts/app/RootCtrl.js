@@ -8,6 +8,11 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, Auth, loggedUse
 
   $scope.loggedUser = loggedUser;
 
+  if (window.location.hash === '#session-expired') {
+    toastr.error('Oops! Parece que sua sessão expirou! Você precisa logar novamente');
+    $state.transitionTo('root.home');
+  }
+
   Search.filter(null, null, null, saoPaulo.id);
   for (var c in Site.cities()) {
     if (Site.cities()[c].id === saoPaulo.id) {

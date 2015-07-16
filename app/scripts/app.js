@@ -191,3 +191,8 @@ app.config(function(RestangularProvider, api) {
     return response;
   });
 });
+
+
+app.config(['$httpProvider', function($httpProvider) {
+      $httpProvider.interceptors.push('authInterceptorService');
+}]);

@@ -22,7 +22,7 @@ app.controller('LoginCtrl', function($scope, $rootScope, Auth, ezfb) {
   });
 
   $scope.login = function() {
-    if ( !($scope.password && $scope.email)) {
+    if (!($scope.password && $scope.email)) {
       return;
     }
 
