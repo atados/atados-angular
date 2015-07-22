@@ -16,7 +16,16 @@
         </a>
         <span>
           <a ui-sref="root.nonprofit({slug: project.nonprofit_slug})"><p class="nonprofit-name"><strong>{{project.nonprofit_name}}</strong></p></a>
-          <p class="card-local" ng-show="project.city_state"><i class="fa fa-map-marker"></i> {{ project.city_state }}</p>
+          <p class="card-local" ng-show="project.city_state"><i class="fa fa-map-marker"></i> 
+            <span ng-switch="project.work.can_be_done_remotely">
+              <span ng-switch-when="true">
+                Trabalho à Distância
+              </span>
+              <span ng-switch-default>
+                {{ project.city_state }}
+              </span>
+            </span>
+          </p>
           <div class="card-icons">
             <div class="img-circle icon-image" ng-repeat="cause in project.causes"> 
               <img alt="{{cause.name}}" tooltip="Causa: {{cause.name}}" width="15" height="15" ng-src="{{cause.image}}"/>
