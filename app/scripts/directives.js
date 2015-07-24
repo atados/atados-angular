@@ -1,6 +1,7 @@
 'use strict';
 
 /* global $: false */
+/* global toastr: false */
 
 var app = angular.module('atadosApp');
 
@@ -179,7 +180,12 @@ app.directive('causes', function () {
         if (index !== -1) {
           scope.selected.splice(index, 1);
         } else {
-          scope.selected.push(cause);
+          if (scope.selected.length < 3) {
+            scope.selected.push(cause);
+          }
+          else {
+            toastr.error('Você pode selecionar até 3 causas.');
+          }
         }
       };
     }
@@ -212,7 +218,12 @@ app.directive('skills', function () {
         if (index !== -1) {
           scope.selected.splice(index, 1);
         } else {
-          scope.selected.push(skill);
+          if (scope.selected.length < 3) {
+            scope.selected.push(skill);
+          }
+          else {
+            toastr.error('Você pode selecionar até 3 causas.');
+          }
         }
       };
     }
