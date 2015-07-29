@@ -109,7 +109,7 @@ app.factory('Auth', function($http, Cookies, Cleanup, api, accessTokenCookie, au
 app.factory('authInterceptorService', ['$q', '$window', '$injector', 'Cookies', function ($q, $window, $injector, Cookies){
   var responseError = function (rejection) {
     if (rejection.status === 403) {
-      if (rejection.data.detail == "Invalid token") {
+      if (rejection.data.detail === 'Invalid token') {
         var $http = $injector.get('$http');
 
         Cookies.delete('access_token');

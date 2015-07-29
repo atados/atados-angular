@@ -46,8 +46,8 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $filter, Search,
     } else if (city.id === brasilia.id) {
       $scope.mapOptions.map.center = new google.maps.LatLng(brasilia.lat, brasilia.lng);
     } else if (city.id === distancia.id) {
-      $scope.mapOptions.map.center = null;
-      $scope.mapOptions.map.zoom = 1;
+      $('.map').css('opacity', 0.1);
+      $scope.distanceAddress = true;
     }
   });
 
@@ -143,7 +143,7 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $filter, Search,
       marker.setZIndex(100);
       $scope.previousMarker = marker;
     } else { // No marker
-      if (object.address.city.id === distancia.id) { // Trabalho a distancia
+      if (object.work.can_be_done_remotely || object.address.city.id === distancia.id) { // Trabalho a distancia
         $scope.distanceAddress = true;
         $('.map').css('opacity', 0.1);
       } else if (object.address && (object.address.longitude === 0 || object.address.latitude === 0)) { // No address
