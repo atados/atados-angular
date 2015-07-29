@@ -39,6 +39,8 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $filter, Search,
 
   $scope.$watch('search.city', function (city) {
     $scope.mapOptions.map.zoom = defaultZoom;
+    $('.map').css('opacity', 1);
+    $scope.distanceAddress = false;
     if (city.id === saoPaulo.id) {
       $scope.mapOptions.map.center = new google.maps.LatLng(saoPaulo.lat, saoPaulo.lng);
     } else if (city.id === curitiba.id) {
