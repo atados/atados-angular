@@ -222,7 +222,7 @@ app.directive('skills', function () {
             scope.selected.push(skill);
           }
           else {
-            toastr.error('Você pode selecionar até 3 causas.');
+            toastr.error('Você pode selecionar até 3 habilidades.');
           }
         }
       };
