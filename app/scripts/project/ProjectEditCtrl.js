@@ -168,8 +168,11 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project
       prepareProject();
       toastr.success('Ato salvo.');
       if (!$scope.loggedUser.user.is_staff) {
-        $state.transitionTo('root.nonprofitadmin' , {slug: $scope.loggedUser.slug});
+        var nonprofit_slug = $scope.loggedUser.slug;
+      } else {
+        var nonprofit_slug = $scope.project.nonprofit.slug;
       }
+      $state.transitionTo('root.nonprofitadmin' , {slug: nonprofit_slug});
     }, function (error) {
       console.error(error);
       toastr.error('Não consigo salvar Ato. Entre em contato com o Atados para resolver o problema.');

@@ -126,78 +126,78 @@
         </div>
       </fieldset>
 
-      <fieldset class="col-sm-6">
-        <causes all="causes()" selected="project.causes"></causes>
-      </fieldset>
+      <div class="row">
+        <fieldset class="col-sm-6">
+          <causes all="causes()" selected="project.causes"></causes>
+        </fieldset>
 
-      <fieldset class="col-sm-6">
-        <skills all="skills()" selected="project.skills"></skills>
-      </fieldset>
+        <fieldset class="col-sm-6">
+          <skills all="skills()" selected="project.skills"></skills>
+        </fieldset>
 
 
-      <fieldset class="col-sm-12">
-        <legend>Cargos</legend>
-        <p>Quais são os papéis que os voluntários irão desempenhar? (ex: ajudante, professor, pintor, leitor)</p>
-        <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.rolename.$invalid]">
-          <label class="col-md-3 control-label" for="rolename">Nome do Cargo</label>
-          <div class="col-md-8">
-            <input type="text" class="form-control" name="rolename" id="rolename" ng-minlength="3" ng-maxlength="50" ng-model="newRole.name" placeholder="Nome do Cargo" />
-            <label class="help-block" ng-show="editProjectForm.rolename.$error.minlength">Não pode ter menos de 3 caracteres.</label>
-            <label class="help-block" ng-show="editProjectForm.rolename.$error.maxlength">Não pode ter mais de 50 caracteres.</label>
+        <fieldset class="col-sm-12">
+          <legend>Cargos</legend>
+          <p>Quais são os papéis que os voluntários irão desempenhar? (ex: ajudante, professor, pintor, leitor)</p>
+          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.rolename.$invalid]">
+            <label class="col-md-3 control-label" for="rolename">Nome do Cargo</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" name="rolename" id="rolename" ng-minlength="3" ng-maxlength="50" ng-model="newRole.name" placeholder="Nome do Cargo" />
+              <label class="help-block" ng-show="editProjectForm.rolename.$error.minlength">Não pode ter menos de 3 caracteres.</label>
+              <label class="help-block" ng-show="editProjectForm.rolename.$error.maxlength">Não pode ter mais de 50 caracteres.</label>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.roledetails.$invalid]">
-          <label class="col-md-3 control-label" for="roledetails">Descrição do Cargo</label>
-          <div class="col-md-8">
-            <textarea class="form-control" rows="3" name="roledetails" placeholder="Descrição do cargo" ng-model="newRole.details"></textarea>
+          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.roledetails.$invalid]">
+            <label class="col-md-3 control-label" for="roledetails">Descrição do Cargo</label>
+            <div class="col-md-8">
+              <textarea class="form-control" rows="3" name="roledetails" placeholder="Descrição do cargo" ng-model="newRole.details"></textarea>
+            </div>
           </div>
-        </div>
-        <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.prerequisites.$invalid]">
-          <label class="col-md-3 control-label" for="prerequisites">Pré-requisito</label>
-          <div class="col-md-8">
-            <textarea class="form-control" rows="3" name="prerequisites" placeholder="Descrição do cargo" ng-model="newRole.prerequisites"></textarea>
+          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.prerequisites.$invalid]">
+            <label class="col-md-3 control-label" for="prerequisites">Pré-requisito</label>
+            <div class="col-md-8">
+              <textarea class="form-control" rows="3" name="prerequisites" placeholder="Descrição do cargo" ng-model="newRole.prerequisites"></textarea>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.vacancies.$invalid]">
-          <label class="col-md-3 control-label" for="rolename">Quantas vagas?</label>
-          <div class="col-md-2">
-            <input type="number" min="0" class="form-control" name="vacancies" ng-model="newRole.vacancies" >
+          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.vacancies.$invalid]">
+            <label class="col-md-3 control-label" for="rolename">Quantas vagas?</label>
+            <div class="col-md-2">
+              <input type="number" min="0" class="form-control" name="vacancies" ng-model="newRole.vacancies" >
+            </div>
           </div>
-        </div>
 
-        <a class="btn btn-info pull-right" ng-click="addRole(newRole)">Adicionar Cargo</a> 
-        <table class="table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Nome</th>
-              <th>Descrição</th>
-              <th>Pré-requisito</th>
-              <th>Vagas</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="role in project.roles">
-              <td><button type="danger" class="destroy" ng-click="removeRole(role)"><i class="fa fa-trash-o"></i></button></td>
-              <td>{{role.name}}</td>
-              <td>{{role.details}}</td>
-              <td>{{role.prerequisites}}</td>
-              <td>{{role.vacancies}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </fieldset>
+          <a class="btn btn-info pull-right" ng-click="addRole(newRole)">Adicionar Cargo</a> 
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Pré-requisito</th>
+                <th>Vagas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="role in project.roles">
+                <td><button type="danger" class="destroy" ng-click="removeRole(role)"><i class="fa fa-trash-o"></i></button></td>
+                <td>{{role.name}}</td>
+                <td>{{role.details}}</td>
+                <td>{{role.prerequisites}}</td>
+                <td>{{role.vacancies}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </fieldset>
+      </div>
 
       <div id="type-project-buttons">
         <div id="button-group" class="btn-group btn-group-justified" data-toggle="buttons">
-          <label class="btn btn-info" ng-class="{active: jobActive}"
-            ng-click="jobActive=true">
+          <label class="btn btn-info" ng-class="{active: jobActive}" ng-click="jobActive=true">
             <input type="radio" name="job"> Pontual
           </label>
-          <label class="btn btn-info" ng-class="{active: !jobActive}"
-            ng-click="jobActive=false">
+          <label class="btn btn-info" ng-class="{active: !jobActive}" ng-click="jobActive=false">
             <input type="radio" name="work"> Recorrente
           </label>
         </div>
@@ -293,7 +293,7 @@
         </fieldset>
 
         <button type="submit" class="btn btn-info btn-save"  ng-disabled="editProjectForm.$invalid || !(imageUploaded && causeChosen && skillChosen && project.address.city)">Salvar Ato</button>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
 </div>
