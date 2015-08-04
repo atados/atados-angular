@@ -97,8 +97,6 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
   
   function hasValidAddress(object) {
     // For project objects
-    if (object.name == "Assistente Comercial")
-      console.log(object);
     if (object.address && object.address.addressline && object.address.latitude !== 0 && object.address.longitude !== 0) {
       return true;
     // For Nonprofit objects

@@ -174,7 +174,6 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project
       }
       $state.transitionTo('root.nonprofitadmin' , {slug: nonprofit_slug});
     }, function (error) {
-      console.error(error);
       toastr.error('Não consigo salvar Ato. Entre em contato com o Atados para resolver o problema.');
     });
   };
