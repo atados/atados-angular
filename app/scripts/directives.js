@@ -172,7 +172,7 @@ app.directive('causes', function () {
         } else {
           scope.causeChosen = scope.$parent.causeChosen = true;
         }
-        return scope.selected.indexOf(cause) !== -1;
+        return scope.selected.indexOf(cause) !== -1 || scope.selected.indexOf(cause.id) !== -1;
       };
 
       scope.addCause = function(cause) {
@@ -210,7 +210,7 @@ app.directive('skills', function () {
         } else {
           scope.skillChosen = scope.$parent.skillChosen = true;
         }
-        return scope.selected.indexOf(skill) !== -1;
+        return scope.selected.indexOf(skill) !== -1 || scope.selected.indexOf(skill.id) !== -1;
       };
 
       scope.addSkill = function(skill) {

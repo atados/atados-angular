@@ -49,13 +49,21 @@ app.factory('Project', function($http, Restangular, Site, Auth, Cleanup, $state,
 
       var causes = [];
       projectCopy.causes.forEach(function(c) {
-        causes.push(c.id);
+        if (isNaN(c)) {
+          causes.push(c.id);
+        } else {
+          causes.push(c);
+        }
       });
       projectCopy.causes = causes;
 
       var skills = [];
       projectCopy.skills.forEach(function(s) {
-        skills.push(s.id);
+        if (isNaN(s)) {
+          skills.push(s.id);
+        } else {
+          skills.push(s);
+        }
       });
       projectCopy.skills = skills;
 
