@@ -1,6 +1,7 @@
 'use strict';
 
 /* global toastr: false */
+/* jshint unused:false */
 
 var app = angular.module('atadosApp');
 
@@ -167,10 +168,11 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project
       $scope.project = project;
       prepareProject();
       toastr.success('Ato salvo.');
+      var nonprofit_slug;
       if (!$scope.loggedUser.user.is_staff) {
-        var nonprofit_slug = $scope.loggedUser.slug;
+        nonprofit_slug = $scope.loggedUser.slug;
       } else {
-        var nonprofit_slug = $scope.project.nonprofit.slug;
+        nonprofit_slug = $scope.project.nonprofit.slug;
       }
       $state.transitionTo('root.nonprofitadmin' , {slug: nonprofit_slug});
     }, function (error) {
