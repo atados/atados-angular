@@ -1,7 +1,7 @@
 'use strict';
 
 /* global toastr: false */
-/* jshint unused:false */
+/* jshint unused: false */
 
 var app = angular.module('atadosApp');
 
