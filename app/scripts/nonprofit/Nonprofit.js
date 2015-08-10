@@ -37,8 +37,10 @@ app.factory('Nonprofit', function(Restangular, $state, $stateParams, Cleanup, $h
       });
       nonprofitCopy.causes = causes;
 
-      if (nonprofitCopy.website.substring(0,4) !== 'http') {
-        nonprofitCopy.website = 'http://'  + nonprofitCopy.website;
+      if (nonprofitCopy.website) {
+        if (nonprofitCopy.website.substring(0,4) !== 'http') {
+          nonprofitCopy.website = 'http://'  + nonprofitCopy.website;
+        }
       }
       if (nonprofitCopy.facebook_page_short) {
         nonprofitCopy.facebook_page = 'http://www.facebook.com/' + nonprofitCopy.facebook_page_short;
