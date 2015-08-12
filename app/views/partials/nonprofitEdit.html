@@ -108,6 +108,13 @@
                   <label class="help-block" ng-show="nonprofitForm.zipcode.$error.minlength">Não pode ter menos de 8 caracteres.</label>
                   <label class="help-block" ng-show="nonprofitForm.zipcode.$error.maxlength">Não pode ter mais de 9 caracteres.</label>
                 </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-3 col-sm-7">
+                    <label>
+                      <input type="checkbox" ng-model="nonprofit.user.hidden_address"> Por favor não publique o endereço da ONG para o público, por motivos de segurança.
+                    </label>
+                  </div>
+                </div>
 
               </fieldset>
             </div>
