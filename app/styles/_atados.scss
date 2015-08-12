@@ -78,6 +78,20 @@ $screen-lg: 1200px; // desktop lg
 $grid-float-breakpoint: 865px;
 $site-search-breakpoint: 1015px;
 
+#loading-bar {
+  .bar {
+    background: #004761 !important;
+    height: 4px !important;
+  }
+}
+
+#loading-bar-spinner {
+  .spinner-icon {
+    border-top-color: #004761 !important;
+    border-left-color: #004761 !important;
+  }
+}
+
 .btn-primary {
   font-weight: bold !important;
   background: linear-gradient($orange, $orange-dark) !important;
