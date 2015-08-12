@@ -63,7 +63,9 @@
 
       <div id="nonprofit-causes">
         <div class="img-circle cause-image" ng-repeat="cause in nonprofit.causes"> 
-          <img tooltip="{{cause.name}}" width="20" height="20" ng-src="{{cause.image}}"/>
+          <div title="{{cause.name}}">
+            <img tooltip="{{cause.name}}" width="20" height="20" ng-src="{{cause.image}}"/>
+          </div>
         </div>
       </div>
 

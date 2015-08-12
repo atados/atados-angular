@@ -18,7 +18,9 @@
           <p class="card-local" ng-show="nonprofit.city_state"><i class="fa fa-map-marker"></i> {{ nonprofit.city_state }}</p>
           <div class="card-icons">
             <div class="img-circle icon-image" ng-repeat="cause in nonprofit.causes"> 
-              <img alt="{{cause.name}}" tooltip="{{cause.name}}" width="15" height="15" ng-src="{{cause.image}}"/>
+              <div title="{{cause.name}}">
+                <img alt="{{cause.name}}" tooltip="{{cause.name}}" width="15" height="15" ng-src="{{cause.image}}"/>
+              </div>
             </div>
           </div>
         </span>

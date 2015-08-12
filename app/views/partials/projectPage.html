@@ -40,13 +40,17 @@
           <div class="col-xs-6" ng-if="project.causes">
             <p>Causas</p>
             <div class="img-circle icon-image" ng-repeat="cause in project.causes"> 
-              <img alt="{{cause.name}}" tooltip="{{cause.name}}" width="20" height="20" ng-src="{{cause.image}}"/>
+              <div title="{{cause.name}}">
+                <img alt="{{cause.name}}" tooltip="{{cause.name}}" width="20" height="20" ng-src="{{cause.image}}"/>
+              </div>
             </div>
           </div>
           <div class="col-xs-6" ng-if="project.skills">
             <p>Habilidades</p>
             <div class="img-circle icon-image" ng-repeat="skill in project.skills"> 
-              <img alt="{{skill.name}}" tooltip="{{skill.name}}" width="20" height="20" ng-src="{{skill.image}}"/>
+              <div title="{{skill.name}}">
+                <img alt="{{skill.name}}" tooltip="{{skill.name}}" width="20" height="20" ng-src="{{skill.image}}"/>
+              </div>
             </div>
           </div>
         </div>
