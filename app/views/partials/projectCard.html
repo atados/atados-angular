@@ -6,13 +6,15 @@
           <p>{{project.description}}</p>
         </a>
       </div>
-      <img alt="{{project.slug}}" class="projectImg" ng-src="{{ project.image_url }}">
+      <div style="height: 170px; background: url('{{ project.image_url }}') no-repeat center center / cover">
+      </div>
     </div>
     <div class="card-footer clearfix">
       <a class="card-name" ui-sref="root.project({slug: project.slug})"><h4>{{ project.name}}</h4></a>
       <div class="row card-quick-info">
         <a ui-sref="root.nonprofit({slug: project.nonprofit_slug})" class="nonprofit-img">
-          <img alt="{{project.nonprofit_slug}}" width="60" height="50" ui-sref="root.nonprofit({slug: project.nonprofit_slug})" ng-src="{{ project.nonprofit_image }}">
+          <div width="60" style="height: 50px; background: url('{{ project.nonprofit_image }}') no-repeat center center / contain">
+          </div>
         </a>
         <span>
           <a ui-sref="root.nonprofit({slug: project.nonprofit_slug})"><p class="nonprofit-name"><strong>{{project.nonprofit_name}}</strong></p></a>

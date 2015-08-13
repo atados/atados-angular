@@ -6,12 +6,14 @@
           <p>{{nonprofit.description}}</p>
         </a>
       </div>
-      <img alt="{{nonprofit.slug}}" width="250" height="170" class="nonprofitImg" ng-src="{{ nonprofit.image_url }}">
+      <div style="height: 170px; background: url('{{ nonprofit.image_url }}') no-repeat center center / contain">
+      </div>
     </div>
     <div class="card-footer clearfix">
       <div class="row card-quick-info">
         <a ui-sref="root.nonprofit({slug: nonprofit.slug})" class="nonprofit-img">
-          <img alt="{{nonprofit.slug}}" width="60" height="50" ui-sref="root.nonprofit({slug: nonprofit.slug})" ng-src="{{ nonprofit.image_url }}">
+          <div width="60" style="height: 50px; background: url('{{ nonprofit.image_url }}') no-repeat center center / contain">
+          </div>
         </a>
         <span>
           <a ui-sref="root.nonprofit({slug: nonprofit.slug})"><p class="nonprofit-name"><strong>{{nonprofit.name}}</strong></p></a>
