@@ -510,6 +510,10 @@ $card-img-height: 170px;
       font-size: 12px;
       line-height: normal;
       padding-right: 5px;
+      .wrapper {
+        padding: 0 10px;
+      }
+
       p {
         color: #6f6f6f;
       }

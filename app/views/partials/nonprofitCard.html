@@ -11,13 +11,11 @@
     </div>
     <div class="card-footer clearfix">
       <div class="row card-quick-info">
-        <a ui-sref="root.nonprofit({slug: nonprofit.slug})" class="nonprofit-img">
-          <div width="60" style="height: 50px; background: url('{{ nonprofit.image_url }}') no-repeat center center / contain">
-          </div>
-        </a>
         <span>
-          <a ui-sref="root.nonprofit({slug: nonprofit.slug})"><p class="nonprofit-name"><strong>{{nonprofit.name}}</strong></p></a>
-          <p class="card-local" ng-show="nonprofit.city_state"><i class="fa fa-map-marker"></i> {{ nonprofit.city_state }}</p>
+          <div class="wrapper">
+            <a ui-sref="root.nonprofit({slug: nonprofit.slug})"><p class="nonprofit-name"><strong>{{nonprofit.name}}</strong></p></a>
+            <p class="card-local" ng-show="nonprofit.city_state"><i class="fa fa-map-marker"></i> {{ nonprofit.city_state }}</p>
+          </div>
           <div class="card-icons">
             <div class="img-circle icon-image" ng-repeat="cause in nonprofit.causes"> 
               <div title="{{cause.name}}">
