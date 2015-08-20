@@ -183,7 +183,6 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT, s
           p.skills = fixSkills(p.skills);
           p.nonprofit.slug = p.nonprofit.user.slug;
           p.nonprofit.image_url = 'https://atadosapp.s3.amazonaws.com/' + p.nonprofit.image;
-          p.nonprofit.medium_image_url = 'https://atadosapp.s3.amazonaws.com/' + p.nonprofit.medium_image;
         });
       }
     },
