@@ -42,7 +42,7 @@ app.controller('HomeCtrl', function($scope, $sce, $modal, $http, api) {
 });
 
 app.controller('modalVideo', function ($scope, $modalInstance, url) {
-  $scope.url = "http://www.youtube.com/embed/" + url + "?autoplay=1";
+  $scope.url = "https://www.youtube.com/embed/" + url + "?autoplay=1";
   $scope.close_video = function () {
     $modalInstance.close();
   };
