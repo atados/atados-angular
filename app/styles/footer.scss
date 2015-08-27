@@ -19,12 +19,25 @@
 
   ul {
     padding-left: 0;
+    font-size: 0px;
+    text-align: center;
     li {
-      
-      margin-left: 0;
+      font-size: 14px;
+      display: inline-block;
+      border-right: 2px solid #fff;
+      padding: 0px 20px;
+      margin-right: 0px;
       list-style:none;
+      font-weight: bold;
       a {
         color: $white;
+      }
+      &:first-child {
+        padding-left: 0px;
+      }
+      &:last-child {
+        padding-right: 0px;
+        border-right: 0px;
       }
     }
   }
@@ -33,6 +46,24 @@
     text-align: center;
     i {
       color: $blue;
+    }
+  }
+
+  .fb_iframe_widget {
+    margin: 15px auto;
+    iframe {
+      display: block;
+    }
+  }
+
+  @media (max-width: 767px) {
+    ul {
+      text-align: left;
+      li {
+        display: block;
+        border-right: none;
+        padding: 0px;
+      }
     }
   }
 }

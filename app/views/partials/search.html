@@ -1,11 +1,3 @@
-<div class="explanation" ng-if="landing">
-  <h4>
-    Procure por <span id="atos" ng-click="search.showProjects=true" ng-class="{active: search.showProjects}">Atos</span> voluntários das suas <span id="ongs" ng-click="search.showProjects=false" ng-class="{active: !search.showProjects}">ONGs</span> favoritas.
-    <br>
-    <i class="fa fa-hand-o-down"></i>
-  </h4>
-</div>
-
 <div ng-class="{true: 'col-sm-10 col-sm-offset-1', false: 'col-sm-12'}[landing]" id="searchSpace">
   <button class="btn btn-tab" ng-click="search.showProjects=true" ng-class="{active: search.showProjects}">Pesquisar Atos <span ng-hide="landing || search.projects().length === 0">({{search.projects().length}})</span></button>
   <button class="btn btn-tab" ng-click="search.showProjects=false" ng-class="{active: !search.showProjects}">Pesquisar ONGs <span ng-hide="landing || search.nonprofits().length === 0">({{search.nonprofits().length}})</span></button>

@@ -75,8 +75,8 @@ $screen-sm: 768px;  // tablet
 $screen-md: 992px;  // desktop 
 $screen-lg: 1200px; // desktop lg
 
-$grid-float-breakpoint: 865px;
-$site-search-breakpoint: 1015px;
+$grid-float-breakpoint: 992px;
+$site-search-breakpoint: 992px;
 
 #loading-bar {
   .bar {
@@ -158,6 +158,97 @@ h1, h2, h3, h4, h5, h6,
 
 // _navbar.scss
 
+#small-top {
+  background: #0189BB;
+  padding: 0 0;
+  border: none;
+  height: auto;
+  min-height: initial;
+
+  > ul {
+    margin-bottom: 0px;
+    list-style: none;
+    > li {
+      display: inline-block;
+      padding: 6px 8px;
+      > a {
+        color: white;
+        transition: 0.15s linear all;
+        &:hover, &:active, &:focus {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .logged, .guest {
+    margin-left: 15px;
+  }
+  .guest {
+    font-weight: bold;
+    padding: 0 0;
+    a {
+      display: inline-block;
+      padding: 6px 16px;
+      background: #E27F2E;
+    
+      &:hover, &:active, &:focus {
+        background: #BD6A26;
+      }
+    }
+  }
+  .logged {
+    padding-left: 0px;
+    > a {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: white;
+      padding: 6px 0;
+      display: inline-block;
+      > span {
+        border-top-color: white;
+        border-bottom-color: white;
+      }
+    }
+  }
+  form {
+    margin: 0 0;
+  }
+
+  @media (max-width: 767px) {
+    .navbar-form {
+      padding: 0 0;
+      border: 0px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    > ul {
+      > li {
+        padding: 6px 4px;
+        &.hide-small {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+#top, #small_top {
+  form {
+    padding: 0 0;
+  }
+  .form-control {
+    border: none;
+  }
+  .nav {
+    margin-left: 40px;
+    li {
+      font-weight: bold;
+    }
+  }
+}
+
 .navbar-inverse {
   li {
     a.dropdown-toggle {
@@ -197,16 +288,9 @@ h1, h2, h3, h4, h5, h6,
   margin-left: -28px;
 }
 
-@media (min-width: $grid-float-breakpoint) {
-  #siteSearch {
-    width: 350px;
-    font-size: 14px;
-  }
-}
-@media (min-width: $grid-float-breakpoint) and (max-width: $site-search-breakpoint) {
-  #siteSearch {
-    width: 200px;
-  }
+#siteSearch {
+  width: 295px;
+  font-size: 14px;
 }
 
 @media (max-width: $grid-float-breakpoint) {
@@ -214,11 +298,6 @@ h1, h2, h3, h4, h5, h6,
     li {
       margin-left: 10px;
     }
-  }
-  #siteSearch {
-    width: 95%;
-  }
-  #searchIcon {
   }
 }
 
@@ -235,6 +314,14 @@ h1, h2, h3, h4, h5, h6,
 $modal-content-bg: #efefef;
 .modal .modal-dialog {
   width: 430px;
+  &.modal-lg {
+    width: 650px;
+  }
+  @media (max-width: 767px) {
+    &.modal-lg {
+      width: 100%;
+    }
+  }
 }
 
 #termsModal {
@@ -866,5 +953,9 @@ $card-img-height: 170px;
 
 // Bootstrap
 // ------------------
+
+.no-padding {
+  padding: 0 0 !important;
+}
 
 @import 'sass-bootstrap/lib/bootstrap';

@@ -1,14 +1,12 @@
-<div id="home" ng-controller="LandingCtrl">
-
-  <div background-img="{{storage}}landing_cover.jpg" ng-hide="loggedUser">
+<div id="home" ng-controller="LandingCtrl as ctrl">
+  <div background-img="{{storage}}banner-atados-1.jpg" ng-hide="loggedUser">
     <div class="jumbotron">
       <div id="jumbotron-header">
-        <h1 class="text-center">Uma rede do bem, para fazer o bem!</h1>
-        <p class="text-center"><b>Cadastre-se</b> e encontre aqui no <b>Atados</b> o trabalho voluntário que procura.</p>
+        <h1 class="text-center">Mobilize-se para causas sociais!</h1>
+        <p class="text-center">Conhecer uma causa e começar é muito fácil! Vamos lá?</p>
       </div>
       <div id="jumbotron-buttons">
-        <button type="button" ng-show="!loggedUser" class="btn btn-primary btn-lg" role="button" ng-click="openLogin('volunteer')">Quero ser voluntário</button>
-        <button type="button" ng-show="!loggedUser" class="btn btn-info btn-lg" role="button" ng-click="openLogin('nonprofit')">Sou uma ONG</button>
+        <button type="button" ng-show="!loggedUser" class="btn btn-primary btn-lg" role="button" ng-click="openLogin('volunteer')">Quero fazer trabalho voluntário</button>
       </div>
     </div>
   </div>
@@ -19,57 +17,153 @@
 
   <div id="landing-info">
     <div class="container">
-      <h3 class="col-xs-12">é fácil começar !</h3>
-
-      <div id="numbers">
-        <div class="col-sm-4">
-          <span class="number"><i class="fa fa-rocket"></i> {{ numbers().projects | number }}</span>
-          <br>
-          <span class="number-label">Oportunidades para agir</span>
+      <div class="row">
+        <div class="col-xs-12 col-md-5">
+          <div class="wrapper">
+            <h3>O atados em números</h3>
+            <div class="row">
+              <div class="col-xs-12 col-sm-4 col-md-12">
+                <div class="info">
+                  <span class="number">{{ numbers().projects | number }}</span>
+                  <span class="name"><b>Oportunidades</b> para agir</span>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-12">
+                <div class="info">
+                  <span class="number">{{numbers().volunteers | number}}</span>
+                  <span class="name"><b>Pessoas</b> que acreditam na mudança</span>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-4 col-md-12">
+                <div class="info">
+                  <span class="number">{{numbers().nonprofits | number}}</span>
+                  <span class="name"><b>Organizações</b> para se mobilizar</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="col-sm-4">
-          <span class="number"><i class="fa fa-smile-o"></i> {{numbers().volunteers |  number}}</span>
-          <br>
-          <span class="number-label">Pessoas que acreditam na mudança</span>
-        </div>
-
-        <div class="col-sm-3">
-          <span class="number"><i class="fa fa-home"></i>{{numbers().nonprofits | number}}</span>
-          <br>
-          <span class="number-label">ONGs para ajudar</span>
+        <div class="col-xs-12 col-md-7">
+          <div class="wrapper wrapper-news">
+            <h2>Receba atos e novidades</h2>
+            <p>Inscreva-se na nossa <b>Newsletter</b> e receba os atos em destaque que estão rolando.</p>
+            <div class="row">
+              <div class="col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2">
+                <input type="text" class="form-control" placeholder="Seu nome" ng-model="news.name">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8 col-sm-7 col-sm-push-1 col-md-6 col-md-push-2">
+                <input type="text" class="form-control" placeholder="Seu email" ng-model="news.email">
+              </div>
+              <div class="col-xs-4 col-sm-3 col-sm-push-1 col-md-2 col-md-push-2">
+                <input type="submit" value="Manda!" class="btn btn-default" ng-click="add_to_news()">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <depoimento ng-repeat="depoimento in depoimentos"></depoimento>
     </div>
+  </div>
+
+  <div class="we-are-what-we-do container">
+    <div class="col-xs-12">
+      <h3>Somos o que fazemos</h3>
+      <h4>Conheça os projetos que fizemos acontecer</h4>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-7">
+          <a href="#" ng-click="open_video('hBOsSsyYJS0')">
+            <div class="box world-cup">
+              <div class="overlay">
+                <div class="title">Copa do mundo<br>dos refugiados</div>
+                <div class="subtitle">Diversidade / Refugiados</div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <a href="#" ng-click="open_video('5kwSx-cZFT8')">
+            <div class="box marriage">
+              <div class="overlay">
+                <div class="title">Casamento<br>Isabel e Agenor</div>
+                <div class="subtitle">Idosos</div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <a href="#" ng-click="open_video('SZD5MS9AUj8')">
+            <div class="box feminicidade">
+              <div class="overlay">
+                <div class="title">Feminicidade</div>
+                <div class="subtitle">Empoderamento feminino</div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <a href="#" ng-click="open_video('_ZdaK8Qzo5U')">
+            <div class="box face-and-book">
+              <div class="overlay">
+                <div class="title">Carta e Livro</div>
+                <div class="subtitle">Crianças / Educação</div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+          <a href="#" ng-click="open_video('6IGWdnppm1Y')">
+            <div class="box no-hunger-city">
+              <div class="overlay">
+                <div class="title">Cidades<br>sem Fome</div>
+                <div class="subtitle">Trabalho Comunitário</div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  
   </div>
 
   <div id="parceirosMidia">
     <div class="container">
-      <h3 class="col-xs-12"><i class="fa fa-globe fa-3"></i> O que falaram de nós?</h3>
-
-      <a class="col-sm-2 col-xs-12" href="http://imaginanacopa.com.br/historias/historia-11-atados/">
-        <img class="img-responsive center-block" ng-src="{{storage}}imagina-logo.png" alt="Logo do Imagina na Copa."></a>
-      <a class="col-sm-2 col-xs-12" href="http://revistatrip.uol.com.br/transformadores/blogs/triptransformadores/2013/06/19/criando-lacos.html">
-        <img class="img-responsive center-block" ng-src="{{storage}}trip-logo.png" alt="Logo da Trip Transformadora."></a>
-      <a class="col-sm-2 col-xs-12" href="http://exame.abril.com.br/tecnologia/noticias/rede-social-atados-estimula-voluntariado-em-sao-paulo">
-        <img class="img-responsive center-block" ng-src="{{storage}}exame-logo.png" alt="Logo da revista Exame."></a>
-      <a class="col-sm-2 col-xs-12" href="http://revistagalileu.globo.com/Revista/Common/0,,EMI334558-17770,00-CONHECA+O+ATADOS+A+UNICA+REDE+VERDADEIRAMENTE+SOCIAL+DO+BRASIL.html">
-        <img class="img-responsive center-block" ng-src="{{storage}}galileu-logo.png" alt="Logo da revista Galileu."></a>
-      <a class="col-sm-2 col-xs-12" href="http://vejasp.abril.com.br/materia/voluntarios-ongs">
-        <img class="img-responsive center-block" ng-src="{{storage}}vejasp-logo.png" alt="Logo da revista Veja."></a>
-      <a class="col-sm-2 col-xs-12" href="http://www1.folha.uol.com.br/empreendedorsocial/minhahistoria/1246358-acreditamos-que-mudancas-muito-positivas-podem-ocorrer-por-meio-do-voluntariado.shtml">
-        <img class="img-responsive center-block" ng-src="{{storage}}folhadesp-logo.png" alt="Logo da revista Folha."></a>
-
-      <h3 class="col-xs-12"><i class="fa fa-heart fa-3"></i> Nossos parceiros</h3>
-
-      <a class="col-sm-5 col-xs-12" href="http://www.fenomenos.org/" target="_blank">
-        <img class="img-responsive center-block" ng-src="{{storage}}fundacao-fenomenos.png" alt="Logo da Fundação Fenomenos."></a>
-      <a class="col-sm-3 col-xs-12" href="http://www.allinmail.com.br/" target="_blank">
-        <img class="img-responsive center-block" ng-src="{{storage}}allin.png" alt="Logo da Empresa All in de envio de email."></a>
-      <a class="col-sm-3 col-xs-12" href="http://www.handsonnetwork.org/" target="_blank">
-        <img class="img-responsive center-block" ng-src="{{storage}}hands-on-network.png" alt="Logo da Hands On Network"></a>
+      <h3 class="col-xs-12">O que andam falando de nós?</h3>
+      <a href="http://www1.folha.uol.com.br/empreendedorsocial/2014/12/1546391-cinco-universitarios-criam-site-que-ajuda-a-achar-trabalho-voluntario.shtml">
+        <img class="img-logo" target="_blank" ng-src="{{storage}}folha.png" alt="Logo da revista Folha."></a>
+      <a href="http://www.estadao.com.br/noticias/geral,seis-selecoes-decidem-o-titulo-da-copa-dos-refugiados,1520678">
+        <img class="img-logo" target="_blank" ng-src="{{storage}}estadao.png" alt="Logo do Estadão."></a>
+      <a href="http://exame.abril.com.br/marketing/noticias/projeto-olhar-chivas-invade-as-ruas-de-sao-paulo-e-recife">
+        <img class="img-logo" target="_blank" ng-src="{{storage}}exame.png" alt="Logo da revista Exame."></a>
+      <a href="http://vejasp.abril.com.br/materia/aulas-idiomas-refugiados-abraco-cultural/">
+        <img class="img-logo" target="_blank" ng-src="{{storage}}vejasp.png" alt="Logo da revista Veja."></a>
+      <a href="http://revistatrip.uol.com.br/transformadores/blogs/triptransformadores/2013/06/19/criando-lacos.html">
+        <img class="img-logo" target="_blank" ng-src="{{storage}}trip.png" alt="Logo da Trip Transformadora."></a>
+      <a href="http://epoca.globo.com/vida/noticia/2013/12/classificados-bpara-fazer-o-bemb.html">
+        <img class="img-logo" target="_blank" ng-src="{{storage}}epoca.png" alt="Logo da Época."></a>
+      <a href="http://epoca.globo.com/vida/noticia/2013/12/classificados-bpara-fazer-o-bemb.html">
+        <img class="img-logo" target="_blank" ng-src="{{storage}}globo.png" alt="Logo da Globo."></a>
+      <a href="http://www.bbc.com/portuguese/noticias/2014/07/140702_copa_refugiados_vale_cc_rb">
+        <img class="img-logo" target="_blank" ng-src="{{storage}}bbc.png" alt="Logo da BBC."></a>
+      <a href="https://catracalivre.com.br/geral/cidadania/indicacao/rede-social-atados-alavanca-oportunidades-de-trabalho-voluntario/">
+        <img class="img-logo" target="_blank" ng-src="{{storage}}catraca.png" alt="Logo da Catraca Livre."></a>
+      <a href="https://www.youtube.com/watch?v=6kwSx-cZFT8">
+        <img class="img-logo" target="_blank" ng-src="{{storage}}imagina-copa.png" alt="Logo do Imagina na Copa."></a>
     </div>
   </div>
 </div>
+
+<script type="text/ng-template" id="modalVideo.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Espero que goste!</h3>
+    </div>
+    <div class="modal-body no-padding">
+      <div class="ratio" style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; display: block;">
+        <iframe style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: block;" src="{{url | trusted}}" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="close_video()">Fechar</button>
+    </div>
+</script>
