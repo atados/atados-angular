@@ -3,10 +3,11 @@
 #home {
   .jumbotron {
     margin-bottom: 0;
-    height: 400px;
+    height: 460px;
+    background: none;
 
     #jumbotron-header {
-      margin-top: 20px;
+      margin-top: 30px;
       h1 {
         font-size: 50px;
         font-weight: bold;
@@ -23,8 +24,7 @@
         &:first-child {
           margin-right: 30px;
         }
-        text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
-        padding: 30px 40px;
+        padding: 24px 36px;
         letter-spacing: 1px;
       }
       .btn.btn-primary {
@@ -43,6 +43,10 @@
         text-transform: uppercase;
         white-space: normal;
       }
+    }
+
+    @media (min-width: 420px) and (max-width: 767px) {
+      height: 330px;
     }
 
     @media (min-width: 768px) and (max-width: 992px) {
@@ -93,7 +97,6 @@
 }
 
 #landing-info {
-  box-shadow: 0 2px 10px #888;
   padding: 30px 0px;
   background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/bg-newsletter.jpg') no-repeat center center / cover;
 
@@ -128,10 +131,27 @@
 
     .form-control {
        box-shadow: none;
-       background: rgba(50, 50, 50, 0.5);
+       background: rgba(255, 255, 255, 0.2);
        border: 0px;
-       border-radius: 0px;
+       border-radius: 2px;
        color: #fafafa;
+       height: 41px;
+    }
+
+    ::-webkit-input-placeholder {
+       color: #c1c1c1;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color: #c1c1c1;  
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: #c1c1c1;  
+    }
+
+    :-ms-input-placeholder {  
+       color: #c1c1c1;  
     }
     
     .row {
@@ -156,9 +176,11 @@
 
     .btn-default {
        background: #E27F2E; 
-       border-radius: 0px;
+       border-radius: 2px;
        border: 0px;
        color: white;
+       height: 41px;
+       width: 100%;
     }
   }
 }
@@ -176,6 +198,7 @@
     font-size: 23px;
     text-transform:uppercase;
     margin: 40px 0;
+    text-align: left;
   }
 }
 
@@ -232,7 +255,6 @@
     text-decoration: none;
     .box {
       transform: scale(1.1);
-      box-shadow: 2px 2px 5px rgba(0,0,0,0.7);
       position: relative;
       z-index: 1;
     }
@@ -301,9 +323,9 @@
 }
 
 .img-logo {
-  zoom: 0.8;
+  /*zoom: 0.8;
   -ms-zoom: 0.8;
   -webkit-zoom: 0.8;
-  -moz-zoom: 0.8;
-  margin-right: 20px;
+  -moz-zoom: 0.8;*/
+  margin-right: 16px;
 }
