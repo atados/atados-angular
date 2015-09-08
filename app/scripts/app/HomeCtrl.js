@@ -11,7 +11,7 @@ app.controller('HomeCtrl', function($scope, $sce, $modal, $http, api, $location,
   $scope.site.description = 'Atados é uma rede social para voluntários e ONGs.';
 
   $scope.open_video = function (url) {
-    var modalInstance = $modal.open({
+    $modal.open({
       animation: $scope.animationsEnabled,
       templateUrl: 'modalVideo.html',
       controller: 'modalVideo',
@@ -33,21 +33,21 @@ app.controller('HomeCtrl', function($scope, $sce, $modal, $http, api, $location,
     console.log($scope.news);
     $http.post(api + 'add_to_newsletter/', $scope.news).success(function(response) {
       toastr.success(response.msg);
-    }).error(function(error) {
+    }).error(function() {
       toastr.error('Um erro ocorreu.');
     });
-  }
+  };
 
   $scope.see_projects = function() {
     $location.hash('atados-explorer');
     $anchorScroll();
-  }
+  };
 
   $scope.htmlReady();
 });
 
 app.controller('modalVideo', function ($scope, $modalInstance, url) {
-  $scope.url = "https://www.youtube.com/embed/" + url + "?autoplay=1";
+  $scope.url = 'https://www.youtube.com/embed/' + url + '?autoplay=1'; // jshint ignore:line
   $scope.close_video = function () {
     $modalInstance.close();
   };
