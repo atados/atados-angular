@@ -302,3 +302,11 @@ app.directive('imgCropped', function() {
     }
   };
 });
+
+app.directive('cardExpiration', function() {
+  return {
+    link: function($scope, element) {
+      element.mask('99/9999');
+    } 
+  };
+});

@@ -955,6 +955,110 @@ $card-img-height: 170px;
   transform: translateY(0);
 }
 
+.contribute {
+  background: #f0f0f0;
+  padding: 15px 0 60px;
+
+  .thank-you-container {
+    display: none;
+  }
+
+  label {
+    display: block;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 19px;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+
+  label {
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  .form-control {
+    border: 1px solid #d8d8d8;
+    box-shadow: none !important;
+    padding: 0px 20px;
+    height: 40px;
+  }
+
+  .feedback {
+    color: #FF4B4B;
+    font-weight: normal;
+  }
+
+  .btn-info {
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 15px 40px;
+    border-radius: 1px;
+    margin-top: 15px;
+  }
+
+  .contribution {
+    padding: 5px;
+    background: white;
+
+    .box {
+      background: #f0f0f0;
+      padding: 30px;
+
+      h4 {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .price {
+        font-size: 30px;
+        color: #E37E2E;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 16px;
+        margin-top: 15px;
+      }
+
+      .edit {
+        float: right;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 12px;
+      }
+    }
+
+    .options {
+      margin-left: 0px;
+      padding-left: 0px;
+      li {
+        display: inline-block;
+        background: #aaa;
+        border-radius: 3px;
+        padding: 3px 5px;
+        cursor: pointer;
+
+        &.active {
+          background: #E37E2E;
+          color: #eee;
+        }
+      }
+    }
+  }
+}
+
 // Bootstrap
 // ------------------
 

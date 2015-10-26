@@ -128,7 +128,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
      .state('legacyproject', {
         url: '/site/ato/:projectUid',
         controller: 'LegacyCtrl'
-      });
+      })
+     .state('root.contributions', {
+       url: '/contribua/:value?',
+       templateUrl: '/partials/contributions.html',
+       controller: 'ContributionsCtrl'
+     });
 
   $urlRouterProvider.otherwise('/ops');
   $locationProvider.html5Mode(true).hashPrefix('!');
