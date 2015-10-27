@@ -59,7 +59,7 @@
 
       </div>
       <div class="col-sm-2">
-        <button id="atar-button" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-hide="project.closed || alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()"><i class="fa fa-heart"></i> Quero me candidatar</button>
+        <button id="atar-button" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-hide="project.closed || alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()">Quero me candidatar</button>
         <button id="atar-button" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-show="alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()"><i class="fa fa-chain-broken"></i> Não quero mais</button>
         <button id="atar-button" disabled ng-hide="alreadyApplied || !project.closed" class="btn"><i class="fa fa-times"></i> Ato Fechado</button>
 
