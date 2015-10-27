@@ -1,0 +1,152 @@
+<div class="contribute">
+  <div class="container contribute-container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-push-8">
+        <div class="contribution">
+          <div class="box">
+            <h4>Valor da contribuição</h4>
+            <span class="price">R$ {{contribution_price | number: 2}}</span>
+            <div class="edit" ng-click="toggleOptions()">Editar</div>
+            <ul class="options" ng-style="optionsstyle">
+              <li ng-click="updatePrice(30)" ng-class="{'active': contribution_price == 30}">30</li>
+              <li ng-click="updatePrice(60)" ng-class="{'active': contribution_price == 60}">60</li>
+              <li ng-click="updatePrice(100)" ng-class="{'active': contribution_price == 100}">100</li>
+            </ul>
+            <p>Você irá contribuir com R$ {{contribution_price | number: 2}} mensalmente, ajudando o Atados a lorem ipsum dolor sit amet.</p>
+          </div>
+        </div>
+      </div>
+      <form id="cardform" name="cardform" ng-submit="submit(cardform)" novalidate>
+        <div class="col-xs-12 col-sm-8 col-sm-pull-4">
+          <h2>Preencha e revise os dados para colaborar</h2>
+          <h4>Esses dados serão utilizados para validar a colaboração</h4>
+          <div class="row">
+            <div class="col-xs-12">
+              <label>
+                Nome completo
+                <input type="text" class="form-control" value="{{name}}"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                Email
+                <input type="text" class="form-control" value="{{email}}"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                Confirme seu email
+                <input type="text" class="form-control" value="{{confirm_email}}"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                CPF / CNPJ
+                <input type="text" class="form-control" value="{{doc}}"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                Telefone
+                <input type="text" class="form-control" value="{{phone}}"></input>
+              </label>
+            </div>
+          </div>
+          <h3>Endereço</h3>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                Endereço
+                <input type="text" class="form-control" value="{{address_street}}"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                CEP
+                <input type="text" class="form-control" value="{{address_zip}}"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <label>
+                Número
+                <input type="text" class="form-control" value="{{address_number}}"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <label>
+                Complemento
+                <input type="text" class="form-control" value="{{address_complement}}"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <label>
+                Cidade
+                <input type="text" class="form-control" value="{{address_city}}"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <label>
+                Estado
+                <input type="text" class="form-control" value="{{address_state}}"></input>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <h4>Preencha os dados de pagamento (cartão de crédito)</h4>
+              <img src="https://s3-sa-east-1.amazonaws.com/atadosapp/images/cards.png" alt="">
+            </div>
+            <div class="col-xs-12">
+              <div class="row">
+                <div class="col-xs-12 col-sm-5">
+                  <label>
+                    Nome (igual do cartão)
+                    <input type="text" class="form-control" ng-model="card_holder_name"></input>
+                    <span class="feedback">{{card_holder_name_error}}</span>
+                  </label>
+                </div>
+                <div class="col-xs-12 col-sm-7">
+                  <label>
+                    Número do cartão
+                    <input type="text" class="form-control" ng-model="card_number"></input>
+                    <span class="feedback">{{card_number_error}}</span>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                  <label>
+                    Cód. Segurança
+                    <input type="text" class="form-control" ng-model="card_cvv"></input>
+                    <span class="feedback">{{card_cvv_error}}</span>
+                  </label>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                  <label>
+                    Expiração (mm/aaaa)
+                    <input type="text" class="form-control" ng-model="card_expires" ui-mask="99/99" card-expiration></input>
+                    <span class="feedback">{{card_expires_error}}</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <button type="submit" class="btn btn-info btn-submit">Próximo Passo</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="thank-you-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          Sua doação foi feita com sucesso! O atados lorem ipsum officia voluptas ipsam id maxime commodi nisi ratione itaque est magni labore. Deleniti qui quae laborum ex soluta consequatur. Est obcaecati rem odit quam consequatur neque. Officiis incidunt molestias!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
