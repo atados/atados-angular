@@ -4,7 +4,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('RootCtrl', function ($scope, $rootScope, $state, Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, Site) {
+app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, Site) {
 
   $scope.loggedUser = loggedUser;
 
@@ -46,6 +46,9 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, Auth, loggedUse
       }
       if ($rootScope.modalInstance) {
         $rootScope.modalInstance.close();
+      }
+      if (user.role === 'NONPROFIT') {
+        $location.path('/controle/' + user.slug);
       }
     }
   });
