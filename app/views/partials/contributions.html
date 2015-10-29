@@ -5,13 +5,13 @@
         <div class="contribution">
           <div class="box">
             <h4>Valor da contribuição</h4>
-            <span class="price">R$ {{contribution_price | number: 2}}</span>
+            <span class="price" ng-style="pricestyle">R$ {{contribution_price | number: 2}}</span>
+            <input type="text" ng-model="contribution_price" ng-style="optionsstyle" class="price-input">
             <div class="edit" ng-click="toggleOptions()">Editar</div>
-            <ul class="options" ng-style="optionsstyle">
-              <li ng-click="updatePrice(30)" ng-class="{'active': contribution_price == 30}">30</li>
-              <li ng-click="updatePrice(60)" ng-class="{'active': contribution_price == 60}">60</li>
-              <li ng-click="updatePrice(100)" ng-class="{'active': contribution_price == 100}">100</li>
-            </ul>
+            <label ng-style="optionsstyle">
+              <input type="checkbox" ng-model="contribution_monthly">
+              Doação mensal
+            </label>
             <p>Você irá contribuir com R$ {{contribution_price | number: 2}} mensalmente, ajudando o Atados a lorem ipsum dolor sit amet.</p>
           </div>
         </div>

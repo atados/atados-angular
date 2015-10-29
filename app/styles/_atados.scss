@@ -959,6 +959,17 @@ $card-img-height: 170px;
   background: #f0f0f0;
   padding: 15px 0 60px;
 
+  .price-input {
+    font-size: 18px;
+    width: 150px;
+    box-shadow: none;
+    border: medium none;
+    border-radius: 10px;
+    padding: 10px;
+    color: #E37E2E;
+    font-weight: bold;
+  }
+
   .thank-you-container {
     display: none;
   }

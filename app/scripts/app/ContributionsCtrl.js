@@ -12,6 +12,7 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   $scope.site.og.image = 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/landing_cover.jpg';
   $scope.site.description = 'Atados é uma rede social para voluntários e ONGs.';
 
+  $scope.contribution_monthly = true;
   $scope.contribution_price = $stateParams.value;
   $scope.optionsstyle = {'display': 'none'};
 
@@ -33,20 +34,19 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   $scope.card_cvv = '123';
   $scope.card_expires = '09/2016';
 
-  $scope.updatePrice = function (price) {
-    $scope.contribution_price = price;
-    $scope.toggleOptions();
-  };
-
   $scope.toggleOptions = function () {
     if ($scope.optionsstyle) {
       $scope.optionsstyle = undefined;
+      $scope.pricestyle = {'display': 'none'};
     } else {
-      $scope.optionsstyle = {'display': 'none'};
+      if (!isNaN($scope.contribution_price)) {
+        $scope.optionsstyle = {'display': 'none'};
+        $scope.pricestyle = undefined;
+      } else {
+        window.alert('O valor inserido está incorreto.');
+      }
     }
   };
-
-
 
   $scope.submit = function() {
     PagarMe.encryption_key = 'ek_test_Bv1RBLDTKUFlQf5TJa9689W9vZlW51';
@@ -90,7 +90,7 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
       'doc': $scope.doc,
       'phone': $scope.phone,
 
-      'address_street': $scope.address_stree,
+      'address_street': $scope.address_street,
       'address_zip': $scope.address_zip,
       'address_number': $scope.address_number,
       'address_complement': $scope.address_complement,
@@ -102,8 +102,8 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
       'card_exp_year': exp_year,
       'card_cvv': $scope.card_cvv,
 
-      'recurrent': true,
-      'value': $scope.contribution_price,
+      'recurrent': $scope.contribution_monthly,
+      'value': parseFloat($scope.contribution_price),
     };
 
     if(!hasErrors) {
@@ -124,4 +124,9 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
       });
     }
   };
+
+  if (!$scope.contribution_price) {
+    $scope.contribution_price = 100;
+    $scope.toggleOptions();
+  }
 }]);
