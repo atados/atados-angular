@@ -30,6 +30,12 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
     }
   };
 
+  $scope.cardError = function() {
+    toastr.error('Houve um erro! Por favor, confira os dados e tente novamente!');
+    $('#cardform input, #cardform button').removeAttr('disabled');
+    $('.btn-submit').html('Próximo passo...');
+  }
+
   $scope.submit = function() {
     //PagarMe.encryption_key = 'ek_test_Bv1RBLDTKUFlQf5TJa9689W9vZlW51'; // dev
     PagarMe.encryption_key = 'ek_live_BLoNfHnapvkwXlUAOH5ek8fXOMndGv'; // live
@@ -98,19 +104,19 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
             $('.contribute-container').hide();
             $('.thank-you-container').show();
           } else {
-            toastr.error('Houve um erro! Por favor, confira os dados e tente novamente!');
-            $('#cardform input, #cardform button').removeAttr('disabled');
+            $scope.cardError();
           }
         }).error(function() {
-          toastr.error('Houve um erro! Por favor, confira os dados e tente novamente!');
-          $('#cardform input, #cardform button').removeAttr('disabled');
+            $scope.cardError();
         });
       });
+    } else {
+      $scope.cardError();
     }
   };
 
   if (!$scope.contribution_price) {
     $scope.contribution_price = 100;
     $scope.toggleOptions();
-  }
+  };
 }]);
