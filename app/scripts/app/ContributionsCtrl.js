@@ -34,7 +34,7 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
     toastr.error('Houve um erro! Por favor, confira os dados e tente novamente!');
     $('#cardform input, #cardform button').removeAttr('disabled');
     $('.btn-submit').html('Próximo passo...');
-  }
+  };
 
   $scope.submit = function() {
     //PagarMe.encryption_key = 'ek_test_Bv1RBLDTKUFlQf5TJa9689W9vZlW51'; // dev
@@ -118,5 +118,5 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   if (!$scope.contribution_price) {
     $scope.contribution_price = 100;
     $scope.toggleOptions();
-  };
+  }
 }]);
