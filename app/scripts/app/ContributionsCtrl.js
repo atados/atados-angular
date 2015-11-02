@@ -16,24 +16,6 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   $scope.contribution_price = $stateParams.value;
   $scope.optionsstyle = {'display': 'none'};
 
-  $scope.name = 'Leonardo Arroyo';
-  $scope.email = 'arroyo@leonardoarroyo.com';
-  $scope.confirm_email = 'arroyo@leonardoarroyo.com';
-  $scope.doc = '429.595.458-69';
-  $scope.phone = '(11) 94764-4662';
-
-  $scope.address_street = 'Av. Melchert';
-  $scope.address_zip = '03065-030';
-  $scope.address_number = '79';
-  $scope.address_complement = 'Ap 93';
-  $scope.address_city = 'São Paulo';
-  $scope.address_state = 'SP';
-
-  $scope.card_holder_name = 'Leonardo Araujo Arroyo';
-  $scope.card_number = '4111111111111111';
-  $scope.card_cvv = '123';
-  $scope.card_expires = '09/2016';
-
   $scope.toggleOptions = function () {
     if ($scope.optionsstyle) {
       $scope.optionsstyle = undefined;
