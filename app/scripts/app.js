@@ -130,7 +130,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         controller: 'LegacyCtrl'
       })
      .state('root.contributions', {
-       url: '/contribua/:value?',
+       url: '/contribua/{value:/?.*}',
        templateUrl: '/partials/contributions.html',
        controller: 'ContributionsCtrl'
      });
