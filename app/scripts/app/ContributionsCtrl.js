@@ -31,7 +31,9 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   };
 
   $scope.submit = function() {
-    PagarMe.encryption_key = 'ek_test_Bv1RBLDTKUFlQf5TJa9689W9vZlW51';
+    //PagarMe.encryption_key = 'ek_test_Bv1RBLDTKUFlQf5TJa9689W9vZlW51'; // dev
+    PagarMe.encryption_key = 'ak_live_uHa4unYPFX4s3Ls51OVxbxzdjdC72d'; // live
+
     $('#cardform input, #cardform button').attr('disabled', 'disabled');
     $('.btn-submit').html('Enviando...');
 
