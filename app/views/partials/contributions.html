@@ -12,7 +12,7 @@
               <input type="checkbox" ng-model="contribution_monthly">
               Doação mensal
             </label>
-            <p>Você irá contribuir com R$ {{contribution_price | number: 2}} mensalmente, ajudando o Atados a lorem ipsum dolor sit amet.</p>
+            <p>Você irá contribuir com R$ {{contribution_price | number: 2}} <span ng-show="!contribution_monthly">pontualmente</span><span ng-show="contribution_monthly">mensalmente</span>, ajudando o Atados a realizar seus sonhos.</p>
           </div>
         </div>
       </div>
