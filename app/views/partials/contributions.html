@@ -143,8 +143,13 @@
   <div class="thank-you-container">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12">
-          Sua doação foi feita com sucesso! O atados lorem ipsum officia voluptas ipsam id maxime commodi nisi ratione itaque est magni labore. Deleniti qui quae laborum ex soluta consequatur. Est obcaecati rem odit quam consequatur neque. Officiis incidunt molestias!
+        <div class="col-xs-12" ng-show="contribution_monthly">
+          Muito obrigado! O processo de doação foi realizado com sucesso e agora você não só faz parte da nossa rede como também está ajudando a multiplicar esse sonho.<br>
+          Enviaremos para o seu email uma mensagem de confirmação, só pra garantir ;)
+        </div>
+        <div class="col-xs-12" ng-show="!contribution_monthly">
+          Muito obrigado! O processo de doação foi realizado com sucesso e agora você não só faz parte da nossa rede como também está ajudando a multiplicar esse sonho.<br>
+          Enviaremos para o seu email uma mensagem de confirmação, só pra garantir ;)
         </div>
       </div>
     </div>
