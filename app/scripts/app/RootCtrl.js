@@ -62,4 +62,12 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, Auth
     $scope.loggedUser = null;
     $state.transitionTo('root.home');
   };
+
+  $rootScope.toggleHeader = function() {
+    if ($('#we-love-you').is(':visible')) {
+      $('#we-love-you').slideUp();
+    } else {
+      $('#we-love-you').slideDown();
+    }
+  };
 });

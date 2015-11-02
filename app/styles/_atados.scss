@@ -1113,4 +1113,154 @@ $card-img-height: 170px;
   padding: 0 0 !important;
 }
 
+#we-love-you {
+  height: 140px;
+  overflow: hidden;
+  position: relative;
+  font-size: 0px;
+
+  a {
+    position: absolute;
+    font-size: 14px;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    color: white;
+    text-shadow: none;
+    background: #555;
+    line-height: 19px;
+    color: white;
+    font-size: 21px;
+
+    &:hover, &:active, &:focus {
+      background: #333;
+    }
+  }
+
+  .part-circle {
+    background: #47EA2F;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: absolute;
+    margin-top: -80px;
+    margin-left: -260px;
+    display: block;
+  }
+
+  .part {
+    display: inline-block;
+    width: 33.333%;
+    font-size: 14px;
+    box-sizing: border-box;
+    height: 140px;
+    vertical-align: top;
+    padding: 0px 15px 0 0;
+
+    img {
+      width: 80%;
+    }
+  }
+
+  .part:nth-child(2) {
+    padding: 21px 0px 0px 50px;
+    text-align: center;
+    width: 27.33333%;
+  }
+
+  .part:nth-child(3) {
+    background: #f3f3f3;
+  }
+
+  .part:nth-child(4) {
+    
+  }
+
+  .part:nth-child(3),
+  .part:nth-child(4) {
+    width: 36.3333%;
+    white-space:nowrap;
+    overflow:hidden;
+    vertical-align: top;
+
+    img {
+      margin-top: 10px;
+    }
+
+    p {
+      display: inline-block;
+      vertical-align: top;
+      white-space: initial;
+      margin-left: 10px;
+      margin-right: 60px;
+      padding: 25px 0px 0px 10px;
+
+      .btn {
+        color: white;
+        background: #41E62A;
+        border: none;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 5px 30px;
+      }
+    }
+  }
+
+  .triangle {
+    height: 140px;
+    background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/triangulobranco.png') no-repeat center center / cover;
+    width: 73px;
+    display: inline-block;
+
+    &.white {
+    background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/triangulo.png') no-repeat center center / cover;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1000px) {
+    .part:nth-child(2) {
+      display: none;
+    }
+
+    .part:nth-child(3),
+    .part:nth-child(4) {
+      width: 50%;
+    }
+  }
+
+  @media (max-width: 767px) {
+    height: auto;
+    
+    .part-circle {
+      display: none;
+    }
+
+    .part {
+      height: auto;
+    }
+
+    .part:nth-child(2) {
+      display: none;
+    }
+
+    .part:nth-child(3),
+    .part:nth-child(4) {
+      display: block;
+      width: 100%;
+
+      .triangle {
+        display: none;
+      }
+
+      p {
+        padding: 10px 10px;
+      }
+    }
+  }
+}
+
+
 @import 'sass-bootstrap/lib/bootstrap';
