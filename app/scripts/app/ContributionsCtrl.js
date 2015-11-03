@@ -96,6 +96,8 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
       'value': parseFloat($scope.contribution_price),
     };
 
+    console.log(data);
+
     if(!hasErrors) {
       creditCard.generateHash(function(cardHash) {
         data.card_hash = cardHash;
