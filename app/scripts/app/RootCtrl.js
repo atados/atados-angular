@@ -1,10 +1,11 @@
 'use strict';
 
 /* global toastr: false */
+/* global $: false */
 
 var app = angular.module('atadosApp');
 
-app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, Site) {
+app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, Site) {
 
   $scope.loggedUser = loggedUser;
 
@@ -62,4 +63,14 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, Auth
     $scope.loggedUser = null;
     $state.transitionTo('root.home');
   };
+
+  $rootScope.toggleHeader = function() {
+    if ($('#we-love-you').is(':visible')) {
+      $('#we-love-you').slideUp();
+    } else {
+      $('#we-love-you').slideDown();
+    }
+  };
+
+  $rootScope.toggleHeader();
 });

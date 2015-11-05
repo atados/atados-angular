@@ -6,7 +6,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams, $http, Auth, $modal, Volunteer, project, api, VOLUNTEER) {
+app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams, $location, $http, Auth, $modal, Volunteer, project, api, VOLUNTEER) {
 
   $scope.landing = false;
   $scope.markers = [];
@@ -104,12 +104,13 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
         if (response[0] === 'Applied') {
           $scope.project.volunteers.push($scope.loggedUser);
           $scope.alreadyApplied = true;
-          toastr.success('Parabéns! Você é voluntário para ' + $scope.project.name);
+          //toastr.success('Parabéns! Você é voluntário para ' + $scope.project.name);
           dataLayer.push({
             'event': 'okQueroSerVoluntarioButtonClick',
             'eventCategory': 'buttonClicked',
             'eventAction' : 'success'
           });
+          $location.path('/atado');
 
         } else {
           $scope.project.volunteers.splice($scope.project.volunteers.indexOf($scope.loggedUser),1);

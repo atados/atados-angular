@@ -113,6 +113,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         templateUrl: '/partials/projectEdit.html',
         controller: 'ProjectEditCtrl'
       })
+    .state('root.volunteer_success', {
+        url: '/atado',
+        templateUrl: '/partials/joinedProject.html',
+      })
     .state('legacynonprofit', {
         url: '/site/instituicoes/:nonprofitUid/profile',
         controller: 'LegacyCtrl'
