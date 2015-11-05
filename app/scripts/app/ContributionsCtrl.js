@@ -13,7 +13,13 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   $scope.site.description = 'Atados é uma rede social para voluntários e ONGs.';
 
   $scope.contribution_monthly = true;
-  $scope.contribution_price = $stateParams.value;
+
+  var value = String($stateParams.value).replace(/\D/g,'');
+  if (String($stateParams.value).replace(/[^a-zA-Z-@]/g, '') == '@') {
+    $scope.contribution_monthly = false;
+  }
+
+  $scope.contribution_price = value; 
   $scope.optionsstyle = {'display': 'none'};
 
   $scope.toggleOptions = function () {
