@@ -236,6 +236,18 @@ h1, h2, h3, h4, h5, h6,
 
 #top {
   padding: 12px 0;
+  .btn-contribute {
+    background-color: #ee0079;
+    padding: 8px 32px;
+    border: solid 1px #b20b60;
+    border-radius: 3px;
+    box-shadow: 0px 0px 8px 0px rgba(2, 3, 3, 0.118);
+    font-weight: bold;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 15px;
+  }
 }
 
 #top, #small_top {
