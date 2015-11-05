@@ -133,7 +133,7 @@
           </div>
           <div class="row">
             <div class="col-xs-12 text-center">
-              <button type="submit" class="btn btn-info btn-submit">Próximo Passo</button>
+              <button type="submit" class="btn btn-info btn-submit">Doar</button>
             </div>
           </div>
         </div>
@@ -143,13 +143,16 @@
   <div class="thank-you-container">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12" ng-show="contribution_monthly">
-          Muito obrigado! O processo de doação foi realizado com sucesso e agora você não só faz parte da nossa rede como também está ajudando a multiplicar esse sonho.<br>
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h2>Muito obrigado!</h2>
+          <b>O processo de doação foi realizado com sucesso.</b><br>
+          Você acaba de ajudar a multiplicar nossos sonhos!
+          <br><br>
           Enviaremos para o seu email uma mensagem de confirmação, só pra garantir ;)
-        </div>
-        <div class="col-xs-12" ng-show="!contribution_monthly">
-          Muito obrigado! O processo de doação foi realizado com sucesso e agora você não só faz parte da nossa rede como também está ajudando a multiplicar esse sonho.<br>
-          Enviaremos para o seu email uma mensagem de confirmação, só pra garantir ;)
+          <br><br>
+          Aproveite esse momento e conheça diversas possibilidades de voluntariado para colocar a mão na massa:
+          <br><br>
+          <a ui-sref="root.explore()" class="btn btn-primary">Quero fazer trabalho voluntário</a>
         </div>
       </div>
     </div>

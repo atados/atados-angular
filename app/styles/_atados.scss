@@ -971,7 +971,43 @@ $card-img-height: 170px;
   }
 
   .thank-you-container {
+    text-align: center;
+    margin-top: 40px;
     display: none;
+    h2 {
+      color: #009ade;
+      font-size: 46px;
+      margin-bottom: 45px;
+    }
+    .col-xs-12 {
+      background: white;
+      border-radius: 6px;
+      padding: 30px !important;
+    }
+    .btn.btn-primary {
+      border-radius: 4px;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f99b44+0,e17e2d+100 */
+      background: #f99b44 !important; /* Old browsers */
+      background: -moz-linear-gradient(top, #f99b44 0%, #e17e2d 100%) !important; /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f99b44), color-stop(100%,#e17e2d)) !important; /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, #f99b44 0%,#e17e2d 100%) !important; /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, #f99b44 0%,#e17e2d 100%) !important; /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, #f99b44 0%,#e17e2d 100%) !important; /* IE10+ */
+      background: linear-gradient(to bottom, #f99b44 0%,#e17e2d 100%) !important; /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f99b44', endColorstr='#e17e2d',GradientType=0  ) !important; /* IE6-9 */
+
+      border: 0px !important;
+      text-transform: uppercase;
+      white-space: normal;
+      padding: 24px 36px;
+      letter-spacing: 1px;
+      font-size: 20px;
+
+      &:hover {
+        color: #fff;
+        border-color: #9d5318;
+      }
+    }
   }
 
   label {

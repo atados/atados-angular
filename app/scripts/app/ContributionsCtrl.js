@@ -15,7 +15,7 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   $scope.contribution_monthly = true;
 
   var value = String($stateParams.value).replace(/\D/g,'');
-  if (String($stateParams.value).replace(/[^a-zA-Z-@]/g, '') == '@') {
+  if (String($stateParams.value).replace(/[^a-zA-Z-@]/g, '') === '@') {
     $scope.contribution_monthly = false;
   }
 
