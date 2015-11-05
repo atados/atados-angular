@@ -5,7 +5,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, Site) {
+app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, Site) {
 
   $scope.loggedUser = loggedUser;
 
@@ -72,5 +72,7 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, Cook
     }
   };
 
-  $rootScope.toggleHeader();
+  $timeout(function() {
+    //$rootScope.toggleHeader();
+  }, 1000);
 });

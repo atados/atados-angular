@@ -1200,12 +1200,13 @@ $card-img-height: 170px;
       padding: 25px 0px 0px 10px;
 
       .btn {
+        margin-top: 10px;
         color: white;
         background: #41E62A;
         border: none;
         font-weight: bold;
         text-transform: uppercase;
-        padding: 5px 30px;
+        padding: 10px 30px;
       }
     }
   }
@@ -1259,6 +1260,10 @@ $card-img-height: 170px;
       p {
         padding: 10px 10px;
       }
+    }
+
+    br {
+      display: none;
     }
   }
 }
