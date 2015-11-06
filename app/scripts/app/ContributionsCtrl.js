@@ -47,7 +47,7 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
     PagarMe.encryption_key = 'ek_live_BLoNfHnapvkwXlUAOH5ek8fXOMndGv'; // live
 
     if ($scope.contribution_price < 30) {
-      alert('O valor mínimo de doação é de R$30,00.');
+      window.alert('O valor mínimo de doação é de R$30,00.');
       return;
     }
 
