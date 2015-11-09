@@ -124,7 +124,12 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
             $('.contribute-container').hide();
             $('.thank-you-container').show();
           } else {
-            $scope.cardError();
+            if (response.error === 'invalid_flag') {
+              $('.contribute-container').hide();
+              $('.invalid-flag').show();
+            } else {
+              $scope.cardError();
+            }
           }
         }).error(function() {
             $scope.cardError();

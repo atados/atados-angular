@@ -982,7 +982,8 @@ $card-img-height: 170px;
     font-weight: bold;
   }
 
-  .thank-you-container {
+  .thank-you-container,
+  .invalid-flag-container {
     text-align: center;
     margin-top: 40px;
     display: none;
