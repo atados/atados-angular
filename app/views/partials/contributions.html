@@ -8,10 +8,10 @@
             <span class="price" ng-style="pricestyle">R$ {{contribution_price | number: 2}}</span>
             <input type="text" ng-model="contribution_price" ng-style="optionsstyle" class="price-input">
             <div class="edit" ng-click="toggleOptions()">Editar</div>
-            <label ng-style="optionsstyle">
-              <input type="checkbox" ng-model="contribution_monthly">
-              Doação mensal
-            </label>
+            <ul class="options">
+              <li ng-click="setRecurrent()" ng-class="contribution_monthly ? 'active' : ''">Mensal</li>
+              <li ng-click="unsetRecurrent()" ng-class="!contribution_monthly ? 'active' : ''">Pontual</li>
+            </ul>
             <p>Você irá contribuir com R$ {{contribution_price | number: 2}} <span ng-show="!contribution_monthly">pontualmente</span><span ng-show="contribution_monthly">mensalmente</span>, ajudando o Atados a realizar seus sonhos.</p>
           </div>
         </div>

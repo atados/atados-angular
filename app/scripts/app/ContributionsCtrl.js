@@ -38,6 +38,13 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
     }
   };
 
+  $scope.setRecurrent = function() {
+    $scope.contribution_monthly = true;
+  };
+  $scope.unsetRecurrent = function() {
+    $scope.contribution_monthly = false;
+  };
+
   $scope.cardError = function() {
     toastr.error('Houve um erro! Por favor, confira os dados e tente novamente!');
     $('#cardform input, #cardform button').removeAttr('disabled');
