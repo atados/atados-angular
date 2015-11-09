@@ -52,18 +52,12 @@
               </label>
             </div>
           </div>
-          <h3>Endereço</h3>
+          <h3>Endereço <small>Vamos enviar alguns mimos para sua casa ;-)</small></h3>
           <div class="row">
             <div class="col-xs-12 col-sm-6">
               <label>
                 Endereço
                 <input type="text" class="form-control" ng-model="address_street"></input>
-              </label>
-            </div>
-            <div class="col-xs-12 col-sm-6">
-              <label>
-                CEP
-                <input type="text" class="form-control" ng-model="address_zip"></input>
               </label>
             </div>
             <div class="col-xs-12 col-sm-3">
@@ -88,6 +82,12 @@
               <label>
                 Estado
                 <input type="text" class="form-control" ng-model="address_state"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                CEP
+                <input type="text" class="form-control" ng-model="address_zip"></input>
               </label>
             </div>
           </div>
@@ -116,16 +116,16 @@
               <div class="row">
                 <div class="col-xs-12 col-sm-6">
                   <label>
-                    Cód. Segurança
-                    <input type="text" class="form-control" ng-model="card_cvv"></input>
-                    <span class="feedback">{{card_cvv_error}}</span>
+                    Expiração (mm/aaaa)
+                    <input type="text" class="form-control" ng-model="card_expires" ui-mask="99/99" card-expiration></input>
+                    <span class="feedback">{{card_expires_error}}</span>
                   </label>
                 </div>
                 <div class="col-xs-12 col-sm-6">
                   <label>
-                    Expiração (mm/aaaa)
-                    <input type="text" class="form-control" ng-model="card_expires" ui-mask="99/99" card-expiration></input>
-                    <span class="feedback">{{card_expires_error}}</span>
+                    Cód. Segurança
+                    <input type="text" class="form-control" ng-model="card_cvv"></input>
+                    <span class="feedback">{{card_cvv_error}}</span>
                   </label>
                 </div>
               </div>

@@ -73,6 +73,8 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $tim
   };
 
   $timeout(function() {
-    $rootScope.toggleHeader();
+    if (!$scope.hide_header) {
+      $rootScope.toggleHeader();
+    }
   }, 1000);
 });

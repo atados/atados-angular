@@ -11,6 +11,8 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   $scope.site.og.url = 'https://www.atados.com.br';
   $scope.site.og.image = 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/landing_cover.jpg';
   $scope.site.description = 'Atados é uma rede social para voluntários e ONGs.';
+  $scope.$parent.hide_header = true;
+  $scope.$parent.hide_footer = true;
 
   $scope.contribution_monthly = true;
 
