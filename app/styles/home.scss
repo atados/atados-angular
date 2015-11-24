@@ -102,7 +102,7 @@
 
   .wrapper {
     background: rgba(0, 0, 0, 0.5);
-    padding: 15px 15px 40px 15px;
+    padding: 55px 15px 73px;
 
     h2, h3 {
        text-transform: uppercase;
@@ -136,6 +136,15 @@
        border-radius: 2px;
        color: #fafafa;
        height: 41px;
+    }
+    select.form-control {
+      -moz-appearance: none;
+      text-indent: 0.01px;
+      text-overflow: '';
+      color: #c1c1c1;
+      &[disabled] {
+       color: #c1c1c1;
+      }
     }
 
     ::-webkit-input-placeholder {

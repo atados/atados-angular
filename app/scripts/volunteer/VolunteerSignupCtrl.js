@@ -5,7 +5,23 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('VolunteerSignupCtrl', function($scope, $rootScope, Auth) {
+app.controller('VolunteerSignupCtrl', function($scope, $rootScope, Auth, Restangular) {
+  $scope.cityLoaded = false;
+  $scope.$watch('state', function (value) {
+    $scope.cityLoaded = false;
+    $scope.stateCities = [];
+
+    if (value) {
+      Restangular.all('cities').getList({page_size: 3000, state: value.id}).then(function (response) {
+        response.forEach(function(c) {
+          $scope.stateCities.push(c);
+        });
+
+        value.citiesLoaded = true;
+        $scope.cityLoaded = true;
+      });
+    }
+  });
 
   $scope.$watch('slug', function (value) {
     if (value) {
@@ -60,7 +76,8 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, Auth) {
       Auth.volunteerSignup({
           slug: $scope.slug,
           email: $scope.email,
-          password: $scope.password
+          password: $scope.password,
+          address: {'city': $scope.city.id},
         },
         function () {
           Auth.login({

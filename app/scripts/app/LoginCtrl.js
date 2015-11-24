@@ -4,7 +4,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('LoginCtrl', function($scope, $rootScope, Auth, ezfb) {
+app.controller('LoginCtrl', function($scope, $rootScope, $state, Auth, ezfb) {
 
   $scope.showForgotPassword = false;
   $scope.remember = true;

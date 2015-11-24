@@ -5,7 +5,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll,
+app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll, $rootScope,
       Search, $state, storage, defaultZoom, Cleanup) {
 
   var alreadySearchedProject = false;
@@ -18,7 +18,7 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll,
 
   var search = function(value, old) {
     if (value !== old) {
-      if ($scope.landing) {
+      if ($scope.landing && (Search.query || Search.cause.id || Search.skill.id)) {
         $state.transitionTo('root.explore');
       }
       alreadySearchedProject = false;

@@ -40,7 +40,9 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
     
     $rootScope.modalInstance = $modal.open({
       templateUrl: '/partials/loginModal.html',
-      controller: ['$scope', function ($scope) {
+      controller: ['$scope', 'Site', function ($scope, Site) {
+        $scope.states = Site.states;
+
         if (type === 'volunteer') {
           dataLayer.push({
             'event': 'queroSerVoluntarioButtonClick',

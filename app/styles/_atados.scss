@@ -674,6 +674,12 @@ $card-img-height: 170px;
     padding: 10px 40px;
     margin-bottom: 10px;
   }
+
+  select {
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+  }
 }
 
 
@@ -982,6 +988,7 @@ $card-img-height: 170px;
     font-weight: bold;
   }
 
+  .card-refused-container,
   .thank-you-container,
   .invalid-flag-container {
     text-align: center;

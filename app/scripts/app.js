@@ -25,14 +25,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/',
       templateUrl: '/partials/home.html',
       controller: 'HomeCtrl',
-      resolve: {
-        projects: ['Search', function(Search) {
-          return Search.getHighlightedProjects();
-        }],
-        nonprofit: ['Search', function(Search) {
-          return Search.getHighlightedNonprofits();
-        }]
-      }
     })
     .state('root.about', {
       url: '/sobre',

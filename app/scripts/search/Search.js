@@ -131,6 +131,8 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       _cardListNonprofits = [];
       searchProjects(query, cause, skill, city);
       searchNonprofits(query, cause, city);
+      this.getHighlightedProjects(city);
+      this.getHighlightedNonprofits(city);
     },
     query: _query,
     cause: _cause,
@@ -170,16 +172,22 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
     nonprofits: function () {
       return _cardListNonprofits;
     },
-    getHighlightedProjects: function () {
-      return Restangular.all('projects').getList({highlighted: true}).then( function(projects) {
+    getHighlightedProjects: function (city) {
+      if (!city) {
+        city = null;
+      }
+      return Restangular.all('projects').getList({highlighted: true, city: city}).then( function(projects) {
         _highlightedProjects = fixProjects(projects);
         return;
       }, function () {
         console.error('Não consegui pegar os atos em destaque do servidor.');
       });
     },
-    getHighlightedNonprofits: function () {
-      return Restangular.all('nonprofits').getList({highlighted: true}).then( function(nonprofits) {
+    getHighlightedNonprofits: function (city) {
+      if (!city) {
+        city = null;
+      }
+      return Restangular.all('nonprofits').getList({highlighted: true, city: city}).then( function(nonprofits) {
         _highlightedNonprofits = fixNonprofits(nonprofits);
         return;
       }, function () {

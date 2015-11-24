@@ -5,21 +5,49 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, Site) {
+app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, Site) {
 
   $scope.loggedUser = loggedUser;
+
+  $scope.searchIP = function(ip) {
+      var url = 'http://api.atados.com.br:9800/json/' + ip;
+      $.get(url, function(data) {
+        $rootScope.geoIP = data;
+
+        // Only show donations header if not connecting from RJ
+        if (data.region_code !== 'RJ') {
+          $timeout(function() {
+            if (!$scope.hide_header) {
+              $rootScope.toggleHeader();
+            }
+          }, 1000);
+        }
+
+        // Preset city on home
+        var city;
+        if (data.region_code === 'SP') {
+          city = saoPaulo;
+        } else if (data.region_code === 'DF') {
+          city = brasilia;
+        } else if (data.region_code === 'PR') {
+          city = curitiba;
+        }
+
+        Search.filter(null, null, null, city.id);
+        for (var c in Site.cities()) {
+          if (Site.cities()[c].id === city.id) {
+            Search.city = Site.cities()[c];
+          }
+        }
+      });
+  };
+  $scope.searchIP('');
 
   if (window.location.hash === '#session-expired') {
     toastr.error('Oops! Parece que sua sessão expirou! Você precisa logar novamente');
     $state.transitionTo('root.home');
   }
 
-  Search.filter(null, null, null, saoPaulo.id);
-  for (var c in Site.cities()) {
-    if (Site.cities()[c].id === saoPaulo.id) {
-      Search.city = Site.cities()[c];
-    }
-  }
 
   if ($rootScope.modalInstance) {
     $rootScope.modalInstance.close();
@@ -72,9 +100,4 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $tim
     }
   };
 
-  $timeout(function() {
-    if (!$scope.hide_header) {
-      $rootScope.toggleHeader();
-    }
-  }, 1000);
 });

@@ -57,6 +57,18 @@
                 <input type="text" class="form-control" placeholder="Seu email" ng-model="news.email">
               </div>
               <div class="col-xs-5 col-sm-3 col-sm-push-1 col-md-3 col-md-push-2">
+                <select class="form-control" ng-model="news.state" ng-options="s.name for s in states()">
+                  <option value="" disabled>Estado</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-7 col-sm-7 col-sm-push-1 col-md-5 col-md-push-2">
+                <select class="form-control" ng-model="news.city" ng-options="c.name for c in stateCities">
+                  <option value="" disabled>Cidade</option>
+                </select>
+              </div>
+              <div class="col-xs-5 col-sm-3 col-sm-push-1 col-md-3 col-md-push-2">
                 <input type="submit" value="Manda!" class="btn btn-default" ng-click="add_to_news()">
               </div>
             </div>

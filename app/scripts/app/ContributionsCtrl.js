@@ -127,6 +127,9 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
             if (response.error === 'invalid_flag') {
               $('.contribute-container').hide();
               $('.invalid-flag-container').show();
+            } else if (response.error === 'card_refused') {
+              $('.contribute-container').hide();
+              $('.card-refused-container').show();
             } else {
               $scope.cardError();
             }
