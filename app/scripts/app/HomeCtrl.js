@@ -10,8 +10,8 @@ app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Res
   $scope.site.og.image = 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/landing_cover.jpg';
   $scope.site.description = 'Atados é uma rede social para voluntários e ONGs.';
 
-  $scope.search.skill = "";
-  $scope.search.cause = "";
+  $scope.search.skill = '';
+  $scope.search.cause = '';
 
   $scope.open_video = function (url) {
     $modal.open({
