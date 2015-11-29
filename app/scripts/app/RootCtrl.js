@@ -33,15 +33,13 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $tim
           city = curitiba;
         }
 
+        Search.filter(null, null, null, city.id);
+        for (var c in Site.cities()) {
+          if (Site.cities()[c].id === city.id) {
+            Search.city = Site.cities()[c];
+          }
+        }
       });
-
-    var city = saoPaulo;
-    Search.filter(null, null, null, city.id);
-    for (var c in Site.cities()) {
-      if (Site.cities()[c].id === city.id) {
-        Search.city = Site.cities()[c];
-      }
-    }
   };
   $scope.searchIP('');
 
