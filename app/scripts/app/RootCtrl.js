@@ -26,14 +26,14 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $tim
 
         // Preset city on home
         var city;
-        if (data.region_code === 'SP') {
-          city = saoPaulo;
-        } else if (data.region_code === 'DF') {
+        if (data.region_code === 'DF') {
           city = brasilia;
         } else if (data.region_code === 'PR') {
           city = curitiba;
         } else if (data.region_code === 'RJ') {
           city = rioDeJaneiro;
+        } else {
+          city = saoPaulo;
         }
 
         Search.filter(null, null, null, city.id);
