@@ -9,7 +9,7 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $tim
 
   $scope.loggedUser = loggedUser;
 
-  $scope.searchIP = function(ip) {
+  $scope.searchIP = function() {
       var url = 'https://atados.com.br:9891/';
       //var url = 'https://geoip.atados.com.br/json/' + ip;
       $.get(url, function(data) {
@@ -44,7 +44,7 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $tim
         }
       });
   };
-  $scope.searchIP('');
+  $scope.searchIP();
 
   if (window.location.hash === '#session-expired') {
     toastr.error('Oops! Parece que sua sessão expirou! Você precisa logar novamente');
