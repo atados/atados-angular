@@ -5,12 +5,12 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, Site) {
+app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, rioDeJaneiro, Site) {
 
   $scope.loggedUser = loggedUser;
 
   $scope.searchIP = function(ip) {
-      var url = 'https://atados.com.br:9891/json/' + ip;
+      var url = 'https://atados.com.br:9891/';
       //var url = 'https://geoip.atados.com.br/json/' + ip;
       $.get(url, function(data) {
         $rootScope.geoIP = data;
@@ -32,6 +32,8 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $tim
           city = brasilia;
         } else if (data.region_code === 'PR') {
           city = curitiba;
+        } else if (data.region_code === 'RJ') {
+          city = rioDeJaneiro;
         }
 
         Search.filter(null, null, null, city.id);

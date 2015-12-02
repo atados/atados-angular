@@ -49,6 +49,8 @@ angular.module('atadosConstants', [])
 
 .constant('brasilia', {id:1724,lat:-15.79211,lng:-47.897751})
 
+.constant('rioDeJaneiro', {id:6861,lat:-22.9082998,lng:-43.1970773})
+
 .constant('distancia', {id:0,lat:0,lng:0})
 
 ;
