@@ -5,7 +5,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, rioDeJaneiro, Site) {
+app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, rioDeJaneiro, Site) {
 
   $scope.loggedUser = loggedUser;
 
@@ -68,23 +68,6 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $tim
     });
   }
 
-  $rootScope.$on('userLoggedIn', function(event, user, message) {
-    if (user) {
-      $scope.loggedUser = user;
-      if (message) {
-        toastr.success(message, $scope.loggedUser.slug);
-      } else {
-        toastr.success('Oi! Bom te ver por aqui :)', $scope.loggedUser.slug);
-      }
-      if ($rootScope.modalInstance) {
-        $rootScope.modalInstance.close();
-      }
-      if (user.role === 'NONPROFIT') {
-        $location.path('/controle/' + user.slug);
-      }
-    }
-  });
-
   $rootScope.explorerView = false;
 
   $scope.logout = function () {
@@ -103,4 +86,66 @@ app.controller('RootCtrl', function ($scope, $rootScope, $state, $location, $tim
     }
   };
 
+  $rootScope.askForAddress = function(user) {
+    $rootScope.addressModal = $modal.open({
+      backdrop: 'static',
+      keyboard: false,
+      templateUrl: '/partials/addressModal.html',
+      controller: ['$scope', 'Site', 'Restangular', 'Volunteer', '$rootScope', function ($scope, Site, Restangular, Volunteer, $rootScope) {
+        $scope.states = Site.states;
+
+        $scope.saveAddress = function() {
+          if ($scope.city) {
+            user.address = {city: $scope.city};
+            Volunteer.save(user, function() {
+              $rootScope.addressModal.close();
+            }, function() {});
+          } else {
+            window.alert('Selecione sua cidade! :)');
+          }
+        };
+
+        $scope.cityLoaded = false;
+        $scope.$watch('state', function (value) {
+          $scope.cityLoaded = false;
+          $scope.stateCities = [];
+
+          if (value) {
+            Restangular.all('cities').getList({page_size: 3000, state: value.id}).then(function (response) {
+              response.forEach(function(c) {
+                $scope.stateCities.push(c);
+              });
+
+              value.citiesLoaded = true;
+              $scope.cityLoaded = true;
+            });
+          }
+        });
+      }]
+    });
+  };
+
+  if ($scope.loggedUser && !$scope.loggedUser.address) {
+    $rootScope.askForAddress($scope.loggedUser);
+  }
+
+  $rootScope.$on('userLoggedIn', function(event, user, message) {
+    if (user) {
+      $scope.loggedUser = user;
+      if (message) {
+        toastr.success(message, $scope.loggedUser.slug);
+      } else {
+        toastr.success('Oi! Bom te ver por aqui :)', $scope.loggedUser.slug);
+      }
+      if ($rootScope.modalInstance) {
+        $rootScope.modalInstance.close();
+      }
+      if (user.role === 'NONPROFIT') {
+        $location.path('/controle/' + user.slug);
+      }
+      if (!user.address) {
+        $rootScope.askForAddress(user);
+      }
+    }
+  });
 });
