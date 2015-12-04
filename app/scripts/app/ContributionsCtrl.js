@@ -148,9 +148,9 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   if (!$scope.contribution_price) {
     $scope.contribution_price = 100;
     $scope.toggleOptions();
-  };
+  }
 
-  $scope.$on('$stateChangeStart', function (event, next, current) {
+  $scope.$on('$stateChangeStart', function () {
     $scope.$parent.hide_header = false;
     $scope.$parent.hide_footer = false;
     $('.trustlogo').removeClass('show-comodo');
