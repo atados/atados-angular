@@ -6,7 +6,6 @@
 var app = angular.module('atadosApp');
 
 app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, rioDeJaneiro, Site) {
-
   $scope.loggedUser = loggedUser;
 
   $scope.searchIP = function() {

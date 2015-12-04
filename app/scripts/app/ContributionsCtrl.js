@@ -24,6 +24,8 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   $scope.contribution_price = value; 
   $scope.optionsstyle = {'display': 'none'};
 
+  $('.trustlogo').addClass('show-comodo');
+
   $scope.toggleOptions = function () {
     if ($scope.optionsstyle) {
       $scope.optionsstyle = undefined;
@@ -146,5 +148,11 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   if (!$scope.contribution_price) {
     $scope.contribution_price = 100;
     $scope.toggleOptions();
-  }
+  };
+
+  $scope.$on('$stateChangeStart', function (event, next, current) {
+    $scope.$parent.hide_header = false;
+    $scope.$parent.hide_footer = false;
+    $('.trustlogo').removeClass('show-comodo');
+  });
 }]);

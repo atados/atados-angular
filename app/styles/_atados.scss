@@ -1335,5 +1335,21 @@ $card-img-height: 170px;
   }
 }
 
+.trustlogo + a {
+  position: fixed,;
+  right: 10px;
+  bottom: 10px;
+  display: none;
+  + div {
+    display: none;
+  }
+}
+
+.trustlogo.show-comodo + a {
+  display: block;
+  + div {
+    display: block;
+  }
+}
 
 @import 'sass-bootstrap/lib/bootstrap';
