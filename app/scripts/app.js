@@ -129,6 +129,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
        url: '/doar/formulario/{value:/?.*}',
        templateUrl: '/partials/contributions.html',
        controller: 'ContributionsCtrl'
+     })
+     .state('root.contributionsPanel', {
+       url: '/doador',
+       templateUrl: '/partials/contributionsPanel.html',
+       controller: 'ContributionsPanelCtrl'
      });
 
   $urlRouterProvider.otherwise('/ops');

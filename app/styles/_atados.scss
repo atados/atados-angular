@@ -1133,6 +1133,33 @@ $card-img-height: 170px;
   }
 }
 
+.contribute-panel {
+  padding: 20px 0;
+  label {
+    width: 100%;
+  }
+  p {
+    text-align: center;
+  }
+  .login, .subs-list {
+    background: #eee;
+    border-radius: 6px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  span.status {
+    width: 13px;
+    height: 13px;
+    margin: auto auto;
+    background: #DB4740;
+    border-radius: 50%;
+    display: block;
+    &.green {
+      background: #5CDB77;
+    }
+  }
+}
+
 // Bootstrap
 // ------------------
 
