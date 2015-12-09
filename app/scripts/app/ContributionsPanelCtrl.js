@@ -16,7 +16,7 @@ app.controller('ContributionsPanelCtrl', ['$scope', '$stateParams', '$http', 'ap
     e.preventDefault();
 
     $http
-      .get(api + 'contributions', {
+      .get(api + 'contributions/', {
         params: {
           email: $scope.email,
           doc: $scope.doc,
