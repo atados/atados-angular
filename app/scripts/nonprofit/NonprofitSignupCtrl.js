@@ -4,7 +4,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $state, Auth, Photos, Restangular) {
+app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $state, $http, api, Auth, Photos, Restangular) {
 
   $scope.nonprofit = {
     hidden_address: false,
@@ -52,6 +52,19 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
       $scope.signupForm.slug.hasSpace = false;
       $scope.signupForm.slug.$invalid = false;
     }
+  });
+
+  $scope.$watch('nonprofit.name', function(value) {
+    $http
+      .get(api + 'generate_slug/' + value + '/')
+      .success(function(data) {
+        if (data && data.slug && data.slug != "null" && data.slug != 'undefined') {
+          $scope.nonprofit.user.slug = data.slug;
+        }
+      })
+      .error(function(data) {
+        $scope.nonprofit.user.slug = "";
+      });
   });
 
   $scope.cityLoaded = false;
