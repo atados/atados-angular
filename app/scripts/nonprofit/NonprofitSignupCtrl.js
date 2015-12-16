@@ -58,12 +58,12 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
     $http
       .get(api + 'generate_slug/' + value + '/')
       .success(function(data) {
-        if (data && data.slug && data.slug != "null" && data.slug != 'undefined') {
+        if (data && data.slug && data.slug !== 'null' && data.slug !== 'undefined') {
           $scope.nonprofit.user.slug = data.slug;
         }
       })
-      .error(function(data) {
-        $scope.nonprofit.user.slug = "";
+      .error(function() {
+        $scope.nonprofit.user.slug = '';
       });
   });
 
@@ -127,43 +127,49 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
   };
 
   $scope.signup = function () {
-    $scope.nonprofit.user.password = $scope.password;
+    if ($scope.signupForm.$valid && $scope.nonprofit.causes.length && $scope.imageUploaded && $scope.coverUploaded) {
+      $scope.nonprofit.user.password = $scope.password;
 
-    $scope.facebook_page = 'http://facebook.com/' + $scope.facebook_page;
-    $scope.google_page = 'http://plus.google.com/' + $scope.google_page;
-    $scope.twitter_handle = 'http://www.twitter.com/' + $scope.twitter_handle;
+      $scope.facebook_page = 'http://facebook.com/' + $scope.facebook_page;
+      $scope.google_page = 'http://plus.google.com/' + $scope.google_page;
+      $scope.twitter_handle = 'http://www.twitter.com/' + $scope.twitter_handle;
 
-    $scope.files.append('nonprofit', angular.toJson($scope.nonprofit));
+      $scope.files.append('nonprofit', angular.toJson($scope.nonprofit));
 
-    $scope.creatingNonprofit = true;
-    $scope.buttonText = 'Finalizando cadastro...';
+      $scope.creatingNonprofit = true;
+      $scope.buttonText = 'Finalizando cadastro...';
 
-    Auth.nonprofitSignup($scope.files, function () {
-      Auth.login({
-          username: $scope.nonprofit.user.email,
-          password: $scope.nonprofit.user.password,
-          remember: true
-        }, function (response) {
-          $scope.creatingNonprofit = false;
-          $scope.buttonText = 'Finalizar cadastro';
-          Auth.getCurrentUser(response.access_token).then(
-            function (user) {
-              $rootScope.$emit('userLoggedIn', user, 'Bem vinda ONG ao atados! Sua ONG ainda precisa ser aprovada. Espere pelo nosso email.');
-              $state.transitionTo('root.home');
-            }, function (error) {
-              console.error(error);
-              toastr.error('Sua ONG foi criada mas não coseguimos te logar. Clique no botão acima "ONG" e use seu email e senha para logar.');
-              $state.transitionTo('root.home');
-            });
-        }, function () {
-          $scope.error = 'Usuário ou senha estão errados :(';
-        });
-    },
-    function (error) {
-      $scope.creatingNonprofit = false;
-      $scope.buttonText = 'Finalizar cadastro';
-      console.error(error);
-      toastr.error('Erro no servidor. Por favor entre em contato.');
-    });
+      Auth.nonprofitSignup($scope.files, function () {
+        Auth.login({
+            username: $scope.nonprofit.user.email,
+            password: $scope.nonprofit.user.password,
+            remember: true
+          }, function (response) {
+            $scope.creatingNonprofit = false;
+            $scope.buttonText = 'Finalizar cadastro';
+            Auth.getCurrentUser(response.access_token).then(
+              function (user) {
+                $rootScope.$emit('userLoggedIn', user, 'Bem vinda ONG ao atados! Sua ONG ainda precisa ser aprovada. Espere pelo nosso email.');
+                $state.transitionTo('root.home');
+              }, function (error) {
+                console.error(error);
+                toastr.error('Sua ONG foi criada mas não coseguimos te logar. Clique no botão acima "ONG" e use seu email e senha para logar.');
+                $state.transitionTo('root.home');
+              });
+          }, function () {
+            $scope.error = 'Usuário ou senha estão errados :(';
+          });
+      },
+      function (error) {
+        $scope.creatingNonprofit = false;
+        $scope.buttonText = 'Finalizar cadastro';
+        if (error.detail && error.detail === 'Nonprofit already exists.') {
+          toastr.error('Esta ONG já está em nosso banco. Favor utilizar efetuar login ou entrar em contato.');
+        }
+      });
+    } else {
+      toastr.error('Ops! Parece que algum campo não foi preenchido corretamente.');
+      $scope.show_errors = true;
+    }
   };
 });

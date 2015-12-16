@@ -77,18 +77,19 @@
 
             <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[!nonprofit.address.state]">
               <div class="col-sm-8 col-sm-offset-3">
-                <label class="help-block" ng-hide="nonprofit.address.state">Estado obrigatório.</label>
+                <br><br>
                 <select class="form-control" ng-model="nonprofit.address.state" ng-options="s.name for s in states()">
                   <option value="" disabled selected>Estado</option>
                 </select>
+                <label class="help-block" ng-hide="nonprofit.address.state">Campo obrigatório.</label>
               </div>
             </div>
             <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[!nonprofit.address.city]">
               <div class="col-sm-8 col-sm-offset-3">
-                <label class="help-block" ng-hide="nonprofit.address.city">Cidade obrigatório.</label>
                 <select class="form-control" ng-model="nonprofit.address.city" ng-options="c.name for c in stateCities" ng-disabled="!cityLoaded">
                   <option value="" disabled selected>Cidade</option>
                 </select>
+                <label class="help-block" ng-hide="nonprofit.address.city">Campo obrigatório.</label>
               </div>
             </div>
             <br>
@@ -166,7 +167,7 @@
             <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[signupForm.password.$error.required || signupForm.password.$invalid]">
               <div class="col-sm-8 col-sm-offset-3">
                 <input class="form-control"required type='password' name='passwordConfirm' ng-model='passwordConfirm' ng-minlength="6" placeholder="Confirme senha"/>
-                <label class="help-block" ng-show="signupForm.password.doesNotMatch">Senhas tem que ser igual</label>
+                <label class="help-block" ng-show="signupForm.password.doesNotMatch">Senhas tem que ser iguais</label>
                 <label class="help-block" ng-show="signupForm.password.$error.minlength">Senha tem que ter mais de 6 caracteres</label>
               </div>
             </div>
@@ -197,6 +198,38 @@
 
             <button ng-disabled="creatingNonprofit" type="submit" class="btn btn-large btn-block btn-info" ng-disabled="signupForm.$invalid || !(imageUploaded && coverUploaded && causeChosen)">{{buttonText}}</button>
 
+            <div class="form-errors" ng-show="show_errors">
+              <br><br>
+              <label>O formulário apresentou os seguintes erros:</label>
+              <label class="help-block" ng-show="signupForm.name.$error.required">O nome da ONG deve ser preenchido.</label>
+              <label class="help-block" ng-show="signupForm.name.$error.minlength">O nome da ONG não pode ter menos de 3 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.name.$error.maxlength">O nome da ONG não pode ter mais de 150 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.slug.$error.required">O slug deve ser preenchido.</label>
+              <label class="help-block" ng-show="signupForm.slug.alreadyUsed">O slug não pode ser usado pois já existe.</label>
+              <label class="help-block" ng-show="signupForm.slug.hasSpace">O slug não pode ter espaço.</label>
+              <label class="help-block" ng-show="signupForm.slug.$error.minlength">O slug não pode ter menos de 3 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.slug.$error.maxlength">O slug não pode ter mais de 50 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.description.$error.minlength || !nonprofit.description">A descrição não pode ter menos de 10 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.description.$error.maxlength">A descrição não pode ter mais de 100 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.details.$error.minlength || !nonprofit.details">Os detalhes da ONG não podem ter menos de 10 caracteres.</label>
+              <label class="help-block" ng-show="!nonprofit.phone">Você precisa preencher o telefone.</label>
+              <label class="help-block" ng-show="!nonprofit.address.addressline || !nonprofit.address.addressnumber || !nonprofit.address.neighborhood || !nonprofit.address.zipcode">Você precisa preencher o endereço completo.</label>
+              <label class="help-block" ng-show="signupForm.details.$error.maxlength">Os detalhes da ONG não podem ter menos de 1024 caracteres.</label>
+              <label class="help-block" ng-hide="nonprofit.address.state">O campo de estado é obrigatório.</label>
+              <label class="help-block" ng-hide="nonprofit.address.city">O campo de cidade é obrigatório.</label>
+              <label class="help-block" ng-hide="nonprofit.causes.length">Selecione ao menos uma causa</label>
+              <label class="help-block" ng-show="signupForm.responsiblename.$error.required">Você deve informar seu nome pessoal.</label>
+              <label class="help-block" ng-show="signupForm.responsiblename.$error.maxlength">O seu nome pessoal não pode ter mais de 30 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.email.$error.required">Você deve informar seu email.</label>
+              <label class="help-block" ng-show="signupForm.confirmEmail.$error.required">Você deve confirmar seu email.</label>
+              <label class="help-block" ng-show="signupForm.email.alreadyUsed">Este email já está cadastrado em nosso site.</label>
+              <label class="help-block" ng-show="signupForm.email.$invalid">Este email é inválido.</label>
+              <label class="help-block" ng-show="signupForm.confirmEmail.notEqual">O email e email de confirmação devem ser iguais.</label>
+              <label class="help-block" ng-show="signupForm.password.doesNotMatch">As senhas tem que ser iguais</label>
+              <label class="help-block" ng-show="signupForm.password.$error.minlength || !password">A senha tem que ter ao menos 6 caracteres.</label>
+              <label class="help-block" ng-hide="imageUploaded">Não se esqueça de nos fornecer o logo da ONG.</label>
+              <label class="help-block" ng-hide="coverUploaded">Escolha uma foto cover bem bonita e de alta qualidade!</label>
+            </div>
           </fieldset>
         </div> <!-- 2nd column -->
       </form>
