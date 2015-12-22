@@ -114,6 +114,7 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
             Restangular.all('cities').getList({page_size: 3000, state: value.id}).then(function (response) {
               response.forEach(function(c) {
                 $scope.stateCities.push(c);
+                console.log(c);
               });
 
               value.citiesLoaded = true;
