@@ -22,7 +22,7 @@ app.controller('ContactCtrl', function ($scope, $http, api) {
     },
     {
       'name': 'Outra cidade',
-      'email': 'contato@atados.com.br'
+      'email': 'contato@atados.com.br;' // ; because contact api is built to split multiple emails and ng-options has trouble with two options using the same value
     }
   ];
   $scope.form = {
