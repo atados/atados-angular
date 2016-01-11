@@ -9,12 +9,20 @@ app.controller('ContactCtrl', function ($scope, $http, api) {
   $scope.sent = false;
   $scope.recipients = [
     {
-      'name': 'Departamento de TI',
-      'email': 'arroyo@atados.com.br'
+      'name': 'São Paulo',
+      'email': 'contato@atados.com.br'
     },
     {
-      'name': 'Financeiro',
-      'email': 'davi@atados.com.br'
+      'name': 'Rio de Janeiro',
+      'email': 'rj@atados.com.br'
+    },
+    {
+      'name': 'Brasília',
+      'email': 'bsb@atados.com.br'
+    },
+    {
+      'name': 'Outra cidade',
+      'email': 'contato@atados.com.br'
     }
   ];
   $scope.form = {
