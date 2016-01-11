@@ -1,0 +1,66 @@
+<div class="gdd-container">
+  <div id="top" class="navbar navbar-default navbar-inverse" role="navigation">
+    <div class="navbar-inner">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" ng-click="navCollapsed = !navCollapsed" ng-show="!hide_header">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" ui-sref="root.home">Atados</a>
+      </div>
+      <div ng-show="!hide_header">
+        <div class="collapse navbar-collapse" id="navbar-collapse-1" collapse="!navCollapsed">
+          <ul class="nav navbar-nav">
+            <li><a ui-sref="gdd.home">Home</a></li>
+            <li><a ui-sref="root.explore">Participe das Ações</a></li>
+            <li><a ui-sref="root.nonprofitsignup" ng-show="!loggedUser">Inscreva sua ação</a></li>
+            <li><a ui-sref="root.nonprofitsignup" ng-show="loggedUser">Inscreva sua ação</a></li>
+            <li><a ui-sref="root.explore">Guia para criar ações</a></li>
+            <li><a ui-sref="root.explore">Nossa história</a></li>
+            <li><a ui-sref="root.explore">Parceiros</a></li>
+            <li><a ui-sref="root.contact">Contato</a></li>
+            <li ng-hide="loggedUser"><a href="#" ng-click="openLogin('volunteer')">Entrar</a></li>
+            <!--<li><a href="#">Como Funciona</a></li>-->
+            <li><a ui-sref="root.about" class="hidden-md hidden-lg">Sobre Nós</a></li>
+            <li><a href="http://servicos.atados.com.br" class="hidden-md hidden-lg">Empresas</a></li>
+            <!--<li><a href="#" class="hidden-md hidden-lg">Contato</a></li>-->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ui-view class="main"></div>
+
+  <div id="footer" ng-hide="explorerView || hide_footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <ul>
+            <li><a ui-sref="root.about">Sobre Nós</a></li>
+            <li><a href="https://medium.com/@Atados" target="_blank">Blog</a></li>
+            <li><a href="http://empresas.atados.com.br">Serviços para Empresas</a></li>
+            <!--<li><a href="#">FAQ</a></li>
+            <li><a href="#">Contato</a></li>-->
+            <li><a href="#" ng-click="openTermsModal()">Termos de Uso e Políticas de Privacidade</a></li>
+            <li><a ui-sref="root.contributionsPanel">Área do doador</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <div class="fb-like-box" 
+               data-href="http://www.facebook.com/atadosjuntandogenteboa" 
+               data-width="340" data-colorscheme="light" data-show-faces="true" 
+               data-header="false" data-stream="false" data-show-border="false" style="margin: 15px auto;"></div>
+
+        </div>
+        <div id="open-source" class="col-xs-12">
+          <p class="center-block"><b>{{site.copyright}}</b> é um projeto Open Source <a href="https://www.github.com/atados"><i class="fa fa-github"></i></a>, feito com carinho <i style="color:red;" class="fa fa-heart"></i></p>
+        </div>
+      </div>
+    </div> <!-- End of container -->
+  </div>
+</div>

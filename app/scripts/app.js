@@ -139,6 +139,26 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
        url: '/doador',
        templateUrl: '/partials/contributionsPanel.html',
        controller: 'ContributionsPanelCtrl'
+     })
+
+    .state('gdd', {
+      url: '',
+      abstract: true,
+      templateUrl: '/partials/gdd/root.html',
+      controller: 'GddRootCtrl',
+      resolve: {
+        site: ['Site', function(Site) {
+          return Site.startup();
+        }],
+        loggedUser: ['Auth', function (Auth) {
+          return Auth.getCurrentUser();
+        }]
+      }
+    })
+     .state('gdd.home', {
+       url: '/dia-das-boas-acoes',
+       templateUrl: '/partials/gdd/home.html',
+       controller: 'GddHomeCtrl'
      });
 
   $urlRouterProvider.otherwise('/ops');

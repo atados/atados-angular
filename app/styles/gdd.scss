@@ -1,0 +1,32 @@
+.gdd-container {
+  #top.navbar {
+    background: #87234E;
+    border: 0px;
+
+    .navbar-brand {
+      background: url("https://s3-sa-east-1.amazonaws.com/atadosapp/images/dba-logo-branco.png") no-repeat center center / contain;
+      padding: 30px 20px;
+    } 
+
+    .nav {
+      li {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  #home {
+    .jumbotron {
+      background: #B32E67;
+      text-align: left;
+
+      h1 {
+        text-transform: uppercase;
+      }
+
+      #jumbotron-buttons {
+        text-align: left !important;
+      }
+    }
+  }
+}
