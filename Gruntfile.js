@@ -65,6 +65,11 @@ module.exports = function (grunt) {
           defaultZoom: 10,
           VOLUNTEER: 'VOLUNTEER',
           NONPROFIT: 'NONPROFIT',
+          rioDeJaneiro: {
+            id:6861,
+            lat:-22.9082998,
+            lng:-43.1970773
+          },
           saoPaulo: {
             id: 9422,
             lat: -23.5505199,
