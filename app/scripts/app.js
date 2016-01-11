@@ -31,6 +31,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: '/partials/about.html',
       controller: 'AboutCtrl'
     })
+    .state('root.contact', {
+      url: '/contato',
+      templateUrl: '/partials/contact.html',
+      controller: 'ContactCtrl'
+    })
     .state('root.404', {
       url: '/ops',
       templateUrl: '/partials/404.html'

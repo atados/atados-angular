@@ -1,0 +1,34 @@
+<div id="contact-page">
+  <div class="container">
+    <h1 id="title">Faça a <strong>diferença</strong>. Fale <strong>conosco</strong>.</h1>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-push-3">
+        <form novalidate role="form" name="contactForm" ng-submit="submit($event)" ng-hide="sent">
+          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[(contactForm.name.$error.required || contactForm.name.$invalid)]">
+            <label>Nome</label>
+            <input type="text" name="name" ng-model="form.name" class="form-control" required>
+          </div>
+
+          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[contactForm.email.$error.required || contactForm.email.$invalid]">
+            <label>Email</label>
+            <input type="text" name="email" ng-model="form.email" class="form-control" required>
+          </div>
+
+          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[contactForm.recipient.$error.required || contactForm.recipient.$invalid]">
+            <label>De que cidade fala?</label>
+            <select name="recipient" class="form-control" ng-model="form.recipient" ng-options="recipient.name for recipient in recipients track by recipient.email" required>
+            </select>
+          </div>
+          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[contactForm.message.$error.required || contactForm.message.$invalid]">
+            <label>Mensagem</label>
+            <textarea name="message" rows="10" class="form-control" ng-model="form.message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-info">Envie sua mensagem</button>
+        </form>
+        <div class="success" ng-show="sent">
+          <p>Sua mensagem foi enviada! Em breve entraremos em contato com você ;)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
