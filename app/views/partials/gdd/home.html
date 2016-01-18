@@ -39,7 +39,8 @@
           <h2>Crie uma ação</h2>
           <h4>Lorem ipsum dolor site amet solarium lips</h4>
           <p>Sit quidem corporis debitis labore cum repellendus nisi? Numquam natus temporibus debitis amet corporis dolores. Facilis iure porro voluptatibus pariatur nostrum id.</p>
-          <a class="btn btn-large btn-pink">Inscreva sua ação</a>
+          <a class="btn btn-large btn-pink" ui-sref="gdd.nonprofitsignup" ng-show="!loggedUser">Inscreva sua ação</a>
+          <a class="btn btn-large btn-pink" ui-sref="gdd.nonprofitsignup" ng-show="loggedUser.role=='NONPROFIT'">Inscreva sua ação</a>
           <h4 class="text-center">Ou conheça nosso <a ui-sref="gdd.ideas">guia para criar ações</a></h4>
         </div>
         <div class="col-xs-12 col-sm-1">
@@ -105,13 +106,13 @@
           <h3>Participantes</h3>
             <div class="partners-small text-center">
               <div class="partner">
-                <div style="background: white;"></div>
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/acupuntura-urbana.png');"></div>
               </div>
               <div class="partner">
-                <div style="background: white;"></div>
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/acupuntura-urbana.png');"></div>
               </div>
               <div class="partner">
-                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/acupuntura-urbana.png;');"></div>
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/acupuntura-urbana.png');"></div>
               </div>
             </div>
         </div>

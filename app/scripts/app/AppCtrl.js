@@ -36,8 +36,8 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
     Search.filter(Search.query, Search.cause.id, Search.skill.id, Search.city.id);
   };
 
+
   $scope.openLogin = function(type) {
-    
     $rootScope.modalInstance = $modal.open({
       templateUrl: '/partials/loginModal.html',
       controller: ['$scope', 'Site', function ($scope, Site) {
@@ -65,7 +65,6 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
       }]
     });
   };
-
 
   $scope.openTermsModal = function() {
     $rootScope.modalInstance = $modal.open({
