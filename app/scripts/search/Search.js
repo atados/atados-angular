@@ -50,7 +50,6 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       cause: cause,
       skill: skill,
       city: city,
-      gdd: gdd,
     };
     if (gdd) {
       urlHeaders.gdd = true;
@@ -180,9 +179,6 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
     getHighlightedProjects: function (city, gdd) {
       if (!city) {
         city = null;
-      }
-      if (!gdd) {
-        gdd = false;
       }
       return Restangular.all('projects').getList({highlighted: true, city: city, gdd: gdd}).then( function(projects) {
         _highlightedProjects = fixProjects(projects);

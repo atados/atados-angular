@@ -12,6 +12,7 @@ app.controller('GddHomeCtrl', function($rootScope, $scope, $sce, $modal, $http, 
 
   $scope.search.skill = '';
   $scope.search.cause = '';
+  $scope.isHome = true;
 
 
   $scope.cityLoaded = false;
