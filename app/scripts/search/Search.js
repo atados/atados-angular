@@ -136,7 +136,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       _cardListNonprofits = [];
       searchProjects(query, cause, skill, city, gdd);
       searchNonprofits(query, cause, city);
-      this.getHighlightedProjects(city);
+      this.getHighlightedProjects(city, gdd);
       this.getHighlightedNonprofits(city);
     },
     query: _query,
@@ -177,11 +177,14 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
     nonprofits: function () {
       return _cardListNonprofits;
     },
-    getHighlightedProjects: function (city) {
+    getHighlightedProjects: function (city, gdd) {
       if (!city) {
         city = null;
       }
-      return Restangular.all('projects').getList({highlighted: true, city: city}).then( function(projects) {
+      if (!gdd) {
+        gdd = false;
+      }
+      return Restangular.all('projects').getList({highlighted: true, city: city, gdd: gdd}).then( function(projects) {
         _highlightedProjects = fixProjects(projects);
         return;
       }, function () {
