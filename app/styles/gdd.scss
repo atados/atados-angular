@@ -311,23 +311,49 @@ $font-secondary: "Montserrat", Arial, sans-serif;
       &:not(:last-child) {
         margin-right: 20px;
       }
+
+      > div {
+        border-radius: 50%;
+        position: relative;
+      }
     }
     .partners-large {
       .partner {
         width: 150px;
         height: 150px;
+
+        > div {
+          width: 124px;
+          height: 124px;
+          top: 15px;
+          left: 10px;
+        }
       }
     }
     .partners-medium {
       .partner {
         width: 120px;
         height: 120px;
+
+        > div {
+          width: 98px;
+          height: 98px;
+          top: 13px;
+          left: 8px;
+        }
       }
     }
     .partners-small {
       .partner {
         width: 100px;
         height: 100px;
+        
+        > div {
+          width: 80px;
+          height: 80px;
+          top: 11px;
+          left: 8px;
+        }
       }
     }
   }
