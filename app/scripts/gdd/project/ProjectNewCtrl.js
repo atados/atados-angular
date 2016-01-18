@@ -25,6 +25,7 @@ app.controller('GddProjectNewCtrl', function($scope, $state, $stateParams, Resta
     causes: [],
     skills: [],
     roles: [],
+    gdd: true,
   };
 
   if (!$scope.loggedUser) {

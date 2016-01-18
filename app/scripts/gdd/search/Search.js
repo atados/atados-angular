@@ -43,14 +43,19 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
   };
 
   // city is the the city id
-  function searchProjects(query, cause, skill, city) {
+  function searchProjects(query, cause, skill, city, gdd) {
     var urlHeaders = {
       page_size: 20,
       query: query,
       cause: cause,
       skill: skill,
       city: city,
+      gdd: gdd,
     };
+    if (gdd) {
+      var urlHeaders['gdd'] = true;
+    }
+
 
     _loading = true;
     Restangular.all('projects').getList(urlHeaders).then( function(response) {
@@ -126,10 +131,10 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
   getMapNonprofits();
 
   return {
-    filter: function (query, cause, skill, city) {
+    filter: function (query, cause, skill, city, gdd) {
       _cardListProjects = [];
       _cardListNonprofits = [];
-      searchProjects(query, cause, skill, city);
+      searchProjects(query, cause, skill, city, gdd);
       searchNonprofits(query, cause, city);
       this.getHighlightedProjects(city);
       this.getHighlightedNonprofits(city);

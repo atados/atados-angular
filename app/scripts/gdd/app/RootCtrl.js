@@ -14,30 +14,8 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
   }
 
   $scope.searchIP = function() {
-      var url = 'https://atados.com.br:9891/';
-      //var url = 'https://geoip.atados.com.br/json/' + ip;
-      $.get(url, function(data) {
-        $rootScope.geoIP = data;
-
-        // Preset city on home
-        var city;
-        if (data.region_code === 'DF') {
-          city = brasilia;
-        } else if (data.region_code === 'PR') {
-          city = curitiba;
-        } else if (data.region_code === 'RJ') {
-          city = rioDeJaneiro;
-        } else {
-          city = saoPaulo;
-        }
-
-        Search.filter(null, null, null, city.id);
-        for (var c in Site.cities()) {
-          if (Site.cities()[c].id === city.id) {
-            Search.city = Site.cities()[c];
-          }
-        }
-      });
+    var city = saoPaulo;
+    Search.filter(null, null, null, city.id, true);
   };
   $scope.searchIP();
 
