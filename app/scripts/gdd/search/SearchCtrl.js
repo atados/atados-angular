@@ -25,7 +25,7 @@ app.controller('GddSearchCtrl', function ($scope, $http, $location, $anchorScrol
       alreadySearchedNonprofit = false;
       $scope.searchMoreDisabled = false;
 
-      Search.filter(Search.query, Search.cause.id, Search.skill.id, Search.city.id);
+      Search.filter(Search.query, Search.cause.id, Search.skill.id, Search.city.id, true);
       doneTyping = false;
     }
   };

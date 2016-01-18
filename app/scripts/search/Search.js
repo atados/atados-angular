@@ -53,7 +53,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       gdd: gdd,
     };
     if (gdd) {
-      urlHeaders['gdd'] = true;
+      urlHeaders.gdd = true;
     }
 
 
