@@ -6,7 +6,7 @@
 
     <form novalidate role="form" class="form-horizontal" name="editProjectForm" ng-submit="saveProject()">
       <fieldset>
-        <legend>Sobre o Ato</legend>
+        <legend>Sobre a Ação</legend>
 
         <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.description.$error.required || editProjectForm.description.$invalid]">
           <label class="col-md-3 control-label">Resumo (160 caracteres)</label>
@@ -14,7 +14,7 @@
             <textarea class="form-control" rows="2" name="description" ng-model='project.description' ng-minlength="10" ng-maxlength="160" required></textarea>
             <label class="help-block" ng-show="editProjectForm.description.$error.minlength">Não pode ter menos de 10 caracteres.</label>
             <label class="help-block" ng-show="editProjectForm.description.$error.maxlength">Não pode ter mais de 160 caracteres.</label>
-            <label>Essa descrição não pode ultrapassar mais de 160 caracters. Vai ser usada para dar um resumo rápido do Ato quando os voluntários estiverem procurando.</label>
+            <label>Essa descrição não pode ultrapassar mais de 160 caracters. Vai ser usada para dar um resumo rápido da Ação quando os voluntários estiverem procurando.</label>
           </div>
         </div>
 
@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group">
-          <label class="col-sm-3 control-label">Evento do Ato no Facebook</label>
+          <label class="col-sm-3 control-label">Evento da Ação no Facebook</label>
           <div class="col-sm-8">
             <div class="input-group">
               <span class="input-group-addon">facebook.com/events/</span>
@@ -76,7 +76,7 @@
           </div>
         </div>
 
-        <label class="col-sm-3 control-label">Cidade do Ato</label>
+        <label class="col-sm-3 control-label">Cidade da Ação</label>
         <div class="btn-group">
           <button type="button" class="btn" ng-model="project.address.city" btn-radio="9422">São Paulo, SP</button>
           <button type="button" class="btn" ng-model="project.address.city" btn-radio="5915">Curitiba, PR</button>
@@ -88,14 +88,14 @@
       </fieldset>
 
       <fieldset>
-        <legend>Responsável pelo Ato</legend>
+        <legend>Responsável pela Ação</legend>
 
         <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.responsible.$error.required || editProjectForm.responsible.$invalid]">
           <label class="col-sm-3 control-label">Nome do Responsável</label>
           <div class="col-sm-8">
             <label class="help-block" ng-show="editProjectForm.responsible.$error.minlength">Não pode ter menos de 2 caracteres.</label>
             <label class="help-block" ng-show="editProjectForm.responsible.$error.maxlength">Não pode ter mais de 27 caracteres.</label>
-            <label class="help-block" ng-show="editProjectForm.responsible.$error.required">Obrigatório colocar nome do reponsável pelo Ato.</label>
+            <label class="help-block" ng-show="editProjectForm.responsible.$error.required">Obrigatório colocar nome do reponsável pela Ação.</label>
             <input required class="form-control" type="text" name="responsible" ng-minlength="2" ng-maxlength="27" ng-model='project.responsible' placeholder="Nome do Responsável">
           </div>
         </div>
@@ -113,10 +113,10 @@
       </fieldset>
 
       <fieldset>
-        <legend>Foto do Ato</legend>
+        <legend>Foto da Ação</legend>
         <div class="form-group"  ng-class="{true: 'has-error', false: 'has-success'}[!imageUploaded]">
           <label class="col-md-3 col-md-offset-3 control-label">
-            <img alt="Foto do ato." width="250" ng-src="{{project.small_image_url}}">
+            <img alt="Foto da ação." width="250" ng-src="{{project.small_image_url}}">
           </label>
 
           <div class="col-md-5">                     
@@ -193,17 +193,21 @@
       </div>
 
       <div id="type-project-buttons">
-        <div id="button-group" class="btn-group btn-group-justified" data-toggle="buttons">
-          <label class="btn btn-info" ng-class="{active: jobActive}" ng-click="jobActive=true">
-            <input type="radio" name="job"> Pontual
-          </label>
-          <label class="btn btn-info" ng-class="{active: !jobActive}" ng-click="jobActive=false">
-            <input type="radio" name="work"> Recorrente
-          </label>
+        <div id="button-group" class="btn-group btn-group-justified" data-toggle="buttons" class="hide">
+          <div class="hide">
+            <label class="btn btn-info" ng-class="{active: jobActive}" ng-click="jobActive=true">
+                <input type="radio" name="job"> Pontual
+            </label>
+          </div>
+          <div class="hide">
+            <label class="btn btn-info" ng-class="{active: !jobActive}" ng-click="jobActive=false">
+              <input type="radio" name="work"> Recorrente
+            </label>
+          </div>
         </div>
 
-        <fieldset ng-show="jobActive">
-          <legend>Dia e hora do Ato</legend>
+        <fieldset ng-show="jobActive" class="hide">
+          <legend>Dia e hora da Alçao</legend>
           <label class="col-md-2 control-label">Começa: </label>
           <div class="col-md-3">
             <input
@@ -242,7 +246,7 @@
 
         </fieldset>
 
-        <fieldset ng-hide="jobActive">
+        <fieldset class="hide">
           <div class="form-group">
             <label class="col-md-5 control-label">Esse ato pode ser feito remotamente?</label>
             <div class="col-md-7">
@@ -292,7 +296,7 @@
           </div>
         </fieldset>
 
-        <button type="submit" class="btn btn-info btn-save"  ng-disabled="editProjectForm.$invalid || !(imageUploaded && causeChosen && skillChosen && project.address.city)">Salvar Ato</button>
+        <button type="submit" class="btn btn-pink btn-save"  ng-disabled="editProjectForm.$invalid || !(imageUploaded && causeChosen && skillChosen && project.address.city)">Salvar Ato</button>
       </div>
     </form>
   </div>

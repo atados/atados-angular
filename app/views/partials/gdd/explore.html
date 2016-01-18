@@ -1,29 +1,5 @@
-<div id="atados-explorer-outer">
-  <div class="map-outer col-sm-4 col-xs-12 hidden-xs">
-    <gm-map
-    gm-map-id="'explorerMap'"
-    gm-center="mapOptions.map.center"
-    gm-zoom="mapOptions.map.zoom"
-    gm-map-options="mapOptions.map"
-    class="map">
-
-    <gm-markers
-    gm-objects="objects"
-    gm-id="object.slug"
-    gm-position="{ lat: object.address.latitude, lng: object.address.longitude }"
-    gm-marker-options="getMarkerOpts(object)"
-    gm-events="markerEvents">
-    </gm-markers>
-
-    </gm-map>
-    <h4 id="map-message" ng-show="hasAddress">
-      <span ng-show="search.showProjects">Ato</span>
-      <span ng-hide="search.showProjects">ONG</span> 
-      não tem endereço.
-    </h4>
-    <h4 id="map-message" ng-show="distanceAddress">Ato à distância.</h4>
-  </div>
-  <div id="atados-explorer" class="col-sm-8 col-xs-12">
-    <atados-search></atados-search>
+<div id="home" ng-controller="LandingCtrl as ctrl">
+  <div id="atados-explorer">
+    <gdd-search></gdd-search>
   </div>
 </div>

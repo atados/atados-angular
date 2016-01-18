@@ -9,6 +9,10 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
 
   $scope.loggedUser = loggedUser;
 
+  $scope.contact = function() {
+    $toastr.warning('Entre em contato através do email diadasboasacoes@atados.com.br');
+  }
+
   $scope.searchIP = function() {
       var url = 'https://atados.com.br:9891/';
       //var url = 'https://geoip.atados.com.br/json/' + ip;
@@ -37,6 +41,25 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
   };
   $scope.searchIP();
 
+  $scope.ourHistory = function() {
+    if ($('#nossa-historia').length) {
+      $('html, body').animate({
+          scrollTop: $("#nossa-historia").offset().top
+      }, 1000);
+    } else {
+      $state.transitionTo('gdd.home');
+    }
+  };
+  $scope.partners = function() {
+    if ($('#parceiros').length) {
+      $('html, body').animate({
+          scrollTop: $("#parceiros").offset().top
+      }, 1000);
+    } else {
+      $state.transitionTo('gdd.home');
+    }
+  };
+
   if (window.location.hash === '#session-expired') {
     toastr.error('Oops! Parece que sua sessão expirou! Você precisa logar novamente');
     $state.transitionTo('root.home');
@@ -62,11 +85,11 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
   $rootScope.explorerView = false;
 
   $scope.logout = function () {
-    toastr.success('Tchau até a próxima :)', $scope.loggedUser.slug);
+    toastr.success('Tchau, até a próxima :)', $scope.loggedUser.slug);
     $scope.$emit('userLoggedOut');
     Auth.logout();
     $scope.loggedUser = null;
-    $state.transitionTo('root.home');
+    $state.transitionTo('gdd.home');
   };
 
   $rootScope.askForAddress = function(user) {

@@ -159,7 +159,43 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
        url: '/dia-das-boas-acoes',
        templateUrl: '/partials/gdd/home.html',
        controller: 'GddHomeCtrl'
-     });
+     })
+     .state('gdd.project', {
+       url: '/dia-das-boas-acoes/ato/:slug',
+       templateUrl: '/partials/gdd/projectPage.html',
+       controller: 'GddProjectCtrl',
+       resolve: {
+         project: ['Project', '$stateParams', function (Project, $stateParams) {
+           return Project.get($stateParams.slug);
+         }]
+       }
+     })
+     .state('gdd.nonprofitsignup', {
+       url: '/dia-das-boas-acoes/cadastro/ong',
+       templateUrl: '/partials/gdd/nonprofitSignup.html',
+       controller: 'GddNonprofitSignupCtrl',
+       resolve: {}
+     })
+     .state('gdd.nonprofitadmin', {
+       url: '/dia-das-boas-acoes/controle/:slug',
+       templateUrl: '/partials/gdd/nonprofitAdminPanel.html',
+       controller: 'GddNonprofitAdminCtrl'
+     })
+     .state('gdd.newproject', {
+       url: '/dia-das-boas-acoes/cadastro/ato/:id',
+         templateUrl: '/partials/gdd/projectNew.html',
+         controller: 'GddProjectNewCtrl'
+      })
+     .state('gdd.editproject', {
+         url: '/dia-das-boas-acoes/editar/ato/:slug',
+         templateUrl: '/partials/gdd/projectEdit.html',
+         controller: 'GddProjectEditCtrl'
+     })
+     .state('gdd.explore', {
+       url: '/dia-das-boas-acoes/explore',
+       templateUrl: '/partials/gdd/explore.html',
+       controller: 'GddExploreCtrl'
+     })
 
   $urlRouterProvider.otherwise('/ops');
   $locationProvider.html5Mode(true).hashPrefix('!');

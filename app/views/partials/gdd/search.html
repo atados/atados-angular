@@ -1,7 +1,9 @@
+<div class="explorer-head">
+  <h2>Conheça as <b>boas ações</b></h2>
+  <p>Utilize os filtros abaixo para encontrar a ação que tem a sua cara!</p>
+</div>
+ 
 <div ng-class="{true: 'col-sm-10 col-sm-offset-1', false: 'col-sm-12'}[landing]" id="searchSpace">
-  <button class="btn btn-tab" ng-click="search.showProjects=true" ng-class="{active: search.showProjects}">Pesquisar Atos <span ng-hide="landing || search.projects().length === 0">({{search.projects().length}})</span></button>
-  <button class="btn btn-tab" ng-click="search.showProjects=false" ng-class="{active: !search.showProjects}">Pesquisar ONGs <span ng-hide="landing || search.nonprofits().length === 0">({{search.nonprofits().length}})</span></button>
-
   <small ng-show="search.showProjects && !landing" class="pull-right"> Mostrando {{search.projects().length}} de {{search.projectCount()}} atos</small>
   <small ng-hide="search.showProjects || landing" class="pull-right"> Mostrando {{search.nonprofits().length}} de {{search.nonprofitCount()}} ONGs</small>
   <div class="row filters">
@@ -48,8 +50,8 @@
   <div class="row">
     <div class="col-sm-12">
       <div ng-show="search.showProjects" class="clearfix">
-        <project-card ng-if="landing" ng-repeat="project in search.highlightedProjects()"></project-card>
-        <project-card ng-if="!landing" ng-repeat="project in search.projects()"></project-card>
+        <gdd-project-card ng-if="landing" ng-repeat="project in search.highlightedProjects()"></gdd-project-card>
+        <gdd-project-card ng-if="!landing" ng-repeat="project in search.projects()"></gdd-project-card>
         <div class="alert" ng-show="!search.loading() && !search.projects().length && !landing">Não encontramos projetos para essa busca.</div>
       </div>
       <div ng-hide="search.showProjects" class="clearfix">
@@ -62,7 +64,7 @@
   <small ng-show="search.showProjects && !landing" class="pull-right"> Mostrando {{search.projects().length}} de {{search.projectCount()}} atos</small>
   <small ng-hide="search.showProjects || landing" class="pull-right"> Mostrando {{search.nonprofits().length}} de {{search.nonprofitCount()}} ONGs</small>
   <div style="text-align: center;">
-    <a class="btn btn-lg btn-info" ui-sref="root.explore" ng-disabled="searchMoreDisabled">
+    <a class="btn btn-lg btn-more-projects" ui-sref="root.explore" ng-disabled="searchMoreDisabled">
       <span ng-show="search.showProjects">{{ searchMoreProjectButtonText }}</span>
       <span ng-hide="search.showProjects">{{ searchMoreNonprofitButtonText }}</span>
     </a>

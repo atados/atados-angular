@@ -2,7 +2,7 @@
   <div class="card center-block" id="card-{{project.slug}}">
     <div class="card-img">
       <div class="card-description"> 
-        <a ui-sref="root.project({slug: project.slug})">
+        <a ui-sref="gdd.project({slug: project.slug})">
           <p>{{project.description}}</p>
         </a>
       </div>
@@ -10,15 +10,15 @@
       </div>
     </div>
     <div class="card-footer clearfix">
-      <a class="card-name" ui-sref="root.project({slug: project.slug})"><h4>{{ project.name}}</h4></a>
       <div class="row card-quick-info">
+        <h4>{{ project.name}}</h4>
         <a ui-sref="root.nonprofit({slug: project.nonprofit_slug})" class="nonprofit-img">
-          <div width="60" style="height: 50px; background: url('{{ project.nonprofit_image }}') no-repeat center center / contain">
+          <div width="65" style="height: 65px; background: url('{{ project.nonprofit_image }}') no-repeat center center / contain">
           </div>
         </a>
         <span>
           <a ui-sref="root.nonprofit({slug: project.nonprofit_slug})"><p class="nonprofit-name"><strong>{{project.nonprofit_name}}</strong></p></a>
-          <p class="card-local" ng-show="project.city_state"><i class="fa fa-map-marker"></i> 
+          <p class="card-local" ng-show="project.city_state">
             <span ng-switch="project.work.can_be_done_remotely">
               <span ng-switch-when="true">
                 Trabalho à Distância
@@ -28,29 +28,8 @@
               </span>
             </span>
           </p>
-          <div class="card-icons">
-            <div class="img-circle icon-image" ng-repeat="cause in project.causes"> 
-              <div title="{{cause.name}}">
-                <img alt="{{cause.name}}" tooltip="Causa: {{cause.name}}" width="15" height="15" ng-src="{{cause.image}}"/>
-              </div>
-            </div>
-            <div alt="{{skill.name}}" class="img-circle icon-image" ng-repeat="skill in project.skills"> 
-              <div title="{{skill.name}}">
-                <img tooltip="Habilidade: {{skill.name}}" width="15" height="15" ng-src="{{skill.image}}"/>
-              </div>
-            </div>
-          </div>
+          <span class="volunteers-amount"><img src="https://s3-sa-east-1.amazonaws.com/atadosapp/images/dba-user.png" class="fa fa-user"></i> {{project.volunteers_numbers}} voluntário(s)</span>
         </span>
-      </div>
-      <div class="row card-second">
-        <div class="card-date col-xs-9">
-          <strong ng-if="project.work"><i class="fa fa-refresh"></i> Ato Recorrente</strong>
-          <strong ng-if="project.job && project.job.start_date"><i class="fa fa-calendar"></i> {{project.job.start_date | date: 'longDate'}}</strong>
-          <strong ng-if="project.job && !project.job.start_date && project.job.end_date"><i class="fa fa-calendar"></i> {{project.job.end_date | date: 'longDate'}}</strong>
-        </div>
-        <div class="card-volunteer center col-xs-3">
-          <span><i tooltip="Número de voluntários que já se ataram." class="fa fa-user"></i> {{project.volunteers_numbers}}</span>
-        </div>
       </div>
     </div>
   </div>

@@ -1,12 +1,13 @@
 <div id="project-new">
   <div class="container">
     <div class="page-header">
-      <h1>Novo Ato da ONG {{loggedUser.name}}</h1>
+      <h1>Inscreva sua <b>Ação</b></h1>
+      <h2>Passo 2 de 2 - Inscreva sua ação</h2>
     </div>
 
     <form novalidate role="form" class="form-horizontal" name="newProjectForm" ng-submit="createProject()">
       <div class="col-sm-12">
-        <div id="type-project-buttons">
+        <div id="type-project-buttons" class="hide">
           <div id="button-group" class="btn-group btn-group-justified" data-toggle="buttons">
             <label class="btn btn-info" ng-class="{active: jobActive}" ng-click="jobActive=true">
               <input type="radio" name="job"> Pontual
@@ -18,8 +19,8 @@
         </div>
 
         <div class="row">
-          <fieldset ng-show="jobActive">
-            <legend>Dia e hora do Ato</legend>
+          <fieldset ng-show="jobActive" class="hide">
+            <legend>Dia e hora da ação</legend>
             <label class="col-md-3 control-label">Começa: </label>
             <div class="col-md-2">
               <input
@@ -63,9 +64,9 @@
           </fieldset>
         </div>
 
-        <fieldset ng-hide="jobActive">
+        <fieldset ng-hide="jobActive" >
           <div class="form-group">
-            <label class="col-md-5 control-label">Esse ato pode ser feito remotamente?</label>
+            <label class="col-md-5 control-label">Essa ação pode ser feito remotamente?</label>
             <div class="col-md-7">
               <input class="btn" type="checkbox" name="canBeDoneRemotely" ng-checked="work.can_be_done_remotely" ng-model="work.can_be_done_remotely">
             </div>
@@ -115,15 +116,15 @@
 
 
         <fieldset>
-          <legend>Sobre o Ato</legend>
+          <legend>Sobre a ação</legend>
 
           <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[newProjectForm.projectname.$error.required || newProjectForm.projectname.$invalid]">
             <label class="col-md-3 control-label" for="projectname">Nome</label>
             <div class="col-md-8">
-              <input required type="text" class="form-control" name="projectname" ng-minlength="3" ng-maxlength="27" ng-model="project.name" placeholder="Nome do Ato" />
+              <input required type="text" class="form-control" name="projectname" ng-minlength="3" ng-maxlength="27" ng-model="project.name" placeholder="Nome da ação" />
               <label class="help-block" ng-show="newProjectForm.projectname.$error.minlength">Não pode ter menos de 3 caracteres.</label>
               <label class="help-block" ng-show="newProjectForm.projectname.$error.maxlength">Não pode ter mais de 27 caracteres.</label>
-              <label class="info-label">Atenção: após a escolha do nome do ato, você não poderá mais alterá-lo. Fazemos isso por motivos técnicos do site. Caso tenha que alterá-lo, entre em contato conosco.</label>
+              <label class="info-label">Atenção: após a escolha do nome da ação, você não poderá mais alterá-lo. Fazemos isso por motivos técnicos do site. Caso tenha que alterá-lo, entre em contato conosco.</label>
             </div>
           </div>
 
@@ -133,7 +134,7 @@
               <textarea class="form-control" rows="2" name="description" ng-model='project.description' ng-minlength="10" ng-maxlength="160" required></textarea>
               <label class="help-block" ng-show="newProjectForm.description.$error.minlength">Não pode ter menos de 10 caracteres.</label>
               <label class="help-block" ng-show="newProjectForm.description.$error.maxlength">Não pode ter mais de 160 caracteres.</label>
-              <label class="info-label">Essa descrição não pode ultrapassar mais de 160 caracters. Vai ser usada para dar um resumo rápido do Ato quando os voluntários estiverem procurando.</label>
+              <label class="info-label">Essa descrição não pode ultrapassar mais de 160 caracters. Vai ser usada para dar um resumo rápido da ação quando os voluntários estiverem procurando.</label>
             </div>
           </div>
 
@@ -148,7 +149,7 @@
           </div>
 
           <div class="form-group">
-            <label class="col-sm-3 control-label">Evento do Ato <br>no Facebook</label>
+            <label class="col-sm-3 control-label">Evento da ação <br>no Facebook</label>
             <div class="col-sm-8">
               <div class="input-group">
                 <span class="input-group-addon">facebook.com/events/</span>
@@ -206,14 +207,14 @@
         </fieldset>
 
         <fieldset>
-          <legend>Responsável pelo Ato</legend>
+          <legend>Responsável pela Ação</legend>
 
           <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[newProjectForm.responsible.$error.required || newProjectForm.responsible.$invalid]">
             <label class="col-sm-3 control-label">Nome do Responsável</label>
             <div class="col-sm-8">
               <label class="help-block" ng-show="newProjectForm.responsible.$error.minlength">Não pode ter menos de 2 caracteres.</label>
               <label class="help-block" ng-show="newProjectForm.responsible.$error.maxlength">Não pode ter mais de 50 caracteres.</label>
-              <label class="help-block" ng-show="newProjectForm.responsible.$error.required">Obrigatório colocar nome do reponsável pelo Ato.</label>
+              <label class="help-block" ng-show="newProjectForm.responsible.$error.required">Obrigatório colocar nome do reponsável pela Ação.</label>
               <input required class="form-control" type="text" name="responsible" ng-minlength="2" ng-maxlength="50" ng-model='project.responsible' placeholder="Nome do Responsável">
             </div>
           </div>
@@ -231,11 +232,11 @@
         </fieldset>
 
         <fieldset>
-          <legend>Foto do Ato</legend>
+          <legend>Foto da Ação</legend>
           <div class="form-group"  ng-class="{true: 'has-error', false: 'has-success'}[!imageUploaded]">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">                     
-              <label class="help-block" ng-hide="imageUploaded">Não se esqueça de nos dar uma foto bem bonita que represente seu projeto. Ela tem que ter tamanho 350x260 pixels.</label>
+              <label class="help-block" ng-hide="imageUploaded">Não se esqueça de escolher uma foto bem bonita que represente sua ação. Ela tem que ter tamanho 350x260 pixels.</label>
               <label class="btn btn-info" for="file-input"><i class="fa fa-edit"></i> Escolher foto...</label>
               <input style="display: none;" id="file-input" type="file" name="file" onchange="angular.element(this).scope().uploadProjectImage(this.files)" />
             </div>
@@ -304,7 +305,7 @@
             </tbody>
           </table>
         </fieldset>
-        <button type="submit" class="btn btn-info btn-save" ng-disabled="newProjectForm.$invalid || !(imageUploaded && causeChosen && skillChosen && project.address.city.id)">Criar Ato</button>
+        <button type="submit" class="btn btn-pink btn-save" ng-disabled="newProjectForm.$invalid || !(imageUploaded && causeChosen && skillChosen && project.address.city.id)">Criar Ação</button>
       </div>
     </form>
   </div>

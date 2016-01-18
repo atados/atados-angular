@@ -7,19 +7,6 @@
       <div class="col-sm-5">
         <h1 id="project-name">{{project.name}}</h1>
         <div id="project-type">
-          <p ng-if="project.work"><i class="fa fa-refresh"></i> Ato Recorrente</p>
-          <p ng-if="project.job">
-          <i class="fa fa-clock-o"></i> Ato Pontual 
-          </p>
-          <span ng-if="project.job && project.job.start_date && project.job.end_date"> 
-            <small ng-if="projectJobInOneDay && !projectJobInSameTime">
-              {{project.job.start_date | date:"(EEEE) dd 'de' MMMM 'de' yyyy"}} das {{project.job.start_date | date:"h:mm a"}} até {{project.job.end_date | date:"h:mm a"}}
-            </small>
-            <small ng-if="!projectJobInOneDay">
-              {{project.job.start_date | date:"dd 'de' MMMM 'de' yyyy"}} até {{project.job.end_date | date:"dd 'de' MMMM 'de' yyyy"}}
-            </small>
-          </span>
-
         </div>
         <div id="project-nonprofit">
           <a ui-sref="root.nonprofit({slug: nonprofit.user.slug})" id="nonprofit-img">
@@ -37,29 +24,9 @@
             <a ng-if="nonprofit.website" href="{{nonprofit.website}}" target="_blank"><i class="fa fa-home"></i></a>
           </span>
         </div>
-
-        <div id="project-icons">
-          <div class="col-xs-6" ng-if="project.causes">
-            <p>Causas</p>
-            <div class="img-circle icon-image" ng-repeat="cause in project.causes"> 
-              <div title="{{cause.name}}">
-                <img alt="{{cause.name}}" tooltip="{{cause.name}}" width="20" height="20" ng-src="{{cause.image}}"/>
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-6" ng-if="project.skills">
-            <p>Habilidades</p>
-            <div class="img-circle icon-image" ng-repeat="skill in project.skills"> 
-              <div title="{{skill.name}}">
-                <img alt="{{skill.name}}" tooltip="{{skill.name}}" width="20" height="20" ng-src="{{skill.image}}"/>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
       <div class="col-sm-2">
-        <button id="atar-button" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-hide="project.closed || alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()">Quero me candidatar</button>
+        <button id="atar-button" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-hide="project.closed || alreadyApplied" class="btn btn-pink" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()">Quero participar</button>
         <button id="atar-button" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-show="alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()"><i class="fa fa-chain-broken"></i> Não quero mais</button>
         <button id="atar-button" disabled ng-hide="alreadyApplied || !project.closed" class="btn"><i class="fa fa-times"></i> Ato Fechado</button>
 
@@ -164,7 +131,7 @@
       </div>
     </div>
     <div class="center" style="margin-top: 30px;">
-      <button id="atar-button" class="col-sm-12" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-hide="project.closed || alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()"><i class="fa fa-heart"></i> Quero me candidatar</button>
+      <button id="atar-button" class="btn-atar" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-hide="project.closed || alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()">Quero participar</button>
     </div>
 
     <div class="fb-comments" data-href="https://www.atados.com.br/ato/{{project.slug}}" data-numposts="5" data-colorscheme="light"></div>

@@ -1,7 +1,122 @@
+@import 'compass';
+$font-primary: "Lato", Arial, sans-serif;
+$font-secondary: "Montserrat", Arial, sans-serif;
+
 .gdd-container {
+  font-family: $font-primary;
+
+  .btn-large {
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: montserrat;
+    font-weight: normal !important;
+    padding: 20px 40px;
+    border-radius: 6px;
+  }
+
+  .btn-pink {
+    background-color: #E62F70; // Old browsers
+    @include filter-gradient(#E62F70, #DF1A60, vertical); // IE6-9
+    @include background-image(linear-gradient(top, #E62F70 0%,#DF1A60 100%));
+    color: white;
+    transition: 0.1s linear all;
+    &:hover, &:active, &:focus {
+      color: white;
+      background-color: #CC2A63; // Old browsers
+      @include filter-gradient(#CC2A63, #C41755, vertical); // IE6-9
+      @include background-image(linear-gradient(top, #CC2A63 0%,#C41755 100%));
+    }
+  }
+
+  .btn-more-projects {
+    background-color: #E62F70; // Old browsers
+    @include filter-gradient(#E62F70, #DF1A60, vertical); // IE6-9
+    @include background-image(linear-gradient(top, #E62F70 0%,#DF1A60 100%));
+    color: white;
+    transition: 0.1s linear all;
+    &:hover, &:active, &:focus {
+      color: white;
+      background-color: #CC2A63; // Old browsers
+      @include filter-gradient(#CC2A63, #C41755, vertical); // IE6-9
+      @include background-image(linear-gradient(top, #CC2A63 0%,#C41755 100%));
+    }
+  }
+
+  #nonprofit-signup {
+    .help-block {
+      background: #f9a448;
+    }
+
+    h1, h2 {
+      text-align: center;
+      font-weight: normal;
+    }
+    h1 {
+      font-family: $font-secondary;
+      color: #e63223;
+      text-align: center;
+      font-size: 42px;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-size: 22px;
+    }
+    .btn-primary {
+      background-color: #E62F70 !important; // Old browsers
+      color: white;
+      transition: 0.1s linear all;
+      background-image: linear-gradient(to bottom, #E62F70 0%, #DF1A60 100%) !important;
+      &:hover, &:active, &:focus {
+        color: white;
+        background-color: #CC2A63 !important; // Old browsers
+        background-image: linear-gradient(to bottom, #cc2a63 0%, #c41755 100%) !important;
+      }
+    }
+  }
+
+  #project-new {
+    h1, h2 {
+      text-align: center;
+      font-weight: normal;
+    }
+    h1 {
+      font-family: $font-secondary;
+      color: #e63223;
+      text-align: center;
+      font-size: 42px;
+      text-transform: uppercase;
+    }
+    h2 {
+      font-size: 22px;
+    }
+    .btn-primary {
+      background-color: #E62F70 !important; // Old browsers
+      color: white;
+      transition: 0.1s linear all;
+      background-image: linear-gradient(to bottom, #E62F70 0%, #DF1A60 100%) !important;
+      &:hover, &:active, &:focus {
+        color: white;
+        background-color: #CC2A63 !important; // Old browsers
+        background-image: linear-gradient(to bottom, #cc2a63 0%, #c41755 100%) !important;
+      }
+    }
+  }
+
+  .alert-info-gdd {
+    background: #fff;
+    border: solid 1px #c3c3c3;
+    color: #e52e6f;
+    a {
+      color: #e52e6f;
+      font-weight: bold;
+    }
+  }
+
   #top.navbar {
-    background: #87234E;
+    background: #B70072;
     border: 0px;
+    transition: background 0.1s linear;
 
     .navbar-brand {
       background: url("https://s3-sa-east-1.amazonaws.com/atadosapp/images/dba-logo-branco.png") no-repeat center center / contain;
@@ -9,9 +124,15 @@
     } 
 
     .nav {
+      margin-top: 10px;
+      font-family: $font-primary;
       li {
         text-transform: uppercase;
       }
+    }
+
+    &.top-transparent {
+      background: none;
     }
   }
 
@@ -19,14 +140,287 @@
     .jumbotron {
       background: #B32E67;
       text-align: left;
+      padding-top: 142px;
+      height: 554px;
+
+      #jumbotron-header {
+        margin-top: 0px;
+      }
 
       h1 {
         text-transform: uppercase;
+        font-family: $font-secondary;
+        font-weight: normal !important;
+        margin-top: 0px;
+      }
+
+      p {
+        font-family: $font-primary;
+        font-size: 26px !important;
       }
 
       #jumbotron-buttons {
         text-align: left !important;
       }
+    }
+  }
+
+  #atados-explorer {
+    .explorer-head {
+      h2 {
+        text-align: center;
+        font-size: 50px;
+        text-transform: uppercase;
+        color: rgb(238, 46, 36);
+      }
+      
+      p {
+        text-align: center;
+        font-style: italic;
+        font-size: 22px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  .remaining {
+    background: #B70072;
+    text-align: center;
+    color: white;
+    color: white;
+    font-size: 30px;
+    padding: 40px 0;
+    font-weight: 300;
+  }
+
+  .card-outer {
+    h4 {
+      color: #B70072;
+      text-align: center;
+      padding: 0px 10px;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: bold;
+      font-family: $font-primary;
+    }
+
+    .card {
+      .card-quick-info {
+        .nonprofit-name {
+          margin-top: 20px;
+          margin-bottom: 0px;
+          font-size: 14px;
+        }
+
+        .card-local {
+          font-size: 14px;
+        }
+      }
+
+      .volunteers-amount {
+        font-size: 13px;
+        position: relative;
+        left: 35px;
+
+        img {
+          position: relative;
+          top: -3px;
+        }
+      }
+
+      .nonprofit-img {
+        border-radius: 50%;
+        border: 2px solid #c5c5c5;
+        height: 65px;
+        width: 65px;
+
+        &::before {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  .start-action {
+    // http://colorzilla.com/gradient-editor/#f9a448+0,f2c13c+100
+    background-color: #f9a448; // Old browsers
+    @include filter-gradient(#f9a448, #f2c13c, horizontal); // IE6-9
+    @include background-image(linear-gradient(left, #f9a448 0%,#f2c13c 100%));
+    color: #fff;
+    padding: 40px 0;
+
+    h2, h4 {
+      color: #fff;
+    }
+    h2 {
+      text-transform: uppercase;
+      font-size: 42px;
+      font-family: $font-secondary;
+    }
+    h4 {
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+    p {
+      font-size: 22px;
+    }
+  }
+
+
+  .our-history {
+    background: #CF2A76;
+    padding: 40px 0;
+    color: #fff;
+    
+    h2 {
+      color: #fff;
+      text-transform: uppercase;
+      font-family: $font-secondary;
+      font-size: 42px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
+
+  .partners {
+    padding: 40px 0;
+    h2, h3 {
+      text-transform: uppercase;
+      font-family: $font-secondary;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 60px;
+      color: #f9a54a;
+      font-weight: bold;
+    }
+    h3 {
+      font-size: 28px;
+      color: #aaa;
+      font-weight: normal;
+    }
+    .partner {
+      background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logo-placeholder.png') no-repeat center center / contain;
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+    .partners-large {
+      .partner {
+        width: 150px;
+        height: 150px;
+      }
+    }
+    .partners-medium {
+      .partner {
+        width: 120px;
+        height: 120px;
+      }
+    }
+    .partners-small {
+      .partner {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+
+  #project-page {
+    #project-header {
+      background: #EEB111;
+      #project-name {
+        text-transform: uppercase;
+        font-family: $font-secondary;
+      }
+    }
+    #atar-button {
+      border: none;
+      border-radius: 6px;
+      background-color: #E62F70; // Old browsers
+      @include filter-gradient(#E62F70, #DF1A60, vertical); // IE6-9
+      @include background-image(linear-gradient(top, #E62F70 0%,#DF1A60 100%));
+      color: white;
+      transition: 0.1s linear all;
+      &:hover, &:active, &:focus {
+        color: white;
+        background-color: #CC2A63; // Old browsers
+        @include filter-gradient(#CC2A63, #C41755, vertical); // IE6-9
+        @include background-image(linear-gradient(top, #CC2A63 0%,#C41755 100%));
+      }
+    }
+    .btn-atar {
+      font-size: 22px;
+      padding: 20px 60px;
+      width: auto !important;
+      height: auto !important;
+    }
+  }
+
+  #footer {
+    background: #1A1A1A;
+    height: auto;
+    padding: 40px 0;
+
+    .atados-logo {
+      background: url(https://s3-sa-east-1.amazonaws.com/atadosapp/images/atados-sprite.png) -1.99px -99.98px no-repeat;
+      width: 136px;
+      height: 44px;
+      margin: 5px 71px 5px 10px;
+      text-indent: -999em;
+      display: inline-block;
+    }
+
+    .realization {
+      display: inline-block;
+      top: -20px;
+      position: relative;
+      color: #999;
+    }
+
+    h6 {
+      color: #B7B6B6;
+      font-family: $font-secondary;
+      font-size: 20px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .social {
+      li {
+        border-right: 0px solid;
+        padding-right: 0px;
+      }
+      a {
+        background: #323232;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        padding-top: 10px;
+        border-top-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+      }
+    }
+
+    input {
+      background: #323232;
+      border: 0px;
+      padding: 5px;
+      width: 80%;
+      display: block;
+      margin: auto auto;
+      border-radius: 6px;
+      color: white;
+    }
+
+    .mail {
+      color: #AA4D50;
     }
   }
 }

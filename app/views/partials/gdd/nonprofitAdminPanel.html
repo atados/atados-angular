@@ -7,8 +7,7 @@
       <h1>Controle de Atos e Voluntários</h1>
     </div>
 
-    <button id="edit-nonprofit-button" class="btn btn-large btn-info" ui-sref="root.nonprofitedit({slug: nonprofit.slug})">Editar ONG</button>
-    <button id="new-project-button" class="btn btn-info btn-large" ui-sref="root.newproject({id: nonprofit.id})">Criar Novo Ato</button>
+    <button id="new-project-button" class="btn btn-pink" ui-sref="gdd.newproject({id: nonprofit.id})">Criar Novo Ato</button>
 
     <p class="col-xs-12"> Lista de atos <span style="color: #58b957">abertos</span>, <span style="color: #db524b">fechados</span> e <span style="color: #f2ae43">não aprovados</span>.</p>
     <div id="project-management" ng-hide="nonprofit.projects.length === 0">
@@ -21,7 +20,7 @@
       <div class="col-md-7" id="active-project">
         <div id="project-name">
           <h3>
-            <a ui-sref="root.project({slug: activeProject.slug})">{{activeProject.name}}</a>
+            <a ui-sref="gdd.project({slug: activeProject.slug})">{{activeProject.name}}</a>
             <span tooltip="Ato não pode mais receber voluntários mas ainda está visivel na internet." ng-show="activeProject.closed && activeProject.published" class="pull-right label label-danger">Ato Finalizado</span>
             <span tooltip="Aberto para o público da internet ver e se atar !" ng-show="!activeProject.closed && activeProject.published" class="pull-right label label-success">Ato Aberto</span>
             <span tooltip="O pessoal do Atados está analisando o seu Ato e já entrará em contato!" ng-show="!activeProject.published" class="pull-right label label-warning">Ato em aprovação</span>
