@@ -9,12 +9,12 @@
         <div id="project-type">
         </div>
         <div id="project-nonprofit">
-          <a ui-sref="root.nonprofit({slug: nonprofit.user.slug})" id="nonprofit-img">
+          <a ui-sref="gdd.nonprofit({slug: nonprofit.user.slug})" id="nonprofit-img">
             <div style="padding-bottom: 100%; background: #fff url('{{project.nonprofit_image}}') no-repeat center center / contain; border-radius: 5px;">
             </div>
           </a>
           <span>
-            <a ui-sref="root.nonprofit({slug: nonprofit.user.slug})">
+            <a ui-sref="gdd.nonprofit({slug: nonprofit.user.slug})">
               <p id="nonprofit-name"><strong>{{nonprofit.name}}</strong></p>
             </a>
             <p id="nonprofit-local">{{project.nonprofit_city_state}}</p>

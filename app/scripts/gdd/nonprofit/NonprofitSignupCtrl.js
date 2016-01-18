@@ -33,10 +33,6 @@ app.controller('GddNonprofitSignupCtrl', function($scope, $rootScope, $filter, $
 
   $scope.buttonText = 'Próxmo passo (ação)';
 
-  $scope.watch('nonprofit.causes', function(value) {
-    console.log(value);
-  });
-
   $scope.$watch('nonprofit.user.slug', function (value) {
     // Checking that slug not already used.
     if (value) {

@@ -138,7 +138,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
 
   #home {
     .jumbotron {
-      background: #B32E67;
+      background: #B32E67 url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/dba-home-principal.jpg');
       text-align: left;
       padding-top: 142px;
       height: 554px;
@@ -268,7 +268,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
 
 
   .our-history {
-    background: #CF2A76;
+    background: #CF2A76 url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/dba-home-historia.jpg');
     padding: 40px 0;
     color: #fff;
     
@@ -422,5 +422,11 @@ $font-secondary: "Montserrat", Arial, sans-serif;
     .mail {
       color: #AA4D50;
     }
+  }
+
+  #ideas {
+    background: #f0f0f0;
+    display: block;
+    margin: auto auto;
   }
 }

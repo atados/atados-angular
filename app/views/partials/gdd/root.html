@@ -18,7 +18,7 @@
             <li><a ui-sref="gdd.explore">Participe das Ações</a></li>
             <li><a ui-sref="gdd.nonprofitsignup" ng-show="!loggedUser">Inscreva sua ação</a></li>
             <li><a ui-sref="gdd.newproject" ng-show="loggedUser.role=='NONPROFIT'">Inscreva sua ação</a></li>
-            <li><a ui-sref="gdd.home">Guia para criar ações</a></li>
+            <li><a ui-sref="gdd.ideas">Guia para criar ações</a></li>
             <li><a href="#" ng-click="ourHistory();">Nossa história</a></li>
             <li><a href="#" ng-click="partners();">Parceiros</a></li>
             <li><a href="#" ng-click="contact()">Contato</a></li>
@@ -56,7 +56,9 @@
         </div>
         <div class="col-xs-12 col-sm-4">
           <h6>Inscreva-se para novidades</h6>
-          <input type="text" class="news">
+          <form action="" ng-submit="sendNews($event)">
+            <input type="text" class="news">
+          </form>
         </div>
         <div class="col-xs-12 col-sm-4 text-center">
           <h6>Entre em contato</h6>

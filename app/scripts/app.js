@@ -196,6 +196,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
        templateUrl: '/partials/gdd/explore.html',
        controller: 'GddExploreCtrl'
      })
+     .state('gdd.ideas', {
+       url: '/dia-das-boas-acoes/ideias',
+       templateUrl: '/partials/gdd/ideas.html',
+       controller: 'GddIdeasCtrl'
+     })
+     .state('gdd.nonprofit', {
+       url: '/dia-das-boas-acoes/ong/:slug',
+       templateUrl: '/partials/gdd/nonprofitProfile.html',
+       controller: 'GddNonprofitCtrl',
+       resolve: {
+         nonprofit: ['Nonprofit', '$stateParams', function (Nonprofit, $stateParams) {
+           return Nonprofit.get($stateParams.slug);
+         }]
+       }
+     });
 
   $urlRouterProvider.otherwise('/ops');
   $locationProvider.html5Mode(true).hashPrefix('!');

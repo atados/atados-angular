@@ -10,7 +10,7 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
   $scope.loggedUser = loggedUser;
 
   $scope.contact = function() {
-    $toastr.warning('Entre em contato através do email diadasboasacoes@atados.com.br');
+    toastr.warning('Entre em contato através do email diadasboasacoes@atados.com.br');
   }
 
   $scope.searchIP = function() {
@@ -83,6 +83,11 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
   }
 
   $rootScope.explorerView = false;
+
+  $scope.sendNews = function(e) {
+    e.preventDefault();
+    toastr.success('Você foi cadastrado na newsletter');
+  }
 
   $scope.logout = function () {
     toastr.success('Tchau, até a próxima :)', $scope.loggedUser.slug);

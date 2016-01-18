@@ -12,12 +12,12 @@
     <div class="card-footer clearfix">
       <div class="row card-quick-info">
         <h4>{{ project.name}}</h4>
-        <a ui-sref="root.nonprofit({slug: project.nonprofit_slug})" class="nonprofit-img">
+        <a ui-sref="gdd.nonprofit({slug: project.nonprofit_slug})" class="nonprofit-img">
           <div width="65" style="height: 65px; background: url('{{ project.nonprofit_image }}') no-repeat center center / contain">
           </div>
         </a>
         <span>
-          <a ui-sref="root.nonprofit({slug: project.nonprofit_slug})"><p class="nonprofit-name"><strong>{{project.nonprofit_name}}</strong></p></a>
+          <a ui-sref="gdd.nonprofit({slug: project.nonprofit_slug})"><p class="nonprofit-name"><strong>{{project.nonprofit_name}}</strong></p></a>
           <p class="card-local" ng-show="project.city_state">
             <span ng-switch="project.work.can_be_done_remotely">
               <span ng-switch-when="true">
