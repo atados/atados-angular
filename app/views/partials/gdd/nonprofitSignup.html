@@ -42,7 +42,7 @@
               <div class="col-sm-8">
                 <textarea required class="form-control" rows="5" name="details" ng-model='nonprofit.details' ng-minlength="10" ng-maxlength="1024" placeholder="Descrição em detalhe"></textarea>
                 <label class="help-block" ng-show="signupForm.details.$error.minlength">Não pode ter menos de 10 caracteres.</label>
-                <label class="help-block" ng-show="signupForm.details.$error.maxlength">Não pode ter menos de 1024 caracteres.</label>
+                <label class="help-block" ng-show="signupForm.details.$error.maxlength">Não pode ter mais de 1024 caracteres.</label>
               </div>
             </div>
 
