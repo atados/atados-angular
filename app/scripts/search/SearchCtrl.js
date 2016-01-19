@@ -6,7 +6,7 @@
 var app = angular.module('atadosApp');
 
 app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll, $rootScope,
-      Search, $state, storage, defaultZoom, Cleanup, Site) {
+      Search, $state, storage, defaultZoom, Cleanup) {
 
   var alreadySearchedProject = false;
   var alreadySearchedNonprofit = false;

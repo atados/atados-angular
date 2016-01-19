@@ -1,8 +1,5 @@
 'use strict';
 
-/* global $: false */
-/* global toastr: false */
-
 var app = angular.module('atadosApp');
 
 app.directive('gddSearch', function() {
@@ -22,8 +19,8 @@ app.directive('gddProjectCard', function() {
 });
 
 app.directive('toptransparent', function ($window) {
-  return function(scope, element, attrs) {
-    angular.element($window).bind("scroll", function() {
+  return function(scope, element) {
+    angular.element($window).bind('scroll', function() {
       if (this.pageYOffset >= 100) {
         angular.element(element).removeClass('top-transparent');
       } else {
