@@ -6,7 +6,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams, $location, $http, Auth, $modal, Volunteer, project, api, VOLUNTEER) {
+app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $stateParams, $location, $http, Auth, $modal, Volunteer, project, api, VOLUNTEER) {
 
   $scope.landing = false;
   $scope.markers = [];

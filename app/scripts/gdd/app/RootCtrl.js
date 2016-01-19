@@ -13,11 +13,7 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
     toastr.warning('Entre em contato através do email diadasboasacoes@atados.com.br');
   }
 
-  $scope.searchIP = function() {
-    var city = saoPaulo;
-    Search.filter(null, null, null, city.id, true);
-  };
-  $scope.searchIP();
+  Search.filter(null, null, null, null, true);
 
   $scope.ourHistory = function() {
     if ($('#nossa-historia').length) {
@@ -131,7 +127,7 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
         $rootScope.modalInstance.close();
       }
       if (user.role === 'NONPROFIT') {
-        $location.path('/controle/' + user.slug);
+        $location.path('/dia-das-boas-acoes/controle/' + user.slug);
       }
       if (!user.address) {
         $rootScope.askForAddress(user);

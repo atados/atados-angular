@@ -6,7 +6,7 @@
 var app = angular.module('atadosApp');
 
 app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll, $rootScope,
-      Search, $state, storage, defaultZoom, Cleanup) {
+      Search, $state, storage, defaultZoom, Cleanup, Site) {
 
   var alreadySearchedProject = false;
   var alreadySearchedNonprofit = false;
@@ -31,9 +31,6 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll, 
   };
 
   $scope.$watch('search.cause', function (value, old) {
-    search(value, old);
-  });
-  $scope.$watch('search.skill', function (value, old) {
     search(value, old);
   });
   $scope.$watch('search.city', function (value, old) {

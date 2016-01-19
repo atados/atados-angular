@@ -6,7 +6,26 @@
 var app = angular.module('atadosApp');
 
 app.controller('GddSearchCtrl', function ($scope, $http, $location, $anchorScroll, $rootScope,
-      Search, $state, storage, defaultZoom, Cleanup) {
+      Search, $state, storage, defaultZoom, Cleanup, Site, Restangular) {
+
+  $scope.cityStates = Site.states;
+
+  $scope.cityLoaded = false;
+  $scope.$watch('cityState', function (value) {
+    $scope.cityLoaded = false;
+    $scope.stateCities = [];
+
+    if (value) {
+      Restangular.all('cities').getList({page_size: 3000, state: value.id}).then(function (response) {
+        response.forEach(function(c) {
+          $scope.stateCities.push(c);
+        });
+
+        value.citiesLoaded = true;
+        $scope.cityLoaded = true;
+      });
+    }
+  });
 
   var alreadySearchedProject = false;
   var alreadySearchedNonprofit = false;
@@ -18,7 +37,7 @@ app.controller('GddSearchCtrl', function ($scope, $http, $location, $anchorScrol
 
   var search = function(value, old) {
     if (value !== old) {
-      if ($scope.landing && (Search.query || Search.cause.id || Search.skill.id)) {
+      if ($scope.landing && (Search.query || Search.cause.id || Search.skill.id || Search.city.id)) {
         $state.transitionTo('gdd.explore');
       }
       alreadySearchedProject = false;

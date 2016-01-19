@@ -9,4 +9,5 @@ app.controller('GddExploreCtrl', function($rootScope, $scope, $sce, $modal, $htt
   $scope.site.og.url = 'https://www.atados.com.br';
   $scope.site.og.image = 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/landing_cover.jpg';
   $scope.site.description = 'Atados é uma rede social para voluntários e ONGs.';
+  $scope.gdd = true;
 });
