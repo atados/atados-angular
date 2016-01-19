@@ -28,6 +28,23 @@ app.controller('GddProjectNewCtrl', function($scope, $state, $stateParams, Resta
     gdd: true,
   };
 
+  $scope.cityLoaded = false;
+  $scope.$watch('state', function (value) {
+    $scope.cityLoaded = false;
+    $scope.stateCities = [];
+
+    if (value) {
+      Restangular.all('cities').getList({page_size: 3000, state: value.id}).then(function (response) {
+        response.forEach(function(c) {
+          $scope.stateCities.push(c);
+        });
+
+        value.citiesLoaded = true;
+        $scope.cityLoaded = true;
+      });
+    }
+  });
+
   if (!$scope.loggedUser) {
     $state.transitionTo('gdd.home');
     toastr.error('Nenhum usuário logado.');

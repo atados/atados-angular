@@ -31,7 +31,7 @@ app.controller('GddNonprofitSignupCtrl', function($scope, $rootScope, $filter, $
     causes:[]
   };
 
-  $scope.buttonText = 'Próxmo passo (ação)';
+  $scope.buttonText = 'Próximo passo (ação)';
 
   $scope.$watch('nonprofit.user.slug', function (value) {
     // Checking that slug not already used.
@@ -147,6 +147,7 @@ app.controller('GddNonprofitSignupCtrl', function($scope, $rootScope, $filter, $
           }, function (response) {
             $scope.creatingNonprofit = false;
             $scope.buttonText = 'Finalizar cadastro';
+            console.log(response);
             Auth.getCurrentUser(response.access_token).then(
               function (user) {
                 $rootScope.$emit('userLoggedIn', user, 'Bem vinda ONG ao atados! Sua ONG ainda precisa ser aprovada. Espere pelo nosso email.');
