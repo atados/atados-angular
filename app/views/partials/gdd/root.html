@@ -19,8 +19,6 @@
             <li><a ui-sref="gdd.nonprofitsignup" ng-show="!loggedUser">Inscreva sua ação</a></li>
             <li><a ui-sref="gdd.newproject" ng-show="loggedUser.role=='NONPROFIT'">Inscreva sua ação</a></li>
             <li><a ui-sref="gdd.ideas">Guia para criar ações</a></li>
-            <li><a ui-sref="gdd.home({'#': 'nossa-historia'})">Nossa história</a></li>
-            <li><a ui-sref="gdd.home({'#': 'parceiros'})">Parceiros</a></li>
             <li><a href="#" ng-click="contact()">Contato</a></li>
             <li ng-hide="loggedUser"><a href="#" ng-click="openLogin('volunteer')">Entrar</a></li>
             <li ng-show="loggedUser"><a href="#" ng-click="logout()"><img src="https://s3-sa-east-1.amazonaws.com/atadosapp/images/login-dba.png" alt=""></a></li>
