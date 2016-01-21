@@ -16,30 +16,42 @@ $font-secondary: "Montserrat", Arial, sans-serif;
   }
 
   .btn-pink {
-    background-color: #E62F70; // Old browsers
-    @include filter-gradient(#E62F70, #DF1A60, vertical); // IE6-9
-    @include background-image(linear-gradient(top, #E62F70 0%,#DF1A60 100%));
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e62f70+0,df1a60+100 */
+    background: #e62f70; /* Old browsers */
+    background: -moz-linear-gradient(top,  #e62f70 0%, #df1a60 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #e62f70 0%,#df1a60 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #e62f70 0%,#df1a60 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e62f70', endColorstr='#df1a60',GradientType=0 ); /* IE6-9 */
     color: white;
     transition: 0.1s linear all;
     &:hover, &:active, &:focus {
       color: white;
-      background-color: #CC2A63; // Old browsers
-      @include filter-gradient(#CC2A63, #C41755, vertical); // IE6-9
-      @include background-image(linear-gradient(top, #CC2A63 0%,#C41755 100%));
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cc2a63+1,c41755+100 */
+      background: #cc2a63; /* Old browsers */
+      background: -moz-linear-gradient(top,  #cc2a63 1%, #c41755 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  #cc2a63 1%,#c41755 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  #cc2a63 1%,#c41755 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc2a63', endColorstr='#c41755',GradientType=0 ); /* IE6-9 */
     }
   }
 
   .btn-more-projects {
-    background-color: #E62F70; // Old browsers
-    @include filter-gradient(#E62F70, #DF1A60, vertical); // IE6-9
-    @include background-image(linear-gradient(top, #E62F70 0%,#DF1A60 100%));
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e62f70+0,df1a60+100 */
+    background: #e62f70; /* Old browsers */
+    background: -moz-linear-gradient(top,  #e62f70 0%, #df1a60 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #e62f70 0%,#df1a60 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #e62f70 0%,#df1a60 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e62f70', endColorstr='#df1a60',GradientType=0 ); /* IE6-9 */
     color: white;
     transition: 0.1s linear all;
     &:hover, &:active, &:focus {
       color: white;
-      background-color: #CC2A63; // Old browsers
-      @include filter-gradient(#CC2A63, #C41755, vertical); // IE6-9
-      @include background-image(linear-gradient(top, #CC2A63 0%,#C41755 100%));
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cc2a63+1,c41755+100 */
+      background: #cc2a63; /* Old browsers */
+      background: -moz-linear-gradient(top,  #cc2a63 1%, #c41755 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  #cc2a63 1%,#c41755 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  #cc2a63 1%,#c41755 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc2a63', endColorstr='#c41755',GradientType=0 ); /* IE6-9 */
     }
   }
 
@@ -66,11 +78,20 @@ $font-secondary: "Montserrat", Arial, sans-serif;
       background-color: #E62F70 !important; // Old browsers
       color: white;
       transition: 0.1s linear all;
-      background-image: linear-gradient(to bottom, #E62F70 0%, #DF1A60 100%) !important;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e62f70+0,df1a60+100 */
+      background: #e62f70; /* Old browsers */
+      background: -moz-linear-gradient(top,  #e62f70 0%, #df1a60 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  #e62f70 0%,#df1a60 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  #e62f70 0%,#df1a60 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e62f70', endColorstr='#df1a60',GradientType=0 ); /* IE6-9 */
       &:hover, &:active, &:focus {
         color: white;
-        background-color: #CC2A63 !important; // Old browsers
-        background-image: linear-gradient(to bottom, #cc2a63 0%, #c41755 100%) !important;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cc2a63+1,c41755+100 */
+        background: #cc2a63; /* Old browsers */
+        background: -moz-linear-gradient(top,  #cc2a63 1%, #c41755 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  #cc2a63 1%,#c41755 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  #cc2a63 1%,#c41755 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc2a63', endColorstr='#c41755',GradientType=0 ); /* IE6-9 */
       }
     }
   }
@@ -94,11 +115,20 @@ $font-secondary: "Montserrat", Arial, sans-serif;
       background-color: #E62F70 !important; // Old browsers
       color: white;
       transition: 0.1s linear all;
-      background-image: linear-gradient(to bottom, #E62F70 0%, #DF1A60 100%) !important;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e62f70+0,df1a60+100 */
+      background: #e62f70; /* Old browsers */
+      background: -moz-linear-gradient(top,  #e62f70 0%, #df1a60 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  #e62f70 0%,#df1a60 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  #e62f70 0%,#df1a60 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e62f70', endColorstr='#df1a60',GradientType=0 ); /* IE6-9 */
       &:hover, &:active, &:focus {
         color: white;
-        background-color: #CC2A63 !important; // Old browsers
-        background-image: linear-gradient(to bottom, #cc2a63 0%, #c41755 100%) !important;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e62f70+0,df1a60+100 */
+        background: #e62f70; /* Old browsers */
+        background: -moz-linear-gradient(top,  #e62f70 0%, #df1a60 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  #e62f70 0%,#df1a60 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  #e62f70 0%,#df1a60 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e62f70', endColorstr='#df1a60',GradientType=0 ); /* IE6-9 */
       }
     }
   }
@@ -245,10 +275,12 @@ $font-secondary: "Montserrat", Arial, sans-serif;
   }
 
   .start-action {
-    // http://colorzilla.com/gradient-editor/#f9a448+0,f2c13c+100
-    background-color: #f9a448; // Old browsers
-    @include filter-gradient(#f9a448, #f2c13c, horizontal); // IE6-9
-    @include background-image(linear-gradient(left, #f9a448 0%,#f2c13c 100%));
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f9a448+0,f2c13c+100 */
+    background: #f9a448; /* Old browsers */
+    background: -moz-linear-gradient(left,  #f9a448 0%, #f2c13c 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  #f9a448 0%,#f2c13c 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  #f9a448 0%,#f2c13c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9a448', endColorstr='#f2c13c',GradientType=1 ); /* IE6-9 */
     color: #fff;
     padding: 40px 0;
 
@@ -372,18 +404,25 @@ $font-secondary: "Montserrat", Arial, sans-serif;
     #atar-button {
       border: none;
       border-radius: 6px;
-      background-color: #E62F70; // Old browsers
-      @include filter-gradient(#E62F70, #DF1A60, vertical); // IE6-9
-      @include background-image(linear-gradient(top, #E62F70 0%,#DF1A60 100%));
       color: white;
       transition: 0.1s linear all;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e62f70+0,df1a60+100 */
+      background: #e62f70; /* Old browsers */
+      background: -moz-linear-gradient(top,  #e62f70 0%, #df1a60 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  #e62f70 0%,#df1a60 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  #e62f70 0%,#df1a60 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e62f70', endColorstr='#df1a60',GradientType=0 ); /* IE6-9 */
       &:hover, &:active, &:focus {
         color: white;
-        background-color: #CC2A63; // Old browsers
-        @include filter-gradient(#CC2A63, #C41755, vertical); // IE6-9
-        @include background-image(linear-gradient(top, #CC2A63 0%,#C41755 100%));
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cc2a63+1,c41755+100 */
+        background: #cc2a63; /* Old browsers */
+        background: -moz-linear-gradient(top,  #cc2a63 1%, #c41755 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  #cc2a63 1%,#c41755 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  #cc2a63 1%,#c41755 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc2a63', endColorstr='#c41755',GradientType=0 ); /* IE6-9 */
       }
     }
+
     .btn-atar {
       font-size: 22px;
       padding: 20px 60px;
