@@ -5,7 +5,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, rioDeJaneiro, Site) {
+app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $location, $timeout, $http, api, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, rioDeJaneiro, Site) {
 
   $scope.loggedUser = loggedUser;
 
@@ -39,9 +39,17 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
 
   $rootScope.explorerView = false;
 
+  $scope.news = {
+    email: '',
+  };
+
   $scope.sendNews = function(e) {
     e.preventDefault();
-    toastr.success('Você foi cadastrado na newsletter');
+    $http.post(api + 'add_to_gdd_newsletter/', $scope.news).success(function(response) {
+      toastr.success(response.msg);
+    }).error(function() {
+      toastr.error('Um erro ocorreu.');
+    });
   }
 
   $scope.logout = function () {

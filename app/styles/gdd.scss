@@ -481,15 +481,31 @@ $font-secondary: "Montserrat", Arial, sans-serif;
       }
     }
 
-    input {
+    input.news {
       background: #323232;
       border: 0px;
       padding: 5px;
-      width: 80%;
       display: block;
       margin: auto auto;
       border-radius: 6px;
       color: white;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+    .input-group-btn {
+      .btn {
+        border: 1px solid #323232;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        background: #323232;
+        color: white;
+        font-family: $font-secondary;
+        text-transform: uppercase;
+        &:hover, &:active, &:focus {
+          background: #202020;
+          border: 1px solid #202020;
+        }
+      }
     }
 
     .mail {
