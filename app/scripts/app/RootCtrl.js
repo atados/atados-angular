@@ -10,8 +10,7 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
   $scope.loggedUser = loggedUser;
 
   $scope.searchIP = function() {
-      var url = 'https://atados.com.br:9891/';
-      //var url = 'https://geoip.atados.com.br/json/' + ip;
+      var url = 'https://geoip.atados.com.br/';
       $.get(url, function(data) {
         $rootScope.geoIP = data;
 
