@@ -42,7 +42,12 @@ $font-secondary: "Montserrat", Arial, sans-serif;
     background: -webkit-linear-gradient(top,  #e62f70 0%,#df1a60 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom,  #e62f70 0%,#df1a60 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e62f70', endColorstr='#df1a60',GradientType=0 ); /* IE6-9 */
+    margin-top: 40px;
+    font-family: $font-secondary;
     color: white;
+    text-transform: uppercase;
+    padding: 20px 30px;
+    font-size: 22px;
     transition: 0.1s linear all;
     &:hover, &:active, &:focus {
       color: white;
@@ -496,5 +501,9 @@ $font-secondary: "Montserrat", Arial, sans-serif;
     background: #f0f0f0;
     display: block;
     margin: auto auto;
+  }
+
+  .card-outer .card .card-img .card-description {
+    width: 248px;
   }
 }

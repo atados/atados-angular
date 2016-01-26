@@ -8,11 +8,11 @@
       <form novalidate role="form" class="form-horizontal" name="signupForm" ng-submit="signup()">
         <div class="col-md-6">
           <fieldset style="border-right: 2px solid #CFCFCF;">
-            <legend>Sobre a ONG</legend>
+            <legend>Sobre a Organização</legend>
             <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[signupForm.name.$error.required || signupForm.name.$invalid]">
               <label class="col-sm-3 control-label">Nome</label>
               <div class="col-sm-8">
-                <input required type="text" class="form-control" name="name" ng-model="nonprofit.name" ng-minlength="3" ng-maxlength="150" placeholder="Nome da ONG">
+                <input required type="text" class="form-control" name="name" ng-model="nonprofit.name" ng-minlength="3" ng-maxlength="150" placeholder="Nome da Organização">
                 <label class="help-block" ng-show="signupForm.name.$error.minlength">Não pode ter menos de 3 caracteres.</label>
                 <label class="help-block" ng-show="signupForm.name.$error.maxlength">Não pode ter mais de 150 caracteres.</label>
               </div>
@@ -95,16 +95,8 @@
             </div>
             <br>
             <label class="col-sm-offset-3">
-              <input type="checkbox" ng-model="nonprofit.hidden_address"> Por favor não publique o endereço da ONG para o público, por motivos de segurança.
+              <input type="checkbox" ng-model="nonprofit.hidden_address"> Por favor não publique o endereço da organização para o público, por motivos de segurança.
             </label>
-            <div class="col-sm-8 col-sm-offset-3">
-              <br>
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  Atualmente trabalhamos apenas com as ONGs de São Paulo, Brasília, Curitiba e no Rio de Janeiro. Caso sua ONG não esteja em uma dessas cidades, você pode cadastrá-la, porém ela não entrará no ar. Estamos trabalhando para atuar em mais cidades =)
-                </div>
-              </div>
-            </div>
 
             <causes all="causes()" selected="nonprofit.causes"></causes>
           </fieldset>
@@ -113,20 +105,20 @@
 
         <div class="col-md-6">
           <fieldset>
-            <legend>A ONG na internet</legend>
+            <legend>A organização na internet</legend>
             <div class="form-group">
               <label class="col-sm-3 control-label">Facebook</label>
               <div class="col-sm-8">
                 <div class="input-group">
                   <span class="input-group-addon">facebook.com/</span>
-                  <input type="text" name="facebookpage"  ng-model="nonprofit.facebook_page" placeholder="ong" class="form-control">
+                  <input type="text" name="facebookpage"  ng-model="nonprofit.facebook_page" placeholder="organizacao" class="form-control">
                 </div>
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 control-label">Website</label>
               <div class="col-sm-8">
-                <input type="text" name="website" ng-model="nonprofit.website" class="form-control" placeholder="www.ong.com.br">
+                <input type="text" name="website" ng-model="nonprofit.website" class="form-control" placeholder="www.organizacao.com.br">
               </div>
             </div>
 
@@ -155,9 +147,9 @@
               </div>
             </div>
 
-            <legend>Logotipo da ONG</legend>
+            <legend>Logotipo da Organização</legend>
             <div class="row">
-              <img class="col-md-3" width="90" height="100" alt="Foto cover da ONG "src="https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg" />
+              <img class="col-md-3" width="90" height="100" alt="Foto cover da organização "src="https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg" />
               <div class="form-group col-md-6" ng-class="{true: 'has-error', false: 'has-success'}[!imageUploaded]">
                 <label class="help-block" ng-hide="imageUploaded">Escolha uma imagem preferencialmente quadrada (mínimo 200x200px), com o fundo branco<label>
                 <label class="btn btn-info" for="image-file-input"><i class="fa fa-edit"></i> Escolher imagem...</label>
@@ -165,9 +157,9 @@
               </div>
             </div>
 
-            <legend>Foto de capa da página da ONG</legend>
+            <legend>Foto de capa da página da Organização</legend>
             <div class="row">
-              <img class="col-md-3" width="90" height="100" alt="Foto cover da ONG "src="https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg" />
+              <img class="col-md-3" width="90" height="100" alt="Foto cover da organização "src="https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg" />
               <div class="form-group col-md-6" ng-class="{true: 'has-error', false: 'has-success'}[!coverUploaded]">
                 <label class="help-block" ng-hide="coverUploaded">Escolha uma imagem preferencialmente quadrada (mínimo 200x200px), com o fundo branco</label>
                 <label class="btn btn-info" for="cover-file-input"><i class="fa fa-edit"></i> Escolher imagem...</label>
@@ -184,9 +176,9 @@
             <div class="form-errors" ng-show="show_errors">
               <br><br>
               <label>O formulário apresentou os seguintes erros:</label>
-              <label class="help-block" ng-show="signupForm.name.$error.required">O nome da ONG deve ser preenchido.</label>
-              <label class="help-block" ng-show="signupForm.name.$error.minlength">O nome da ONG não pode ter menos de 3 caracteres.</label>
-              <label class="help-block" ng-show="signupForm.name.$error.maxlength">O nome da ONG não pode ter mais de 150 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.name.$error.required">O nome da organização deve ser preenchido.</label>
+              <label class="help-block" ng-show="signupForm.name.$error.minlength">O nome da organização não pode ter menos de 3 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.name.$error.maxlength">O nome da organização não pode ter mais de 150 caracteres.</label>
               <label class="help-block" ng-show="signupForm.slug.$error.required">O slug deve ser preenchido.</label>
               <label class="help-block" ng-show="signupForm.slug.alreadyUsed">O slug não pode ser usado pois já existe.</label>
               <label class="help-block" ng-show="signupForm.slug.hasSpace">O slug não pode ter espaço.</label>
@@ -194,10 +186,10 @@
               <label class="help-block" ng-show="signupForm.slug.$error.maxlength">O slug não pode ter mais de 50 caracteres.</label>
               <label class="help-block" ng-show="signupForm.description.$error.minlength || !nonprofit.description">A descrição não pode ter menos de 10 caracteres.</label>
               <label class="help-block" ng-show="signupForm.description.$error.maxlength">A descrição não pode ter mais de 100 caracteres.</label>
-              <label class="help-block" ng-show="signupForm.details.$error.minlength || !nonprofit.details">Os detalhes da ONG não podem ter menos de 10 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.details.$error.minlength || !nonprofit.details">Os detalhes da organização não podem ter menos de 10 caracteres.</label>
               <label class="help-block" ng-show="!nonprofit.phone">Você precisa preencher o telefone.</label>
               <label class="help-block" ng-show="!nonprofit.address.addressline || !nonprofit.address.addressnumber || !nonprofit.address.neighborhood || !nonprofit.address.zipcode">Você precisa preencher o endereço completo.</label>
-              <label class="help-block" ng-show="signupForm.details.$error.maxlength">Os detalhes da ONG não podem ter menos de 1024 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.details.$error.maxlength">Os detalhes da organização não podem ter menos de 1024 caracteres.</label>
               <label class="help-block" ng-hide="nonprofit.address.state">O campo de estado é obrigatório.</label>
               <label class="help-block" ng-hide="nonprofit.address.city">O campo de cidade é obrigatório.</label>
               <label class="help-block" ng-hide="nonprofit.causes.length">Selecione ao menos uma causa</label>
@@ -210,7 +202,7 @@
               <label class="help-block" ng-show="signupForm.confirmEmail.notEqual">O email e email de confirmação devem ser iguais.</label>
               <label class="help-block" ng-show="signupForm.password.doesNotMatch">As senhas tem que ser iguais</label>
               <label class="help-block" ng-show="signupForm.password.$error.minlength || !password">A senha tem que ter ao menos 6 caracteres.</label>
-              <label class="help-block" ng-hide="imageUploaded">Não se esqueça de nos fornecer o logo da ONG.</label>
+              <label class="help-block" ng-hide="imageUploaded">Não se esqueça de nos fornecer o logo da organização.</label>
               <label class="help-block" ng-hide="coverUploaded">Escolha uma foto cover bem bonita e de alta qualidade!</label>
             </div>
           </fieldset>
