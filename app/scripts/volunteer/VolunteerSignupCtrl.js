@@ -73,7 +73,6 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth,
     });
 
     if ($scope.signupForm.$valid) {
-      console.log($state.current.name);
       var data = {
         slug: $scope.slug,
         email: $scope.email,
