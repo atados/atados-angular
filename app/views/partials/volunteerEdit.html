@@ -71,7 +71,7 @@
             </div>
             <div class="form-group">
               <div class="col-sm-8 col-sm-offset-3">
-                <select class="form-control" ng-model="volunteer.address.city" ng-options="c.name for c in stateCities" ng-disabled="!cityLoaded">
+                <select class="form-control" ng-model="volunteer.address.city" ng-options="c.name for c in stateCities | orderBy: '-highlight'" ng-disabled="!cityLoaded">
                   <option value="" disabled selected>Cidade</option>
                 </select>
               </div>
