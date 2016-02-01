@@ -1,0 +1,185 @@
+<div id="home" ng-controller="LandingCtrl as ctrl">
+  <div background-img="{{storage}}banner-atados-1.jpg">
+    <div class="jumbotron">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <iframe width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+            <div class="ratio" style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; display: block;">
+              <iframe style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: block;" src="https://www.youtube.com/embed/ip1wCNvMx60?autoplay=0" frameborder="0" allowfullscreen=""></iframe>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6">
+            <div id="jumbotron-header">
+              <h1>Dia das <b>boas ações</b></h1>
+              <p>Faça parte da maior mobilização global de voluntariado.</p>
+            </div>
+            <div id="jumbotron-buttons">
+              <a class="btn btn-primary btn-lg" role="button" ui-sref="gdd.explore">Participe das ações</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="remaining">
+    Faltam <b>{{remainingDays}} dias</b> para o Dia das Boas Ações!
+  </div>
+
+  <div id="atados-explorer">
+    <gdd-search></gdd-search>
+  </div>
+
+  <div class="start-action">
+    <div class="container">
+     <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <h2>Crie uma ação</h2>
+          <h4>Inscreva aqui sua iniciativa para o Dia das Boas Ações</h4>
+          <p>Você descreve aqui qual a ação vai promover e nós divulgamos para os voluntários fazerem parte!</p>
+          <a class="btn btn-large btn-pink" ui-sref="gdd.nonprofitsignup" ng-show="!loggedUser">Inscreva sua ação</a>
+          <a class="btn btn-large btn-pink" ui-sref="gdd.nonprofitsignup" ng-show="loggedUser.role=='NONPROFIT'">Inscreva sua ação</a>
+          <h4 class="text-center">Ou conheça nosso <a ui-sref="gdd.ideas">guia para criar ações</a></h4>
+        </div>
+        <div class="col-xs-12 col-sm-1">
+        </div>
+        <div class="col-xs-12 col-sm-5">
+          <img src="https://s3-sa-east-1.amazonaws.com/atadosapp/images/dba-nova-acao.jpg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="our-history" id="nossa-historia">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>Nossa <b>história</b></h2>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <p>
+          O Dia das Boas Ações é um movimento mundial que convoca cada um de nós para fazer o bem e espalhá-lo pelo mundo!
+          </p>
+          <p>
+          Tudo começou em 2007 com sua primeira realização em Israel, que reuniu 7.000 participantes para promover diversas ações pelo país, colaborando com asilos, orfanatos
+          </p>
+          <p>
+          Em 2011 o movimento se expandiu para outros países, sempre reunindo voluntários dispostos a transformar a vida de crianças, idosos, deficientes, transformando espaços público e conscientizando a sociedade para promover o bem.
+          </p>
+          <p>
+          Em 2013 voluntários mobilizados em 50 países diferentes, realizaram centenas de projetos simultaneamente.
+          </p>
+          <p>
+          Em 2014, o projeto dobrou o seu alcance colaborando com organizações de trabalho voluntário em cada país, envolvendo mais de 500.000 pessoas em todo o mundo.
+          </p>
+          <p>
+          O Dia das Boas Ações seguiu ampliando seu alcance, e no dia em 15 de março de 2015 reuniu 930.000 participantes, de 61 países diferentes, colaborando com mais de 11.000 projetos em todo o mundo.
+          </p>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <p>
+          Já consolidada como uma tradição global anual, o Dia das Boas Ações chega em 2016 ao Brasil, acreditando no potencial de voluntariado do país, para realizar grandes mobilizações em busca de diminuir as diferenças e promover a cultura de fazer o bem ao próximo.
+          </p>
+          <p>
+          O Dia das Boas Ações é uma iniciativa da empresária e filantropa Shari Arison, organizado pela ONG Ruach Tova, que integra a Ted Arison Family Foundation.
+          </p>
+          <p>
+          No Brasil ele é realizado pelo Atados, que vai coordenar as ações promovidas por ONGs em todo o país, através das inscrições feitas pelo site e nos encontros regionais divulgados aqui.
+          </p>
+          <p>
+          A construção do projeto é colaborativa e qualquer instituição ou voluntário pode participar, não sendo permitidas apenas manifestações religiosas, partidárias ou raciais.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="partners" id="parceiros">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>Parceiros</h2>
+          <div class="row">
+            <div class="col-xs-12 col-sm-4 col-sm-push-2">
+              <h3>Realização</h3>
+                <div class="partners-large text-center">
+                  <div class="partner">
+                    <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/atados.png') no-repeat center center / contain;"></div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-sm-push-2">
+              <h3>Produção Cultural</h3>
+                <div class="partners-large text-center">
+                  <div class="partner">
+                    <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/logo-muda.png') no-repeat center center / contain;"></div>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          <h3>Parceiros</h3>
+            <div class="partners-medium text-center">
+              <div class="partner">
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/unibes.png') no-repeat center center / contain;"></div>
+              </div>
+            </div>
+
+          <h3>Participantes</h3>
+            <div class="partners-small text-center">
+              <div class="partner">
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/acupuntura-urbana.png') no-repeat center center / contain;"></div>
+              </div>
+              <div class="partner">
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/adere.png') no-repeat center center / contain;"></div>
+              </div>
+              <div class="partner">
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/agencia-judaica.png') no-repeat center center / contain;"></div>
+              </div>
+              <div class="partner">
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/chaverim.png') no-repeat center center / contain;"></div>
+              </div>
+              <div class="partner">
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/engajamundo.png') no-repeat center center / contain;"></div>
+              </div>
+              <div class="partner">
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/juntos.png') no-repeat center center / contain;"></div>
+              </div>
+              <br>
+              <div class="partner">
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/noites-solidarias.png') no-repeat center center / contain;"></div>
+              </div>
+              <div class="partner">
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/oasis.png') no-repeat center center / contain;"></div>
+              </div>
+              <div class="partner">
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/papel-solidario.png') no-repeat center center / contain;"></div>
+              </div>
+              <div class="partner">
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/saec.png') no-repeat center center / contain;"></div>
+              </div>
+              <div class="partner">
+                <div style="background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logos/amigo-do-surdo.png') no-repeat center center / contain;"></div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="modalVideo.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Espero que goste!</h3>
+    </div>
+    <div class="modal-body no-padding">
+      <div class="ratio" style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; display: block;">
+        <iframe style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: block;" src="{{url | trusted}}" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="close_video()">Fechar</button>
+    </div>
+</script>

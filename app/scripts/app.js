@@ -139,6 +139,77 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
        url: '/doador',
        templateUrl: '/partials/contributionsPanel.html',
        controller: 'ContributionsPanelCtrl'
+     })
+
+    .state('gdd', {
+      url: '',
+      abstract: true,
+      templateUrl: '/partials/gdd/root.html',
+      controller: 'GddRootCtrl',
+      resolve: {
+        site: ['Site', function(Site) {
+          return Site.startup();
+        }],
+        loggedUser: ['Auth', function (Auth) {
+          return Auth.getCurrentUser();
+        }]
+      }
+    })
+     .state('gdd.home', {
+       url: '/dia-das-boas-acoes',
+       templateUrl: '/partials/gdd/home.html',
+       controller: 'GddHomeCtrl'
+     })
+     .state('gdd.project', {
+       url: '/dia-das-boas-acoes/ato/:slug',
+       templateUrl: '/partials/gdd/projectPage.html',
+       controller: 'GddProjectCtrl',
+       resolve: {
+         project: ['Project', '$stateParams', function (Project, $stateParams) {
+           return Project.get($stateParams.slug);
+         }]
+       }
+     })
+     .state('gdd.nonprofitsignup', {
+       url: '/dia-das-boas-acoes/cadastro/ong',
+       templateUrl: '/partials/gdd/nonprofitSignup.html',
+       controller: 'GddNonprofitSignupCtrl',
+       resolve: {}
+     })
+     .state('gdd.nonprofitadmin', {
+       url: '/dia-das-boas-acoes/controle/:slug',
+       templateUrl: '/partials/gdd/nonprofitAdminPanel.html',
+       controller: 'GddNonprofitAdminCtrl'
+     })
+     .state('gdd.newproject', {
+       url: '/dia-das-boas-acoes/cadastro/ato/:id',
+         templateUrl: '/partials/gdd/projectNew.html',
+         controller: 'GddProjectNewCtrl'
+      })
+     .state('gdd.editproject', {
+         url: '/dia-das-boas-acoes/editar/ato/:slug',
+         templateUrl: '/partials/gdd/projectEdit.html',
+         controller: 'GddProjectEditCtrl'
+     })
+     .state('gdd.explore', {
+       url: '/dia-das-boas-acoes/explore',
+       templateUrl: '/partials/gdd/explore.html',
+       controller: 'GddExploreCtrl'
+     })
+     .state('gdd.ideas', {
+       url: '/dia-das-boas-acoes/ideias',
+       templateUrl: '/partials/gdd/ideas.html',
+       controller: 'GddIdeasCtrl'
+     })
+     .state('gdd.nonprofit', {
+       url: '/dia-das-boas-acoes/ong/:slug',
+       templateUrl: '/partials/gdd/nonprofitProfile.html',
+       controller: 'GddNonprofitCtrl',
+       resolve: {
+         nonprofit: ['Nonprofit', '$stateParams', function (Nonprofit, $stateParams) {
+           return Nonprofit.get($stateParams.slug);
+         }]
+       }
      });
 
   $urlRouterProvider.otherwise('/ops');

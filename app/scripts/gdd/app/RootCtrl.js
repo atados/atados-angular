@@ -5,45 +5,15 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, rioDeJaneiro, Site) {
+app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $location, $timeout, $http, api, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, rioDeJaneiro, Site) {
 
   $scope.loggedUser = loggedUser;
 
-  $scope.searchIP = function() {
-      var url = 'https://geoip.atados.com.br/';
-      $.get(url, function(data) {
-        $rootScope.geoIP = data;
+  $scope.contact = function() {
+    toastr.warning('Entre em contato através do email diadasboasacoes@atados.com.br');
+  }
 
-        // Only show donations header if not connecting from RJ
-        if (data.region_code !== 'RJ') {
-          $timeout(function() {
-            if (!$scope.hide_header) {
-              $rootScope.toggleHeader();
-            }
-          }, 1000);
-        }
-
-        // Preset city on home
-        var city;
-        if (data.region_code === 'DF') {
-          city = brasilia;
-        } else if (data.region_code === 'PR') {
-          city = curitiba;
-        } else if (data.region_code === 'RJ') {
-          city = rioDeJaneiro;
-        } else {
-          city = saoPaulo;
-        }
-
-        Search.filter(null, null, null, city.id);
-        for (var c in Site.cities()) {
-          if (Site.cities()[c].id === city.id) {
-            Search.city = Site.cities()[c];
-          }
-        }
-      });
-  };
-  $scope.searchIP();
+  Search.filter(null, null, null, null, true);
 
   if (window.location.hash === '#session-expired') {
     toastr.error('Oops! Parece que sua sessão expirou! Você precisa logar novamente');
@@ -69,20 +39,25 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
 
   $rootScope.explorerView = false;
 
+  $scope.news = {
+    email: '',
+  };
+
+  $scope.sendNews = function(e) {
+    e.preventDefault();
+    $http.post(api + 'add_to_gdd_newsletter/', $scope.news).success(function(response) {
+      toastr.success(response.msg);
+    }).error(function() {
+      toastr.error('Um erro ocorreu.');
+    });
+  }
+
   $scope.logout = function () {
-    toastr.success('Tchau até a próxima :)', $scope.loggedUser.slug);
+    toastr.success('Tchau, até a próxima :)', $scope.loggedUser.slug);
     $scope.$emit('userLoggedOut');
     Auth.logout();
     $scope.loggedUser = null;
-    $state.transitionTo('root.home');
-  };
-
-  $rootScope.toggleHeader = function() {
-    if ($('#we-love-you').is(':visible')) {
-      $('#we-love-you').slideUp();
-    } else {
-      $('#we-love-you').slideDown();
-    }
+    $state.transitionTo('gdd.home');
   };
 
   $rootScope.askForAddress = function(user) {
@@ -140,11 +115,20 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
         $rootScope.modalInstance.close();
       }
       if (user.role === 'NONPROFIT') {
-        $location.path('/controle/' + user.slug);
+        $location.path('/dia-das-boas-acoes/controle/' + user.slug);
       }
       if (!user.address) {
         $rootScope.askForAddress(user);
       }
     }
+  });
+});
+
+app.config(function ($provide) {
+  $provide.decorator('$uiViewScroll', function ($delegate) {
+    return function (uiViewElement) {
+      var top = uiViewElement[0].getBoundingClientRect().top;
+      window.scrollTo(0, (top - 30));
+    }; 
   });
 });

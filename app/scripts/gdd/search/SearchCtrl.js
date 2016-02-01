@@ -5,8 +5,27 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll, $rootScope,
-      Search, $state, storage, defaultZoom, Cleanup) {
+app.controller('GddSearchCtrl', function ($scope, $http, $location, $anchorScroll, $rootScope,
+      Search, $state, storage, defaultZoom, Cleanup, Site, Restangular) {
+
+  $scope.cityStates = Site.states;
+
+  $scope.cityLoaded = false;
+  $scope.$watch('cityState', function (value) {
+    $scope.cityLoaded = false;
+    $scope.stateCities = [];
+
+    if (value) {
+      Restangular.all('cities').getList({page_size: 3000, state: value.id}).then(function (response) {
+        response.forEach(function(c) {
+          $scope.stateCities.push(c);
+        });
+
+        value.citiesLoaded = true;
+        $scope.cityLoaded = true;
+      });
+    }
+  });
 
   var alreadySearchedProject = false;
   var alreadySearchedNonprofit = false;
@@ -18,19 +37,22 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll, 
 
   var search = function(value, old) {
     if (value !== old) {
-      if ($scope.landing && (Search.query || Search.cause.id || Search.skill.id)) {
-        $state.transitionTo('root.explore');
+      if ($scope.landing && (Search.query || Search.cause.id || Search.skill.id || Search.city.id)) {
+        $state.transitionTo('gdd.explore');
       }
       alreadySearchedProject = false;
       alreadySearchedNonprofit = false;
       $scope.searchMoreDisabled = false;
 
-      Search.filter(Search.query, Search.cause.id, Search.skill.id, Search.city.id);
+      Search.filter(Search.query, Search.cause.id, Search.skill.id, Search.city.id, true);
       doneTyping = false;
     }
   };
 
   $scope.$watch('search.cause', function (value, old) {
+    search(value, old);
+  });
+  $scope.$watch('search.skill', function (value, old) {
     search(value, old);
   });
   $scope.$watch('search.city', function (value, old) {
@@ -51,9 +73,10 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll, 
     oldQuery = Search.query;
   }
 
-  $scope.searchMoreProjectButtonText = 'Mostrar mais Atos';
+  $scope.searchMoreProjectButtonText = 'Veja mais ações';
   $scope.searchMoreNonprofitButtonText = 'Mostrar mais ONGs';
   $scope.searchMoreDisabled = false;
+  $scope.hideMore = true;
   
   function getMoreProjects() {
     if (Search.nextUrlProject()) {

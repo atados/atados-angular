@@ -50,9 +50,10 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       cause: cause,
       skill: skill,
       city: city,
+      gdd: gdd,
     };
     if (gdd) {
-      urlHeaders.gdd = true;
+      var urlHeaders['gdd'] = true;
     }
 
 
@@ -135,7 +136,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       _cardListNonprofits = [];
       searchProjects(query, cause, skill, city, gdd);
       searchNonprofits(query, cause, city);
-      this.getHighlightedProjects(city, gdd);
+      this.getHighlightedProjects(city);
       this.getHighlightedNonprofits(city);
     },
     query: _query,
@@ -176,11 +177,11 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
     nonprofits: function () {
       return _cardListNonprofits;
     },
-    getHighlightedProjects: function (city, gdd) {
+    getHighlightedProjects: function (city) {
       if (!city) {
         city = null;
       }
-      return Restangular.all('projects').getList({highlighted: true, city: city, gdd: gdd}).then( function(projects) {
+      return Restangular.all('projects').getList({highlighted: true, city: city}).then( function(projects) {
         _highlightedProjects = fixProjects(projects);
         return;
       }, function () {
