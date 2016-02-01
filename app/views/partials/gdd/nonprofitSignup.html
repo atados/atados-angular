@@ -87,7 +87,7 @@
             </div>
             <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[!nonprofit.address.city]">
               <div class="col-sm-8 col-sm-offset-3">
-                <select class="form-control" ng-model="nonprofit.address.city" ng-options="c.name for c in stateCities" ng-disabled="!cityLoaded">
+                <select class="form-control" ng-model="nonprofit.address.city" ng-options="c.name for c in stateCities | orderBy: '-highlight'" ng-disabled="!cityLoaded">
                   <option value="" disabled selected>Cidade</option>
                 </select>
                 <label class="help-block" ng-hide="nonprofit.address.city">Campo obrigatório.</label>
