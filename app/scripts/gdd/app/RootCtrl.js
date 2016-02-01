@@ -88,7 +88,6 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
             Restangular.all('cities').getList({page_size: 3000, state: value.id}).then(function (response) {
               response.forEach(function(c) {
                 $scope.stateCities.push(c);
-                console.log(c);
               });
 
               value.citiesLoaded = true;
@@ -130,7 +129,6 @@ app.config(function ($provide) {
     return function (uiViewElement) {
       var top = uiViewElement[0].getBoundingClientRect().top;
       window.scrollTo(0, (top - 30));
-      console.log('lol');
     }; 
   });
 });

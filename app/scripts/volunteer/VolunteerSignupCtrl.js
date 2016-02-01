@@ -5,7 +5,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('VolunteerSignupCtrl', function($scope, $rootScope, Auth, Restangular) {
+app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth, Restangular) {
   $scope.cityLoaded = false;
   $scope.$watch('state', function (value) {
     $scope.cityLoaded = false;
@@ -73,12 +73,17 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, Auth, Restang
     });
 
     if ($scope.signupForm.$valid) {
-      Auth.volunteerSignup({
-          slug: $scope.slug,
-          email: $scope.email,
-          password: $scope.password,
-          address: {'city': $scope.city.id},
-        },
+      console.log($state.current.name);
+      var data = {
+        slug: $scope.slug,
+        email: $scope.email,
+        password: $scope.password,
+        address: {'city': $scope.city.id},
+      };
+      if ($state.current.name.split('.')[0] === 'gdd') {
+        data.gdd = true;
+      }
+      Auth.volunteerSignup(data,
         function () {
           Auth.login({
             username: $scope.email,
