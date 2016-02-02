@@ -7,7 +7,6 @@
 var app = angular.module('atadosApp');
 
 app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $stateParams, $location, $http, Auth, $modal, Volunteer, project, api, VOLUNTEER) {
-
   $scope.landing = false;
   $scope.markers = [];
   $scope.project = project;
@@ -17,6 +16,7 @@ app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $statePara
   $scope.site.og.url = 'https://www.atados.com.br/ato/' + project.slug;
   $scope.site.og.image = project.image_url;
   $scope.markers.push(project.address);
+  $scope.showTimeTable = false;
 
 
   if ($scope.project.address) {
@@ -45,6 +45,18 @@ app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $statePara
     $scope.projectJobInOneDay = start.getDay() === end.getDay() &&
                                 start.getMonth() === end.getMonth() &&
                                 start.getYear() === end.getYear();
+  }
+
+  if ($scope.project.work) {
+    if ($scope.project.work.availabilities) {
+      angular.forEach($scope.project.work.availabilities, function(row) {
+        angular.forEach(row, function(cell) {
+          if (cell.checked) {
+            $scope.showTimeTable = true;
+          }
+        });
+      });
+    }
   }
 
   $scope.$watch('center', function(value) {

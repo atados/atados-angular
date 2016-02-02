@@ -55,8 +55,8 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
           if (cell.checked) {
             $scope.showTimeTable = true;
           }
-        })
-      })
+        });
+      });
     }
   }
 
