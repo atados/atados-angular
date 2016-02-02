@@ -17,6 +17,7 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
   $scope.site.og.url = 'https://www.atados.com.br/ato/' + project.slug;
   $scope.site.og.image = project.image_url;
   $scope.markers.push(project.address);
+  $scope.showTimeTable = false;
 
 
   if ($scope.project.address) {
@@ -45,6 +46,18 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
     $scope.projectJobInOneDay = start.getDay() === end.getDay() &&
                                 start.getMonth() === end.getMonth() &&
                                 start.getYear() === end.getYear();
+  }
+
+  if ($scope.project.work) {
+    if ($scope.project.work.availabilities) {
+      angular.forEach($scope.project.work.availabilities, function(row) {
+        angular.forEach(row, function(cell) {
+          if (cell.checked) {
+            $scope.showTimeTable = true;
+          }
+        })
+      })
+    }
   }
 
   $scope.$watch('center', function(value) {
