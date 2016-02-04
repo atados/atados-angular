@@ -15,13 +15,12 @@
         <div ng-show="!hide_header">
           <div class="collapse navbar-collapse" id="navbar-collapse-1" collapse="!navCollapsed">
             <ul class="nav navbar-nav navbar-right">
-              <li><a ui-sref="gdd.home">Home</a></li>
+              <li><a ui-sref="gdd.home">Início</a></li>
               <li><a ui-sref="gdd.explore">Participe das Ações</a></li>
-              <li><a ui-sref="gdd.nonprofitsignup" ng-show="!loggedUser">Inscreva sua ação</a></li>
+              <li><a ui-sref="gdd.nonprofitsignup" ng-show="!loggedUser">Inscreva uma ação</a></li>
               <li><a ui-sref="gdd.newproject" ng-show="loggedUser.role=='NONPROFIT'">Inscreva sua ação</a></li>
-              <li><a ui-sref="gdd.ideas">Guia para criar ações</a></li>
+              <li><a ui-sref="gdd.ideas">Ideias de boas ações</a></li>
               <li><a href="http://gdd.goodnet.org/pt#downloads-section" target="_blank">Downloads</a></li>
-              <li><a href="#" ng-click="contact()">Contato</a></li>
               <li ng-hide="loggedUser"><a href="#" ng-click="openLogin('volunteer')">Login</a></li>
               <li ng-show="loggedUser"><a href="#" ng-click="logout()"><img src="https://s3-sa-east-1.amazonaws.com/atadosapp/images/login-dba.png" alt=""></a></li>
               <!--<li><a href="#">Como Funciona</a></li>-->
