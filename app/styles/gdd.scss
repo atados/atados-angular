@@ -180,6 +180,10 @@ $font-secondary: "Montserrat", Arial, sans-serif;
 
       #jumbotron-header {
         margin-top: 0px;
+
+        h1 {
+          font-size: 45px;
+        }
       }
 
       h1 {
@@ -191,7 +195,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
 
       p {
         font-family: $font-primary;
-        font-size: 26px !important;
+        font-size: 23px !important;
       }
 
       #jumbotron-buttons {
