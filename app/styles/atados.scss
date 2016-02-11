@@ -75,7 +75,7 @@ $footer-color:$white;
 
 $screen-xs: 480px;  // phone
 $screen-sm: 768px;  // tablet
-$screen-md: 992px;  // desktop 
+$screen-md: 992px;  // desktop
 $screen-lg: 1200px; // desktop lg
 
 $grid-float-breakpoint: 992px;
@@ -194,7 +194,7 @@ h1, h2, h3, h4, h5, h6,
       display: inline-block;
       padding: 6px 16px;
       background: #E27F2E;
-    
+
       &:hover, &:active, &:focus {
         background: #BD6A26;
       }
@@ -283,9 +283,9 @@ h1, h2, h3, h4, h5, h6,
     margin-right: 15px;
   }
   #volunteerNavbarButton {
-    margin-right: 15px;        
+    margin-right: 15px;
   }
-  
+
   .navbar-btn {
     text-transform:uppercase;
   }
@@ -520,7 +520,7 @@ $card-img-height: 170px;
   background: #fff;
   border: 1px solid #d3d3d3;
   border-radius:4px 4px 0 0;
-  
+
   .card-img {
     border-radius:3px 3px 0 0;
     height: $card-img-height;
@@ -558,7 +558,7 @@ $card-img-height: 170px;
   .card-footer {
     position: relative;
     height: $card-info-height;
-    
+
     .card-name {
       position: absolute;
       top: -39px;
@@ -609,7 +609,7 @@ $card-img-height: 170px;
         height: 100%;
       }
     }
-    
+
     .card-quick-info {
       margin-left: 0px;
       margin-right: 0px;
@@ -623,9 +623,9 @@ $card-img-height: 170px;
       p {
         color: #6f6f6f;
       }
-      
+
       a:link {
-        text-decoration: none;  
+        text-decoration: none;
       }
       .nonprofit-name {
         text-overflow: ellipsis;
@@ -638,7 +638,7 @@ $card-img-height: 170px;
         padding: 1px 1px;
         height: 23px;
         overflow: hidden;
-        .icon-image { 
+        .icon-image {
           box-shadow: 0 0 2px #808080;
           height: 21px;
           width: 21px;
@@ -649,7 +649,7 @@ $card-img-height: 170px;
         }
       }
     }
-    
+
     .card-second {
       margin-left: 0px;
       margin-right: 0px;
@@ -699,7 +699,7 @@ $card-img-height: 170px;
     background-color: #0E6281;
     padding-top: 50px;
     color: white;
-    
+
     p {
       font-size: 14px;
       font-weight: bold;
@@ -724,7 +724,7 @@ $card-img-height: 170px;
       margin: 0 0 20px 0;
     }
    #volunteer-icons {
-      .icon-image { 
+      .icon-image {
         box-shadow: 0 0 3px #808080;
         height: 30px;
         width: 30px;
@@ -1170,161 +1170,6 @@ $card-img-height: 170px;
   padding: 0 0 !important;
 }
 
-#we-love-you {
-  height: 140px;
-  overflow: hidden;
-  position: relative;
-  font-size: 0px;
-  display: none;
-
-  a.close {
-    position: absolute;
-    font-size: 14px;
-    right: 10px;
-    top: 10px;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    border-radius: 50%;
-    color: white;
-    text-shadow: none;
-    background: #555;
-    line-height: 19px;
-    color: white;
-    font-size: 21px;
-
-    &:hover, &:active, &:focus {
-      background: #333;
-    }
-  }
-
-  .part-circle {
-    background: #47EA2F;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    position: absolute;
-    margin-top: -80px;
-    margin-left: -260px;
-    display: block;
-  }
-
-  .part {
-    display: inline-block;
-    width: 33.333%;
-    font-size: 14px;
-    box-sizing: border-box;
-    height: 140px;
-    vertical-align: top;
-    padding: 0px 15px 0 0;
-
-    img {
-      width: 80%;
-    }
-  }
-
-  .part:nth-child(2) {
-    padding: 21px 0px 0px 50px;
-    text-align: center;
-    width: 27.33333%;
-  }
-
-  .part:nth-child(3) {
-    background: #f3f3f3;
-  }
-
-  .part:nth-child(4) {
-    
-  }
-
-  .part:nth-child(3),
-  .part:nth-child(4) {
-    width: 36.3333%;
-    white-space:nowrap;
-    overflow:hidden;
-    vertical-align: top;
-
-    img {
-      margin-top: 10px;
-    }
-
-    p {
-      display: inline-block;
-      vertical-align: top;
-      white-space: initial;
-      margin-left: 10px;
-      margin-right: 60px;
-      padding: 25px 0px 0px 10px;
-
-      .btn {
-        margin-top: 10px;
-        color: white;
-        background: #41E62A;
-        border: none;
-        font-weight: bold;
-        text-transform: uppercase;
-        padding: 10px 30px;
-      }
-    }
-  }
-
-  .triangle {
-    height: 140px;
-    background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/triangulobranco.png') no-repeat center center / cover;
-    width: 73px;
-    display: inline-block;
-
-    &.white {
-    background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/triangulo.png') no-repeat center center / cover;
-    }
-  }
-
-  @media (min-width: 768px) and (max-width: 1000px) {
-    .part:nth-child(2) {
-      display: none;
-    }
-
-    .part:nth-child(3),
-    .part:nth-child(4) {
-      width: 50%;
-    }
-  }
-
-  @media (max-width: 767px) {
-    height: auto;
-    
-    .part-circle {
-      display: none;
-    }
-
-    .part {
-      height: auto;
-    }
-
-    .part:nth-child(2) {
-      display: none;
-    }
-
-    .part:nth-child(3),
-    .part:nth-child(4) {
-      display: block;
-      width: 100%;
-
-      .triangle {
-        display: none;
-      }
-
-      p {
-        padding: 10px 10px;
-      }
-    }
-
-    br {
-      display: none;
-    }
-  }
-}
-
 .joined-project {
   padding-top: 20px;
   background: #f0f0f0;
@@ -1350,7 +1195,7 @@ $card-img-height: 170px;
 
     .btn-primary {
       text-transform: uppercase;
-      background: #22D25F !important; 
+      background: #22D25F !important;
       padding: 5px 40px;
       margin-top: 20px;
       border: 0px;
