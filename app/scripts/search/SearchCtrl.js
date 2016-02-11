@@ -51,10 +51,10 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll, 
     oldQuery = Search.query;
   }
 
-  $scope.searchMoreProjectButtonText = 'Mostrar mais Atos';
+  $scope.searchMoreProjectButtonText = 'Mostrar mais Vagas';
   $scope.searchMoreNonprofitButtonText = 'Mostrar mais ONGs';
   $scope.searchMoreDisabled = false;
-  
+
   function getMoreProjects() {
     if (Search.nextUrlProject()) {
       $scope.searchMoreProjectButtonText = 'Buscando mais atos...';
@@ -116,7 +116,7 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll, 
       if (Search.showProjects) {
         getMoreProjects();
       } else {
-        getMoreNonprofits(); 
+        getMoreNonprofits();
       }
     }
   };

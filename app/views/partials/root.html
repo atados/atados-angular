@@ -45,7 +45,7 @@
     <div ng-show="!hide_header">
       <div class="collapse navbar-collapse" id="navbar-collapse-1" collapse="!navCollapsed">
         <ul class="nav navbar-nav">
-          <li><a ui-sref="root.explore">Encontre um trabalho voluntário</a></li>
+          <li><a ui-sref="root.explore">Vagas de voluntariado</a></li>
           <li><a ui-sref="root.nonprofitsignup" ng-show="!loggedUser">Cadastre sua ONG</a></li>
           <!--<li><a href="#">Como Funciona</a></li>-->
           <li><a ui-sref="root.about" class="hidden-md hidden-lg">Sobre Nós</a></li>
@@ -55,7 +55,7 @@
         </ul>
         <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search" ng-submit="siteSearch()" ng-hide="explorerView">
           <a href="http://multiplicar.atados.com.br" id="btn-header-doar" class="btn-contribute hidden-xs-inline-block hidden-sm-inline-block">Doar</a>
-          <input id="siteSearch" class="form-control" ng-model="search.landingQuery" type="text" placeholder="Encontre ONGs e atos voluntários">
+          <input id="siteSearch" class="form-control" ng-model="search.landingQuery" type="text" placeholder="Pesquise vagas de voluntariado">
           <button id="searchIcon"><i class="fa fa-search"></i></button>
         </form>
       </div>
