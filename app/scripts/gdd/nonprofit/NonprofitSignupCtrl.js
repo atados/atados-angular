@@ -28,7 +28,7 @@ app.controller('GddNonprofitSignupCtrl', function($scope, $rootScope, $filter, $
     google_page:null,
     twitter_handle:null,
     website:null,
-    causes:[]
+    causes:[],
   };
 
   $scope.buttonText = 'Próximo passo (ação)';
