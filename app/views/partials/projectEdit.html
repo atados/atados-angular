@@ -21,9 +21,9 @@
         <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.details.$error.required || editProjectForm.details.$invalid]">
           <label class="col-md-3 control-label">Descrição</label>
           <div class="col-md-8">
-            <textarea class="form-control" rows="5" name="details" ng-model='project.details' ng-minlength="10" ng-maxlength="2048" placeholder="" required></textarea>
+            <textarea class="form-control" rows="5" name="details" ng-model='project.details' ng-minlength="10" ng-maxlength="3000" placeholder="" required></textarea>
             <label class="help-block" ng-show="editProjectForm.details.$error.minlength">Não pode ter menos de 10 caracteres.</label>
-            <label class="help-block" ng-show="editProjectForm.details.$error.maxlength">Não pode ter mais de 2048 caracteres.</label>
+            <label class="help-block" ng-show="editProjectForm.details.$error.maxlength">Não pode ter mais de 3000 caracteres.</label>
             <label>Aqui você pode aproveitar e escrever todos os detalhes para os voluntários.</label>
           </div>
         </div>
@@ -104,7 +104,7 @@
 
         <div class="form-group" ng-class="{true: 'has-error',false: 'has-success'}[editProjectForm.email.$error.required || editProjectForm.email.$invalid]">
           <label class="col-md-3 control-label">Email</label>
-          <div class="col-md-8">                     
+          <div class="col-md-8">
             <label class="help-block" ng-show="editProjectForm.email.$error.required">Precisamos de email caso voluntário ou Atados queiram entrar em contato.</label>
             <label class="help-block" ng-show="editProjectForm.email.$invalid && editProjectForm.email.$dirty">Email inválido.</label>
             <input class="form-control" type='email' name="email" ng-model='project.email' placeholder="Email" required/>
@@ -119,7 +119,7 @@
             <img alt="Foto da Vaga." width="250" ng-src="{{project.small_image_url}}">
           </label>
 
-          <div class="col-md-5">                     
+          <div class="col-md-5">
             <label class="help-block" ng-hide="imageUploaded">Não se esqueça de nos dar uma foto bem bonita que represente seu projeto. </label>
             <input id="file-input" type="file" name="file" onchange="angular.element(this).scope().uploadProjectImage(this.files)" />
           </div>
@@ -168,7 +168,7 @@
             </div>
           </div>
 
-          <a class="btn btn-info pull-right" ng-click="addRole(newRole)">Adicionar Cargo</a> 
+          <a class="btn btn-info pull-right" ng-click="addRole(newRole)">Adicionar Cargo</a>
           <table class="table">
             <thead>
               <tr>

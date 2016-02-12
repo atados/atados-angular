@@ -31,17 +31,17 @@
             <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[signupForm.description.$error.required || signupForm.description.$invalid]">
               <label class="col-sm-3 control-label">Descrição</label>
               <div class="col-sm-8">
-                <textarea required class="form-control" rows="3" name="description" ng-model='nonprofit.description' ng-minlength="10" ng-maxlength="100" placeholder="Pequena descrição"></textarea>
+                <textarea required class="form-control" rows="3" name="description" ng-model='nonprofit.description' ng-minlength="10" ng-maxlength="160" placeholder="Pequena descrição"></textarea>
                 <label class="help-block" ng-show="signupForm.description.$error.minlength">Não pode ter menos de 10 caracteres.</label>
-                <label class="help-block" ng-show="signupForm.description.$error.maxlength">Não pode ter mais de 100 caracteres.</label>
+                <label class="help-block" ng-show="signupForm.description.$error.maxlength">Não pode ter mais de 160 caracteres.</label>
               </div>
             </div>
             <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[signupForm.details.$error.required || signupForm.details.$invalid]">
               <label class="col-sm-3 control-label">Detalhe</label>
               <div class="col-sm-8">
-                <textarea required class="form-control" rows="5" name="details" ng-model='nonprofit.details' ng-minlength="10" ng-maxlength="1024" placeholder="Descrição em detalhe"></textarea>
+                <textarea required class="form-control" rows="5" name="details" ng-model='nonprofit.details' ng-minlength="10" ng-maxlength="3000" placeholder="Descrição em detalhe"></textarea>
                 <label class="help-block" ng-show="signupForm.details.$error.minlength">Não pode ter menos de 10 caracteres.</label>
-                <label class="help-block" ng-show="signupForm.details.$error.maxlength">Não pode ter menos de 1024 caracteres.</label>
+                <label class="help-block" ng-show="signupForm.details.$error.maxlength">Não pode ter menos de 3000 caracteres.</label>
               </div>
             </div>
 
@@ -49,7 +49,7 @@
 
             <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[signupForm.addressline.$error.required || signupForm.addressline.$invalid]">
               <label class="col-sm-3 control-label">Endereço</label>
-              
+
               <div class="col-sm-6">
                 <input required type="text" class="form-control" name="addressline" ng-model="nonprofit.address.addressline" placeholder="Rua">
               </div>
@@ -210,11 +210,11 @@
               <label class="help-block" ng-show="signupForm.slug.$error.minlength">O slug não pode ter menos de 3 caracteres.</label>
               <label class="help-block" ng-show="signupForm.slug.$error.maxlength">O slug não pode ter mais de 50 caracteres.</label>
               <label class="help-block" ng-show="signupForm.description.$error.minlength || !nonprofit.description">A descrição não pode ter menos de 10 caracteres.</label>
-              <label class="help-block" ng-show="signupForm.description.$error.maxlength">A descrição não pode ter mais de 100 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.description.$error.maxlength">A descrição não pode ter mais de 160 caracteres.</label>
               <label class="help-block" ng-show="signupForm.details.$error.minlength || !nonprofit.details">Os detalhes da ONG não podem ter menos de 10 caracteres.</label>
               <label class="help-block" ng-show="!nonprofit.phone">Você precisa preencher o telefone.</label>
               <label class="help-block" ng-show="!nonprofit.address.addressline || !nonprofit.address.addressnumber || !nonprofit.address.neighborhood || !nonprofit.address.zipcode">Você precisa preencher o endereço completo.</label>
-              <label class="help-block" ng-show="signupForm.details.$error.maxlength">Os detalhes da ONG não podem ter menos de 1024 caracteres.</label>
+              <label class="help-block" ng-show="signupForm.details.$error.maxlength">Os detalhes da ONG não podem ter menos de 3000 caracteres.</label>
               <label class="help-block" ng-hide="nonprofit.address.state">O campo de estado é obrigatório.</label>
               <label class="help-block" ng-hide="nonprofit.address.city">O campo de cidade é obrigatório.</label>
               <label class="help-block" ng-hide="nonprofit.causes.length">Selecione ao menos uma causa</label>

@@ -140,9 +140,9 @@
           <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[newProjectForm.details.$error.required || newProjectForm.details.$invalid]">
             <label class="col-md-3 control-label">Descrição</label>
             <div class="col-md-8">
-              <textarea class="form-control" rows="5" name="details" ng-model='project.details' ng-minlength="10" ng-maxlength="1024" placeholder="" required></textarea>
+              <textarea class="form-control" rows="5" name="details" ng-model='project.details' ng-minlength="10" ng-maxlength="3000" placeholder="" required></textarea>
               <label class="help-block" ng-show="newProjectForm.details.$error.minlength">Não pode ter menos de 10 caracteres.</label>
-              <label class="help-block" ng-show="newProjectForm.details.$error.maxlength">Não pode ter mais de 1024 caracteres.</label>
+              <label class="help-block" ng-show="newProjectForm.details.$error.maxlength">Não pode ter mais de 3000 caracteres.</label>
               <label class="info-label">Aqui você pode aproveitar e escrever todos os detalhes para os voluntários.</label>
             </div>
           </div>
@@ -222,7 +222,7 @@
 
           <div class="form-group" ng-class="{true: 'has-error',false: 'has-success'}[newProjectForm.email.$error.required || newProjectForm.email.$invalid]">
             <label class="col-md-3 control-label">Email</label>
-            <div class="col-md-8">                     
+            <div class="col-md-8">
               <label class="help-block" ng-show="newProjectForm.email.$error.required">Precisamos de email caso voluntário ou Atados queiram entrar em contato.</label>
               <label class="help-block" ng-show="newProjectForm.email.$invalid && newProjectForm.email.$dirty">Email inválido.</label>
               <input class="form-control" type='email' name="email" ng-model='project.email' placeholder="Email" required/>
@@ -234,7 +234,7 @@
           <legend>Foto da Vaga</legend>
           <div class="form-group"  ng-class="{true: 'has-error', false: 'has-success'}[!imageUploaded]">
             <label class="col-md-3 control-label"></label>
-            <div class="col-md-8">                     
+            <div class="col-md-8">
               <label class="help-block" ng-hide="imageUploaded">Não se esqueça de nos dar uma foto bem bonita que represente seu projeto. Ela tem que ter tamanho 350x260 pixels.</label>
               <label class="btn btn-info" for="file-input"><i class="fa fa-edit"></i> Escolher foto...</label>
               <input style="display: none;" id="file-input" type="file" name="file" onchange="angular.element(this).scope().uploadProjectImage(this.files)" />
@@ -282,7 +282,7 @@
             </div>
           </div>
 
-          <a style="margin-bottom: 20px;" class="btn btn-info pull-right" ng-click="addRole(newRole)">Adicionar Cargo</a> 
+          <a style="margin-bottom: 20px;" class="btn btn-info pull-right" ng-click="addRole(newRole)">Adicionar Cargo</a>
           <table class="table">
             <thead>
               <tr>

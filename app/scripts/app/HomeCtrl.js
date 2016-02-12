@@ -35,9 +35,14 @@ app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Res
   };
 
   $scope.add_to_news = function() {
-    console.log($scope.news);
     $http.post(api + 'add_to_newsletter/', $scope.news).success(function(response) {
       toastr.success(response.msg);
+      $scope.news = {
+        name: '',
+        email: '',
+        state: '',
+        city: ''
+      };
     }).error(function() {
       toastr.error('Um erro ocorreu.');
     });
