@@ -23,7 +23,7 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project
 
     if (user.role !== NONPROFIT ) {
       $state.transitionTo('root.home');
-      toastr.error('Precisa estar logado como ONG do ato para editar');
+      toastr.error('Precisa estar logado como ONG da vaga para editar');
     } else {
       var foundProject = false;
       $scope.loggedUser.projects.forEach(function(p) {
@@ -35,7 +35,7 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project
       });
       if (!foundProject) {
         $state.transitionTo('root.home');
-        toastr.error('A ONG logada não é dona deste ato e não tem acesso de edição.');
+        toastr.error('A ONG logada não é dona desta vaga e não tem acesso de edição.');
       }
     }
   });
@@ -120,11 +120,11 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project
       fd.append('file', files[0]);
       Photos.setProjectPhoto(fd, $scope.project.id, function(response) {
         $scope.project.image_url = response.file;
-        toastr.success('Foto do ato salva com sucesso.');
+        toastr.success('Foto da vaga salva com sucesso.');
         $scope.imageUploaded = true;
       }, function() {
         $scope.imageUploaded = false;
-        toastr.error('Error no servidor. Não consigo atualizar foto do ato :(');
+        toastr.error('Error no servidor. Não consigo atualizar foto da vaga :(');
       });
     }
   };
@@ -167,7 +167,7 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project
     Project.save($scope.project, function (project) {
       $scope.project = project;
       prepareProject();
-      toastr.success('Ato salvo.');
+      toastr.success('Vaga salva.');
       var nonprofit_slug;
       if (!$scope.loggedUser.user.is_staff) {
         nonprofit_slug = $scope.loggedUser.slug;
@@ -176,7 +176,7 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project
       }
       $state.transitionTo('root.nonprofitadmin' , {slug: nonprofit_slug});
     }, function (error) {
-      toastr.error('Não consigo salvar Ato. Entre em contato com o Atados para resolver o problema.');
+      toastr.error('Não consigo salvar a Vaga. Entre em contato com o Atados para resolver o problema.');
     });
   };
 });

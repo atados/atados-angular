@@ -6,6 +6,11 @@ var app = angular.module('atadosApp', ['restangular', 'ui.router', 'ui.bootstrap
 
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
+  $urlRouterProvider.when('/ato/:slug', '/vaga/:slug');
+  $urlRouterProvider.when('/cadastro/ato/:id', 'cadastro/vaga/:id');
+  $urlRouterProvider.when('/editar/ato/:slug', 'editar/vaga/:slug');
+  $urlRouterProvider.when('/site/ato/:projectUid', 'site/vaga/:projectUid');
+
   $stateProvider
     .state('root', {
       url: '',
@@ -87,7 +92,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         resolve: {}
       })
     .state('root.project', {
-        url: '/ato/:slug',
+        url: '/vaga/:slug',
         templateUrl: '/partials/projectPage.html',
         controller: 'ProjectCtrl',
         resolve: {
@@ -101,12 +106,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         controller: 'TokenCtrl'
       })
     .state('root.newproject', {
-      url: '/cadastro/ato/:id',
+      url: '/cadastro/vaga/:id',
         templateUrl: '/partials/projectNew.html',
         controller: 'ProjectNewCtrl'
       })
     .state('root.editproject', {
-        url: '/editar/ato/:slug',
+        url: '/editar/vaga/:slug',
         templateUrl: '/partials/projectEdit.html',
         controller: 'ProjectEditCtrl'
       })
@@ -127,7 +132,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         templateUrl: '/partials/ligandoospontos.html'
       })
      .state('legacyproject', {
-        url: '/site/ato/:projectUid',
+        url: '/site/vaga/:projectUid',
         controller: 'LegacyCtrl'
       })
      .state('root.contributions', {

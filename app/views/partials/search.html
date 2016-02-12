@@ -2,7 +2,7 @@
   <button class="btn btn-tab" ng-click="search.showProjects=true" ng-class="{active: search.showProjects}">Pesquisar Vagas <span ng-hide="landing || search.projects().length === 0">({{search.projects().length}})</span></button>
   <button class="btn btn-tab" ng-click="search.showProjects=false" ng-class="{active: !search.showProjects}">Pesquisar ONGs <span ng-hide="landing || search.nonprofits().length === 0">({{search.nonprofits().length}})</span></button>
 
-  <small ng-show="search.showProjects && !landing" class="pull-right"> Mostrando {{search.projects().length}} de {{search.projectCount()}} atos</small>
+  <small ng-show="search.showProjects && !landing" class="pull-right"> Mostrando {{search.projects().length}} de {{search.projectCount()}} vagas</small>
   <small ng-hide="search.showProjects || landing" class="pull-right"> Mostrando {{search.nonprofits().length}} de {{search.nonprofitCount()}} ONGs</small>
   <div class="row filters">
     <form class="form-inline" role="form">
@@ -59,7 +59,7 @@
       </div>
     </div>
   </div>
-  <small ng-show="search.showProjects && !landing" class="pull-right"> Mostrando {{search.projects().length}} de {{search.projectCount()}} atos</small>
+  <small ng-show="search.showProjects && !landing" class="pull-right"> Mostrando {{search.projects().length}} de {{search.projectCount()}} vagas</small>
   <small ng-hide="search.showProjects || landing" class="pull-right"> Mostrando {{search.nonprofits().length}} de {{search.nonprofitCount()}} ONGs</small>
   <div style="text-align: center;">
     <a class="btn btn-lg btn-info" ui-sref="root.explore" ng-disabled="searchMoreDisabled">

@@ -57,7 +57,7 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll, 
 
   function getMoreProjects() {
     if (Search.nextUrlProject()) {
-      $scope.searchMoreProjectButtonText = 'Buscando mais atos...';
+      $scope.searchMoreProjectButtonText = 'Buscando mais vagas...';
       $scope.searchMoreDisabled = true;
       $scope.searching = true;
       $http.get(Search.nextUrlProject()).success( function (response) {
@@ -70,11 +70,11 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll, 
         $scope.searching = false;
         Search.setNextUrlProject(response.next);
       }).error(function () {
-        toastr.error('Erro ao buscar mais atos do servidor');
+        toastr.error('Erro ao buscar mais vagas do servidor');
         $scope.searching = false;
       });
     } else if(!alreadySearchedProject) {
-      toastr.error('Não conseguimos achar mais atos. Tente mudar os filtros.');
+      toastr.error('Não conseguimos achar mais vagas. Tente mudar os filtros.');
       alreadySearchedProject = true;
       $scope.searchMoreDisabled = true;
     }

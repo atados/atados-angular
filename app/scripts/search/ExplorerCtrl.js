@@ -105,7 +105,7 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $filter, Search,
       $scope.objects = Search.mapNonprofits();
     }
   });
-  
+
   $scope.$watch('search.showProjects', function () {
     if (Search.showProjects) {
       $scope.objects = Search.mapProjects();
@@ -128,7 +128,7 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $filter, Search,
       $scope.previousMarker.setZIndex(1);
       $scope.previousMarker = null;
     }
-    
+
     if (object && !marker) {
       marker = constants.markers[object.slug];
     }
@@ -163,7 +163,7 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $filter, Search,
       titleStr = '<div id="info-window"><h4><a href="/ong/' + object.slug + '">' + object.name + '</a></h4><p>' +
         $filter('as_location_string')(object.address) + '</p></div>';
     } else {
-      titleStr = '<div id="info-window"><h4><a href="/ato/' + object.slug + '">' + object.name + '</a></h4><p>' +
+      titleStr = '<div id="info-window"><h4><a href="/vaga/' + object.slug + '">' + object.name + '</a></h4><p>' +
         $filter('as_location_string')(object.address) + '</p></div>';
     }
     return {title: titleStr, slug: object.slug};

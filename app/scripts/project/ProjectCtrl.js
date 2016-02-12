@@ -12,9 +12,9 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
   $scope.markers = [];
   $scope.project = project;
   $scope.nonprofit = $scope.project.nonprofit;
-  $scope.site.title = 'Ato - ' + $scope.project.name;
+  $scope.site.title = 'Vaga - ' + $scope.project.name;
   $scope.site.description = $scope.project.description;
-  $scope.site.og.url = 'https://www.atados.com.br/ato/' + project.slug;
+  $scope.site.og.url = 'https://www.atados.com.br/vaga/' + project.slug;
   $scope.site.og.image = project.image_url;
   $scope.markers.push(project.address);
   $scope.showTimeTable = false;
@@ -65,7 +65,7 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
       $scope.center = new google.maps.LatLng($scope.project.address.latitude, $scope.project.address.longitude);
     }
   });
-    
+
   function openApplyModal () {
     var template = '/partials/volunteerContractModal.html';
     var controller = 'ProjectModalCtrl';
@@ -101,7 +101,7 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
     });
 
     modalInstance.result.then(function (modalDetails) {
-      
+
       var volunteerMessage = '';
       var volunteerPhone = '';
       var volunteerName = '';
@@ -145,7 +145,7 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
             }]
           });
         } else {
-          toastr.error('Não conseguimos te atar. Por favor mande um email para resolvermos o problema: contato@atados.com.br');
+          toastr.error('Não conseguimos te candidatar. Por favor mande um email para resolvermos o problema: contato@atados.com.br');
         }
       });
     }, function () {

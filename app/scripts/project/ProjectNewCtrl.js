@@ -35,7 +35,7 @@ app.controller('ProjectNewCtrl', function($scope, $state, $stateParams, Restangu
     $scope.project.address.city.id = $scope.loggedUser.address.city;
   } else if ($scope.loggedUser.role !== NONPROFIT) {
     $state.transitionTo('root.home');
-    toastr.error('Precisa estar logado como ONG para fazer cadastro de um novo ato');
+    toastr.error('Precisa estar logado como ONG para fazer cadastro de uma nova vaga');
   } else {
     $scope.project.nonprofit = $scope.loggedUser.id;
     $scope.project.address.city.id = $scope.loggedUser.address.city;
@@ -105,10 +105,10 @@ app.controller('ProjectNewCtrl', function($scope, $state, $stateParams, Restangu
 
   $scope.createProject = function () {
     if ($scope.project.causes.length === 0) {
-      toastr.error('Precisa escolher pelo menos uma causa para criar ato.');
+      toastr.error('Precisa escolher pelo menos uma causa para criar uma vaga.');
       return;
     } else if ($scope.project.skills.length === 0) {
-      toastr.error('Precisa escolher pelo menos uma habilidade para criar ato.');
+      toastr.error('Precisa escolher pelo menos uma habilidade para criar uma vaga.');
       return;
     }
 
@@ -132,9 +132,9 @@ app.controller('ProjectNewCtrl', function($scope, $state, $stateParams, Restangu
       });
       $scope.project.work.availabilities = ava;
     }
-    
+
     Project.create($scope.project, $scope.files, function (response) {
-      toastr.success('Ato criado com sucesso. Agora espere o Atados entrar em contato para aprovação');
+      toastr.success('Vaga criada com sucesso. Agora espere o Atados entrar em contato para aprovação');
       $scope.project.slug = response.slug;
       if (!$scope.loggedUser.user.is_staff) {
         $scope.loggedUser.projects.push($scope.project);
@@ -144,7 +144,7 @@ app.controller('ProjectNewCtrl', function($scope, $state, $stateParams, Restangu
       }
     }, function (error) {
       console.error(error);
-      toastr.error('Não consigo criar novo Ato. Entre em contato com o Atados.');
+      toastr.error('Não consigo criar a Vaga. Entre em contato com o Atados.');
     });
   };
 });

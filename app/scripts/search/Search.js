@@ -7,7 +7,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
   var _cause = {};
   var _skill = {};
   var _city = {};
-  
+
   var _highlightedProjects = [];
   var _highlightedNonprofits = [];
 
@@ -68,7 +68,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       }
       _loading = false;
     }, function () {
-      console.error('Não consegui pegar os atos do servidor.');
+      console.error('Não consegui pegar as vagas do servidor.');
       _loading = false;
     });
   }
@@ -98,7 +98,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       _loading = false;
     });
   };
-  
+
   function hasValidAddress(object) {
     // For project objects
     if (object.address && object.address.addressline && object.address.latitude !== 0 && object.address.longitude !== 0) {
@@ -115,7 +115,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
     Restangular.all('map/projects').getList({page_size: 1000}).then( function (projects) {
       _mapProjects = projects.filter(hasValidAddress);
     }, function () {
-      console.error('Não consegui pegar Atos no Mapa do servidor.');
+      console.error('Não consegui pegar Vagas no Mapa do servidor.');
     });
   };
   var getMapNonprofits = function() {
@@ -184,7 +184,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
         _highlightedProjects = fixProjects(projects);
         return;
       }, function () {
-        console.error('Não consegui pegar os atos em destaque do servidor.');
+        console.error('Não consegui pegar as vagas em destaque do servidor.');
       });
     },
     getHighlightedNonprofits: function (city) {
