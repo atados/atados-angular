@@ -6,7 +6,7 @@
   <small ng-hide="search.showProjects || landing" class="pull-right"> Mostrando {{search.nonprofits().length}} de {{search.nonprofitCount()}} ONGs</small>
   <div class="row filters">
     <form class="form-inline" role="form">
-      <div class="row col-sm-12" ng-hide="landing" id="search-bar">
+      <div class="col-sm-12" ng-hide="landing" id="search-bar">
         <div class="form-group col-sm-12">
           <input id="searchInput" class="form-control" ng-model="search.query" type="text" placeholder="Pesquisar por palavra chave">
         </div>
@@ -36,7 +36,7 @@
     </form>
   </div>
 
-  <p ng-hide="landing">
+  <p ng-hide="landing" class="col-xs-12">
     <small ng-show="search.query || search.city.id > 0 || (search.skill.id > 0 && search.showProjects) || search.cause.id > 0"> Mostrando resultados
       <span ng-show="search.query">com procura "{{ search.query }}"</span>
       <span ng-show="search.cause.id > 0"><br> com causa "{{ search.cause.name }}"</span>
