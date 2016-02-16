@@ -14,6 +14,16 @@ var config = require('./lib/config/config');
 
 var app = express();
 
+if (process.env.NODE_ENV == 'development') {
+  app.get('/*', function(req, res, next) {
+    if (!req.headers.host.match(/^www/)) {
+      res.redirect('http://www.' + req.headers.host + req.url);
+    } else {
+      next();
+    }
+  })
+}
+
 app.use(require('prerender-node').set('prerenderToken', '3iULJkT9S6jMjdwulf9h'));
 
 // Express settings
