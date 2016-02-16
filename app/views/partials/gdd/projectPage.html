@@ -30,7 +30,7 @@
         <button id="atar-button" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-show="alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()"><i class="fa fa-chain-broken"></i> Não quero mais</button>
         <button id="atar-button" disabled ng-hide="alreadyApplied || !project.closed" class="btn"><i class="fa fa-times"></i> Ação Fechada</button>
 
-        <div id="project-volunteers"> 
+        <div id="project-volunteers">
           <h4 ng-show="project.volunteers.length > 1">{{project.volunteers.length}} voluntários cadastrados</h4>
           <h4 ng-show="project.volunteers.length == 1">{{project.volunteers.length}} voluntário cadastrado</h4>
 
@@ -71,7 +71,7 @@
       </div>
       <p ng-if="(project.work && project.work.can_be_done_remotely) || (project.address && project.address.city && project.address.city.id === 0)" id="project-remote"><i class="fa fa-rss"></i> Trabalho remoto</p>
 
-      <div id="project-responsible"> 
+      <div id="project-responsible">
         <h5>Responsável pela ação</h5>
         <p ng-if="project.responsible"><i class="fa fa-laptop col-xs-1"></i>{{project.responsible}}</a></p>
     </div>
@@ -134,7 +134,7 @@
       <button id="atar-button" class="btn-atar" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-hide="project.closed || alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()">Quero participar</button>
     </div>
 
-    <div class="fb-comments" data-href="https://www.atados.com.br/ato/{{project.slug}}" data-numposts="5" data-colorscheme="light"></div>
+    <div class="fb-comments" data-href="https://www.atados.com.br/vaga/{{project.slug}}" data-numposts="5" data-colorscheme="light"></div>
 
   </div>
 </div>

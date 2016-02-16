@@ -76,14 +76,14 @@ app.factory('Project', function($http, Restangular, Site, Auth, Cleanup, $state,
         var userIsStaff = Auth.getLoggedUser() && Auth.getLoggedUser().user.is_staff;
         if ((!project.published && !projectBelongsToLoggedUser) || (!project.published && !userIsStaff)) {
           $state.transitionTo('root.home');
-          toastr.error('Ato ainda não foi aprovado. Se isso é um erro entre em contato por favor.');
+          toastr.error('Vaga ainda não foi aprovada. Se isso é um erro entre em contato por favor.');
           return null;
         }
         Cleanup.project(project);
         return project;
       }, function() {
         $state.transitionTo('root.home');
-        toastr.error('Ato não encontrado.');
+        toastr.error('Vaga não encontrada.');
       });
     },
   };

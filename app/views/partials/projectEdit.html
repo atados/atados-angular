@@ -6,7 +6,7 @@
 
     <form novalidate role="form" class="form-horizontal" name="editProjectForm" ng-submit="saveProject()">
       <fieldset>
-        <legend>Sobre o Ato</legend>
+        <legend>Sobre a Vaga</legend>
 
         <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.description.$error.required || editProjectForm.description.$invalid]">
           <label class="col-md-3 control-label">Resumo (160 caracteres)</label>
@@ -14,22 +14,22 @@
             <textarea class="form-control" rows="2" name="description" ng-model='project.description' ng-minlength="10" ng-maxlength="160" required></textarea>
             <label class="help-block" ng-show="editProjectForm.description.$error.minlength">Não pode ter menos de 10 caracteres.</label>
             <label class="help-block" ng-show="editProjectForm.description.$error.maxlength">Não pode ter mais de 160 caracteres.</label>
-            <label>Essa descrição não pode ultrapassar mais de 160 caracters. Vai ser usada para dar um resumo rápido do Ato quando os voluntários estiverem procurando.</label>
+            <label>Essa descrição não pode ultrapassar mais de 160 caracters. Vai ser usada para dar um resumo rápido da Vaga quando os voluntários estiverem procurando.</label>
           </div>
         </div>
 
         <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.details.$error.required || editProjectForm.details.$invalid]">
           <label class="col-md-3 control-label">Descrição</label>
           <div class="col-md-8">
-            <textarea class="form-control" rows="5" name="details" ng-model='project.details' ng-minlength="10" ng-maxlength="2048" placeholder="" required></textarea>
+            <textarea class="form-control" rows="5" name="details" ng-model='project.details' ng-minlength="10" ng-maxlength="3000" placeholder="" required></textarea>
             <label class="help-block" ng-show="editProjectForm.details.$error.minlength">Não pode ter menos de 10 caracteres.</label>
-            <label class="help-block" ng-show="editProjectForm.details.$error.maxlength">Não pode ter mais de 2048 caracteres.</label>
+            <label class="help-block" ng-show="editProjectForm.details.$error.maxlength">Não pode ter mais de 3000 caracteres.</label>
             <label>Aqui você pode aproveitar e escrever todos os detalhes para os voluntários.</label>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="col-sm-3 control-label">Evento do Ato no Facebook</label>
+          <label class="col-sm-3 control-label">Evento da Vaga no Facebook</label>
           <div class="col-sm-8">
             <div class="input-group">
               <span class="input-group-addon">facebook.com/events/</span>
@@ -76,7 +76,7 @@
           </div>
         </div>
 
-        <label class="col-sm-3 control-label">Cidade do Ato</label>
+        <label class="col-sm-3 control-label">Cidade da Vaga</label>
         <div class="btn-group">
           <button type="button" class="btn" ng-model="project.address.city" btn-radio="9422">São Paulo, SP</button>
           <button type="button" class="btn" ng-model="project.address.city" btn-radio="5915">Curitiba, PR</button>
@@ -88,14 +88,14 @@
       </fieldset>
 
       <fieldset>
-        <legend>Responsável pelo Ato</legend>
+        <legend>Responsável pela Vaga</legend>
 
         <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.responsible.$error.required || editProjectForm.responsible.$invalid]">
           <label class="col-sm-3 control-label">Nome do Responsável</label>
           <div class="col-sm-8">
             <label class="help-block" ng-show="editProjectForm.responsible.$error.minlength">Não pode ter menos de 2 caracteres.</label>
             <label class="help-block" ng-show="editProjectForm.responsible.$error.maxlength">Não pode ter mais de 27 caracteres.</label>
-            <label class="help-block" ng-show="editProjectForm.responsible.$error.required">Obrigatório colocar nome do reponsável pelo Ato.</label>
+            <label class="help-block" ng-show="editProjectForm.responsible.$error.required">Obrigatório colocar nome do reponsável pela Vaga.</label>
             <input required class="form-control" type="text" name="responsible" ng-minlength="2" ng-maxlength="27" ng-model='project.responsible' placeholder="Nome do Responsável">
           </div>
         </div>
@@ -104,7 +104,7 @@
 
         <div class="form-group" ng-class="{true: 'has-error',false: 'has-success'}[editProjectForm.email.$error.required || editProjectForm.email.$invalid]">
           <label class="col-md-3 control-label">Email</label>
-          <div class="col-md-8">                     
+          <div class="col-md-8">
             <label class="help-block" ng-show="editProjectForm.email.$error.required">Precisamos de email caso voluntário ou Atados queiram entrar em contato.</label>
             <label class="help-block" ng-show="editProjectForm.email.$invalid && editProjectForm.email.$dirty">Email inválido.</label>
             <input class="form-control" type='email' name="email" ng-model='project.email' placeholder="Email" required/>
@@ -113,13 +113,13 @@
       </fieldset>
 
       <fieldset>
-        <legend>Foto do Ato</legend>
+        <legend>Foto da Vaga</legend>
         <div class="form-group"  ng-class="{true: 'has-error', false: 'has-success'}[!imageUploaded]">
           <label class="col-md-3 col-md-offset-3 control-label">
-            <img alt="Foto do ato." width="250" ng-src="{{project.small_image_url}}">
+            <img alt="Foto da Vaga." width="250" ng-src="{{project.small_image_url}}">
           </label>
 
-          <div class="col-md-5">                     
+          <div class="col-md-5">
             <label class="help-block" ng-hide="imageUploaded">Não se esqueça de nos dar uma foto bem bonita que represente seu projeto. </label>
             <input id="file-input" type="file" name="file" onchange="angular.element(this).scope().uploadProjectImage(this.files)" />
           </div>
@@ -168,7 +168,7 @@
             </div>
           </div>
 
-          <a class="btn btn-info pull-right" ng-click="addRole(newRole)">Adicionar Cargo</a> 
+          <a class="btn btn-info pull-right" ng-click="addRole(newRole)">Adicionar Cargo</a>
           <table class="table">
             <thead>
               <tr>
@@ -203,7 +203,7 @@
         </div>
 
         <fieldset ng-show="jobActive">
-          <legend>Dia e hora do Ato</legend>
+          <legend>Dia e hora da Vaga</legend>
           <label class="col-md-2 control-label">Começa: </label>
           <div class="col-md-3">
             <input
@@ -244,7 +244,7 @@
 
         <fieldset ng-hide="jobActive">
           <div class="form-group">
-            <label class="col-md-5 control-label">Esse ato pode ser feito remotamente?</label>
+            <label class="col-md-5 control-label">Essa vaga pode ser feita remotamente?</label>
             <div class="col-md-7">
               <input class="btn" type="checkbox" name="canBeDoneRemotely" ng-checked="project.work.can_be_done_remotely" ng-model="project.work.can_be_done_remotely">
             </div>
@@ -258,7 +258,7 @@
 
           <div id="project-availabilities">
             <legend>Horários</legend>
-            <label>Escolha aqui os períodos da semana que a ONG vai precisar ajuda no ato recorrente.</label>
+            <label>Escolha aqui os períodos da semana que a ONG vai precisar ajuda na vaga recorrente.</label>
             <div class="row">
               <div class="col-sm-3 table-labels">
                 <div class="table-label">Manhã</div><span class="triangle"></span>
@@ -292,7 +292,7 @@
           </div>
         </fieldset>
 
-        <button type="submit" class="btn btn-info btn-save"  ng-disabled="editProjectForm.$invalid || !(imageUploaded && causeChosen && skillChosen && project.address.city)">Salvar Ato</button>
+        <button type="submit" class="btn btn-info btn-save"  ng-disabled="editProjectForm.$invalid || !(imageUploaded && causeChosen && skillChosen && project.address.city)">Salvar Vaga</button>
       </div>
     </form>
   </div>

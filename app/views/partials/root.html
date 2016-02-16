@@ -23,32 +23,12 @@
           <li><a ui-sref="root.nonprofit({slug: loggedUser.slug})">Perfil da ONG</a></li>
           <li><a ui-sref="root.nonprofitedit({slug: loggedUser.slug})">Editar ONG</a></li>
           <li><a ui-sref="root.nonprofitadmin({slug: loggedUser.slug})">Painel de controle</a></li>
-          <li><a ui-sref="root.newproject({id: loggedUser.id})">Criar Ato</a></li>
+          <li><a ui-sref="root.newproject({id: loggedUser.id})">Criar Vaga</a></li>
           <li><a ng-click="logout()">Sair</a></li>
         </ul>
       </li>
     </form>
   </ul>
-</div>
-
-<div id="we-love-you">
-  <span class="part-circle"></span>
-  <div class="part">
-    <img src="https://s3-sa-east-1.amazonaws.com/atadosapp/images/3anos.png" alt="">
-  </div>
-  <div class="part">
-    <div class="triangle"></div>
-    <p>Olá, você sabia que o Atados vem conectando pessoas e organizações sociais, há 3 anos, de maneira gratuita? E, adivinha. Sempre será assim! Mas precisamos da sua ajuda para crescer!</p>
-  </div>
-  <div class="part">
-    <div class="triangle white"></div>
-    <p>Escolha um valor mensal e ajude<br>a <b>multiplicar</b> nossa atuação: <br>
-      <a href="http://multiplicar.atados.com.br">
-        <input type="button" id="btn-header-popup" class="btn btn-default" value="Faça sua doação">
-      </a>
-    </p>
-  </div>
-  <a href="#" class="close" ng-click="$root.toggleHeader()">&times;</a>
 </div>
 
 <div id="top" class="navbar navbar-default navbar-inverse" role="navigation">
@@ -65,7 +45,7 @@
     <div ng-show="!hide_header">
       <div class="collapse navbar-collapse" id="navbar-collapse-1" collapse="!navCollapsed">
         <ul class="nav navbar-nav">
-          <li><a ui-sref="root.explore">Encontre um trabalho voluntário</a></li>
+          <li><a ui-sref="root.explore">Vagas de voluntariado</a></li>
           <li><a ui-sref="root.nonprofitsignup" ng-show="!loggedUser">Cadastre sua ONG</a></li>
           <!--<li><a href="#">Como Funciona</a></li>-->
           <li><a ui-sref="root.about" class="hidden-md hidden-lg">Sobre Nós</a></li>
@@ -75,7 +55,7 @@
         </ul>
         <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search" ng-submit="siteSearch()" ng-hide="explorerView">
           <a href="http://multiplicar.atados.com.br" id="btn-header-doar" class="btn-contribute hidden-xs-inline-block hidden-sm-inline-block">Doar</a>
-          <input id="siteSearch" class="form-control" ng-model="search.landingQuery" type="text" placeholder="Encontre ONGs e atos voluntários">
+          <input id="siteSearch" class="form-control" ng-model="search.landingQuery" type="text" placeholder="Pesquise vagas de voluntariado">
           <button id="searchIcon"><i class="fa fa-search"></i></button>
         </form>
       </div>
@@ -102,9 +82,9 @@
     </div>
     <div class="row">
       <div class="col-xs-12 text-center">
-        <div class="fb-like-box" 
-             data-href="http://www.facebook.com/atadosjuntandogenteboa" 
-             data-width="340" data-colorscheme="light" data-show-faces="true" 
+        <div class="fb-like-box"
+             data-href="http://www.facebook.com/atadosjuntandogenteboa"
+             data-width="340" data-colorscheme="light" data-show-faces="true"
              data-header="false" data-stream="false" data-show-border="false" style="margin: 15px auto;"></div>
 
       </div>

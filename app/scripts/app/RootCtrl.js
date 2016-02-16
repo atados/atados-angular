@@ -14,15 +14,6 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
       $.get(url, function(data) {
         $rootScope.geoIP = data;
 
-        // Only show donations header if not connecting from RJ
-        if (data.region_code !== 'RJ') {
-          $timeout(function() {
-            if (!$scope.hide_header) {
-              $rootScope.toggleHeader();
-            }
-          }, 1000);
-        }
-
         // Preset city on home
         var city;
         if (data.region_code === 'DF') {
@@ -75,14 +66,6 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
     Auth.logout();
     $scope.loggedUser = null;
     $state.transitionTo('root.home');
-  };
-
-  $rootScope.toggleHeader = function() {
-    if ($('#we-love-you').is(':visible')) {
-      $('#we-love-you').slideUp();
-    } else {
-      $('#we-love-you').slideDown();
-    }
   };
 
   $rootScope.askForAddress = function(user) {

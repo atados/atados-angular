@@ -20,7 +20,7 @@ app.controller('LegacyCtrl', function ($scope, $stateParams, $state, $http, Lega
       $state.transitionTo('root.project', {slug: slug});
     }, function () {
       $state.transitionTo('root.home');
-      toastr.error('Este ato não existe');
+      toastr.error('Esta vaga não existe');
     });
   } else if ($stateParams.slug) {
     Legacy.users($stateParams.slug, function (response) {
