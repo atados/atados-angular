@@ -31,11 +31,13 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $filter, Search,
   $(window).resize(resizeExploreElements);
 
   // Getting more cards when scrolling to the bottom of the page
+  /*
   $('#atados-explorer').scroll(function() {
     if($('#atados-explorer').scrollTop() >= $('#searchSpace').height() - $(window).height()) {
       $scope.getMore();
     }
   });
+  */
 
   $scope.$watch('search.city', function (city) {
     $scope.mapOptions.map.zoom = defaultZoom;
