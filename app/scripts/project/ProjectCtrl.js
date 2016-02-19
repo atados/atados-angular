@@ -90,6 +90,9 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
         nonprofit: function () {
           return $scope.project.nonprofit;
         },
+        projectName: function () {
+          return $scope.project.name;
+        },
         phone: function () {
           return $scope.loggedUser.user.phone;
         },

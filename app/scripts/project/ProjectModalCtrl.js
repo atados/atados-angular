@@ -2,13 +2,21 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('ProjectModalCtrl', function ($scope, $modalInstance, nonprofit, phone, name) {
+app.controller('ProjectModalCtrl', function ($rootScope, $scope, $modalInstance, $modal, nonprofit, phone, name, projectName) {
   $scope.nonprofit = nonprofit;
-  $scope.contractForm = {};
-  $scope.contractForm.phone = phone;
-  $scope.contractForm.name = name;
-  $scope.contractForm.message = '';
-  $scope.phoneWarningMessage = '';
+  $scope.projectName = projectName;
+  $scope.contractForm = {
+    phone: phone,
+    name: name,
+    message: '',
+    phoneWarningMessage: ''
+  };
+
+  $scope.openTermsModal = function() {
+    $rootScope.modalInstance = $modal.open({
+      templateUrl: '/partials/volunteerTermsModal.html'
+    });
+  };
 
   $scope.ok = function () {
     if (!$scope.contractForm.phone && !$scope.phoneWarningMessage) {
