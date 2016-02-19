@@ -41,7 +41,7 @@
     "grunt-open": "~0.2.3",
     "grunt-rev": "~0.1.0",
     "grunt-svgmin": "~2.0.0",
-    "grunt-usemin": "~2.6.1"
+    "grunt-usemin": "~2.6.1",
     "load-grunt-tasks": "~1.0.0",
     "time-grunt": "~1.0.0"
   },
@@ -58,7 +58,7 @@
     "karma-requirejs": "~0.2.2",
     "karma-script-launcher": "~0.1.0",
     "phantom": "git://github.com/sgentle/phantomjs-node.git#e029778ec4",
-    "requirejs": "~2.1.15",
+    "requirejs": "~2.1.15"
   },
   "engines": {
     "node": "~0.10.0"
