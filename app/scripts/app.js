@@ -187,6 +187,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
        controller: 'GddNonprofitSignupCtrl',
        resolve: {}
      })
+     .state('gdd.nonprofitgroupsignup', {
+       url: '/dia-das-boas-acoes/cadastro/grupo',
+       templateUrl: '/partials/gdd/nonprofitGroupSignup.html',
+       controller: 'GddNonprofitGroupSignupCtrl',
+       resolve: {}
+     })
      .state('gdd.nonprofitadmin', {
        url: '/dia-das-boas-acoes/controle/:slug',
        templateUrl: '/partials/gdd/nonprofitAdminPanel.html',
