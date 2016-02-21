@@ -49,7 +49,7 @@ app.controller('NonprofitEditCtrl', function($scope, $http, $state, $stateParams
     if (files) {
       var fd = new FormData();
       fd.append('file', files[0]);
-      Photos.setNonprofitProfilePhoto(fd, $scope.nonprofit.id, function(response) {
+      Photos.setNonprofitProfilePhoto(fd, function(response) {
         $scope.nonprofit.image_url = response.file;
         toastr.success('Logo da ONG salva com sucesso.');
       }, function() {
@@ -61,7 +61,7 @@ app.controller('NonprofitEditCtrl', function($scope, $http, $state, $stateParams
     if (files) {
       var fd = new FormData();
       fd.append('file', files[0]);
-      Photos.setNonprofitCoverPhoto(fd, $scope.nonprofit.id, function(response) {
+      Photos.setNonprofitCoverPhoto(fd, function(response) {
         $scope.nonprofit.cover_url = response.file;
         toastr.success('Foto cover da ONG salva com sucesso.');
       }, function() {
