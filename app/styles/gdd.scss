@@ -60,6 +60,13 @@ $font-secondary: "Montserrat", Arial, sans-serif;
     }
   }
 
+  #nonprofit-signup-splash {
+    .btn {
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+
   #nonprofit-signup {
     .help-block {
       background: #f9a448;

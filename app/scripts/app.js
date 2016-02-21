@@ -175,6 +175,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
          }]
        }
      })
+     .state('gdd.nonprofitsignupsplash', {
+       url: '/dia-das-boas-acoes/cadastro',
+       templateUrl: '/partials/gdd/nonprofitSignupSplash.html',
+       controller: 'GddNonprofitSignupSplashCtrl',
+       resolve: {}
+     })
      .state('gdd.nonprofitsignup', {
        url: '/dia-das-boas-acoes/cadastro/ong',
        templateUrl: '/partials/gdd/nonprofitSignup.html',
