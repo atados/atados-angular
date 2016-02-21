@@ -233,6 +233,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
   }
 
   .card-outer {
+    height: 290px;
     h4 {
       color: #B70072;
       text-align: center;
@@ -247,6 +248,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
     }
 
     .card {
+      height: 290px;
       .card-quick-info {
         .nonprofit-name {
           margin-top: 20px;
