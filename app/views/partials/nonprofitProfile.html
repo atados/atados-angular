@@ -71,7 +71,7 @@
 
       <h3>Sobre</h3>
 
-      <div ng-bind-html="nonprofit.details | noHTML | newlines"></div>
+      <div ng-bind-html="nonprofit.details | noHTML | newlines" linkify="twitter"></div>
 
       <div class="projectButtons">
         <a type="button" class="btn btn-large buttonTab" ng-class="{active: activeProjects}" ng-click="activeProjects=true">Vagas Abertas</a>

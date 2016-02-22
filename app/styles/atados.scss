@@ -487,8 +487,8 @@ a:focus {
 }
 
 $card-width: 250px;
-$card-height: 290px;
-$card-info-height: 120px;
+$card-height: 270px;
+$card-info-height: 90px;
 $card-img-height: 170px;
 
 .card-outer {
@@ -520,6 +520,10 @@ $card-img-height: 170px;
   background: #fff;
   border: 1px solid #d3d3d3;
   border-radius:4px 4px 0 0;
+
+  &.height-2 {
+    height: $card-height - 30px;
+  }
 
   .card-img {
     border-radius:3px 3px 0 0;
@@ -661,12 +665,12 @@ $card-img-height: 170px;
           color: $blue;
         }
       }
-      .card-volunteer {
-        padding: 0 0;
-        color: #6f6f6f;
-        i {
-          color: $blue;
-        }
+    }
+    .card-volunteer {
+      padding: 0 0;
+      color: #6f6f6f;
+      i {
+        color: $blue;
       }
     }
   }

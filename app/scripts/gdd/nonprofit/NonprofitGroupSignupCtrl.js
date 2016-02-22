@@ -4,20 +4,22 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('GddNonprofitSignupCtrl', function($scope, $rootScope, $filter, $state, $http, api, Auth, Photos, Restangular) {
+app.controller('GddNonprofitGroupSignupCtrl', function($scope, $rootScope, $filter, $state, $http, api, Auth, Photos, Restangular) {
 
   $scope.nonprofit = {
-    hidden_address: false,
+    hidden_address: true,
     address: {
-      neighborhood:null,
-      zipcode:null,
-      addressline:null,
-      addressnumber:null,
+      neighborhood:'-',
+      zipcode:'00000-000',
+      addressline:'-',
+      addressnumber:'-',
+      state: {id: 1},
+      city: {id: 1}, // Acrelandia
     },
-    phone:null,
+    phone:'(00) 00000-0000',
     description:null,
     name:null,
-    details:null,
+    details:'----------',
     user:{
       name:null,
       slug:null,
@@ -28,8 +30,8 @@ app.controller('GddNonprofitSignupCtrl', function($scope, $rootScope, $filter, $
     google_page:null,
     twitter_handle:null,
     website:null,
-    causes:[],
-    notNonprofit: false,
+    causes:[{"id":10,"name":"Participação Cidadã","checked":false,"image":"https://s3-sa-east-1.amazonaws.com/atadosapp/images/cause_10.png","class":"cause_10","$$hashKey":"object:21"}],
+    notNonprofit: true,
   };
 
   $scope.buttonText = 'Próximo passo (ação)';
@@ -100,45 +102,20 @@ app.controller('GddNonprofitSignupCtrl', function($scope, $rootScope, $filter, $
     $scope.signupForm.password.$invalid = $scope.signupForm.password.doesNotMatch;
   });
 
-  $scope.uploadImageFile = function(files) {
-    if (files) {
-      if (!$scope.files) {
-        $scope.files = new FormData();
-      }
-      $scope.files.append('image', files[0]);
-      $scope.imageUploaded = true;
-      $scope.$apply();
-      return;
-    }
-    $scope.imageUploaded = false;
-    $scope.$apply();
-  };
-  $scope.uploadCoverFile = function(files) {
-    if (files) {
-      if (!$scope.files) {
-        $scope.files = new FormData();
-      }
-      $scope.files.append('cover', files[0]);
-      $scope.coverUploaded = true;
-      $scope.$apply();
-      return;
-    }
-    $scope.coverUploaded = false;
-    $scope.$apply();
-  };
 
   $scope.signup = function () {
-    if ($scope.signupForm.$valid && $scope.nonprofit.causes.length && $scope.imageUploaded && $scope.coverUploaded) {
+    if ($scope.signupForm.$valid && $scope.nonprofit.causes.length) {
       $scope.nonprofit.user.password = $scope.password;
 
       $scope.facebook_page = 'http://facebook.com/' + $scope.facebook_page;
       $scope.google_page = 'http://plus.google.com/' + $scope.google_page;
       $scope.twitter_handle = 'http://www.twitter.com/' + $scope.twitter_handle;
 
-      $scope.files.append('nonprofit', angular.toJson($scope.nonprofit));
-
       $scope.creatingNonprofit = true;
       $scope.buttonText = 'Finalizando cadastro...';
+      
+      $scope.files = new FormData();
+      $scope.files.append('nonprofit', angular.toJson($scope.nonprofit));
 
       Auth.nonprofitSignup($scope.files, function () {
         Auth.login({

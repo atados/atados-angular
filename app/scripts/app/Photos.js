@@ -35,8 +35,8 @@ app.factory('Photos', function($http, ezfb, api) {
           transformRequest: angular.identity
         }).success(success).error(error);
     },
-    setNonprofitProfilePhoto: function (file, nonprofit, success, error) {
-      $http.post(api + 'upload_nonprofit_profile_image/?nonprofit=' + nonprofit, file, {
+    setNonprofitProfilePhoto: function (file, success, error) {
+      $http.post(api + 'upload_nonprofit_profile_image/', file, {
         headers: {'Content-Type': undefined },
         transformRequest: angular.indenty
       }).success(success).error(error);

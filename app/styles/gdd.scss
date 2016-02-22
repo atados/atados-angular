@@ -60,6 +60,13 @@ $font-secondary: "Montserrat", Arial, sans-serif;
     }
   }
 
+  #nonprofit-signup-splash {
+    .btn {
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+
   #nonprofit-signup {
     .help-block {
       background: #f9a448;
@@ -233,6 +240,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
   }
 
   .card-outer {
+    height: 290px;
     h4 {
       color: #B70072;
       text-align: center;
@@ -247,6 +255,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
     }
 
     .card {
+      height: 290px;
       .card-quick-info {
         .nonprofit-name {
           margin-top: 20px;
