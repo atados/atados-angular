@@ -2,7 +2,7 @@
   <div class="container">
     <div class="page-header">
       <h1>Inscreva sua <b>ação</b></h1>
-      <h2>Passo 1 de 2 - Cadastre sua organização</h2>
+      <h2>Passo 1 de 2 - Cadastre seu movimento.</h2>
     </div>
     <div id="nonprofit-signup-form" class="clearfix">
       <form novalidate role="form" class="form-horizontal" name="signupForm" ng-submit="signup()">
@@ -12,7 +12,7 @@
             <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[signupForm.name.$error.required || signupForm.name.$invalid]">
               <label class="col-sm-3 control-label">Nome</label>
               <div class="col-sm-8">
-                <input required type="text" class="form-control" name="name" ng-model="nonprofit.name" ng-minlength="3" ng-maxlength="150" placeholder="Nome da Organização">
+                <input required type="text" class="form-control" name="name" ng-model="nonprofit.name" ng-minlength="3" ng-maxlength="150" placeholder="Nome do movimento">
                 <label class="help-block" ng-show="signupForm.name.$error.minlength">Não pode ter menos de 3 caracteres.</label>
                 <label class="help-block" ng-show="signupForm.name.$error.maxlength">Não pode ter mais de 150 caracteres.</label>
               </div>
@@ -20,7 +20,7 @@
             <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[signupForm.slug.$error.required || signupForm.slug.$invalid]">
               <div class="input-group col-sm-offset-3 col-sm-8">
                 <span class="input-group-addon">www.atados.com.br/ong/</span>
-                <input required type="text" class="form-control" name="slug" ng-model="nonprofit.user.slug" ng-minlength="3" ng-maxlength="50" placeholder="nome-da-ong">
+                <input required type="text" class="form-control" name="slug" ng-model="nonprofit.user.slug" ng-minlength="3" ng-maxlength="50" placeholder="nome-do-movimento">
               </div>
               <div class="col-sm-offset-3 col-sm-8">
                 <label class="help-block" ng-show="signupForm.slug.alreadyUsed">Não pode ser usado pois já existe.</label>
