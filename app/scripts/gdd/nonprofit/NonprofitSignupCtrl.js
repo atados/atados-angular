@@ -4,7 +4,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('GddNonprofitGroupSignupCtrl', function($scope, $rootScope, $filter, $state, $http, api, Auth, Photos, Restangular) {
+app.controller('GddNonprofitSignupCtrl', function($scope, $rootScope, $filter, $state, $http, api, Auth, Photos, Restangular) {
 
   $scope.nonprofit = {
     hidden_address: false,
