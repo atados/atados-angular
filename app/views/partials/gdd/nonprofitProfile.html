@@ -45,7 +45,6 @@
       <div id="nonprofit-volunteers"> 
         <h4 ng-show="nonprofit.volunteers.length > 1">{{nonprofit.volunteers.length}} Voluntários</h4>
         <h4 ng-show="nonprofit.volunteers.length == 1">{{nonprofit.volunteers.length}} Voluntário</h4>
-        <p ng-show="nonprofit.volunteers.length === 0">Seja o primeiro voluntário da ONG!</p>
         <div ng-hide="nonprofit.volunteers.length === 0" id="cards"> 
           <a ui-sref="root.volunteer({slug: volunteer.slug})" target="_blank" ng-repeat="volunteer in nonprofit.volunteers"><img alt="volunteer.slug" width="32" height="32" ng-src="{{volunteer.image_url}}"/></a>
         </div>
@@ -56,11 +55,11 @@
 
       <h1>{{nonprofit.name}}</h1>
 
-      <button class="btn btn-info pull-right" ng-class="{active: alreadyVolunteer}" ng-show="!loggedUser || loggedUser.role === 'VOLUNTEER'" ng-click="addVolunteerToNonprofit()"><i class="fa fa-heart"></i> Já sou voluntário(a) da ONG</button>
+      <button class="btn btn-info pull-right" ng-class="{active: alreadyVolunteer}" ng-show="!loggedUser || loggedUser.role === 'VOLUNTEER'" ng-click="addVolunteerToNonprofit()"><i class="fa fa-heart"></i> Já sou voluntário(a) do grupo</button>
 
       <p ng-if="nonprofit.website"><i class="fa fa-laptop col-xs-1"></i><a href="{{nonprofit.website}}" target="_blank">{{nonprofit.website}}</a></p>
       <p ng-if="nonprofit.user.email"><i class="fa fa-inbox col-xs-1"></i><a href="mailto:{{nonprofit.user.email}}" target="_blank">{{nonprofit.user.email}}</a></p>
-      <p ng-if="nonprofit.user.phone"><i class="fa fa-phone col-xs-1"></i>{{nonprofit.user.phone}}</p>
+      <p ng-if="nonprofit.user.phone && !nonprofit.not_nonprofit"><i class="fa fa-phone col-xs-1"></i>{{nonprofit.user.phone}}</p>
       <p ng-if="nonprofit.address && !nonprofit.user.hidden_address"><i class="fa fa-map-marker col-xs-1"></i>{{nonprofit.address | as_location_string}}</p>
 
       <div id="nonprofit-causes">
@@ -71,19 +70,19 @@
         </div>
       </div>
 
-      <h3>Sobre</h3>
+      <h3 ng-hide="nonprofit.not_nonprofit">Sobre</h3>
 
-      <div ng-bind-html="nonprofit.details | noHTML | newlines"></div>
+      <div ng-hide="nonprofit.not_nonprofit" ng-bind-html="nonprofit.details | noHTML | newlines"></div>
 
       <div class="projectButtons">
-        <a type="button" class="btn btn-large buttonTab" ng-class="{active: activeProjects}" ng-click="activeProjects=true">Atos Abertos</a>
-        <a type="button" class="btn btn-large buttonTab" ng-class="{active: !activeProjects}" ng-click="activeProjects=false">Atos Encerrados</a>
+        <a type="button" class="btn btn-large buttonTab" ng-class="{active: activeProjects}" ng-click="activeProjects=true">Ações Abertas</a>
+        <a type="button" class="btn btn-large buttonTab" ng-class="{active: !activeProjects}" ng-click="activeProjects=false">Ações Encerradas</a>
       </div>
 
       <div class="row">
         <div class="col-sm-12 projects">
           <project-card ng-repeat="project in getProjects() | filter:{published: true}"></project-card>
-          <div class="alert center" ng-show="!getProjects().length">ONG não tem atos nessa categoria.</div>
+          <div class="alert center" ng-show="!getProjects().length">O grupo não tem ações nessa categoria.</div>
         </div>
       </div>
 
