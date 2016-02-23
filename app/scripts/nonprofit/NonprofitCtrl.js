@@ -18,6 +18,11 @@ app.controller('NonprofitCtrl', function($scope, $rootScope, $state, $http, nonp
   $scope.activeProjects = true;
   $scope.markers = [];
   $scope.markers.push(nonprofit.address);
+  
+  // Should be on gdd site only!
+  if ($scope.nonprofit.not_nonprofit) {
+    $state.transitionTo('gdd.nonprofit', {slug: nonprofit.slug});
+  }
 
   $scope.causes().forEach(function(c) {
     $scope.nonprofit.causes.forEach(function(nc) {

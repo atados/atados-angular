@@ -53,6 +53,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
     };
     if (gdd) {
       urlHeaders.gdd = true;
+      urlHeaders.page_size = 1000;
     }
 
 
