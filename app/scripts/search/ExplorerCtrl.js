@@ -12,7 +12,7 @@ var constants = {
 var app = angular.module('atadosApp');
 
 app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParams, $filter, Search,
-      notselected, selected, defaultZoom, saoPaulo, curitiba, brasilia, distancia) {
+      notselected, selected, defaultZoom, saoPaulo, rioDeJaneiro, curitiba, brasilia, distancia) {
 
   $scope.site.title = 'Atados - Explore';
   $rootScope.explorerView = true;
@@ -32,8 +32,8 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
 
   function resizeExploreElements () {
     var newSize = window.innerHeight - $('.navbar-header').height() - 5;
-    $('#atados-explorer').height(newSize - 60);
-    $('.map-outer .map').height(newSize);
+    $('#atados-explorer').height(newSize - 114);
+    $('.map-outer .map').height(newSize - 54);
   }
   resizeExploreElements();
   $(window).resize(resizeExploreElements);
@@ -50,11 +50,14 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
     $('.map').css('opacity', 1);
     $scope.distanceAddress = false;
     if (city.id === saoPaulo.id) {
-      $scope.mapOptions.map.center = new google.maps.LatLng(saoPaulo.lat, saoPaulo.lng);
+      constants.map.setCenter(new google.maps.LatLng(saoPaulo.lat, saoPaulo.lng));
     } else if (city.id === curitiba.id) {
-      $scope.mapOptions.map.center = new google.maps.LatLng(curitiba.lat, curitiba.lng);
+      constants.map.setCenter(new google.maps.LatLng(curitiba.lat, curitiba.lng));
     } else if (city.id === brasilia.id) {
-      $scope.mapOptions.map.center = new google.maps.LatLng(brasilia.lat, brasilia.lng);
+      constants.map.setCenter(new google.maps.LatLng(brasilia.lat, brasilia.lng));
+    } else if (city.id === rioDeJaneiro.id) {
+      constants.map.setCenter(new google.maps.LatLng(rioDeJaneiro.lat, rioDeJaneiro.lng));
+      constants.map.setZoom(11);
     } else if (city.id === distancia.id) {
       $('.map').css('opacity', 0.1);
       $scope.distanceAddress = true;
@@ -64,14 +67,15 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
   $scope.objects = Search.mapProjects();
   $scope.mapOptions = {
     map : {
-      center : new google.maps.LatLng(saoPaulo.lat, saoPaulo.lng),
-      zoom : defaultZoom
+      center: new google.maps.LatLng(saoPaulo.lat, saoPaulo.lng),
+      zoom: defaultZoom
     },
     marker : {
       clickable : true,
       draggable : false
     }
   };
+
   $scope.previousMarker = null;
   $scope.previousSlug = null;
   $scope.iw = new google.maps.InfoWindow();
@@ -79,8 +83,10 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
 
   function addMarkersToOms() {
       for (var m in constants.markers) {
-        constants.markers[m].setIcon(notselected);
-        constants.markers[m].setZIndex(1);
+        if (constants.markers[m].setIcon) {
+          constants.markers[m].setIcon(notselected);
+          constants.markers[m].setZIndex(1);
+        }
         if ($scope.oms) {
           $scope.oms.addMarker(constants.markers[m]);
         }
@@ -99,6 +105,22 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
       $scope.oms.addListener('click', $scope.selectMarker);
     }
     addMarkersToOms();
+  });
+
+  $rootScope.$watch('geoIP', function () {
+    if ($rootScope.geoIP) {
+      switch ($rootScope.geoIP.region_code) {
+        case 'RJ':
+          constants.map.setCenter(new google.maps.LatLng(rioDeJaneiro.lat, rioDeJaneiro.lng));
+          constants.map.setZoom(11);
+          break;
+        case 'SP':
+        default:
+          constants.map.setCenter(new google.maps.LatLng(saoPaulo.lat, saoPaulo.lng));
+          constants.map.setZoom(defaultZoom);
+          break;
+      }
+    }
   });
 
   $scope.$watch('search.projects()', function () {
