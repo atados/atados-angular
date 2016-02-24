@@ -4,7 +4,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Restangular, api, $location, $anchorScroll) {
+app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Restangular, api, $location, $document) {
   $scope.site.title = 'Atados - Juntando Gente Boa';
   $scope.site.og.url = 'https://www.atados.com.br';
   $scope.site.og.image = 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/landing_cover.jpg';
@@ -67,8 +67,10 @@ app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Res
   });
 
   $scope.see_projects = function() {
-    $location.hash('atados-explorer');
-    $anchorScroll();
+    $document.scrollToElement(angular.element('#atados-explorer'), 0, 500)
+    .then(function () {
+      $location.hash('atados-explorer');
+    });
   };
 
   $scope.htmlReady();

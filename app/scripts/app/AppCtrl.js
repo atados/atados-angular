@@ -4,8 +4,8 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location, $anchorScroll, Site, Search, storage) {
-  
+app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location, $document, Site, Search, storage) {
+
   $scope.site = Site;
   $scope.search = Search;
   $rootScope.modalInstance = null;
@@ -21,8 +21,10 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
     $scope.cities().forEach(function (c) {
       if (c.name === city) {
         $scope.search.city = c;
-        $location.hash('top');
-        $anchorScroll();
+        $document.scrollToElement(angular.element('#top'), 0, 500)
+        .then(function () {
+          $location.hash('top');
+        });
         return;
       }
     });
