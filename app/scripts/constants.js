@@ -11,7 +11,7 @@ angular.module('atadosConstants', [])
 
 .constant('storage', 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/')
 
-.constant('selected', 'http://www.atadoslocal.com.br:8000/static/images/heart.png')
+.constant('selected', 'http://www.atadoslocal.com.br:8000/static/images/orange-pin.png')
 
 .constant('notselected', 'http://www.atadoslocal.com.br:8000/static/images/blue.png')
 
