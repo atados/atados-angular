@@ -7,6 +7,8 @@ var app = angular.module('atadosApp');
 app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $state, $http, api, Auth, Photos, Restangular) {
 
   $scope.nonprofit = {
+    image_url: "https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg",
+    cover_url: "https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg",
     hidden_address: false,
     address: {
       neighborhood:null,
@@ -104,6 +106,7 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
       if (!$scope.files) {
         $scope.files = new FormData();
       }
+      $scope.nonprofit.image_url = URL.createObjectURL(files[0]);
       $scope.files.append('image', files[0]);
       $scope.imageUploaded = true;
       $scope.$apply();
@@ -117,6 +120,7 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
       if (!$scope.files) {
         $scope.files = new FormData();
       }
+      $scope.nonprofit.cover_url = URL.createObjectURL(files[0]);
       $scope.files.append('cover', files[0]);
       $scope.coverUploaded = true;
       $scope.$apply();
