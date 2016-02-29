@@ -7,6 +7,9 @@ app.controller('FaqCtrl', function ($scope, questions) {
   $scope.questions = questions.data.results;
 
   $scope.togglePanel = function(e) {
-    console.log(jQuery(e.target).closest('.panel').find('.panel-collapse').toggleClass('collapse'));
+    jQuery(e.target)
+      .closest('.panel')
+      .find('.panel-collapse')
+      .toggleClass('collapse');
   }
 });
