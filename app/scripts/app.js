@@ -41,6 +41,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: '/partials/contact.html',
       controller: 'ContactCtrl'
     })
+    .state('root.faq', {
+      url: '/perguntas-frequentes',
+      templateUrl: '/partials/faq.html',
+      controller: 'FaqCtrl',
+      resolve: {
+        questions: ['Question', function (Question) {
+          return Question.getAll();
+        }]
+      },
+    })
     .state('root.404', {
       url: '/ops',
       templateUrl: '/partials/404.html'
