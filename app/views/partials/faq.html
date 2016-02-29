@@ -1,0 +1,19 @@
+<div id="faq-page">
+  <div class="container">
+    <h1 id="title">Perguntas <strong>Frequentes</strong></h1>
+
+    <div class="panel-group" ng-repeat="question in questions">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" ng-click="togglePanel($event)">{{question.name}}</a>
+          </h4>
+        </div>
+        <div class="panel-collapse collapse">
+          <div class="panel-body">{{question.description}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
