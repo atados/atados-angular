@@ -1,6 +1,6 @@
 <div ng-class="{true: 'col-sm-10 col-sm-offset-1', false: 'col-sm-12'}[landing]" id="searchSpace">
-  <button class="btn btn-tab" ng-click="search.showProjects=true" ng-class="{active: search.showProjects}">Pesquisar Vagas <span ng-hide="landing || search.projects().length === 0">({{search.projects().length}})</span></button>
-  <button class="btn btn-tab" ng-click="search.showProjects=false" ng-class="{active: !search.showProjects}">Pesquisar ONGs <span ng-hide="landing || search.nonprofits().length === 0">({{search.nonprofits().length}})</span></button>
+  <button class="btn btn-tab" ng-click="displayProjects()" ng-class="{active: search.showProjects}">Pesquisar Vagas <span ng-hide="landing || search.projects().length === 0">({{search.projects().length}})</span></button>
+  <button class="btn btn-tab" ng-click="displayNonprofits()" ng-class="{active: !search.showProjects}">Pesquisar ONGs <span ng-hide="landing || search.nonprofits().length === 0">({{search.nonprofits().length}})</span></button>
 
   <small ng-show="search.showProjects && !landing" class="pull-right"> Mostrando {{search.projects().length}} de {{search.projectCount()}} vagas</small>
   <small ng-hide="search.showProjects || landing" class="pull-right"> Mostrando {{search.nonprofits().length}} de {{search.nonprofitCount()}} ONGs</small>
@@ -62,9 +62,11 @@
   <small ng-show="search.showProjects && !landing" class="pull-right"> Mostrando {{search.projects().length}} de {{search.projectCount()}} vagas</small>
   <small ng-hide="search.showProjects || landing" class="pull-right"> Mostrando {{search.nonprofits().length}} de {{search.nonprofitCount()}} ONGs</small>
   <div style="text-align: center;">
-    <a class="btn btn-lg btn-info" ui-sref="root.explore" ng-disabled="searchMoreDisabled">
-      <span ng-show="search.showProjects">{{ searchMoreProjectButtonText }}</span>
-      <span ng-hide="search.showProjects">{{ searchMoreNonprofitButtonText }}</span>
+    <a class="btn btn-lg btn-info" ui-sref="root.explore({tab: 'vagas'})" ng-show="search.showProjects" ng-disabled="searchMoreDisabled">
+      {{ searchMoreProjectButtonText }}
+    </a>
+    <a class="btn btn-lg btn-info" ui-sref="root.explore({tab: 'ongs'})" ng-hide="search.showProjects" ng-disabled="searchMoreDisabled">
+      {{ searchMoreNonprofitButtonText }}
     </a>
   </div>
 </div>

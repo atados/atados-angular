@@ -11,12 +11,20 @@ var constants = {
 
 var app = angular.module('atadosApp');
 
-app.controller('ExplorerCtrl', function ($scope, $rootScope, $filter, Search,
+app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParams, $filter, Search,
       notselected, selected, defaultZoom, saoPaulo, curitiba, brasilia, distancia) {
 
   $scope.site.title = 'Atados - Explore';
   $rootScope.explorerView = true;
   $scope.landing = false;
+
+  if ($stateParams.tab === 'vagas') {
+    Search.showProjects = true;
+  } else if ($stateParams.tab === 'ongs') {
+    Search.showProjects = false;
+  } else {
+    $state.transitionTo('root.explore', {tab: 'vagas'});
+  }
 
   $scope.$on('$destroy', function () {
     $rootScope.explorerView = false;
@@ -54,7 +62,6 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $filter, Search,
   });
 
   $scope.objects = Search.mapProjects();
-  Search.showProjects = true;
   $scope.mapOptions = {
     map : {
       center : new google.maps.LatLng(saoPaulo.lat, saoPaulo.lng),

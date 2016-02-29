@@ -104,6 +104,17 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $anchorScroll, 
     }
   }
 
+
+  $scope.displayProjects = function() {
+    Search.showProjects = true;
+    $state.go($state.current, {tab: 'vagas'}, {notify:false, reload:$state.current});
+  };
+
+  $scope.displayNonprofits = function() {
+    Search.showProjects = false;
+    $state.go($state.current, {tab: 'ongs'}, {notify:false, reload:$state.current});
+  };
+
   $scope.getMore = function () {
     if ($scope.landing) {
       $scope.$emit('landingToExplorer', {
