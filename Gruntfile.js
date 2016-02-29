@@ -37,7 +37,7 @@ module.exports = function (grunt) {
           authApi: 'http://www.atadoslocal.com.br:9000/auth/client',
           // storage: 'http://www.atadoslocal.com.br:8000/static/images/',
           storage: 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/',
-          selected: 'http://www.atadoslocal.com.br:8000/static/images/heart.png',
+          selected: 'http://www.atadoslocal.com.br:8000/static/images/orange-pin.png',
           notselected: 'http://www.atadoslocal.com.br:8000/static/images/blue.png',
           facebookClientId: '430973993601792',
           locale: 'pt_BR',
