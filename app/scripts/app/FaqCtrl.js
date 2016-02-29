@@ -1,5 +1,7 @@
 'use strict';
 
+/* global jQuery: false */
+
 var app = angular.module('atadosApp');
 
 app.controller('FaqCtrl', function ($scope, questions) {
@@ -11,5 +13,5 @@ app.controller('FaqCtrl', function ($scope, questions) {
       .closest('.panel')
       .find('.panel-collapse')
       .toggleClass('collapse');
-  }
+  };
 });
