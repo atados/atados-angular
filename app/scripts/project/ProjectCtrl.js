@@ -19,6 +19,11 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
   $scope.markers.push(project.address);
   $scope.showTimeTable = false;
 
+  $scope.isRemote = function (project) {
+    var remote = (project.work && project.work.can_be_done_remotely) || (project.job && project.job.can_be_done_remotely)
+    var address = (project.address && project.address.city && project.address.city.id === 0);
+    return remote || !address;
+  }
 
   if ($scope.project.address) {
     $scope.options = {
