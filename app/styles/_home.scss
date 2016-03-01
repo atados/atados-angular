@@ -4,18 +4,18 @@
     height: 460px;
     background: none;
 
-    #jumbotron-header {
+    .jumbotron-header {
       margin-top: 30px;
       h1 {
         font-size: 50px;
         font-weight: bold;
       }
-      p { 
+      p {
         font-size: 35px;
         margin-top: 15px;
       }
     }
-    #jumbotron-buttons {
+    .jumbotron-buttons {
       text-align: center;
       margin-top: 50px;
       .btn {
@@ -52,18 +52,18 @@
         h1 {
           font-size: 40px;
         }
-        p { 
+        p {
           margin-top: 30px;
         }
       }
     }
-    @media (max-width: $screen-sm) { 
+    @media (max-width: $screen-sm) {
       #jumbotron-header {
         margin-top: 15px;
         h1 {
           font-size: 53px;
         }
-        p { 
+        p {
           margin-top: 10px;
         }
       }
@@ -71,19 +71,19 @@
         margin-top: 30px;
       }
     }
-    @media (max-width: $screen-sm) { 
+    @media (max-width: $screen-sm) {
       #jumbotron-header {
         margin-top: 0px;
         h1 {
           font-size: 43px;
         }
-        p { 
+        p {
           margin-top: 10px;
           font-size: 18px;
         }
       }
       #jumbotron-buttons {
-        .btn { 
+        .btn {
           &:first-child {
             margin-right: 0px;
           }
@@ -150,17 +150,17 @@
     }
 
     :-moz-placeholder { /* Firefox 18- */
-       color: #c1c1c1;  
+       color: #c1c1c1;
     }
 
     ::-moz-placeholder {  /* Firefox 19+ */
-       color: #c1c1c1;  
+       color: #c1c1c1;
     }
 
-    :-ms-input-placeholder {  
-       color: #c1c1c1;  
+    :-ms-input-placeholder {
+       color: #c1c1c1;
     }
-    
+
     .row {
        margin-top: 20px;
     }
@@ -178,11 +178,11 @@
        font-size: 20px;
        text-align: center;
        display: block;
-       color: #FFB33B; 
+       color: #FFB33B;
     }
 
     .btn-default {
-       background: #E27F2E; 
+       background: #E27F2E;
        border-radius: 2px;
        border: 0px;
        color: white;
@@ -274,7 +274,7 @@
       height: 230px;
     }
     .overlay {
-      padding-top: 60px; 
+      padding-top: 60px;
     }
   }
 }
@@ -282,7 +282,7 @@
 @media (min-width: 768px) and (max-width: 992px) {
   .we-are-what-we-do {
     .overlay {
-      padding-top: 75px; 
+      padding-top: 75px;
       .title {
         font-size: 25px;
       }
@@ -302,7 +302,7 @@
 @media (max-width: 767px) {
   .we-are-what-we-do {
     .overlay {
-      padding-top: 75px; 
+      padding-top: 75px;
       .title {
         font-size: 25px;
       }
