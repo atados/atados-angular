@@ -89,6 +89,9 @@ app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $statePara
         nonprofit: function () {
           return $scope.project.nonprofit;
         },
+        projectName: function () {
+          return $scope.project.name;
+        },
         phone: function () {
           return $scope.loggedUser.user.phone;
         },
