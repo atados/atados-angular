@@ -1,15 +1,20 @@
 <div id="home" ng-controller="LandingCtrl as ctrl">
-  <div background-img="{{storage}}banner-atados-1.jpg" ng-hide="loggedUser">
-    <div class="jumbotron">
-      <div id="jumbotron-header">
-        <h1 class="text-center">Mobilize-se para causas sociais!</h1>
-        <p class="text-center">Conhecer uma causa e começar é muito fácil. Vamos lá?</p>
+  <carousel ng-if="!loggedUser" interval="7000">
+    <slide
+      ng-repeat="banner in banners"
+      active="banner.active"
+      background-img="{{banner.image_url}}"
+      class="jumbotron"
+    >
+      <div class="jumbotron-header">
+        <h1 class="text-center">{{banner.title}}</h1>
+        <p class="text-center">{{banner.text}}</p>
       </div>
-      <div id="jumbotron-buttons">
-        <button type="button" ng-show="!loggedUser" class="btn btn-primary btn-lg" role="button" ng-click="see_projects()">Quero fazer trabalho voluntário</button>
+      <div class="jumbotron-buttons">
+        <a ng-href="{{banner.link}}" class="btn btn-primary btn-lg" role="button">{{banner.link_text}}</a>
       </div>
-    </div>
-  </div>
+    </slide>
+  </carousel>
 
   <div id="atados-explorer">
     <atados-search></atados-search>
