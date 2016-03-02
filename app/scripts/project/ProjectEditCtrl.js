@@ -147,7 +147,15 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project
       $scope.project.job.start_date = $scope.project.job.start_date.getTime();
       $scope.project.job.end_date = $scope.project.job.end_date.getTime();
       delete $scope.project.work;
+
+      if (!$scope.project.job.can_be_done_remotely) {
+        delete $scope.project.address;
+      }
     } else {
+      if (!$scope.project.work.can_be_done_remotely) {
+        delete $scope.project.address;
+      }
+
       var ava = [];
       $scope.project.work.availabilities.forEach(function (period) {
         period.forEach(function (a) {

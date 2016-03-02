@@ -80,6 +80,7 @@ app.controller('ProjectNewCtrl', function($scope, $state, $stateParams, Restangu
       if (!$scope.files) {
         $scope.files = new FormData();
       }
+      $scope.photoUrl = URL.createObjectURL(files[0]);
       $scope.files.append('image', files[0]);
       $scope.imageUploaded = true;
       $scope.$apply();
@@ -118,9 +119,16 @@ app.controller('ProjectNewCtrl', function($scope, $state, $stateParams, Restangu
       $scope.job.end_date = $scope.job.end_date.getTime();
       angular.copy($scope.job, $scope.project.job);
 
+      if ($scope.project.job.can_be_done_remotely) {
+        delete $scope.project.address;
+      }
     } else {
       $scope.project.work = {};
       angular.copy($scope.work, $scope.project.work);
+
+      if ($scope.project.work.can_be_done_remotely) {
+        delete $scope.project.address;
+      }
 
       var ava = [];
       $scope.project.work.availabilities.forEach(function (period) {
