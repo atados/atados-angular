@@ -2,7 +2,18 @@
 
 /* global $: false */
 
-var app = angular.module('atadosApp', ['restangular', 'ui.router', 'ui.bootstrap', 'AngularGM', 'ezfb', 'atadosConstants', 'seo', 'linkify', 'angular-loading-bar']);
+var app = angular.module('atadosApp', [
+  'restangular',
+  'ui.router',
+  'ui.bootstrap',
+  'AngularGM',
+  'ezfb',
+  'atadosConstants',
+  'seo',
+  'linkify',
+  'angular-loading-bar',
+  'duScroll'
+]);
 
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 

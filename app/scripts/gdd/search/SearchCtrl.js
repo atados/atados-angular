@@ -5,7 +5,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('GddSearchCtrl', function ($scope, $http, $location, $anchorScroll, $rootScope,
+app.controller('GddSearchCtrl', function ($scope, $http, $location, $rootScope,
       Search, $state, storage, defaultZoom, Cleanup, Site, Restangular) {
 
   $scope.cityStates = Site.states;
@@ -77,7 +77,7 @@ app.controller('GddSearchCtrl', function ($scope, $http, $location, $anchorScrol
   $scope.searchMoreNonprofitButtonText = 'Mostrar mais ONGs';
   $scope.searchMoreDisabled = false;
   $scope.hideMore = true;
-  
+
   function getMoreProjects() {
     if (Search.nextUrlProject()) {
       $scope.searchMoreProjectButtonText = 'Buscando mais atos...';
@@ -139,7 +139,7 @@ app.controller('GddSearchCtrl', function ($scope, $http, $location, $anchorScrol
       if (Search.showProjects) {
         getMoreProjects();
       } else {
-        getMoreNonprofits(); 
+        getMoreNonprofits();
       }
     }
   };
