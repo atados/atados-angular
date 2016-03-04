@@ -64,8 +64,8 @@
         <button id="atar-button" disabled ng-hide="alreadyApplied || !project.closed" class="btn"><i class="fa fa-times"></i> Vaga Fechada</button>
 
         <div id="project-volunteers">
-          <h4 ng-show="project.volunteers.length > 1">{{project.volunteers.length}} voluntários cadastrados</h4>
-          <h4 ng-show="project.volunteers.length == 1">{{project.volunteers.length}} voluntário cadastrado</h4>
+          <h4 ng-show="project.volunteers.length > 1">{{project.volunteers.length}} voluntários inscritos</h4>
+          <h4 ng-show="project.volunteers.length == 1">{{project.volunteers.length}} voluntário inscrito</h4>
 
           <div id="cards">
             <a ui-sref="root.volunteer({slug: volunteer.slug})" target="_blank" ng-repeat="volunteer in project.volunteers">

@@ -14,7 +14,7 @@
         <label class="help-block" ng-show="loginForm.email.$dirty && loginForm.email.$invalid">Email inválido.</label>
       </div>
       <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[loginForm.password.$error.required || loginForm.password.$invalid || wrongCredentials]">
-        <input 
+        <input
         required
         class="form-control"
         type='password'
@@ -38,7 +38,7 @@
         <button type="submit" ng-disabled="loginForm.$invalid || loginForm.email.$invalid" id="signinButton" class="btn btn-info col-xs-6">Entrar</button>
       </div>
       <p style="margin-top: 30px;">Não tem login? <a ng-click="closeNonprofitLoginModal()" ui-sref="root.nonprofitsignup">Cadastre sua ONG</a>!</p>
-    </form> 
+    </form>
     <form novalidate name="resetPasswordForm" role="form" ng-show="showForgotPassword">
       <label class="help-block">Digite seu email para receber uma nova senha.</label>
       <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[resetPasswordForm.forgotEmail.$error.required || resetPasswordForm.forgotEmail.$invalid]">
@@ -87,7 +87,7 @@
               <button type="submit" ng-disabled="loginForm.$invalid" id="signinButton" class="btn btn-info col-xs-6">Entrar</button>
             </div>
             <p style="margin-top: 30px;">Não tem cadastro? <a ng-click="switchLoginActive()">Crie sua conta</a>!</p>
-          </form> 
+          </form>
 
           <form novalidate name="resetPasswordForm" role="form" ng-show="showForgotPassword">
             <label class="help-block">Digite seu email para receber uma nova senha.</label>
@@ -134,12 +134,10 @@
             <div class="row">
               <button type="submit" class="btn btn-info col-xs-6 col-xs-offset-6" ng-disabled="signupForm.$invalid">Criar conta</button>
             </div>
-          </form> 
+          </form>
           <p style="margin-top: 30px;">Já tem conta? <a ng-click="switchLoginActive()">Faça seu login</a>!</p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<div class="modal-footer"><contactatados/></div>
