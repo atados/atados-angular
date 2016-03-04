@@ -154,7 +154,7 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
             Auth.getCurrentUser(response.access_token).then(
               function (user) {
                 $rootScope.$emit('userLoggedIn', user, 'Bem vinda ONG ao atados! Sua ONG ainda precisa ser aprovada. Espere pelo nosso email.');
-                $state.transitionTo('root.home');
+                $state.transitionTo('root.nonprofitadmin');
               }, function (error) {
                 console.error(error);
                 toastr.error('Sua ONG foi criada mas não coseguimos te logar. Clique no botão acima "ONG" e use seu email e senha para logar.');
