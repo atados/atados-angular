@@ -22,6 +22,7 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
           city = curitiba;
         } else if (data.region_code === 'RJ') {
           city = rioDeJaneiro;
+          $scope.isRio = true;
         } else {
           city = saoPaulo;
         }

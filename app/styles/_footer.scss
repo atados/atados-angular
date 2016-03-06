@@ -8,6 +8,16 @@
     height: $footer-xs-height;
   }
 
+  .logo-rio {
+    vertical-align: top;
+    margin-left: 20px;
+    margin-top: 15px;
+  }
+
+  .fb-like-box {
+    display: inline-block;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     color: $footer-color-heading;
     font-size: 14px;
