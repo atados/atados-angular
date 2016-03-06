@@ -23,33 +23,6 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth,
     }
   });
 
-  $scope.$watch('slug', function (value) {
-    if (value) {
-      if (value.indexOf(' ') >= 0) {
-        $scope.signupForm.slug.$invalid = true;
-        $scope.signupForm.slug.hasSpace = true;
-        $scope.signupForm.slug.alreadyUsed = false;
-      } else if (value.indexOf('.') >= 0) {
-        $scope.signupForm.slug.$invalid = true;
-        $scope.signupForm.slug.hasDot = true;
-        $scope.signupForm.slug.alreadyUsed = false;
-      } else {
-        $scope.signupForm.slug.hasSpace = false;
-        $scope.signupForm.slug.hasDot = false;
-        $scope.signupForm.slug.$invalid = false;
-        Auth.isSlugUsed(value, function (response) {
-          $scope.signupForm.slug.alreadyUsed = response.alreadyUsed;
-          $scope.signupForm.slug.$invalid = response.alreadyUsed;
-        });
-      }
-    } else {
-      $scope.signupForm.slug.alreadyUsed = false;
-      $scope.signupForm.slug.hasSpace = false;
-      $scope.signupForm.slug.hasDot = false;
-      $scope.signupForm.slug.$invalid = false;
-    }
-  });
-
   $scope.$watch('email', function (value) {
     if (value) {
       Auth.isEmailUsed(value, function (response) {
@@ -74,7 +47,6 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth,
 
     if ($scope.signupForm.$valid) {
       var data = {
-        slug: $scope.slug,
         email: $scope.email,
         password: $scope.password,
         address: {'city': $scope.city.id},
