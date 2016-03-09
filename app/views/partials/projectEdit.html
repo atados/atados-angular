@@ -77,13 +77,21 @@
             </div>
           </div>
 
-          <label class="col-sm-3 control-label">Cidade da Vaga</label>
-          <div class="btn-group">
-            <button type="button" class="btn" ng-model="project.address.city" btn-radio="9422">São Paulo, SP</button>
-            <button type="button" class="btn" ng-model="project.address.city" btn-radio="5915">Curitiba, PR</button>
-            <button type="button" class="btn" ng-model="project.address.city" btn-radio="1724">Brasília, DF</button>
-            <button type="button" class="btn" ng-model="project.address.city" btn-radio="6861">Rio de Janeiro, RJ</button>
-            <label class="help-block" ng-hide="project.address.city">Por favor escolha pelo menos uma cidade.</label>
+          <div class="form-group">
+            <pre>{{project.address.city|json}}</pre>
+            <div class="col-sm-8 col-sm-offset-3">
+              <br><br>
+              <select class="form-control" ng-model="project.address.state" ng-options="s.name for s in states()">
+                <option value="" disabled selected>Estado</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[!project.address.city.id]">
+            <div class="col-sm-8 col-sm-offset-3">
+              <select class="form-control" ng-model="project.address.city" ng-options="c.name for c in stateCities | orderBy: '-highlight'" ng-disabled="!cityLoaded">
+                <option value="" disabled selected>Cidade</option>
+              </select>
+            </div>
           </div>
         </fieldset>
 

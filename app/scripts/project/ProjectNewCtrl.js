@@ -4,8 +4,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('ProjectNewCtrl', function($scope, $state, $stateParams, Restangular, Project, NONPROFIT) {
-
+app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeout, Restangular, Project, NONPROFIT) {
   $scope.project = {
     name: '',
     nonprofit: null,
@@ -27,18 +26,46 @@ app.controller('ProjectNewCtrl', function($scope, $state, $stateParams, Restangu
     roles: [],
   };
 
+  $scope.cityLoaded = false;
+  $scope.$watch('project.address.state', function (value) {
+    $scope.cityLoaded = false;
+    $scope.stateCities = [];
+
+    if (value) {
+      Restangular.all('cities')
+      .getList({page_size: 3000, state: value.id})
+      .then(function (response) {
+        response.forEach(function(c) {
+          $scope.stateCities.push(c);
+        });
+        if ($scope.loggedUser.address && value.id == $scope.loggedUser.address.city.state.id) {
+          $scope.project.address.city = $scope.stateCities.find(function (city) {
+            return city.id == $scope.loggedUser.address.city.id;
+          });
+        }
+
+        value.citiesLoaded = true;
+        $scope.cityLoaded = true;
+      });
+    }
+  });
+
   if (!$scope.loggedUser) {
     $state.transitionTo('root.home');
     toastr.error('Nenhum usuário logado.');
   } else if ($scope.loggedUser.user.is_staff) {
     $scope.project.nonprofit = $stateParams.id;
-    $scope.project.address.city.id = $scope.loggedUser.address.city;
+    $scope.project.address.state = $scope.states().find(function (s) {
+      return s.id == $scope.loggedUser.address.city.state.id;
+    });
   } else if ($scope.loggedUser.role !== NONPROFIT) {
     $state.transitionTo('root.home');
     toastr.error('Precisa estar logado como ONG para fazer cadastro de uma nova vaga');
   } else {
     $scope.project.nonprofit = $scope.loggedUser.id;
-    $scope.project.address.city.id = $scope.loggedUser.address.city;
+    $scope.project.address.state = $scope.states().find(function (s) {
+      return s.id == $scope.loggedUser.address.city.state.id;
+    });
   }
 
   $scope.job = {
@@ -119,14 +146,14 @@ app.controller('ProjectNewCtrl', function($scope, $state, $stateParams, Restangu
       $scope.job.end_date = $scope.job.end_date.getTime();
       angular.copy($scope.job, $scope.project.job);
 
-      if ($scope.project.job.can_be_done_remotely) {
+      if (!!$scope.project.job.can_be_done_remotely) {
         delete $scope.project.address;
       }
     } else {
       $scope.project.work = {};
       angular.copy($scope.work, $scope.project.work);
 
-      if ($scope.project.work.can_be_done_remotely) {
+      if (!!$scope.project.work.can_be_done_remotely) {
         delete $scope.project.address;
       }
 

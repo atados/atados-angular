@@ -59,13 +59,6 @@
                 <timepicker show-meridian="true"></timepicker>
               </div>
             </div>
-
-            <div class="form-group">
-              <label class="col-md-5 control-label">Essa vaga pode ser feita remotamente?</label>
-              <div class="col-md-7">
-                <input class="btn" type="checkbox" name="remoteJob" ng-checked="job.can_be_done_remotely" ng-model="job.can_be_done_remotely">
-              </div>
-            </div>
           </fieldset>
         </div>
 
@@ -110,15 +103,8 @@
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <label class="col-md-5 control-label">Essa vaga pode ser feita remotamente?</label>
-              <div class="col-md-7">
-                <input class="btn" type="checkbox" name="canBeDoneRemotely" ng-checked="work.can_be_done_remotely" ng-model="work.can_be_done_remotely">
-              </div>
-            </div>
           </fieldset>
         </fieldset>
-
 
         <fieldset>
           <legend>Sobre a Vaga</legend>
@@ -163,6 +149,21 @@
             </div>
           </div>
 
+          <fieldset>
+            <div class="form-group" ng-if="!jobActive">
+              <label class="col-md-5 control-label">Essa vaga pode ser feita remotamente?</label>
+              <div class="col-md-7">
+                <input class="btn" type="checkbox" name="canBeDoneRemotely" ng-checked="work.can_be_done_remotely" ng-model="work.can_be_done_remotely">
+              </div>
+            </div>
+            <div class="form-group" ng-if="jobActive">
+              <label class="col-md-5 control-label">Essa vaga pode ser feita remotamente?</label>
+              <div class="col-md-7">
+                <input class="btn" type="checkbox" name="remoteJob" ng-checked="job.can_be_done_remotely" ng-model="job.can_be_done_remotely">
+              </div>
+            </div>
+          </fieldset>
+
           <fieldset ng-if="!(jobActive ? job.can_be_done_remotely : work.can_be_done_remotely)">
             <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[newProjectForm.addressline.$invalid]">
               <label class="col-sm-3 control-label">Endereço</label>
@@ -202,13 +203,20 @@
               </div>
             </div>
 
-            <label class="col-sm-3 control-label">Cidade</label>
-            <div class="btn-group">
-              <button type="button" class="btn" ng-model="project.address.city.id" btn-radio="9422">São Paulo, SP</button>
-              <button type="button" class="btn" ng-model="project.address.city.id" btn-radio="5915">Curitiba, PR</button>
-              <button type="button" class="btn" ng-model="project.address.city.id" btn-radio="1724">Brasília, DF</button>
-              <button type="button" class="btn" ng-model="project.address.city.id" btn-radio="6861">Rio de Janeiro, RJ</button>
-              <label class="help-block" ng-hide="project.address.city.id">Por favor escolha pelo menos uma cidade.</label>
+            <div class="form-group">
+              <div class="col-sm-8 col-sm-offset-3">
+                <br><br>
+                <select class="form-control" ng-model="project.address.state" ng-options="s.name for s in states()">
+                  <option value="" disabled selected>Estado</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[!project.address.city.id]">
+              <div class="col-sm-8 col-sm-offset-3">
+                <select class="form-control" ng-model="project.address.city" ng-options="c.name for c in stateCities | orderBy: '-highlight'" ng-disabled="!cityLoaded">
+                  <option value="" disabled selected>Cidade</option>
+                </select>
+              </div>
             </div>
           </fieldset>
         </fieldset>
