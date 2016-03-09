@@ -40,7 +40,37 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project
     }
   });
 
+  $scope.cityLoaded = false;
+  $scope.$watch('project.address.state', function (value) {
+    $scope.cityLoaded = false;
+    $scope.stateCities = [];
+
+    if (value) {
+      Restangular.all('cities')
+      .getList({page_size: 3000, state: value.id})
+      .then(function (response) {
+        response.forEach(function(c) {
+          $scope.stateCities.push(c);
+        });
+        console.log($scope.stateCities[0]);
+        if ($scope.loggedUser.address && value.id == $scope.loggedUser.address.city.state.id) {
+          $scope.project.address.city = $scope.stateCities.find(function (city) {
+            return city.id == $scope.loggedUser.address.city.id;
+          });
+        }
+
+        value.citiesLoaded = true;
+        $scope.cityLoaded = true;
+      });
+    }
+  });
+
   function prepareProject() {
+    var stateCode = $scope.project.address.city_state.split(', ')[1];
+    $scope.project.address.state = $scope.states().find(function (s) {
+      return s.code == stateCode;
+    });
+
     if ($scope.project.job) {
       $scope.jobActive = true;
       $scope.project.job.start_date = new Date($scope.project.job.start_date);

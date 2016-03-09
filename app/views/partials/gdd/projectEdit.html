@@ -76,6 +76,21 @@
           </div>
         </div>
 
+        <div class="form-group">
+          <div class="col-sm-8 col-sm-offset-3">
+            <br><br>
+            <select class="form-control" ng-model="project.address.state" ng-options="s.name for s in states()">
+              <option value="" disabled selected>Estado</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[!project.address.city.id]">
+          <div class="col-sm-8 col-sm-offset-3">
+            <select class="form-control" ng-model="project.address.city" ng-options="c.name for c in stateCities | orderBy: '-highlight'" ng-disabled="!cityLoaded">
+              <option value="" disabled selected>Cidade</option>
+            </select>
+          </div>
+        </div>
       </fieldset>
 
       <fieldset>
@@ -95,7 +110,7 @@
 
         <div class="form-group" ng-class="{true: 'has-error',false: 'has-success'}[editProjectForm.email.$error.required || editProjectForm.email.$invalid]">
           <label class="col-md-3 control-label">Email</label>
-          <div class="col-md-8">                     
+          <div class="col-md-8">
             <label class="help-block" ng-show="editProjectForm.email.$error.required">Precisamos de email caso voluntário ou Atados queiram entrar em contato.</label>
             <label class="help-block" ng-show="editProjectForm.email.$invalid && editProjectForm.email.$dirty">Email inválido.</label>
             <input class="form-control" type='email' name="email" ng-model='project.email' placeholder="Email" required/>
@@ -110,7 +125,7 @@
             <img alt="Foto da ação." width="250" ng-src="{{project.small_image_url}}">
           </label>
 
-          <div class="col-md-5">                     
+          <div class="col-md-5">
             <label class="help-block" ng-hide="imageUploaded">Não se esqueça de nos dar uma foto bem bonita que represente seu projeto. </label>
             <input id="file-input" type="file" name="file" onchange="angular.element(this).scope().uploadProjectImage(this.files)" />
           </div>
@@ -159,7 +174,7 @@
             </div>
           </div>
 
-          <a class="btn btn-info pull-right" ng-click="addRole(newRole)">Adicionar Cargo</a> 
+          <a class="btn btn-info pull-right" ng-click="addRole(newRole)">Adicionar Cargo</a>
           <table class="table">
             <thead>
               <tr>
