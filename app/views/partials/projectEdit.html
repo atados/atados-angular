@@ -38,7 +38,22 @@
           </div>
         </div>
 
-        <fieldset ng-if="!project.work.can_be_done_remotely">
+        <fieldset>
+          <div class="form-group" ng-if="jobActive">
+            <label class="col-md-5 control-label">Essa vaga pode ser feita remotamente?</label>
+            <div class="col-md-7">
+              <input class="btn" type="checkbox" name="remote_job" ng-checked="project.job.can_be_done_remotely" ng-model="project.job.can_be_done_remotely">
+            </div>
+          </div>
+          <div class="form-group" ng-if="!jobActive">
+            <label class="col-md-5 control-label">Essa vaga pode ser feita remotamente?</label>
+            <div class="col-md-7">
+              <input class="btn" type="checkbox" name="canBeDoneRemotely" ng-checked="project.work.can_be_done_remotely" ng-model="project.work.can_be_done_remotely">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset ng-if="!(project.work.can_be_done_remotely || project.job.can_be_done_remotely)">
           <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.addressline.$invalid]">
             <label class="col-sm-3 control-label">Endereço</label>
             <div class="col-sm-8">
@@ -78,7 +93,6 @@
           </div>
 
           <div class="form-group">
-            <pre>{{project.address.city|json}}</pre>
             <div class="col-sm-8 col-sm-offset-3">
               <br><br>
               <select class="form-control" ng-model="project.address.state" ng-options="s.name for s in states()">
@@ -212,7 +226,7 @@
           </label>
         </div>
 
-        <fieldset ng-show="jobActive">
+        <fieldset ng-if="jobActive">
           <legend>Dia e hora da Vaga</legend>
           <label class="col-md-2 control-label">Começa: </label>
           <div class="col-md-3">
@@ -249,22 +263,9 @@
               <timepicker show-meridian="true"></timepicker>
             </div>
           </div>
-
-          <div class="form-group">
-            <label class="col-md-5 control-label">Essa vaga pode ser feita remotamente?</label>
-            <div class="col-md-7">
-              <input class="btn" type="checkbox" name="remote_job" ng-checked="project.job.can_be_done_remotely" ng-model="project.job.can_be_done_remotely">
-            </div>
-          </div>
         </fieldset>
 
-        <fieldset ng-hide="jobActive">
-          <div class="form-group">
-            <label class="col-md-5 control-label">Essa vaga pode ser feita remotamente?</label>
-            <div class="col-md-7">
-              <input class="btn" type="checkbox" name="canBeDoneRemotely" ng-checked="project.work.can_be_done_remotely" ng-model="project.work.can_be_done_remotely">
-            </div>
-          </div>
+        <fieldset ng-if="!jobActive">
           <div class="form-group">
             <label class="col-md-5 control-label" for="rolename">Horas por semana?</label>
             <div class="col-md-1">
