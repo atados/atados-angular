@@ -5,7 +5,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('GddProjectEditCtrl', function($scope, $state, $stateParams, Project, Photos, NONPROFIT, saoPaulo) {
+app.controller('GddProjectEditCtrl', function($scope, $state, $stateParams, Restangular, Project, Photos, NONPROFIT, saoPaulo) {
 
   $scope.$watch('loggedUser', function (user) {
     if (!user) {
@@ -37,6 +37,30 @@ app.controller('GddProjectEditCtrl', function($scope, $state, $stateParams, Proj
         $state.transitionTo('gdd.home');
         toastr.error('A ONG logada não é dona deste ato e não tem acesso de edição.');
       }
+    }
+  });
+
+  $scope.cityLoaded = false;
+  $scope.$watch('project.address.state', function (value) {
+    $scope.cityLoaded = false;
+    $scope.stateCities = [];
+
+    if (value) {
+      Restangular.all('cities')
+      .getList({page_size: 3000, state: value.id})
+      .then(function (response) {
+        response.forEach(function(c) {
+          $scope.stateCities.push(c);
+        });
+        if ($scope.loggedUser.address && value.id == $scope.loggedUser.address.city.state.id) {
+          $scope.project.address.city = $scope.stateCities.find(function (city) {
+            return city.id == $scope.loggedUser.address.city.id;
+          });
+        }
+
+        value.citiesLoaded = true;
+        $scope.cityLoaded = true;
+      });
     }
   });
 
@@ -147,7 +171,15 @@ app.controller('GddProjectEditCtrl', function($scope, $state, $stateParams, Proj
       $scope.project.job.start_date = $scope.project.job.start_date.getTime();
       $scope.project.job.end_date = $scope.project.job.end_date.getTime();
       delete $scope.project.work;
+
+      if (!!$scope.project.job.can_be_done_remotely) {
+        delete $scope.project.address;
+      }
     } else {
+      if (!!$scope.project.work.can_be_done_remotely) {
+        delete $scope.project.address;
+      }
+
       var ava = [];
       $scope.project.work.availabilities.forEach(function (period) {
         period.forEach(function (a) {

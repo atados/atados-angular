@@ -5,7 +5,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project, Photos, NONPROFIT, saoPaulo) {
+app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Restangular, Project, Photos, NONPROFIT, saoPaulo) {
 
   $scope.$watch('loggedUser', function (user) {
     if (!user) {
@@ -52,7 +52,6 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project
         response.forEach(function(c) {
           $scope.stateCities.push(c);
         });
-        console.log($scope.stateCities[0]);
         if ($scope.loggedUser.address && value.id == $scope.loggedUser.address.city.state.id) {
           $scope.project.address.city = $scope.stateCities.find(function (city) {
             return city.id == $scope.loggedUser.address.city.id;
@@ -178,11 +177,11 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Project
       $scope.project.job.end_date = $scope.project.job.end_date.getTime();
       delete $scope.project.work;
 
-      if (!$scope.project.job.can_be_done_remotely) {
+      if (!!$scope.project.job.can_be_done_remotely) {
         delete $scope.project.address;
       }
     } else {
-      if (!$scope.project.work.can_be_done_remotely) {
+      if (!!$scope.project.work.can_be_done_remotely) {
         delete $scope.project.address;
       }
 
