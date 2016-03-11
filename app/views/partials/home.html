@@ -7,8 +7,8 @@
       class="jumbotron"
     >
       <div class="jumbotron-header">
-        <h1 class="text-center">{{banner.title}}</h1>
-        <p class="text-center">{{banner.text}}</p>
+        <h1 class="text-center" ng-bind-html="banner.title"></h1>
+        <p class="text-center" ng-bind-html="banner.text"></p>
       </div>
       <div class="jumbotron-buttons">
         <a ng-href="{{banner.link}}" class="btn btn-primary btn-lg" role="button">{{banner.link_text}}</a>
