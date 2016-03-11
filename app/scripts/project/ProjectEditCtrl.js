@@ -52,9 +52,9 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Restang
         response.forEach(function(c) {
           $scope.stateCities.push(c);
         });
-        if ($scope.loggedUser.address && value.id == $scope.loggedUser.address.city.state.id) {
+        if ($scope.loggedUser.address && value.id === $scope.loggedUser.address.city.state.id) {
           $scope.project.address.city = $scope.stateCities.find(function (city) {
-            return city.id == $scope.loggedUser.address.city.id;
+            return city.id === $scope.loggedUser.address.city.id;
           });
         }
 
@@ -67,7 +67,7 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Restang
   function prepareProject() {
     var stateCode = $scope.project.address.city_state.split(', ')[1];
     $scope.project.address.state = $scope.states().find(function (s) {
-      return s.code == stateCode;
+      return s.code === stateCode;
     });
 
     if ($scope.project.job) {

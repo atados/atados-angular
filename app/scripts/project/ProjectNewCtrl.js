@@ -38,9 +38,9 @@ app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeou
         response.forEach(function(c) {
           $scope.stateCities.push(c);
         });
-        if ($scope.loggedUser.address && value.id == $scope.loggedUser.address.city.state.id) {
+        if ($scope.loggedUser.address && value.id === $scope.loggedUser.address.city.state.id) {
           $scope.project.address.city = $scope.stateCities.find(function (city) {
-            return city.id == $scope.loggedUser.address.city.id;
+            return city.id === $scope.loggedUser.address.city.id;
           });
         }
 
@@ -56,7 +56,7 @@ app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeou
   } else if ($scope.loggedUser.user.is_staff) {
     $scope.project.nonprofit = $stateParams.id;
     $scope.project.address.state = $scope.states().find(function (s) {
-      return s.id == $scope.loggedUser.address.city.state.id;
+      return s.id === $scope.loggedUser.address.city.state.id;
     });
   } else if ($scope.loggedUser.role !== NONPROFIT) {
     $state.transitionTo('root.home');
@@ -64,7 +64,7 @@ app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeou
   } else {
     $scope.project.nonprofit = $scope.loggedUser.id;
     $scope.project.address.state = $scope.states().find(function (s) {
-      return s.id == $scope.loggedUser.address.city.state.id;
+      return s.id === $scope.loggedUser.address.city.state.id;
     });
   }
 

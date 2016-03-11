@@ -7,8 +7,8 @@ var app = angular.module('atadosApp');
 app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $state, $http, api, Auth, Photos, Restangular) {
 
   $scope.nonprofit = {
-    image_url: "https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg",
-    cover_url: "https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg",
+    image_url: 'https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg',
+    cover_url: 'https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg',
     hidden_address: false,
     address: {
       neighborhood:null,
