@@ -8,7 +8,7 @@ app.controller('LandingCtrl', function ($scope, $sce, Banner) {
 
   Banner.get()
   .then(function (banners) {
-    $scope.banners = $sce.trustAsHtml(banners);
+    $scope.banners = banners;
   });
 
   $scope.$on('$destroy', function () {
