@@ -99,9 +99,9 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
     });
   };
 
-  if ($scope.loggedUser && !$scope.loggedUser.address) {
-    $rootScope.askForAddress($scope.loggedUser);
-  }
+  // if ($scope.loggedUser && !$scope.loggedUser.address) {
+  //   $rootScope.askForAddress($scope.loggedUser);
+  // }
 
   $rootScope.$on('userLoggedIn', function(event, user, message) {
     if (user) {
@@ -117,9 +117,9 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
       if (user.role === 'NONPROFIT') {
         $location.path('/dia-das-boas-acoes/controle/' + user.slug);
       }
-      if (!user.address) {
-        $rootScope.askForAddress(user);
-      }
+      // if (!user.address) {
+      //   $rootScope.askForAddress(user);
+      // }
     }
   });
 });
@@ -129,6 +129,6 @@ app.config(function ($provide) {
     return function (uiViewElement) {
       var top = uiViewElement[0].getBoundingClientRect().top;
       window.scrollTo(0, (top - 30));
-    }; 
+    };
   });
 });
