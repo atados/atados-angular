@@ -146,6 +146,7 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Restang
   $scope.uploadProjectImage = function(files) {
     if (files) {
       var fd = new FormData();
+      $scope.project.image_url = URL.createObjectURL(files[0]);
       fd.append('file', files[0]);
       Photos.setProjectPhoto(fd, $scope.project.id, function(response) {
         $scope.project.image_url = response.file;
@@ -200,6 +201,7 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Restang
 
       delete $scope.project.job;
     }
+    $scope.project.address.city = $scope.project.address.city.id;
 
     Project.save($scope.project, function (project) {
       $scope.project = project;
