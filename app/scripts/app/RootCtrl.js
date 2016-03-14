@@ -108,9 +108,9 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
     });
   };
 
-  if ($scope.loggedUser && !$scope.loggedUser.address) {
-    $rootScope.askForAddress($scope.loggedUser);
-  }
+  // if ($scope.loggedUser && !$scope.loggedUser.address) {
+  //   $rootScope.askForAddress($scope.loggedUser);
+  // }
 
   $rootScope.$on('userLoggedIn', function(event, user, message) {
     if (user) {
@@ -126,9 +126,9 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
       if (user.role === 'NONPROFIT') {
         $location.path('/controle/' + user.slug);
       }
-      if (!user.address) {
-        $rootScope.askForAddress(user);
-      }
+      // if (!user.address) {
+      //   $rootScope.askForAddress(user);
+      // }
     }
   });
 });
