@@ -1,10 +1,8 @@
-'use strict';
+import {api} from '../constants';
 
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('TokenCtrl', function($scope, api, $http, $location, $state) {
+// controller
+function TokenCtrl ($scope, $http, $location, $state, toastr) {
+  'ngInject';
   $scope.site.title = 'Atados - Juntando Gente Boa';
 
   var token = $location.search().token;
@@ -17,4 +15,6 @@ app.controller('TokenCtrl', function($scope, api, $http, $location, $state) {
       toastr.error('Não conseguimos confirmar seu email. Entre em contato conosco para resolver seu problema.');
     });
   }
-});
+};
+
+export default TokenCtrl;

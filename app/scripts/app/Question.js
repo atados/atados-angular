@@ -1,11 +1,11 @@
-'use strict';
-
-var app = angular.module('atadosApp');
-
-app.factory('Question', function($http, $state, Restangular, Cleanup, api) {
+// factory
+function Question ($http, $state, Restangular, Cleanup, api) {
+  'ngInject';
   return {
     getAll: function() {
       return $http.get(api + 'questions/');
     }
   };
-});
+};
+
+export default Question;

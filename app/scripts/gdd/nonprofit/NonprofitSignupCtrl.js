@@ -1,11 +1,16 @@
-'use strict';
-
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('GddNonprofitSignupCtrl', function($scope, $rootScope, $filter, $state, $http, api, Auth, Photos, Restangular) {
-
+// controller
+function GddNonprofitSignupCtrl (
+  $scope,
+  $rootScope,
+  $filter,
+  $state,
+  $http,
+  Auth,
+  Photos,
+  Restangular,
+  toastr
+) {
+  'ngInject';
   $scope.nonprofit = {
     hidden_address: false,
     address: {
@@ -148,13 +153,11 @@ app.controller('GddNonprofitSignupCtrl', function($scope, $rootScope, $filter, $
           }, function (response) {
             $scope.creatingNonprofit = false;
             $scope.buttonText = 'Finalizar cadastro';
-            console.log(response);
             Auth.getCurrentUser(response.access_token).then(
               function (user) {
                 $rootScope.$emit('userLoggedIn', user, 'Bem vinda ONG ao atados! Sua ONG ainda precisa ser aprovada. Espere pelo nosso email.');
                 $state.transitionTo('gdd.newproject');
               }, function (error) {
-                console.error(error);
                 toastr.error('Sua ONG foi criada mas não coseguimos te logar. Clique no botão acima "ONG" e use seu email e senha para logar.');
                 $state.transitionTo('gdd.home');
               });
@@ -175,3 +178,5 @@ app.controller('GddNonprofitSignupCtrl', function($scope, $rootScope, $filter, $
     }
   };
 });
+
+export default GddNonprofitSignupCtrl;

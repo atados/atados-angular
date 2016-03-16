@@ -1,10 +1,8 @@
-'use strict';
+import {api} from '../constants';
 
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.factory('GddProject', function($http, Restangular, Site, Auth, Cleanup, $state, api) {
+// factory
+function GddProject ($http, Restangular, Site, Auth, Cleanup, $state, toastr) {
+  'ngInject';
   return {
     create: function (project, files, success, error) {
       var projectCopy = {};
@@ -87,4 +85,6 @@ app.factory('GddProject', function($http, Restangular, Site, Auth, Cleanup, $sta
       });
     },
   };
-});
+};
+
+export default GddProject;

@@ -1,10 +1,6 @@
-'use strict';
-
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeout, Restangular, Project, NONPROFIT) {
+// controller
+function ProjectNewCtrl ($scope, $state, $stateParams, $timeout, Restangular, Project, NONPROFIT) {
+  'ngInject';
   $scope.project = {
     name: '',
     nonprofit: null,
@@ -183,4 +179,6 @@ app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeou
       toastr.error('Não consigo criar a Vaga. Entre em contato com o Atados.');
     });
   };
-});
+};
+
+export default ProjectNewCtrl;

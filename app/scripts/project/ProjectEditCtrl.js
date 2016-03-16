@@ -1,12 +1,6 @@
-'use strict';
-
-/* global toastr: false */
-/* jshint unused: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Restangular, Project, Photos, NONPROFIT, saoPaulo) {
-
+// controller
+function ProjectEditCtrl ($scope, $state, $stateParams, Restangular, Project, Photos, NONPROFIT, saoPaulo) {
+  'ngInject';
   $scope.$watch('loggedUser', function (user) {
     if (!user) {
       $state.transitionTo('root.home');
@@ -218,4 +212,6 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Restang
       toastr.error('Não consigo salvar a Vaga. Entre em contato com o Atados para resolver o problema.');
     });
   };
-});
+};
+
+export default ProjectEditCtrl;

@@ -1,11 +1,8 @@
-'use strict';
+import {api} from '../constants';
 
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.factory('Photos', function($http, ezfb, api) {
-
+// factory
+function Photos ($http, ezfb, toastr) {
+  'ngInject';
   return {
     getFacebookPhoto: function (success, error) {
       ezfb.getLoginStatus(function (response) {
@@ -48,4 +45,6 @@ app.factory('Photos', function($http, ezfb, api) {
       }).success(success).error(error);
     },
   };
-});
+};
+
+export default Photos;

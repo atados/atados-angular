@@ -1,14 +1,7 @@
-'use strict';
-
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('NonprofitEditCtrl', function($scope, $http, $state, $stateParams, $timeout,
-      Restangular, Photos, Cleanup, api, VOLUNTEER, NONPROFIT, Nonprofit) {
-
+// controller
+function NonprofitEditCtrl ($scope, $http, $state, $stateParams, $timeout, Restangular, Photos, Cleanup, api, VOLUNTEER, NONPROFIT, Nonprofit) {
+  'ngInject';
   $scope.$watch('loggedUser', function (user) {
-
     if (!user) {
       $state.transitionTo('root.home');
       toastr.error('Nenhum usuário logado.');
@@ -69,4 +62,6 @@ app.controller('NonprofitEditCtrl', function($scope, $http, $state, $stateParams
       });
     }
   };
-});
+};
+
+export default NonprofitEditCtrl;

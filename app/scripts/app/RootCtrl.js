@@ -1,12 +1,17 @@
-'use strict';
+import {
+  NONPROFIT,
+  storage,
+  Search,
+  saoPaulo,
+  curitiba,
+  brasilia,
+  rioDeJaneiro,
+  Site
+} from '../constants';
 
-/* global toastr: false */
-/* global $: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, rioDeJaneiro, Site) {
-
+// controller
+function RootCtrl ($scope, $rootScope, $modal, $state, $location, $timeout, Cookies,  Auth, loggedUser, toastr) {
+  'ngInject';
   $scope.loggedUser = loggedUser;
 
   $scope.searchIP = function() {
@@ -131,4 +136,6 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
       // }
     }
   });
-});
+};
+
+export default RootCtrl;

@@ -1,10 +1,8 @@
-'use strict';
+import {api} from '../constants';
 
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.factory('Nonprofit', function(Restangular, $state, $stateParams, Cleanup, $http, api, Auth) {
+// factory
+function Nonprofit (Restangular, $state, $stateParams, Cleanup, $http, Auth, toastr) {
+  'ngInject';
   return {
     get: function (slug) {
       return Restangular.one('nonprofit', slug).get().then(function(nonprofit) {
@@ -63,7 +61,7 @@ app.factory('Nonprofit', function(Restangular, $state, $stateParams, Cleanup, $h
       }
 
       nonprofitCopy.user.address.city = nonprofitCopy.address.city.id;
-      
+
       delete nonprofitCopy.address;
       delete nonprofitCopy.projects;
       delete nonprofitCopy.image_url;
@@ -71,14 +69,16 @@ app.factory('Nonprofit', function(Restangular, $state, $stateParams, Cleanup, $h
       delete nonprofitCopy.volunteers;
       delete nonprofitCopy.user.address.city_state;
       delete nonprofitCopy.user.address.state;
-      
+
       $http.put(api + 'nonprofit/' + nonprofit.slug + '/.json', nonprofitCopy)
-        .success(function() {
-          toastr.success('Perfil da ONG salva!');
-        }).error(function(error) {
-          console.error(error);
-          toastr.error('Problema ao salvar o perfil da ONG, por favor tente de novo');
-        });
+      .success(function() {
+        toastr.success('Perfil da ONG salva!');
+      }).error(function(error) {
+        console.error(error);
+        toastr.error('Problema ao salvar o perfil da ONG, por favor tente de novo');
+      });
     }
   };
-});
+};
+
+export default Nonprofit;

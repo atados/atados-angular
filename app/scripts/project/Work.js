@@ -1,8 +1,6 @@
-'use strict';
-
-var app = angular.module('atadosApp');
-
-app.factory('Work', function($http, $q, api) {
+// factory
+function Work ($http, $q, api) {
+  'ngInject';
   return {
     get: function(id) {
       var deferred = $q.defer();
@@ -12,4 +10,6 @@ app.factory('Work', function($http, $q, api) {
       return deferred.promise;
     }
   };
-});
+};
+
+export default Work;

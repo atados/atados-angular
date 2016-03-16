@@ -1,14 +1,7 @@
-'use strict';
-
-/* global toastr: false */
-/* global google: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('NonprofitCtrl', function($scope, $rootScope, $state, $http, nonprofit, api, VOLUNTEER) {
-
+// controller
+function NonprofitCtrl ($scope, $rootScope, $state, $http, nonprofit, api, VOLUNTEER) {
+  'ngInject';
   $scope.landing = false;
-
   $scope.nonprofit = nonprofit;
   $scope.nonprofit.address = nonprofit.user.address;
   $scope.site.title = 'ONG - ' + $scope.nonprofit.name;
@@ -18,7 +11,7 @@ app.controller('NonprofitCtrl', function($scope, $rootScope, $state, $http, nonp
   $scope.activeProjects = true;
   $scope.markers = [];
   $scope.markers.push(nonprofit.address);
-  
+
   // Should be on gdd site only!
   if ($scope.nonprofit.not_nonprofit) {
     $state.transitionTo('gdd.nonprofit', {slug: nonprofit.slug});
@@ -123,5 +116,6 @@ app.controller('NonprofitCtrl', function($scope, $rootScope, $state, $http, nonp
     angular.element(document.querySelector('#card-' + object.slug))
       .removeClass('hover');
   };
+};
 
-});
+export default NonprofitCtrl;

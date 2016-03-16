@@ -1,10 +1,6 @@
-'use strict';
-
-/* global jQuery: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('FaqCtrl', function ($scope, questions) {
+// controller
+function FaqCtrl ($scope, questions) {
+  'ngInject';
   $scope.site.title = 'Atados - Perguntas Frequentes';
   $scope.questions = questions.data.results;
 
@@ -14,4 +10,6 @@ app.controller('FaqCtrl', function ($scope, questions) {
       .find('.panel-collapse')
       .toggleClass('collapse');
   };
-});
+};
+
+export default FaqCtrl;

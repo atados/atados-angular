@@ -1,10 +1,6 @@
-'use strict';
-
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('GddExploreCtrl', function($rootScope, $scope, $sce, $modal, $http, Restangular, api, $location) {
+// controller
+function GddExploreCtrl ($rootScope, $scope, $sce, $modal, $http, Restangular, api, $location) {
+  'ngInject';
   $scope.site.title = 'Atados - Juntando Gente Boa';
   $scope.site.og.url = 'https://www.atados.com.br';
   $scope.site.og.image = 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/landing_cover.jpg';
@@ -22,3 +18,5 @@ app.controller('GddExploreCtrl', function($rootScope, $scope, $sce, $modal, $htt
       .removeClass('hover');
   };
 });
+
+export default GddExploreCtrl;

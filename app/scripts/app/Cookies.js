@@ -1,10 +1,6 @@
-'use strict';
-
-/* global $: false */
-
-var app = angular.module('atadosApp');
-
-app.factory('Cookies', function(){
+// factory
+function Cookies () {
+  'ngInject';
   return {
     get: function(name){
       return $.cookie(name);
@@ -22,6 +18,6 @@ app.factory('Cookies', function(){
       return $.removeCookie(name);
     }
   };
-});
+};
 
-
+export default Cookies;

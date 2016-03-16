@@ -1,11 +1,6 @@
-'use strict';
-
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $state, $http, api, Auth, Photos, Restangular) {
-
+// controller
+function NonprofitSignupCtrl ($scope, $rootScope, $filter, $state, $http, api, Auth, Photos, Restangular) {
+  'ngInject';
   $scope.nonprofit = {
     image_url: 'https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg',
     cover_url: 'https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg',
@@ -176,4 +171,6 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
       $scope.show_errors = true;
     }
   };
-});
+};
+
+export default NonprofitSignupCtrl;

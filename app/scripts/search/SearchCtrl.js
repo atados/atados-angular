@@ -1,13 +1,6 @@
-'use strict';
-
-/* global toastr: false */
-/* global $: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
-      Search, $state, storage, defaultZoom, Cleanup) {
-
+// controller
+function SearchCtrl ($scope, $http, $location, $rootScope, Search, $state, storage, defaultZoom, Cleanup) {
+  'ngInject';
   var alreadySearchedProject = false;
   var alreadySearchedNonprofit = false;
 
@@ -134,4 +127,6 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
       }
     }
   };
-});
+};
+
+export default SearchCtrl;

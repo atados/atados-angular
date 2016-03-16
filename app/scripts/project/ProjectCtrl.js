@@ -1,13 +1,6 @@
-'use strict';
-
-/* global toastr: false */
-/* global google: false */
-/* global dataLayer: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams, $location, $http, Auth, $modal, Volunteer, project, api, VOLUNTEER) {
-
+// controller
+function ProjectCtrl ($scope, $rootScope, $state, $stateParams, $location, $http, Auth, $modal, Volunteer, project, api, VOLUNTEER) {
+  'ngInject';
   $scope.landing = false;
   $scope.markers = [];
   $scope.project = project;
@@ -184,5 +177,6 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
       openApplyModal();
     }
   };
+};
 
-});
+export default ProjectCtrl;

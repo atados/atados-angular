@@ -1,11 +1,6 @@
-'use strict';
-
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('LoginCtrl', function($scope, $rootScope, $state, Auth, ezfb) {
-
+// controller
+function LoginCtrl ($scope, $rootScope, $state, Auth, ezfb, toastr) {
+  'ngInject';
   $scope.showForgotPassword = false;
   $scope.remember = true;
   $scope.wrongCredentials = false;
@@ -90,5 +85,6 @@ app.controller('LoginCtrl', function($scope, $rootScope, $state, Auth, ezfb) {
   ezfb.getLoginStatus(function (res) {
     $scope.loginStatus = res;
   });
+};
 
-});
+export default LoginCtrl;

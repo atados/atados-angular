@@ -1,8 +1,6 @@
-'use strict';
-
-var app = angular.module('atadosApp');
-
-app.controller('ProjectModalCtrl', function ($scope, $modalInstance, nonprofit, phone, name) {
+// controller
+function ProjectModalCtrl ($scope, $modalInstance, nonprofit, phone, name) {
+  'ngInject';
   $scope.nonprofit = nonprofit;
   $scope.contractForm = {};
   $scope.contractForm.phone = phone;
@@ -21,4 +19,6 @@ app.controller('ProjectModalCtrl', function ($scope, $modalInstance, nonprofit, 
   $scope.cancel = function () {
     $modalInstance.dismiss('cancel');
   };
-});
+};
+
+export default ProjectModalCtrl;

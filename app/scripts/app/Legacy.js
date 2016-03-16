@@ -1,9 +1,6 @@
-'use strict';
-
-var app = angular.module('atadosApp');
-
-app.factory('Legacy', function($http, api) {
-
+// factory
+function Legacy ($http, api) {
+  'ngInject';
   return {
     nonprofit: function (uid, success, error) {
       $http.get(api + 'legacy_to_slug/nonprofit/?uid=' + uid).success(success).error(error);
@@ -15,4 +12,6 @@ app.factory('Legacy', function($http, api) {
       $http.get(api + 'slug_role/?slug=' + slug).success(success).error(error);
     }
   };
-});
+};
+
+export default Legacy;

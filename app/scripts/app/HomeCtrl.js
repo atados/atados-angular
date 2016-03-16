@@ -1,10 +1,8 @@
-'use strict';
+import {api} from '../constants';
 
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Restangular, api, $location, $document) {
+// controller
+function HomeCtrl ($rootScope, $scope, $sce, $modal, $http, Restangular, $location, $document, toastr) {
+  'ngInject';
   $scope.site.title = 'Atados - Juntando Gente Boa';
   $scope.site.og.url = 'https://www.atados.com.br';
   $scope.site.og.image = 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/landing_cover.jpg';
@@ -75,11 +73,14 @@ app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Res
 
   $scope.htmlReady();
 
-});
+};
 
-app.controller('modalVideo', function ($scope, $modalInstance, url) {
+function modalVideo ($scope, $modalInstance, url) {
+  'ngInject';
   $scope.url = 'https://www.youtube.com/embed/' + url + '?autoplay=1'; // jshint ignore:line
   $scope.close_video = function () {
     $modalInstance.close();
   };
-});
+};
+
+export default HomeCtrl;

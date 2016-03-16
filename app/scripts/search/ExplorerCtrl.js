@@ -1,19 +1,11 @@
-'use strict';
-
-/* global google: false */
-/* global OverlappingMarkerSpiderfier: false */
-/* global $: false */
-
 var constants = {
   map: null,
   markers: []
 };
 
-var app = angular.module('atadosApp');
-
-app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParams, $filter, Search,
-      notselected, selected, defaultZoom, saoPaulo, rioDeJaneiro, curitiba, brasilia, distancia) {
-
+// controller
+function ExplorerCtrl ($scope, $rootScope, $state, $stateParams, $filter, Search, notselected, selected, defaultZoom, saoPaulo, rioDeJaneiro, curitiba, brasilia, distancia) {
+  'ngInject';
   $scope.site.title = 'Atados - Explore';
   $rootScope.explorerView = true;
   $scope.landing = false;
@@ -122,6 +114,7 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
           constants.map.setCenter(new google.maps.LatLng(curitiba.lat, curitiba.lng));
           constants.map.setZoom(11);
           break;
+        // default to SP
         default:
           constants.map.setCenter(new google.maps.LatLng(saoPaulo.lat, saoPaulo.lng));
           constants.map.setZoom(defaultZoom);
@@ -204,5 +197,6 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
     }
     return {title: titleStr, slug: object.slug};
   };
+};
 
-});
+export default ExplorerCtrl;

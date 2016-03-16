@@ -1,10 +1,6 @@
-'use strict';
-
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.factory('Project', function($http, Restangular, Site, Auth, Cleanup, $state, api) {
+// factory
+function Project ($http, Restangular, Site, Auth, Cleanup, $state, api) {
+  'ngInject';
   return {
     create: function (project, files, success, error) {
       var projectCopy = {};
@@ -87,4 +83,6 @@ app.factory('Project', function($http, Restangular, Site, Auth, Cleanup, $state,
       });
     },
   };
-});
+};
+
+export default Project;

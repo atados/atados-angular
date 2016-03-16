@@ -1,22 +1,21 @@
-'use strict';
+import {storage, defaultZoom} from '../constants';
 
-/* global toastr: false */
-/* global $: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('GddSearchCtrl', function ($scope, $http, $location, $rootScope,
-      Search, $state, storage, defaultZoom, Cleanup, Site, Restangular) {
-
+// controller
+function GddSearchCtrl ($scope, $http, $location, $rootScope, Search, $state, Cleanup, Site, Restangular, toastr) {
+  'ngInject';
   $scope.cityStates = Site.states;
-
   $scope.cityLoaded = false;
   $scope.$watch('cityState', function (value) {
     $scope.cityLoaded = false;
     $scope.stateCities = [];
 
     if (value) {
-      Restangular.all('cities').getList({page_size: 3000, state: value.id}).then(function (response) {
+      Restangular.all('cities')
+      .getList({
+        page_size: 3000,
+        state: value.id
+      })
+      .then(function (response) {
         response.forEach(function(c) {
           $scope.stateCities.push(c);
         });
@@ -144,3 +143,5 @@ app.controller('GddSearchCtrl', function ($scope, $http, $location, $rootScope,
     }
   };
 });
+
+export default GddSearchCtrl;

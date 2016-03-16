@@ -1,8 +1,8 @@
-'use strict';
+import {ENV} from '../constants';
 
-var app = angular.module('atadosApp');
-
-app.factory('Search', function (Restangular, ENV, Cleanup) {
+// factory
+function Search (Restangular, Cleanup) {
+  'ngInject';
   var _query = '';
   var _cause = {};
   var _skill = {};
@@ -27,8 +27,9 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
 
   var toHttps = function (url) {
     if (url && ENV === 'production') {
-      return url.replace('http','https');
+      return url.replace('http', 'https');
     }
+
     return url;
   };
 
@@ -43,32 +44,35 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
   };
 
   // city is the the city id
-  function searchProjects(query, cause, skill, city, gdd) {
+  function searchProjects (query, cause, skill, city, gdd) {
     var urlHeaders = {
       page_size: 20,
       query: query,
       cause: cause,
       skill: skill,
-      city: city,
+      city: city
     };
+
     if (gdd) {
       urlHeaders.gdd = true;
       urlHeaders.page_size = 1000;
     }
 
-
     _loading = true;
-    Restangular.all('projects').getList(urlHeaders).then( function(response) {
+    Restangular.all('projects').getList(urlHeaders).then(function (response) {
       _cardListProjects = response;
       _cardListProjects = fixProjects(response);
+
       if (_cardListProjects._resultmeta) {
         _nextUrlProject = toHttps(_cardListProjects._resultmeta.next);
         _projectCount = _cardListProjects._resultmeta.count;
       } else {
         _nextUrlProject = '';
       }
+
       _loading = false;
     }, function () {
+
       console.error('Não consegui pegar as vagas do servidor.');
       _loading = false;
     });
@@ -80,49 +84,67 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       page_size: 20,
       query: query,
       cause: cause,
-      city: city,
+      city: city
     };
 
     _loading = true;
-    Restangular.all('nonprofits').getList(urlHeaders).then( function (response) {
+    Restangular.all('nonprofits').getList(urlHeaders).then(function (response) {
       _cardListNonprofits = [];
       _cardListNonprofits = fixNonprofits(response);
+
       if (_cardListNonprofits._resultmeta) {
         _nextUrlNonprofit = toHttps(_cardListNonprofits._resultmeta.next);
         _nonprofitCount = _cardListNonprofits._resultmeta.count;
       } else {
         _nextUrlNonprofit = '';
       }
+
       _loading = false;
     }, function () {
+
       console.error('Não consegui pegar ONGs do servidor.');
       _loading = false;
     });
   };
 
-  function hasValidAddress(object) {
+  function hasValidAddress (object) {
     // For project objects
-    if (object.address && object.address.addressline && object.address.latitude !== 0 && object.address.longitude !== 0) {
+    if (
+      object.address &&
+      object.address.addressline &&
+      object.address.latitude !== 0 &&
+      object.address.longitude !== 0
+    ) {
       return true;
+
     // For Nonprofit objects
-    } else if (object.user && object.user.address.addressline && object.user.address && object.user.address.latitude !== 0 && object.user.address.longitude !== 0) {
+    } else if (
+      object.user &&
+      object.user.address.addressline &&
+      object.user.address &&
+      object.user.address.latitude !== 0 &&
+      object.user.address.longitude !== 0
+    ) {
       return true;
     } else {
       return false;
     }
   }
 
-  var getMapProjects = function() {
-    Restangular.all('map/projects').getList({page_size: 1000}).then( function (projects) {
+  var getMapProjects = function () {
+    Restangular.all('map/projects').getList({ page_size: 1000 }).then(function (projects) {
       _mapProjects = projects.filter(hasValidAddress);
     }, function () {
+
       console.error('Não consegui pegar Vagas no Mapa do servidor.');
     });
   };
-  var getMapNonprofits = function() {
-    Restangular.all('map/nonprofits').getList({page_size: 1000}).then( function (nonprofits) {
+
+  var getMapNonprofits = function () {
+    Restangular.all('map/nonprofits').getList({ page_size: 1000 }).then(function (nonprofits) {
       _mapNonprofits = nonprofits.filter(hasValidAddress);
     }, function () {
+
       console.error('Não consegui pegar ONGs no Mapa do servidor.');
     });
   };
@@ -139,6 +161,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       this.getHighlightedProjects(city, gdd);
       this.getHighlightedNonprofits(city);
     },
+
     query: _query,
     cause: _cause,
     skill: _skill,
@@ -146,64 +169,97 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
     loading: function () {
       return _loading;
     },
+
     showProjects: true,
     projectCount: function () {
       return _projectCount;
     },
+
     nonprofitCount: function () {
       return _nonprofitCount;
     },
+
     nextUrlProject: function () {
       return _nextUrlProject;
     },
+
     nextUrlNonprofit: function () {
       return _nextUrlNonprofit;
     },
+
     setNextUrlProject: function (url) {
       _nextUrlProject = toHttps(url);
     },
+
     setNextUrlNonprofit: function (url) {
       _nextUrlNonprofit = toHttps(url);
     },
-    mapProjects: function() {
+
+    mapProjects: function () {
       return _mapProjects;
     },
-    mapNonprofits: function() {
+
+    mapNonprofits: function () {
       return _mapNonprofits;
     },
+
     projects: function () {
       return _cardListProjects;
     },
+
     nonprofits: function () {
       return _cardListNonprofits;
     },
+
     getHighlightedProjects: function (city, gdd) {
       if (!city) {
         city = null;
       }
-      return Restangular.all('projects').getList({highlighted: true, city: city, gdd: gdd, page_size: 16}).then( function(projects) {
+
+      return Restangular.all('projects')
+      .getList({
+        highlighted: true,
+        city: city,
+        gdd: gdd,
+        page_size: 16
+      })
+      .then(function (projects) {
         _highlightedProjects = fixProjects(projects);
         return;
       }, function () {
+
         console.error('Não consegui pegar as vagas em destaque do servidor.');
       });
     },
+
     getHighlightedNonprofits: function (city) {
       if (!city) {
         city = null;
       }
-      return Restangular.all('nonprofits').getList({highlighted: true, city: city, page_size: 16}).then( function(nonprofits) {
+
+      return Restangular.all('nonprofits')
+      .getList({
+        highlighted: true,
+        city: city,
+        page_size: 16
+      })
+      .then(function (nonprofits) {
         _highlightedNonprofits = fixNonprofits(nonprofits);
         return;
       }, function () {
+
         console.error('Não consegui pegar as ONGs em destaque do servidor.');
       });
     },
+
     highlightedProjects: function () {
       return _highlightedProjects;
     },
+
     highlightedNonprofits: function () {
       return _highlightedNonprofits;
-    },
+    }
   };
-});
+};
+
+export default Search;

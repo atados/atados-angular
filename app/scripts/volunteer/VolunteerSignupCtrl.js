@@ -1,11 +1,6 @@
-'use strict';
-
-/* global toastr: false */
-/* global dataLayer: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth, Restangular) {
+// controller
+function VolunteerSignupCtrl ($scope, $rootScope, $state, Auth, Restangular) {
+  'ngInject';
   $scope.cityLoaded = false;
   $scope.$watch('state', function (value) {
     $scope.cityLoaded = false;
@@ -77,4 +72,6 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth,
         });
     }
   };
-});
+};
+
+export default VolunteerSignupCtrl;

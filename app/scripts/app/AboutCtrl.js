@@ -1,8 +1,6 @@
-'use strict';
-
-var app = angular.module('atadosApp');
-
-app.controller('AboutCtrl', function ($scope) {
+// controller
+function AboutCtrl ($scope) {
+  'ngInject';
   $scope.site.title = 'Atados - Sobre';
 
   $scope.team = [
@@ -17,8 +15,8 @@ app.controller('AboutCtrl', function ($scope) {
       image: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash2/c205.44.550.550/s160x160/417055_10152269035845293_1847417011_n.jpg',
       where: 'Atados São Paulo',
       description: 'Blah blah'
-    },
+    }
   ];
-});
+};
 
-
+export default AboutCtrl;

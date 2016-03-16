@@ -1,12 +1,8 @@
-'use strict';
+import {NONPROFIT, saoPaulo} from '../constants';
 
-/* global toastr: false */
-/* jshint unused: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('GddProjectEditCtrl', function($scope, $state, $stateParams, Restangular, Project, Photos, NONPROFIT, saoPaulo) {
-
+// controller
+function GddProjectEditCtrl ($scope, $state, $stateParams, Restangular, Project, Photos, toastr) {
+  'ngInject';
   $scope.$watch('loggedUser', function (user) {
     if (!user) {
       $state.transitionTo('gdd.home');
@@ -213,4 +209,6 @@ app.controller('GddProjectEditCtrl', function($scope, $state, $stateParams, Rest
       toastr.error('Não consigo salvar Ato. Entre em contato com o Atados para resolver o problema.');
     });
   };
-});
+};
+
+export default GddProjectEditCtrl;

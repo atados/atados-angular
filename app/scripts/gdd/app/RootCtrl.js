@@ -1,12 +1,18 @@
-'use strict';
+import {
+  api
+  NONPROFIT,
+  storage,
+  Search,
+  saoPaulo,
+  curitiba,
+  brasilia,
+  rioDeJaneiro,
+  Site
+} from '../constants';
 
-/* global toastr: false */
-/* global $: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $location, $timeout, $http, api, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, rioDeJaneiro, Site) {
-
+// controller
+function GddRootCtrl ($scope, $rootScope, $modal, $state, $location, $timeout, $http, Cookies,  Auth, loggedUser, toastr) {
+  'ngInject';
   $scope.loggedUser = loggedUser;
 
   $scope.contact = function() {
@@ -19,7 +25,6 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
     toastr.error('Oops! Parece que sua sessão expirou! Você precisa logar novamente');
     $state.transitionTo('root.home');
   }
-
 
   if ($rootScope.modalInstance) {
     $rootScope.modalInstance.close();
@@ -122,13 +127,6 @@ app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $loc
       // }
     }
   });
-});
+};
 
-app.config(function ($provide) {
-  $provide.decorator('$uiViewScroll', function ($delegate) {
-    return function (uiViewElement) {
-      var top = uiViewElement[0].getBoundingClientRect().top;
-      window.scrollTo(0, (top - 30));
-    };
-  });
-});
+export default GddRootCtrl;

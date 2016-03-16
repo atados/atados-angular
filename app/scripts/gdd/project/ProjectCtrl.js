@@ -1,12 +1,8 @@
-'use strict';
+import {api, VOLUNTEER} from '../constants';
 
-/* global toastr: false */
-/* global google: false */
-/* global dataLayer: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $stateParams, $location, $http, Auth, $modal, Volunteer, project, api, VOLUNTEER) {
+// controller
+function GddProjectCtrl ($scope, $rootScope, $state, $stateParams, $location, $http, Auth, $modal, Volunteer, project, toastr) {
+  'ngInject';
   $scope.landing = false;
   $scope.markers = [];
   $scope.project = project;
@@ -18,39 +14,38 @@ app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $statePara
   $scope.markers.push(project.address);
   $scope.showTimeTable = false;
 
-
   if ($scope.project.address) {
     $scope.options = {
       map: {
         center: new google.maps.LatLng($scope.project.address.latitude, $scope.project.address.longitude),
-        zoom: 15,
-      },
+        zoom: 15
+      }
     };
   }
 
   if ($scope.loggedUser && $scope.loggedUser.role === VOLUNTEER) {
     $http.get(api + 'has_volunteer_applied/?project=' + project.id.toString())
-      .success(function (response) {
-        if (response[0] === 'YES') {
-          $scope.alreadyApplied = true;
-        } else {
-          $scope.alreadyApplied = false;
-        }
-      });
+    .success(function (response) {
+      if (response[0] === 'YES') {
+        $scope.alreadyApplied = true;
+      } else {
+        $scope.alreadyApplied = false;
+      }
+    });
   }
 
   if ($scope.project.job) {
     var start = new Date($scope.project.job.start_date);
     var end = new Date($scope.project.job.end_date);
     $scope.projectJobInOneDay = start.getDay() === end.getDay() &&
-                                start.getMonth() === end.getMonth() &&
-                                start.getYear() === end.getYear();
+      start.getMonth() === end.getMonth() &&
+      start.getYear() === end.getYear();
   }
 
   if ($scope.project.work) {
     if ($scope.project.work.availabilities) {
-      angular.forEach($scope.project.work.availabilities, function(row) {
-        angular.forEach(row, function(cell) {
+      angular.forEach($scope.project.work.availabilities, function (row) {
+        angular.forEach(row, function (cell) {
           if (cell.checked) {
             $scope.showTimeTable = true;
           }
@@ -59,12 +54,12 @@ app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $statePara
     }
   }
 
-  $scope.$watch('center', function(value) {
+  $scope.$watch('center', function (value) {
     if ($scope.project.address && value && value.d === 46) {
       $scope.center = new google.maps.LatLng($scope.project.address.latitude, $scope.project.address.longitude);
     }
   });
-    
+
   function openApplyModal () {
     var template = '/partials/volunteerContractModal.html';
     var controller = 'ProjectModalCtrl';
@@ -89,12 +84,15 @@ app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $statePara
         nonprofit: function () {
           return $scope.project.nonprofit;
         },
+
         projectName: function () {
           return $scope.project.name;
         },
+
         phone: function () {
           return $scope.loggedUser.user.phone;
         },
+
         name: function () {
           return $scope.loggedUser.user.name;
         }
@@ -103,7 +101,6 @@ app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $statePara
     });
 
     modalInstance.result.then(function (modalDetails) {
-      
       var volunteerMessage = '';
       var volunteerPhone = '';
       var volunteerName = '';
@@ -114,26 +111,30 @@ app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $statePara
         $scope.loggedUser.user.name = volunteerName = modalDetails.name;
       }
 
-      $http.post(api + 'apply_volunteer_to_project/', {project: $scope.project.id, message: volunteerMessage, phone: volunteerPhone, name: volunteerName})
+      $http.post(api + 'apply_volunteer_to_project/', {
+        project: $scope.project.id,
+        message: volunteerMessage,
+        phone: volunteerPhone,
+        name: volunteerName
+      })
       .success(function (response) {
         if (response[0] === 'Applied') {
           $scope.project.volunteers.push($scope.loggedUser);
           $scope.alreadyApplied = true;
+
           //toastr.success('Parabéns! Você é voluntário para ' + $scope.project.name);
           dataLayer.push({
-            'event': 'okQueroSerVoluntarioButtonClick',
-            'eventCategory': 'buttonClicked',
-            'eventAction' : 'success'
+            event: 'okQueroSerVoluntarioButtonClick',
+            eventCategory: 'buttonClicked',
+            eventAction: 'success'
           });
           $location.path('/atado');
-
         } else {
-          $scope.project.volunteers.splice($scope.project.volunteers.indexOf($scope.loggedUser),1);
+          $scope.project.volunteers.splice($scope.project.volunteers.indexOf($scope.loggedUser), 1);
           $scope.alreadyApplied = false;
           toastr.success('Você não é mais voluntário para ' + $scope.project.name);
         }
       }).error(function (error) {
-        console.error(error);
         if (error['403']) {
           $modal.open({
             template: '<div class="modal-body">' +
@@ -150,20 +151,18 @@ app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $statePara
           toastr.error('Não conseguimos te atar. Por favor mande um email para resolvermos o problema: contato@atados.com.br');
         }
       });
-    }, function () {
     });
   }
 
-  $rootScope.$on('userLoggedIn', function(/*event, user*/) {
+  $rootScope.$on('userLoggedIn', function () {
     if ($state.is('root.project') && $scope.showApplyModal && !$scope.alreadyApplied) {
       openApplyModal();
-    }
-    else {
+    } else {
       $scope.showApplyModal = false;
     }
   });
 
-  $rootScope.$on('userLoggedOut', function(/*event,*/) {
+  $rootScope.$on('userLoggedOut', function () {
     $scope.alreadyApplied = false;
   });
 
@@ -178,5 +177,6 @@ app.controller('GddProjectCtrl', function($scope, $rootScope, $state, $statePara
       openApplyModal();
     }
   };
+};
 
-});
+export default GddProjectCtrl;

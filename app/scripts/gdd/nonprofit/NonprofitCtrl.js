@@ -1,12 +1,8 @@
-'use strict';
+import {api, VOLUNTEER} from '../constants';
 
-/* global toastr: false */
-/* global google: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('GddNonprofitCtrl', function($scope, $rootScope, $state, $http, nonprofit, api, VOLUNTEER) {
-
+// controller
+function GddNonprofitCtrl ($scope, $rootScope, $state, $http, nonprofit, toastr) {
+  'ngInject';
   $scope.landing = false;
 
   $scope.nonprofit = nonprofit;
@@ -118,5 +114,6 @@ app.controller('GddNonprofitCtrl', function($scope, $rootScope, $state, $http, n
     angular.element(document.querySelector('#card-' + object.slug))
       .removeClass('hover');
   };
+};
 
-});
+export default GddNonprofitCtrl;

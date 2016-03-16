@@ -1,12 +1,10 @@
-'use strict';
+import {api, accessTokenCookie, authApi, grantType} from '../constants';
 
-/* global $: false */
+// factory
+function Auth ($http, Cookies, Cleanup) {
+  'ngInject';
 
-var app = angular.module('atadosApp');
-
-app.factory('Auth', function($http, Cookies, Cleanup, api, accessTokenCookie, authApi, grantType) {
-
-  function setAuthHeader(accessToken) {
+  function setAuthHeader (accessToken) {
     if (accessToken) {
       $http.defaults.headers.common.Authorization = 'Bearer ' + accessToken;
     }
@@ -16,16 +14,18 @@ app.factory('Auth', function($http, Cookies, Cleanup, api, accessTokenCookie, au
 
   return {
     facebookAuth: function (facebookAuthData, success, error) {
-      $http.post(api + 'facebook/', facebookAuthData).success( function(response) {
+      $http.post(api + 'facebook/', facebookAuthData).success(function (response) {
         setAuthHeader(response.access_token);
         Cookies.set(accessTokenCookie, response.access_token);
         success(response.user);
       }).error(error);
     },
+
     getCurrentUser: function (token) {
       if (!token) {
         token = Cookies.get(accessTokenCookie);
       }
+
       if (token) {
         setAuthHeader(token);
         return $http.get(api + 'current_user/?id=' + new Date().getTime())
@@ -36,46 +36,54 @@ app.factory('Auth', function($http, Cookies, Cleanup, api, accessTokenCookie, au
           });
       }
     },
-    getLoggedUser: function() {
+
+    getLoggedUser: function () {
       return _loggedUser;
     },
+
     resetPassword: function (email, success, error) {
-      $http.post(api + 'password_reset/', {email: email})
-        .success( function(){
+      $http.post(api + 'password_reset/', { email: email })
+        .success(function () {
           success();
         }).error(error);
     },
+
     // Both email and password field need to be set on data object
     changePassword: function (data, success, error) {
       $http.put(api + 'change_password/', data)
-        .success( function() {
+        .success(function () {
           success();
         }).error(error);
     },
+
     isEmailUsed: function (email, success) {
       if (email) {
         $http.get(api + 'check_email/?email=' + email + '?id=' + new Date().getTime())
           .success(success);
       }
     },
+
     isSlugUsed: function (slug, success) {
       $http.get(api + 'check_slug/?slug=' + slug)
         .success(success);
     },
-    volunteerSignup: function(volunteer, success, error) {
-      $http.post(api + 'create/volunteer/', volunteer).success( function() {
+
+    volunteerSignup: function (volunteer, success, error) {
+      $http.post(api + 'create/volunteer/', volunteer).success(function () {
         success();
       }).error(error);
     },
-    nonprofitSignup: function(data, success, error) {
+
+    nonprofitSignup: function (data, success, error) {
       $http.post(api + 'create/nonprofit/', data, {
-        headers: {'Content-Type': undefined },
+        headers: { 'Content-Type': undefined },
         transformRequest: angular.identity
-      }).success( function() {
+      }).success(function () {
         success();
       }).error(error);
     },
-    login: function(user, success, error) {
+
+    login: function (user, success, error) {
       user.grant_type = grantType;
       $http.get(authApi)
         .success(function (response) {
@@ -84,52 +92,26 @@ app.factory('Auth', function($http, Cookies, Cleanup, api, accessTokenCookie, au
           $http({
             method: 'POST',
             url: api + 'oauth2/access_token/',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             data: $.param(user)
-          }).success( function(response){
+          }).success(function (response) {
               setAuthHeader(response.access_token);
+
               if (user.remember) {
                 Cookies.set(accessTokenCookie, response.access_token, { expires: 30, path: '/' });
-              } else {
-
               }
+
               success(response);
             }).error(error);
         });
     },
-    logout: function() {
+
+    logout: function () {
       $http.post(api + 'logout/');
       Cookies.delete(accessTokenCookie);
       delete $http.defaults.headers.common.Authorization;
     }
   };
-});
+};
 
-
-app.factory('authInterceptorService', ['$q', '$window', '$injector', 'Cookies', function ($q, $window, $injector, Cookies){
-  var responseError = function (rejection) {
-    if (rejection.status === 403) {
-      if (rejection.data.detail === 'Invalid token') {
-        var $http = $injector.get('$http');
-
-        Cookies.delete('access_token');
-        delete $http.defaults.headers.common.Authorization;
-
-        var current_location = $window.location.pathname;
-        $window.location.href = '/#session-expired';
-
-        // If the user is at the home, we need to force the reload
-        if (current_location === '/') {
-          $window.location.reload();
-        }
-
-        return {};
-      }
-    }
-    return $q.reject(rejection);
-  };
-
-  return {
-      responseError: responseError
-  };
-}]);
+export default Auth;

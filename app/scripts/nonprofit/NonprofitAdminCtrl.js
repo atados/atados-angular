@@ -1,11 +1,6 @@
-'use strict';
-
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('NonprofitAdminCtrl', function($scope, $http, $state, $stateParams, $timeout, Restangular, Photos, Cleanup, api, VOLUNTEER, NONPROFIT) {
-
+// controller
+function NonprofitAdminCtrl ($scope, $http, $state, $stateParams, $timeout, Restangular, Photos, Cleanup, api, VOLUNTEER, NONPROFIT) {
+  'ngInject';
   $scope.volunteerStatusOptions = [
     'Voluntário',
     'Candidato',
@@ -108,4 +103,6 @@ app.controller('NonprofitAdminCtrl', function($scope, $http, $state, $stateParam
       link.click();
     });
   };
-});
+};
+
+export default NonprofitAdminCtrl;

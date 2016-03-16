@@ -1,11 +1,8 @@
-'use strict';
+import {storage} from '../constants';
 
-/* global dataLayer: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location, $document, Site, Search, storage) {
-
+// controller
+function AppCtrl ($scope, $rootScope, $modal, $state, $location, $document, Site, Search) {
+  'ngInject';
   $scope.site = Site;
   $scope.search = Search;
   $rootScope.modalInstance = null;
@@ -25,6 +22,7 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
         .then(function () {
           $location.hash('top');
         });
+
         return;
       }
     });
@@ -38,8 +36,7 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
     Search.filter(Search.query, Search.cause.id, Search.skill.id, Search.city.id);
   };
 
-
-  $scope.openLogin = function(type) {
+  $scope.openLogin = function (type) {
     $rootScope.modalInstance = $modal.open({
       templateUrl: '/partials/loginModal.html',
       controller: ['$scope', 'Site', function ($scope, Site) {
@@ -47,17 +44,17 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
 
         if (type === 'volunteer') {
           dataLayer.push({
-            'event': 'queroSerVoluntarioButtonClick',
-            'eventCategory': 'buttonClicked',
-            'eventAction' : 'success'
+            event: 'queroSerVoluntarioButtonClick',
+            eventCategory: 'buttonClicked',
+            eventAction: 'success'
           });
 
           $scope.volunteerActive = true;
         } else if (type === 'nonprofit') {
           dataLayer.push({
-            'event': 'souUmaOngButtonClick',
-            'eventCategory': 'buttonClicked',
-            'eventAction' : 'success'
+            event: 'souUmaOngButtonClick',
+            eventCategory: 'buttonClicked',
+            eventAction: 'success'
           });
 
           $scope.volunteerActive = false;
@@ -68,7 +65,7 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
     });
   };
 
-  $scope.openTermsModal = function() {
+  $scope.openTermsModal = function () {
     $rootScope.modalInstance = $modal.open({
       templateUrl: '/partials/termsModal.html'
     });
@@ -77,4 +74,6 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
   $rootScope.closeNonprofitLoginModal = function () {
     $rootScope.modalInstance.close();
   };
-});
+};
+
+export default AppCtrl;

@@ -1,10 +1,6 @@
-'use strict';
-
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.factory('Volunteer', function($http, $state, Restangular, Cleanup, api) {
+// factory
+function Volunteer ($http, $state, Restangular, Cleanup, api) {
+  'ngInject';
   return {
     get: function(slug) {
       return Restangular.one('volunteers_public', slug).get().then(function(volunteer) {
@@ -50,4 +46,6 @@ app.factory('Volunteer', function($http, $state, Restangular, Cleanup, api) {
         .success(success).error(error);
     }
   };
-});
+};
+
+export default Volunteer;

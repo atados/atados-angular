@@ -1,11 +1,6 @@
-'use strict';
-
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volunteer, $http, Restangular, $state, Site, api, VOLUNTEER) {
-
+// controller
+function VolunteerEditCtrl ($scope, $filter, Auth, Photos, Volunteer, $http, Restangular, $state, Site, api, VOLUNTEER) {
+  'ngInject';
   $scope.$watch('loggedUser', function (user) {
     if (!user) {
       toastr.error('Voluntário não logado para editar.');
@@ -81,7 +76,6 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
   });
 
   $scope.saveVolunteer = function () {
-
     Volunteer.save($scope.volunteer, function() {
       toastr.success('Perfil salvo!', $scope.volunteer.slug);
       if ($scope.password && $scope.password === $scope.passwordConfirm) {
@@ -94,7 +88,7 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
     }, function () {
       toastr.error('Problema em salvar seu perfil :(');
     });
-
-    
   };
-});
+};
+
+export default VolunteerEditCtrl;

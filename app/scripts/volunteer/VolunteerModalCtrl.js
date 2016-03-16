@@ -1,9 +1,6 @@
-'use strict';
-
-var app = angular.module('atadosApp');
-
-app.controller('VolunteerModalCtrl', function($scope) {
-
+// controller
+function VolunteerModalCtrl ($scope) {
+  'ngInject';
   $scope.loginActive = true;
   $scope.$watch('loginActive', function (value) {
     if (value) {
@@ -16,5 +13,6 @@ app.controller('VolunteerModalCtrl', function($scope) {
   $scope.switchLoginActive = function () {
     $scope.loginActive = !$scope.loginActive;
   };
+};
 
-});
+export default VolunteerModalCtrl;

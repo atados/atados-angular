@@ -1,12 +1,8 @@
-'use strict';
+import {api} from '../constants';
 
-/* global PagarMe */
-/* global $: false */
-/* global toastr: true */
-
-var app = angular.module('atadosApp');
-
-app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  function($scope, $stateParams, $http, api) {
+// controller
+function ContributionsCtrl ($scope, $stateParams, $http, toastr) {
+  'ngInject';
   $scope.site.title = 'Atados - Juntando Gente Boa';
   $scope.site.og.url = 'https://www.atados.com.br';
   $scope.site.og.image = 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/landing_cover.jpg';
@@ -21,7 +17,7 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
     $scope.contribution_monthly = false;
   }
 
-  $scope.contribution_price = value; 
+  $scope.contribution_price = value;
   $scope.optionsstyle = {'display': 'none'};
 
   $('.trustlogo').addClass('show-comodo');
@@ -75,7 +71,7 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
       exp_month = expiration_split[0];
       exp_year = expiration_split[1];
     }
-    
+
     creditCard.cardHolderName = $scope.card_holder_name;
     creditCard.cardExpirationMonth = exp_month;
     creditCard.cardExpirationYear = exp_year;
@@ -155,4 +151,6 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
     $scope.$parent.hide_footer = false;
     $('.trustlogo').removeClass('show-comodo');
   });
-}]);
+};
+
+export default ContributionsCtrl;

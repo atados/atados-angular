@@ -1,11 +1,8 @@
-'use strict';
+import {NONPROFIT} from '../constants';
 
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('GddProjectNewCtrl', function($scope, $state, $stateParams, Restangular, Project, NONPROFIT) {
-
+// controller
+function GddProjectNewCtrl ($scope, $state, $stateParams, Restangular, Project, toastr) {
+  'ngInject';
   $scope.project = {
     name: '',
     nonprofit: null,
@@ -150,7 +147,7 @@ app.controller('GddProjectNewCtrl', function($scope, $state, $stateParams, Resta
       });
       $scope.project.work.availabilities = ava;
     }
-    
+
     Project.create($scope.project, $scope.files, function (response) {
       toastr.success('Ato criado com sucesso. Agora espere o Atados entrar em contato para aprovação');
       $scope.project.slug = response.slug;
@@ -161,8 +158,9 @@ app.controller('GddProjectNewCtrl', function($scope, $state, $stateParams, Resta
         $state.transitionTo('gdd.home');
       }
     }, function (error) {
-      console.error(error);
       toastr.error('Não consigo criar novo Ato. Entre em contato com o Atados.');
     });
   };
-});
+};
+
+export default GddProjectNewCtrl;

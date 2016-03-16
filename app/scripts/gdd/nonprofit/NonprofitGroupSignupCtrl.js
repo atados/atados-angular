@@ -1,11 +1,18 @@
-'use strict';
+import {api} from '../constants';
 
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('GddNonprofitGroupSignupCtrl', function($scope, $rootScope, $filter, $state, $http, api, Auth, Photos, Restangular) {
-
+// controller
+function GddNonprofitGroupSignupCtrl (
+  $scope,
+  $rootScope,
+  $filter,
+  $state,
+  $http,
+  Auth,
+  Photos,
+  Restangular,
+  toastr
+) {
+  'ngInject';
   $scope.nonprofit = {
     hidden_address: true,
     address: {
@@ -30,8 +37,15 @@ app.controller('GddNonprofitGroupSignupCtrl', function($scope, $rootScope, $filt
     google_page:null,
     twitter_handle:null,
     website:null,
-    causes:[{"id":10,"name":"Participação Cidadã","checked":false,"image":"https://s3-sa-east-1.amazonaws.com/atadosapp/images/cause_10.png","class":"cause_10","$$hashKey":"object:21"}],
-    notNonprofit: true,
+    causes:[{
+      "id":10,
+      "name":"Participação Cidadã",
+      "checked":false,
+      "image":"https://s3-sa-east-1.amazonaws.com/atadosapp/images/cause_10.png",
+      "class":"cause_10",
+      "$$hashKey":"object:21"
+    }],
+    notNonprofit: true
   };
 
   $scope.buttonText = 'Próximo passo (ação)';
@@ -113,7 +127,7 @@ app.controller('GddNonprofitGroupSignupCtrl', function($scope, $rootScope, $filt
 
       $scope.creatingNonprofit = true;
       $scope.buttonText = 'Finalizando cadastro...';
-      
+
       $scope.files = new FormData();
       $scope.files.append('nonprofit', angular.toJson($scope.nonprofit));
 
@@ -125,13 +139,11 @@ app.controller('GddNonprofitGroupSignupCtrl', function($scope, $rootScope, $filt
           }, function (response) {
             $scope.creatingNonprofit = false;
             $scope.buttonText = 'Finalizar cadastro';
-            console.log(response);
             Auth.getCurrentUser(response.access_token).then(
               function (user) {
                 $rootScope.$emit('userLoggedIn', user, 'Bem vinda ONG ao atados! Sua ONG ainda precisa ser aprovada. Espere pelo nosso email.');
                 $state.transitionTo('gdd.newproject');
               }, function (error) {
-                console.error(error);
                 toastr.error('Sua ONG foi criada mas não coseguimos te logar. Clique no botão acima "ONG" e use seu email e senha para logar.');
                 $state.transitionTo('gdd.home');
               });
@@ -151,4 +163,6 @@ app.controller('GddNonprofitGroupSignupCtrl', function($scope, $rootScope, $filt
       $scope.show_errors = true;
     }
   };
-});
+};
+
+export default GddNonprofitGroupSignupCtrl;

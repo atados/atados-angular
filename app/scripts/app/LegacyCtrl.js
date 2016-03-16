@@ -1,11 +1,8 @@
-'use strict';
+import {VOLUNTEER, NONPROFIT} from '../constants';
 
-/* global toastr: false */
-
-var app = angular.module('atadosApp');
-
-app.controller('LegacyCtrl', function ($scope, $stateParams, $state, $http, Legacy, VOLUNTEER, NONPROFIT) {
-
+// controller
+function LegacyCtrl ($scope, $stateParams, $state, $http, Legacy, toastr) {
+  'ngInject';
   if ($stateParams.nonprofitUid) {
     Legacy.nonprofit($stateParams.nonprofitUid, function (response) {
       var slug = response.slug;
@@ -33,7 +30,9 @@ app.controller('LegacyCtrl', function ($scope, $stateParams, $state, $http, Lega
       toastr.error('Não existe;');
     });
   }
-});
+};
 
 toastr.options.closeButton = true;
 toastr.options.hideEasing = 'linear';
+
+export default LegacyCtrl;
