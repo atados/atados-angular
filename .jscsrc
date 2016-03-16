@@ -1,3 +1,59 @@
 {
-	"excludeFiles": ["./**/*"]
+	"preset": "airbnb",
+	"esprima": "esprima-fb",
+	"fileExtensions": [".js", ".jsx"],
+	"excludeFiles": [
+		"**/node_modules/**",
+		"**/jspm_packages/**",
+		"**/bower_components/**",
+		"**/config.js"
+	],
+	"esnext": true,
+	"es3": false,
+	"verbose": true,
+	"disallowMultipleSpaces": true,
+	"validateIndentation": 2,
+	"requirePaddingNewLinesAfterUseStrict": true,
+	"requirePaddingNewLinesBeforeExport": true,
+	"requirePaddingNewlinesBeforeKeywords": [
+			"function",
+			"do",
+			"while",
+			"for",
+			"if"
+	],
+	"requireParenthesesAroundArrowParam": true,
+	"disallowSpacesInFunctionExpression": false,
+	"disallowSpacesInNamedFunctionExpression": false,
+	"disallowSpacesInAnonymousFunctionExpression": false,
+	"disallowSpacesInFunctionDeclaration": false,
+	"requireSpacesInFunctionExpression": {
+		"beforeOpeningRoundBrace": true,
+		"beforeOpeningCurlyBrace": true
+	},
+	"requireSpacesInAnonymousFunctionExpression": {
+		"beforeOpeningRoundBrace": true,
+		"beforeOpeningCurlyBrace": true
+	},
+	"requireSpacesInFunctionDeclaration": {
+		"beforeOpeningRoundBrace": true,
+		"beforeOpeningCurlyBrace": true
+	},
+	"requireTrailingComma": false,
+	"disallowTrailingComma": true,
+	"requireSemicolons": true,
+	"disallowMultipleVarDecl": {
+		"allExcept": ["undefined"]
+	},
+	"requireMultipleVarDecl": false,
+	"safeContextKeyword": "self",
+	"requireCurlyBraces": [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do",
+		"try",
+		"catch"
+	]
 }

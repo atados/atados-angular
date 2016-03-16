@@ -141,31 +141,36 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         templateUrl: '/partials/joinedProject.html',
       })
     .state('legacynonprofit', {
-        url: '/site/instituicoes/:nonprofitUid/profile',
-        controller: 'LegacyCtrl'
-      })
-      .state('legacyVolunteerOrNonprofit', {
-        url: '/site/users/:slug',
-        controller: 'LegacyCtrl'
-      })
-      .state('root.ligandoospontos', {
-        url: '/ligandopontos',
-        templateUrl: '/partials/ligandoospontos.html'
-      })
-     .state('legacyproject', {
-        url: '/site/vaga/:projectUid',
-        controller: 'LegacyCtrl'
-      })
-     .state('root.contributions', {
-       url: '/doar/formulario/{value:/?.*}',
-       templateUrl: '/partials/contributions.html',
-       controller: 'ContributionsCtrl'
-     })
-     .state('root.contributionsPanel', {
-       url: '/doador',
-       templateUrl: '/partials/contributionsPanel.html',
-       controller: 'ContributionsPanelCtrl'
-     })
+      url: '/site/instituicoes/:nonprofitUid/profile',
+      controller: 'LegacyCtrl'
+    })
+    .state('legacyVolunteerOrNonprofit', {
+      url: '/site/users/:slug',
+      controller: 'LegacyCtrl'
+    })
+    .state('root.ligandoospontos', {
+      url: '/ligandopontos',
+      templateUrl: '/partials/ligandoospontos.html'
+    })
+    .state('legacyproject', {
+      url: '/site/vaga/:projectUid',
+      controller: 'LegacyCtrl'
+    })
+    .state('root.contributions', {
+     url: '/doar/formulario/{value:/?.*}',
+     templateUrl: '/partials/contributions.html',
+     controller: 'ContributionsCtrl'
+    })
+    .state('root.contributionsPanel', {
+     url: '/doador',
+     templateUrl: '/partials/contributionsPanel.html',
+     controller: 'ContributionsPanelCtrl'
+    })
+
+    .state('root.reactTest', {
+      url: '/reactTest',
+      templateUrl: '/components/reactTest/view.html'
+    })
 
     .state('gdd', {
       url: '',

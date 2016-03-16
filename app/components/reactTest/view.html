@@ -1,0 +1,12 @@
+<div id="reactTestApp"></div>
+
+<script src="jspm_packages/system.js"></script>
+<script src="config.js"></script>
+
+<script>
+  System.trace = !!location.origin.match(/(atadoslocal|localhost)/);
+  System.import('components/reactTest/reactTestApp.jsx!')
+  .then(function () {
+    console.clear();
+  });
+</script>
