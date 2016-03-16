@@ -181,7 +181,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       if (!city) {
         city = null;
       }
-      return Restangular.all('projects').getList({highlighted: true, city: city, gdd: gdd}).then( function(projects) {
+      return Restangular.all('projects').getList({highlighted: true, city: city, gdd: gdd, page_size: 16}).then( function(projects) {
         _highlightedProjects = fixProjects(projects);
         return;
       }, function () {
@@ -192,7 +192,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       if (!city) {
         city = null;
       }
-      return Restangular.all('nonprofits').getList({highlighted: true, city: city}).then( function(nonprofits) {
+      return Restangular.all('nonprofits').getList({highlighted: true, city: city, page_size: 16}).then( function(nonprofits) {
         _highlightedNonprofits = fixNonprofits(nonprofits);
         return;
       }, function () {
