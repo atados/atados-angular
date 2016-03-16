@@ -114,7 +114,14 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
           constants.map.setCenter(new google.maps.LatLng(rioDeJaneiro.lat, rioDeJaneiro.lng));
           constants.map.setZoom(11);
           break;
-        case 'SP':
+        case 'DF':
+          constants.map.setCenter(new google.maps.LatLng(brasilia.lat, brasilia.lng));
+          constants.map.setZoom(11);
+          break;
+        case 'PR':
+          constants.map.setCenter(new google.maps.LatLng(curitiba.lat, curitiba.lng));
+          constants.map.setZoom(11);
+          break;
         default:
           constants.map.setCenter(new google.maps.LatLng(saoPaulo.lat, saoPaulo.lng));
           constants.map.setZoom(defaultZoom);
