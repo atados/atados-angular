@@ -41,8 +41,8 @@
           <h2>Crie uma ação</h2>
           <h4>Inscreva aqui sua iniciativa para o Dia das Boas Ações</h4>
           <p>Você descreve aqui qual a ação vai promover e nós divulgamos para os voluntários fazerem parte!</p>
-          <a class="btn btn-large btn-pink" ui-sref="gdd.nonprofitsignup" ng-show="!loggedUser">Inscreva sua ação</a>
-          <a class="btn btn-large btn-pink" ui-sref="gdd.nonprofitsignup" ng-show="loggedUser.role=='NONPROFIT'">Inscreva sua ação</a>
+          <a class="btn btn-large btn-pink" ui-sref="gdd.nonprofitsignupsplash" ng-show="!loggedUser">Inscreva sua ação</a>
+          <a class="btn btn-large btn-pink" ui-sref="gdd.newproject" ng-show="loggedUser.role=='NONPROFIT'">Inscreva sua ação</a>
           <h4 class="text-center">Ou conheça nosso <a ui-sref="gdd.ideas">guia para criar ações</a></h4>
         </div>
         <div class="col-xs-12 col-sm-1">
