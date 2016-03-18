@@ -30,6 +30,9 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
     }
   };
 
+  $scope.$watch('search.skill', function (value, old) {
+    search(value, old);
+  });
   $scope.$watch('search.cause', function (value, old) {
     search(value, old);
   });
