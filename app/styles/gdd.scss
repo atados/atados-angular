@@ -108,6 +108,44 @@ $font-secondary: "Montserrat", Arial, sans-serif;
     }
   }
 
+  .call-to-action {
+    background: #DB9200;
+    padding: 50px 0px 50px 0px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 300;
+    p {
+      color: #fff;
+      font-size: 26px;
+      font-family: $font-primary;
+      margin-bottom: 30px;
+    }
+
+    .btn-primary {
+      font-family: $font-primary;
+      background: none !important;
+      border: 2px solid #fff;
+      border-radius: 0px;
+      font-size: 48px;
+      font-weight: 300;
+      padding: 0px 25px;
+      small {
+        display: block;
+        font-size: 26px;
+        margin-bottom: -15px;
+        font-weight: 300;
+      }
+
+      &:not(:last-child) {
+        margin-right: 30px;
+      }
+
+      &:hover, &:active {
+        background: #313131 !important;
+      }
+    }
+  }
+
   #project-new {
     h1, h2 {
       text-align: center;
