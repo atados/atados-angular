@@ -38,7 +38,7 @@ function GddHomeCtrl ($rootScope, $scope, $sce, $modal, $http, Restangular, api,
 
   $scope.calculateRemainingDays();
 
-  $scope.htmlReady();
+  // $scope.htmlReady();
 };
 
 export default GddHomeCtrl;

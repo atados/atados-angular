@@ -1,4 +1,4 @@
-import {VOLUNTEER, NONPROFIT} from '../constants';
+import {VOLUNTEER, NONPROFIT} from '/constants';
 
 // controller
 function LegacyCtrl ($scope, $stateParams, $state, $http, Legacy, toastr) {

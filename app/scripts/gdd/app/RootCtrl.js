@@ -8,10 +8,10 @@ import {
   brasilia,
   rioDeJaneiro,
   Site
-} from '../constants';
+} from '/constants';
 
 // controller
-function GddRootCtrl ($scope, $rootScope, $modal, $state, $location, $timeout, $http, Cookies,  Auth, loggedUser, toastr) {
+function GddRootCtrl ($scope, $rootScope, $modal, $state, $location, $timeout, $http,  Auth, loggedUser, toastr) {
   'ngInject';
   $scope.loggedUser = loggedUser;
 

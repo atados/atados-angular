@@ -1,4 +1,4 @@
-import {api} from '../constants';
+import {api} from '/constants';
 
 // factory
 function Photos ($http, ezfb, toastr) {

@@ -7,7 +7,7 @@ function scripts ({src='app.{js,jsx}', dest='dist'} = {}) {
   return () => gulp.src(src)
   .pipe(plugins.ngAnnotate())
   .pipe(plugins.jspm({
-    plugin: 'jsx'
+    plugin: true
   }))
   .pipe(gulp.dest(dest));
 };

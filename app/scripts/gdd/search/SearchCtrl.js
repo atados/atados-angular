@@ -1,4 +1,4 @@
-import {storage, defaultZoom} from '../constants';
+import {storage, defaultZoom} from '/constants';
 
 // controller
 function GddSearchCtrl ($scope, $http, $location, $rootScope, Search, $state, Cleanup, Site, Restangular, toastr) {

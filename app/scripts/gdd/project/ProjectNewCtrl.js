@@ -1,4 +1,4 @@
-import {NONPROFIT} from '../constants';
+import {NONPROFIT} from '/constants';
 
 // controller
 function GddProjectNewCtrl ($scope, $state, $stateParams, Restangular, Project, toastr) {

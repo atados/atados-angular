@@ -22,10 +22,8 @@ gulp.task('build', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch('app/scripts/**/*.{js,jsx}', ['scripts']);
+  // gulp.watch('app/scripts/**/*.{js,jsx}', ['scripts']);
   gulp.watch('app/styles/**/*.scss', ['sass']);
 });
 
-gulp.task('default', function () {
-  return sequence('build', 'watch');
-});
+gulp.task('default', ['build']);

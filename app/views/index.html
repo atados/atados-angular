@@ -37,10 +37,36 @@
     <!-- <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.min.css" /> -->
     <!-- endbuild -->
 
-    <!-- build:css({.tmp,app}) /styles/main.css -->
-    <link rel="stylesheet" href="/styles/atados.css">
-    <!-- endbuild -->
+    <link rel="stylesheet" type="text/css" href="/atados.css">
 
+    <!--[if lt IE 7]>
+      <div class="alert">
+        <p class="browsehappy">Você está usando um navegador <strong>antiquado</strong>. Por favor <a href="https://www.google.com/intl/pt/chrome/browser/">atualize seu navegador</a> para melhorar sua experiencia na web.</p>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      </div>
+    <![endif]-->
+    <!--[if lt IE 9]>
+      <script src="/bower_components/es5-shim/es5-shim.js"></script>
+      <script src="/bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <!-- Script da aplicação e dependências -->
+    <script src="jspm_packages/system.js"></script>
+    <script src="config.js"></script>
+    <script>
+      console.log('Running on <%= env %> environment!');
+      <% if (env == 'development') { %>
+      System.import('systemjs-hot-reloader/default-listener.js');
+      <% } %>
+      System.import('/bootstrap')
+      .catch(console.error.bind(console));
+    </script>
+  </head>
+  <body>
+
+    <div ui-view="root"></div>
+
+    <!-- Scripts do google e terceiros: -->
     <script src="https://assets.pagar.me/js/pagarme.min.js"></script>
     <script type="text/javascript"> //<![CDATA[
       var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
@@ -57,33 +83,7 @@
     })(window,document,'script','dataLayer','GTM-M3WZQJ');</script>
     <!-- End Google Tag Manager -->
 
-    <!--[if lt IE 7]>
-      <div class="alert">
-        <p class="browsehappy">Você está usando um navegador <strong>antiquado</strong>. Por favor <a href="https://www.google.com/intl/pt/chrome/browser/">atualize seu navegador</a> para melhorar sua experiencia na web.</p>
-        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-      </div>
-    <![endif]-->
-    <!--[if lt IE 9]>
-      <script src="/bower_components/es5-shim/es5-shim.js"></script>
-      <script src="/bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-
-
-    <div ui-view=""></div>
-
-    <!-- Script da aplicação e dependências -->
-    <script src="jspm_packages/system.js"></script>
-    <script src="config.js"></script>
-    <script>
-      System.import('/bootstrap')
-      .catch(console.error.bind(console));
-    </script>
-
-    <!-- Scripts do google e terceiros: -->
-
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&language=pt_BR"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?language=pt_BR&key=AIzaSyDFAE7ywLQBLmyS4jzyHlojO_DWC_BaRWA"></script>
 
     <!--
       Código do Google para tag de remarketing

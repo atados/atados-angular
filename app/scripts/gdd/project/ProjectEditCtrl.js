@@ -1,4 +1,4 @@
-import {NONPROFIT, saoPaulo} from '../constants';
+import {NONPROFIT, saoPaulo} from '/constants';
 
 // controller
 function GddProjectEditCtrl ($scope, $state, $stateParams, Restangular, Project, Photos, toastr) {

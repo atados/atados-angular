@@ -1,4 +1,4 @@
-import {api, VOLUNTEER, NONPROFIT} from '../constants';
+import {api, VOLUNTEER, NONPROFIT} from '/constants';
 
 // controller
 function GddNonprofitAdminCtrl ($scope, $http, $state, $stateParams, $timeout, Restangular, Photos, Cleanup, toastr) {
