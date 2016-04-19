@@ -35,7 +35,7 @@ app.controller('GddHomeCtrl', function($rootScope, $scope, $sce, $modal, $http, 
   $scope.calculateRemainingDays = function() {
     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
     var firstDate = new Date();
-    var secondDate = new Date(2016,3,10);
+    var secondDate = new Date(2017,3,2);
 
     $scope.remainingDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
   }
