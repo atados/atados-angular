@@ -1,0 +1,112 @@
+<!doctype html>
+<!--
+  Oooo xereta, tá fuçando por aqui é?
+  Quer dizer então que você gosta de programação e essas paradas?
+  Que acha de usar essa sua habilidade única pra fazer um trabalho voluntário?
+  Tem um monte de ONGs e projetos precisando de "nerdões" como nós!
+  Explore nossas vagas no filtro Informática / Eletrônica =)
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= @meta.title %></title>
+    <meta name="description" content="<%= @meta.description %>">
+    <!-- Open Graph objects-->
+    <meta property="og:title" content="<%= @meta.title %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= @meta.url %>" />
+    <meta property="og:image" content="<%= @meta.image %>" />
+    <meta property="og:description" content="<%= @meta.description %>" />
+    <!-- End of Open Graph -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/jspm_packages/npm/css-reset-and-normalize@0.3.0/css/flavored-reset-and-normalize.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,400italic,700,300italic,300,100italic,100|Montserrat:400,700|Noto+Sans:400,700" rel="stylesheet" type="text/css" />
+
+    <!-- Script da aplicação e dependências -->
+    <script src="/jspm_packages/system.js"></script>
+    <script src="/config.js"></script>
+    <script>
+      window.atadosInitialState = <%- @initialState %>;
+      console.log('Running on <%= @env %> environment!');
+      <% if (@env == 'development') : %>
+      System.trace = true;
+      System.import('systemjs-hot-reloader')
+      .then(function (HotReloader) {
+        new HotReloader.default(window.location.host);
+      });
+      <% end %>
+      System.import('/app.js')
+      .catch(console.error.bind(console));
+    </script>
+    <style id="_look"><%= @reactStyle %></style>
+  </head>
+  <body>
+    <div id="reactRoot"><%- @reactHtml %></div>
+
+    <!-- Alerta de browser sem suporte -->
+    <!--[if lt IE 9]>
+      <style>
+        .browsehappy {position: fixed;display: block;padding: 10px 20px;background: #FF4500;}
+        .browsehappy p {color: white;font-size: 13px;font-family: sans-serif;}
+        .browsehappy .close {position: absolute;right: 20px;top: 20px;}
+      </style>
+      <div class="browsehappy">
+        <button class="close" onClick="javascript:this.parentElement.style.display = 'none';">X</button>
+        <p>
+          Você está usando um navegador <strong>obsoleto</strong>.<br>
+          Por favor <a href="http://browsehappy.com/?locale=pt-br">atualize seu navegador</a> para melhorar sua experiencia na web.
+        </p>
+        <p>
+          You are using an <strong>outdated</strong> browser.<br>
+          Please <a href="http://browsehappy.com/?locale=pt-br">upgrade your browser</a> to improve your experience.
+        </p>
+      </div>
+    <![endif]-->
+
+    <!-- Scripts do google e terceiros: -->
+    <script src="https://maps.googleapis.com/maps/api/js?language=pt_BR&key=AIzaSyDFAE7ywLQBLmyS4jzyHlojO_DWC_BaRWA"></script>
+    <% if (@env != 'development') : %>
+    <script src="https://assets.pagar.me/js/pagarme.min.js"></script>
+    <script type="text/javascript">
+      //<![CDATA[
+      var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+      document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-M3WZQJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M3WZQJ');</script>
+    <!-- End Google Tag Manager -->
+    <!--
+      Código do Google para tag de remarketing
+      As tags de remarketing não podem ser associadas a informações pessoais de identificação nem inseridas
+      em páginas relacionadas a categorias de confidencialidade. Veja mais informações e instruções sobre como
+      configurar a tag em: http://google.com/ads/remarketingsetup
+    -->
+    <script type="text/javascript">
+      /* <![CDATA[ */
+      var google_conversion_id = 971695909;
+      var google_custom_params = window.google_tag_params;
+      var google_remarketing_only = true;
+      /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+    <noscript>
+      <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/971695909/?value=0&amp;guid=ON&amp;script=0"/>
+      </div>
+    </noscript>
+    <script class="trustlogo">
+      window.TrustLogo("https://s3-sa-east-1.amazonaws.com/atadosapp/images/comodo_secure_100x85_transp.png", "CL1", "none");
+    </script>
+    <% end %>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "apps": [
+    {
+      "name": "at.client",
+      "autorestart": true,
+      "script": "index.js",
+      "watch": [
+        "package.json",
+        "ecosystem.json",
+        "index.js",
+        "src/**/*.css",
+        "src/**/*.jsx",
+        "src/components/**/*.jsx",
+        "src/server.js",
+        "src/Routes.jsx",
+        "src/configureStore.js",
+        "src/serverConfig.js"
+      ],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
