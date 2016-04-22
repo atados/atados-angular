@@ -4,10 +4,9 @@ import glp from 'gulp-load-plugins';
 const plugins = glp();
 
 const scripts = ({
-  src='app.{js,jsx}',
-  dest='dist'
-} = {}) =>
-() => gulp.src(src)
+  src = 'app.{js,jsx}',
+  dest = 'dist'
+} = {}) => () => gulp.src(src)
 .pipe(plugins.jspm({
   plugin: true
 }))

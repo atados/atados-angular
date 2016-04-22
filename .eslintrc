@@ -1,5 +1,6 @@
 {
   "root": true,
+  "parser": "babel-eslint",
   "globals": {
     "angular": true,
     "console": true,
@@ -25,6 +26,12 @@
     }],
     "no-multi-str": 0,
     "quotes": [2, "single"],
-    "linebreak-style": [2, "unix"]
+    "linebreak-style": [2, "unix"],
+    "no-underscore-dangle": [2, {
+      "allow": [
+        "__reload",
+        "__unload",
+      ]
+    }]
   }
 }

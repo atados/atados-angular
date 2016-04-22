@@ -1,5 +1,5 @@
 {
-  "name": "atados-www",
+  "name": "atados-client",
   "version": "3.0.0",
   "license": "GPL-3.0+",
   "repository": {
@@ -12,13 +12,18 @@
   "scripts": {
     "chokidar": "pm2 start --name chokidar.atados chokidar-socket-emitter",
     "gulp": "gulp",
-    "pretest": "eslint",
+    "lint": "eslint .",
     "test": "jest",
     "start": "pm2 startOrRestart ecosystem.json",
     "server": "pm2 startOrRestart ecosystem.json",
     "poststart": "npm run gulp && npm run chokidar",
-    "postinstall": "gulp build"
+    "_postinstall": "gulp build",
+    "validate": "npm ls"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "jest": {
     "scriptPreprocessor": "node_modules/systemjs-jest",
     "testPathDirs": [
@@ -53,6 +58,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
+    "babel-eslint": "^6.0.3",
     "babel-plugin-add-module-exports": "^0.1.2",
     "babel-plugin-transform-class-properties": "^6.6.0",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
@@ -61,8 +67,12 @@
     "babel-preset-react": "^6.5.0",
     "del": "^2.2.0",
     "eslint": "^2.4.0",
+    "eslint-config-airbnb": "^8.0.0",
     "eslint-config-standard": "^5.1.0",
+    "eslint-plugin-import": "^1.5.0",
+    "eslint-plugin-jsx-a11y": "^1.0.2",
     "eslint-plugin-promise": "^1.1.0",
+    "eslint-plugin-react": "^5.0.1",
     "eslint-plugin-standard": "^1.3.2",
     "gulp": "^3.9.1",
     "gulp-cli": "^1.2.1",
@@ -76,6 +86,7 @@
     "jspm": "^0.16.33",
     "jss-cli": "^3.0.0",
     "pm2": "^1.0.2",
+    "precommit-hook": "^3.0.0",
     "require-dir": "^0.3.0",
     "requirejs": "~2.1.15",
     "run-sequence": "^1.1.5",

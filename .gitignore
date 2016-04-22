@@ -10,4 +10,6 @@ bower_components
 npm-debug.log
 app/scripts/constants.js
 jspm_packages
-app/
+/app/
+.jshintrc
+.jshintignore

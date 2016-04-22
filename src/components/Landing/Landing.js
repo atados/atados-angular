@@ -9,4 +9,4 @@ const Landing = () => (
 );
 
 export default Landing;
-export { default as TopBar } from './TopBar/TopBar'
+export { default as TopBar } from './TopBar/TopBar';

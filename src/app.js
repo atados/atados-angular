@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { Routes, configureStore } from './components/index.js';
-import { Presets, LookRoot } from 'react-look'
+import { Presets, LookRoot } from 'react-look';
 import appReducer from './components/appReducer';
 
 const initialState = window.atadosInitialState || {};
@@ -21,7 +21,7 @@ render(
   mountPoint
 );
 
-export function __reload() {
+export function __reload () {
   store.replaceReducer(appReducer);
 }
 

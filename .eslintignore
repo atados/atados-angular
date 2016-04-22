@@ -1,1 +1,4 @@
-**/src/config.js
+src/config.js
+jspm_packages
+node_modules
+app/

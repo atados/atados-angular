@@ -1,4 +1,4 @@
-const styles = ({color='#0189BB'} = {}) => {
+const styles = ({ color = '#0189BB' } = {}) => {
   const navbar = {
     background: color,
     margin: 0,
