@@ -5,7 +5,9 @@
 .idea
 dist
 node_modules
-app/bower_components
+bower_components
 .DS_Store
 npm-debug.log
 app/scripts/constants.js
+jspm_packages
+app/
