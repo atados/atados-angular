@@ -1,6 +1,5 @@
-import gulp from 'gulp';
 import del from 'del';
 
-export default function (globs=['dist']) {
-  return () => del(globs);
-};
+const clean = (globs = ['dist']) => () => del(globs);
+
+export default clean;

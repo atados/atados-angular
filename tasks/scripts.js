@@ -3,13 +3,14 @@ import glp from 'gulp-load-plugins';
 
 const plugins = glp();
 
-function scripts ({src='app.{js,jsx}', dest='dist'} = {}) {
-  return () => gulp.src(src)
-  .pipe(plugins.ngAnnotate())
-  .pipe(plugins.jspm({
-    plugin: true
-  }))
-  .pipe(gulp.dest(dest));
-};
+const scripts = ({
+  src='app.{js,jsx}',
+  dest='dist'
+} = {}) =>
+() => gulp.src(src)
+.pipe(plugins.jspm({
+  plugin: true
+}))
+.pipe(gulp.dest(dest));
 
 export default scripts;
