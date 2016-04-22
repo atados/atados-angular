@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-component';
-import look, { StyleSheet } from 'react-look';
+import { StyleSheet } from 'react-look';
 import css from './header.css';
 
 const styles = StyleSheet.create(css());
@@ -76,4 +76,4 @@ const Header = () => (
   </div>
 );
 
-export default look(Header);
+export default Header;

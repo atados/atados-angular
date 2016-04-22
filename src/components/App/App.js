@@ -1,20 +1,16 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import Header from '../Header/Header';
-import look, { StyleSheet } from 'react-look';
+import { StyleSheet } from 'react-look';
 import mainCss from './main.css';
 
 StyleSheet.addCSS(mainCss());
 
-class App extends Component {
-  render () {
-    return (
-      <div>
-        <Header />
-        {this.props.children}
-      </div>
-    );
-  }
-}
+const App = ({ children }) => (
+  <div className="atadosApp">
+    <Header />
+    {children}
+  </div>
+);
 
 App.propTypes = {
   children: PropTypes.object

@@ -19,7 +19,7 @@ System.config({
     "babel-plugin-transform-react-jsx": "npm:babel-plugin-transform-react-jsx@6.7.5",
     "babel-preset-react": "npm:babel-preset-react@6.5.0",
     "babel-runtime": "npm:babel-runtime@5.8.38",
-    "core-js": "npm:core-js@2.2.2",
+    "core-js": "npm:core-js@1.2.6",
     "css-reset-and-normalize": "npm:css-reset-and-normalize@0.3.0",
     "html": "npm:systemjs-plugin-html@0.0.7",
     "jquery-param": "npm:jquery-param@0.2.0",
