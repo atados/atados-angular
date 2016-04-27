@@ -2,7 +2,7 @@ import React from 'react';
 import TopBar from './TopBar/TopBar';
 
 const Landing = () => (
-  <div>
+  <div className="landing">
     <TopBar />
     <h1>Landing</h1>
   </div>

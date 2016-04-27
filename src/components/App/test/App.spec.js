@@ -3,14 +3,14 @@ jest.unmock('../App');
 
 import React from 'react';
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { render } from 'enzyme';
 // import { findDOMNode } from 'react-dom';
 // import TestUtils from 'react-addons-test-utils';
 import App from '../App';
 
 describe('App', () => {
   it('renders', () => {
-    const app = shallow(
+    const app = render(
       <App />
     );
 

@@ -17,10 +17,13 @@ const styles = ({ color = '#0189BB' } = {}) => {
     display: 'inline-block'
   };
   const highlight = {
-    backgroundColor: '#e27f2e'
+    backgroundColor: '#e27f2e',
+    fontWeight: 700
   };
   const link = {
-    padding: '0 10px',
+    padding: 0,
+    paddingLeft: 15,
+    paddingRight: 15,
     textDecoration: 'none',
     display: 'block',
     color: '#fff',
