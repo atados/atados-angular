@@ -20,7 +20,7 @@
     <atados-search></atados-search>
   </div>
 
-  <div id="landing-info">
+  <div class="landing-info">
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-5">
@@ -49,35 +49,7 @@
           </div>
         </div>
         <div class="col-xs-12 col-md-7">
-          <div class="wrapper wrapper-news">
-            <h2>Receba vagas e novidades</h2>
-            <p>Inscreva-se na nossa <b>Newsletter</b> e receba as vagas que estão rolando.</p>
-            <div class="row">
-              <div class="col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2">
-                <input type="text" class="form-control" placeholder="Seu nome" ng-model="news.name">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-7 col-sm-7 col-sm-push-1 col-md-5 col-md-push-2">
-                <input type="text" class="form-control" placeholder="Seu email" ng-model="news.email">
-              </div>
-              <div class="col-xs-5 col-sm-3 col-sm-push-1 col-md-3 col-md-push-2">
-                <select class="form-control" ng-model="news.state" ng-options="s.name for s in states()">
-                  <option value="" disabled>Estado</option>
-                </select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-7 col-sm-7 col-sm-push-1 col-md-5 col-md-push-2">
-                <select class="form-control" ng-model="news.city" ng-options="c.name for c in stateCities | orderBy: '-highlight'">
-                  <option value="" disabled>Cidade</option>
-                </select>
-              </div>
-              <div class="col-xs-5 col-sm-3 col-sm-push-1 col-md-3 col-md-push-2">
-                <input type="submit" value="Manda!" class="btn btn-default" ng-click="add_to_news()">
-              </div>
-            </div>
-          </div>
+          <div ng-include="'partials/form-news.html'"></div>
         </div>
       </div>
     </div>

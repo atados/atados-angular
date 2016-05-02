@@ -94,7 +94,7 @@
   }
 }
 
-#landing-info {
+.landing-info {
   padding: 30px 0px;
   background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/bg-newsletter.jpg') no-repeat center center / cover;
 
@@ -289,7 +289,7 @@
     }
   }
 
-  #landing-info {
+  .landing-info {
     .wrapper {
       &.wrapper-news {
         margin-top: 30px;
@@ -319,7 +319,7 @@
       }
     }
   }
-  #landing-info {
+  .landing-info {
     .wrapper {
       &.wrapper-news {
         margin-top: 30px;
