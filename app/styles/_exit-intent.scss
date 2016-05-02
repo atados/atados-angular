@@ -1,0 +1,69 @@
+#exit-intent {
+  font-family: 'Open Sans', sans-serif;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+}
+#exit-intent .underlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.5);
+  cursor: pointer;
+  -webkit-animation: fadein 0.5s;
+  animation: fadein 0.5s;
+}
+#exit-intent .modal {
+  display: block;
+  overflow: auto;
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 70vw;
+  height: auto;
+  background-color: #f0f1f2;
+  z-index: 1;
+  position: absolute;
+  margin-left: 50%;
+  margin-top: 30%;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  border-radius: 4px;
+  animation: fadein 0.3s;
+  transform: translateX(-50%) translateY(-50%);
+}
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@-ms-keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
