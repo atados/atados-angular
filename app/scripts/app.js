@@ -15,6 +15,12 @@ var app = angular.module('atadosApp', [
   'duScroll'
 ]);
 
+app.config(function (ENV, $compileProvider) {
+  if(ENV !== 'development'){
+    $compileProvider.debugInfoEnabled(false);
+  }
+});
+
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
   $urlRouterProvider.when('/ato/:slug', '/vaga/:slug');
