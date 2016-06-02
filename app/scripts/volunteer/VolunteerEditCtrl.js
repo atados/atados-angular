@@ -24,9 +24,6 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
   if ($scope.loggedUser && $scope.loggedUser.role === VOLUNTEER) {
     $scope.savedEmail = $scope.loggedUser.user.email;
     $scope.volunteer = $scope.loggedUser;
-    $scope.volunteer.address.addr = {
-      formatted_address: $scope.volunteer.address.address_line,
-    };
   } else {
     $state.transitionTo('root.home');
     toastr.error('Voluntário não logado para editar.');
@@ -50,8 +47,7 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
       Photos.getFacebookPhoto(function (response) {
         toastr.success('Foto do facebook salva com sucesso');
         $scope.volunteer.image_url = response;
-      }, function (error) {
-        console.error(error);
+      }, function () {
         toastr.error('Error no servidor. Não consigo pegar foto do Facebook.');
       });
     }
@@ -63,7 +59,6 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
   });
 
   $scope.saveVolunteer = function () {
-
     Volunteer.save($scope.volunteer, function() {
       toastr.success('Perfil salvo!', $scope.volunteer.slug);
       if ($scope.password && $scope.password === $scope.passwordConfirm) {

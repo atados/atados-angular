@@ -96,18 +96,12 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
       }
 
       user.address = user.user.address;
-      if (user.address && user.address.city) {
-        $http.get(api + 'cities/'+ user.address.city + '/').success(function (city) {
-          user.address.city = city;
-          if (user.address.city) {
-            user.address.state = Site.states()[user.address.city.state.id - 1];
-          }
-        });
-      }
+      user.address.addr = {
+      formatted_address: user.address.address_line,
+    };
     },
 
     volunteer: function (v) {
-
       v.causes = fixCauses(v.causes);
       v.skills = fixSkills(v.skills);
 
