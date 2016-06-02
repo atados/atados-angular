@@ -30,11 +30,6 @@ app.factory('Volunteer', function($http, $state, Restangular, Cleanup, api) {
         skills.push(s.id);
       });
       volunteerCopy.skills = skills;
-
-      if (volunteerCopy.address && volunteerCopy.address.city) {
-        volunteerCopy.address.city = volunteerCopy.address.city.id;
-        delete volunteerCopy.address.state;
-      }
       volunteerCopy.user.address = volunteerCopy.address;
 
       if (volunteerCopy.birthDate) {
