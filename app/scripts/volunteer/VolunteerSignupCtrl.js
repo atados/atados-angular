@@ -5,32 +5,14 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth, Restangular) {
+app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth) {
   $scope.cityLoaded = false;
-  $scope.$watch('state', function (value) {
-    $scope.cityLoaded = false;
-    $scope.stateCities = [];
 
-    if (value) {
-      Restangular.all('cities').getList({page_size: 3000, state: value.id}).then(function (response) {
-        response.forEach(function(c) {
-          $scope.stateCities.push(c);
-        });
-
-        value.citiesLoaded = true;
-        $scope.cityLoaded = true;
-      });
-    }
-  });
-
-  $scope.$watch('email', function (value) {
-    if (value) {
-      Auth.isEmailUsed(value, function (response) {
-        $scope.signupForm.email.alreadyUsed = response.alreadyUsed;
-        $scope.signupForm.email.$invalid = response.alreadyUsed;
-      });
+  $scope.$watch('address.addr', function (value) {
+    if (value instanceof Object) {
+      $scope.signupForm.address.$invalid = false;
     } else {
-      $scope.signupForm.email.alreadyUsed = false;
+      $scope.signupForm.address.$invalid = true;
     }
   });
 
@@ -49,7 +31,7 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth,
       var data = {
         email: $scope.email,
         password: $scope.password,
-        address: {'city': $scope.city.id},
+        address: $scope.address,
       };
       if ($state.current.name.split('.')[0] === 'gdd') {
         data.gdd = true;
