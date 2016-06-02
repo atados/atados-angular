@@ -4,17 +4,15 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $state, $http, api, Auth, Photos, Restangular) {
+app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $state, $http, api, Auth) {
 
   $scope.nonprofit = {
     image_url: 'https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg',
     cover_url: 'https://s3-sa-east-1.amazonaws.com/atadosapp/project/default_project.jpg',
     hidden_address: false,
     address: {
-      neighborhood:null,
-      zipcode:null,
-      addressline:null,
-      addressnumber:null,
+      addr:null,
+      typed_address2:null,
     },
     phone:null,
     description:null,
@@ -32,6 +30,14 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
     website:null,
     causes:[]
   };
+
+  $scope.$watch('nonprofit.address.addr', function (value) {
+    if (value instanceof Object) {
+      $scope.signupForm.address.$invalid = false;
+    } else {
+      $scope.signupForm.address.$invalid = true;
+    }
+  });
 
   $scope.buttonText = 'Finalizar cadastro';
 
@@ -70,31 +76,6 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
   });
 
   $scope.cityLoaded = false;
-
-  $scope.$watch('nonprofit.address.state', function (value) {
-    $scope.cityLoaded = false;
-    $scope.stateCities = [];
-    if (value && !value.citiesLoaded) {
-      Restangular.all('cities').getList({page_size: 3000, state: value.id}).then(function (response) {
-        response.forEach(function(c) {
-          $scope.stateCities.push(c);
-          if (!c.active) {
-            $scope.cities().push(c);
-          }
-        });
-        value.citiesLoaded = true;
-        $scope.cityLoaded = true;
-      });
-    } else if(value){
-      var cities = $scope.cities();
-      cities.forEach(function (c) {
-        if (c.state.id === $scope.nonprofit.address.state.id) {
-          $scope.stateCities.push(c);
-        }
-      });
-      $scope.cityLoaded = true;
-    }
-  });
 
   $scope.$watch('password + passwordConfirm', function() {
     $scope.signupForm.password.doesNotMatch = $scope.password !== $scope.passwordConfirm;

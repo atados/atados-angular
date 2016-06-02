@@ -12,7 +12,8 @@ var app = angular.module('atadosApp', [
   'seo',
   'linkify',
   'angular-loading-bar',
-  'duScroll'
+  'duScroll',
+  'google.places'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
