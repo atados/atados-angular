@@ -40,35 +40,18 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Restang
     }
   });
 
-  $scope.cityLoaded = false;
-  $scope.$watch('project.address.state', function (value) {
-    $scope.cityLoaded = false;
-    $scope.stateCities = [];
-
-    if (value) {
-      Restangular.all('cities')
-      .getList({page_size: 3000, state: value.id})
-      .then(function (response) {
-        response.forEach(function(c) {
-          $scope.stateCities.push(c);
-        });
-        if ($scope.loggedUser.address && value.id === $scope.loggedUser.address.city.state.id) {
-          $scope.project.address.city = $scope.stateCities.find(function (city) {
-            return city.id === $scope.loggedUser.address.city.id;
-          });
-        }
-
-        value.citiesLoaded = true;
-        $scope.cityLoaded = true;
-      });
+  $scope.$watch('project.address.addr', function (value) {
+    if (value instanceof Object) {
+      $scope.editProjectForm.address.$invalid = false;
+    } else {
+      $scope.editProjectForm.address.$invalid = true;
     }
   });
 
   function prepareProject() {
-    var stateCode = $scope.project.address.city_state.split(', ')[1];
-    $scope.project.address.state = $scope.states().find(function (s) {
-      return s.code === stateCode;
-    });
+    if ($scope.project.address) {
+      $scope.project.address.addr = {formatted_address: $scope.project.address.typed_address};
+    }
 
     if ($scope.project.job) {
       $scope.jobActive = true;

@@ -53,61 +53,23 @@
           </div>
         </fieldset>
 
-        <fieldset ng-if="!(project.work.can_be_done_remotely || project.job.can_be_done_remotely)">
-          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.addressline.$invalid]">
-            <label class="col-sm-3 control-label">Endereço</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" name="addressline" ng-model="project.address.addressline" placeholder="Rua" ng-maxlength="200">
-              <label class="help-block" ng-show="editProjectForm.addressline.$error.maxlength">Não pode ter mais de 200 caracteres.</label>
-            </div>
-          </div>
+        <fieldset>
+            <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.address.$invalid]">
+              <label class="col-sm-3 control-label">Endereço</label>
 
-          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.addressnumber.$invalid]">
-            <div class="col-sm-offset-3 col-sm-8" id="addressNumberField">
-              <input type="text" class="form-control" name="addressnumber" ng-model="project.address.addressnumber" ng-maxlength="10" placeholder="Número">
-              <label class="help-block" ng-show="editProjectForm.addressnumber.$error.maxlength">Não pode ter mais de 10 caracteres.</label>
+              <div class="col-sm-8">
+                <input required g-places-autocomplete autocomplete="off" type="text" class="form-control" name="address" ng-model="project.address.addr" placeholder="Rua">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.addressline2.$invalid]">
-            <label class="col-sm-3 control-label"></label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" name="addressline2" ng-model="project.address.addressline2" placeholder="Complemento" ng-maxlength="100">
-              <label class="help-block" ng-show="editProjectForm.addressline2.$error.maxlength">Não pode ter mais de 100 caracteres.</label>
+            <div class="form-group">
+              <label class="col-sm-3 control-label"></label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="" ng-model="project.address.typed_address2" placeholder="Complemento">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.neighborhood.$invalid]">
-            <div class="col-sm-8 col-sm-offset-3">
-              <input type="text" class="form-control" name="neighborhood" ng-model='project.address.neighborhood' placeholder="Bairro" ng-maxlength="50">
-              <label class="help-block" ng-show="editProjectForm.neighborhood.$error.maxlength">Não pode ter mais de 50 caracteres.</label>
-            </div>
-          </div>
-
-          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[editProjectForm.zipcode.$invalid]">
-            <div class="col-sm-offset-3 col-sm-8">
-              <input type="text" class="form-control" name="zipcode" ng-model='project.address.zipcode' ng-minlength="8" ng-maxlength="9" placeholder="CEP" id="zipcodeField">
-              <label class="help-block" ng-show="editProjectForm.zipcode.$error.minlength">Não pode ter menos de 8 caracteres.</label>
-              <label class="help-block" ng-show="editProjectForm.zipcode.$error.maxlength">Não pode ter mais de 9 caracteres.</label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-8 col-sm-offset-3">
-              <br><br>
-              <select class="form-control" ng-model="project.address.state" ng-options="s.name for s in states()">
-                <option value="" disabled selected>Estado</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[!project.address.city.id]">
-            <div class="col-sm-8 col-sm-offset-3">
-              <select class="form-control" ng-model="project.address.city" ng-options="c.name for c in stateCities | orderBy: '-highlight'" ng-disabled="!cityLoaded">
-                <option value="" disabled selected>Cidade</option>
-              </select>
-            </div>
-          </div>
-        </fieldset>
+          </fieldset>
 
       </fieldset>
 
@@ -309,7 +271,7 @@
           </div>
         </fieldset>
 
-        <button type="submit" class="btn btn-info btn-save"  ng-disabled="editProjectForm.$invalid || !(imageUploaded && causeChosen && skillChosen && project.address.city)">Salvar Vaga</button>
+        <button type="submit" class="btn btn-info btn-save"  ng-disabled="editProjectForm.$invalid || !(imageUploaded && causeChosen && skillChosen)">Salvar Vaga</button>
       </div>
     </form>
   </div>

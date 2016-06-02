@@ -50,11 +50,15 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
   if ($scope.loggedUser && $scope.loggedUser.role === NONPROFIT) {
     $scope.loggedUser.address = $scope.loggedUser.user.address;
     $scope.loggedUser.causes.forEach(function (c) {
-      c.image = storage + 'cause_' + c.id + '.png';
+      if (c !== undefined) {
+        c.image = storage + 'cause_' + c.id + '.png';
+      }
     });
     $scope.loggedUser.projects.forEach(function (p) {
       p.causes.forEach(function (c) {
-        c.image = storage + 'cause_' + c.id + '.png';
+        if (c !== undefined) {
+          c.image = storage + 'cause_' + c.id + '.png';
+        }
       });
     });
   }
