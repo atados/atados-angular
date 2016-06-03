@@ -50,7 +50,7 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Restang
 
   function prepareProject() {
     if ($scope.project.address) {
-      $scope.project.address.addr = {formatted_address: $scope.project.address.typed_address};
+      $scope.project.address.addr = {formatted_address: $scope.project.address.address_line};
     }
 
     if ($scope.project.job) {
