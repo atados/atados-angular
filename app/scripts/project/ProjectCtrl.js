@@ -21,14 +21,14 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
 
   $scope.isRemote = function (project) {
     var remote = (project.work && project.work.can_be_done_remotely) || (project.job && project.job.can_be_done_remotely);
-    var address = (project.address && project.address.city);
+    var address = (project.address && project.address.address_line);
     return remote || !address;
   };
 
   if ($scope.project.address) {
     $scope.options = {
       map: {
-        center: new google.maps.LatLng($scope.project.address.latitude, $scope.project.address.longitude),
+        center: new google.maps.LatLng($scope.project.address.lat, $scope.project.address.lng),
         zoom: 15,
       },
     };
@@ -65,11 +65,6 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
     }
   }
 
-  $scope.$watch('center', function(value) {
-    if ($scope.project.address && value && value.d === 46) {
-      $scope.center = new google.maps.LatLng($scope.project.address.latitude, $scope.project.address.longitude);
-    }
-  });
 
   function openApplyModal () {
     var template = '/partials/volunteerContractModal.html';

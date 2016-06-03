@@ -27,10 +27,10 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
           city = saoPaulo;
         }
 
-        Search.filter(null, null, null, city.id);
+        Search.filter(null, null, null, null);
         for (var c in Site.cities()) {
           if (Site.cities()[c].id === city.id) {
-            Search.city = Site.cities()[c];
+            //Search.city = Site.cities()[c];
           }
         }
       });

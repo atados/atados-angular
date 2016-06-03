@@ -45,6 +45,7 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
     }
   });
 
+/*
   $scope.$watch('search.city', function (city) {
     $scope.mapOptions.map.zoom = defaultZoom;
     $('.map').css('opacity', 1);
@@ -62,7 +63,7 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
       $('.map').css('opacity', 0.1);
       $scope.distanceAddress = true;
     }
-  });
+  });*/
 
   $scope.objects = Search.mapProjects();
   $scope.mapOptions = {

@@ -18,14 +18,15 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
 
   var search = function(value, old) {
     if (value !== old) {
-      if ($scope.landing && (Search.query || Search.cause.id || Search.skill.id)) {
+      if ($scope.landing && (Search.query || Search.cause.id || Search.skill.id || Search.address)) {
         $state.transitionTo('root.explore');
       }
       alreadySearchedProject = false;
       alreadySearchedNonprofit = false;
       $scope.searchMoreDisabled = false;
 
-      Search.filter(Search.query, Search.cause.id, Search.skill.id, Search.city.id);
+      console.log(Search.address);
+      Search.filter(Search.query, Search.cause.id, Search.skill.id, Search.address);
       doneTyping = false;
     }
   };
@@ -36,7 +37,7 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
   $scope.$watch('search.cause', function (value, old) {
     search(value, old);
   });
-  $scope.$watch('search.city', function (value, old) {
+  $scope.$watch('search.address', function(value, old) {
     search(value, old);
   });
 
@@ -122,7 +123,7 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
     if ($scope.landing) {
       $scope.$emit('landingToExplorer', {
         showProjects: Search.showProjects,
-        city: Search.city,
+        address: Search.address,
         cause: Search.cause,
         skill: Search.skill
       });
