@@ -5,7 +5,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, rioDeJaneiro, Site) {
+app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $location, $timeout, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search) {
 
   $scope.loggedUser = loggedUser;
 
@@ -15,24 +15,22 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
         $rootScope.geoIP = data;
 
         // Preset city on home
-        var city;
+        var long_name;
         if (data.region_code === 'DF') {
-          city = brasilia;
+          long_name = 'Distrito Federal';
         } else if (data.region_code === 'PR') {
-          city = curitiba;
+          long_name = 'Paraná';
         } else if (data.region_code === 'RJ') {
-          city = rioDeJaneiro;
+          long_name = 'Rio de Janeiro';
           $scope.isRio = true;
         } else {
-          city = saoPaulo;
+          long_name = 'São Paulo';
         }
+        var address = {
+          address_components: [{'long_name':long_name,'types':['administrative_area_level_1','political']}],
+        };
 
-        Search.filter(null, null, null, null);
-        for (var c in Site.cities()) {
-          if (Site.cities()[c].id === city.id) {
-            //Search.city = Site.cities()[c];
-          }
-        }
+        Search.filter(null, null, null, address);
       });
   };
   $scope.searchIP();
