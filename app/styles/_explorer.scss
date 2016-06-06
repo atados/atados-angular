@@ -73,6 +73,9 @@
         color: $gray-light;
         -webkit-appearance: none;
       }
+      input {
+        height: 44px;
+      }
   }
   #searchInput {
     height: 44px;

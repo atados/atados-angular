@@ -6,7 +6,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
   var _query = '';
   var _cause = {};
   var _skill = {};
-  var _city = {};
+  var _address = {};
 
   var _highlightedProjects = [];
   var _highlightedNonprofits = [];
@@ -43,19 +43,14 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
   };
 
   // city is the the city id
-  function searchProjects(query, cause, skill, city, gdd) {
+  function searchProjects(query, cause, skill, address) {
     var urlHeaders = {
       page_size: 20,
       query: query,
       cause: cause,
       skill: skill,
-      city: city,
+      address: address,
     };
-    if (gdd) {
-      urlHeaders.gdd = true;
-      urlHeaders.page_size = 1000;
-    }
-
 
     _loading = true;
     Restangular.all('projects').getList(urlHeaders).then( function(response) {
@@ -75,12 +70,12 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
   }
 
   // city is the the city id
-  var searchNonprofits = function (query, cause, city) {
+  var searchNonprofits = function (query, cause, address) {
     var urlHeaders = {
       page_size: 20,
       query: query,
       cause: cause,
-      city: city,
+      address: address,
     };
 
     _loading = true;
@@ -131,18 +126,18 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
   getMapNonprofits();
 
   return {
-    filter: function (query, cause, skill, city, gdd) {
+    filter: function (query, cause, skill, address) {
       _cardListProjects = [];
       _cardListNonprofits = [];
-      searchProjects(query, cause, skill, city, gdd);
-      searchNonprofits(query, cause, city);
-      this.getHighlightedProjects(city, gdd);
-      this.getHighlightedNonprofits(city);
+      searchProjects(query, cause, skill, address);
+      searchNonprofits(query, cause, address);
+      this.getHighlightedProjects(address);
+      this.getHighlightedNonprofits(address);
     },
     query: _query,
     cause: _cause,
     skill: _skill,
-    city: _city,
+    address: _address,
     loading: function () {
       return _loading;
     },
@@ -177,22 +172,22 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
     nonprofits: function () {
       return _cardListNonprofits;
     },
-    getHighlightedProjects: function (city, gdd) {
-      if (!city) {
-        city = null;
+    getHighlightedProjects: function (address) {
+      if (!address) {
+        address = null;
       }
-      return Restangular.all('projects').getList({highlighted: true, city: city, gdd: gdd, page_size: 16}).then( function(projects) {
+      return Restangular.all('projects').getList({highlighted: true, address: address, page_size: 16}).then( function(projects) {
         _highlightedProjects = fixProjects(projects);
         return;
       }, function () {
         console.error('Não consegui pegar as vagas em destaque do servidor.');
       });
     },
-    getHighlightedNonprofits: function (city) {
-      if (!city) {
-        city = null;
+    getHighlightedNonprofits: function (address) {
+      if (!address) {
+        address = null;
       }
-      return Restangular.all('nonprofits').getList({highlighted: true, city: city, page_size: 16}).then( function(nonprofits) {
+      return Restangular.all('nonprofits').getList({highlighted: true, address: address, page_size: 16}).then( function(nonprofits) {
         _highlightedNonprofits = fixNonprofits(nonprofits);
         return;
       }, function () {

@@ -47,49 +47,18 @@
 
             <phone-input object="nonprofit" form="signupForm"></phone-input>
 
-            <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[signupForm.addressline.$error.required || signupForm.addressline.$invalid]">
+            <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[signupForm.address.$invalid]">
               <label class="col-sm-3 control-label">Endereço</label>
 
-              <div class="col-sm-6">
-                <input required type="text" class="form-control" name="addressline" ng-model="nonprofit.address.addressline" placeholder="Rua">
+              <div class="col-sm-8">
+                <input required g-places-autocomplete autocomplete="off" type="text" class="form-control" name="address" ng-model="nonprofit.address.addr" placeholder="Rua">
               </div>
             </div>
-            <div ng-class="{true: 'has-error', false: 'has-success'}[signupForm.addressnumber.$error.required || signupForm.addressnumber.$invalid]">
-              <div class="col-sm-2" id="addressNumberField">
-                <input required type="text" class="form-control" name="addressnumber" ng-model="nonprofit.address.addressnumber" placeholder="#">
-              </div>
-            </div>
+
             <div class="form-group">
               <label class="col-sm-3 control-label"></label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" name="addressline2" ng-model="nonprofit.address.addressline2" placeholder="Complemento">
-              </div>
-            </div>
-            <div class="row">
-              <div ng-class="{true: 'has-error', false: 'has-success'}[signupForm.neighborhood.$error.required || signupForm.neighborhood.$invalid]">
-                <div class="col-sm-4 col-sm-offset-3">
-                  <input required type="text" class="form-control" name="neighborhood" ng-model='nonprofit.address.neighborhood' placeholder="Bairro">
-                </div>
-              </div>
-
-              <zipcode-input form="signupForm" object="nonprofit.address"></zipcode-input>
-            </div>
-
-            <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[!nonprofit.address.state]">
-              <div class="col-sm-8 col-sm-offset-3">
-                <br><br>
-                <select class="form-control" ng-model="nonprofit.address.state" ng-options="s.name for s in states()">
-                  <option value="" disabled selected>Estado</option>
-                </select>
-                <label class="help-block" ng-hide="nonprofit.address.state">Campo obrigatório.</label>
-              </div>
-            </div>
-            <div class="form-group" ng-class="{true: 'has-error', false: 'has-success'}[!nonprofit.address.city]">
-              <div class="col-sm-8 col-sm-offset-3">
-                <select class="form-control" ng-model="nonprofit.address.city" ng-options="c.name for c in stateCities | orderBy: '-highlight'" ng-disabled="!cityLoaded">
-                  <option value="" disabled selected>Cidade</option>
-                </select>
-                <label class="help-block" ng-hide="nonprofit.address.city">Campo obrigatório.</label>
+                <input type="text" class="form-control" name="" ng-model="nonprofit.address.typed_address2" placeholder="Complemento">
               </div>
             </div>
             <br>
@@ -100,7 +69,7 @@
               <br>
               <div class="panel panel-default">
                 <div class="panel-body">
-                  Atualmente trabalhamos apenas com as ONGs de São Paulo, Brasília, Curitiba e no Rio de Janeiro. Caso sua ONG não esteja em uma dessas cidades, você pode cadastrá-la, porém ela não entrará no ar. Estamos trabalhando para atuar em mais cidades =)
+                  Atualmente trabalhamos apenas com as ONGs da Grande São Paulo, Brasília, Curitiba e Grande Rio de Janeiro. Caso sua ONG não esteja em uma dessas cidades, você pode cadastrá-la, porém ela não entrará no ar. Estamos trabalhando para atuar em mais cidades =)
                 </div>
               </div>
             </div>
@@ -217,10 +186,7 @@
               <label class="help-block" ng-show="signupForm.description.$error.maxlength">A descrição não pode ter mais de 160 caracteres.</label>
               <label class="help-block" ng-show="signupForm.details.$error.minlength || !nonprofit.details">Os detalhes da ONG não podem ter menos de 10 caracteres.</label>
               <label class="help-block" ng-show="!nonprofit.phone">Você precisa preencher o telefone.</label>
-              <label class="help-block" ng-show="!nonprofit.address.addressline || !nonprofit.address.addressnumber || !nonprofit.address.neighborhood || !nonprofit.address.zipcode">Você precisa preencher o endereço completo.</label>
               <label class="help-block" ng-show="signupForm.details.$error.maxlength">Os detalhes da ONG não podem ter menos de 3000 caracteres.</label>
-              <label class="help-block" ng-hide="nonprofit.address.state">O campo de estado é obrigatório.</label>
-              <label class="help-block" ng-hide="nonprofit.address.city">O campo de cidade é obrigatório.</label>
               <label class="help-block" ng-hide="nonprofit.causes.length">Selecione ao menos uma causa</label>
               <label class="help-block" ng-show="signupForm.responsiblename.$error.required">Você deve informar seu nome pessoal.</label>
               <label class="help-block" ng-show="signupForm.responsiblename.$error.maxlength">O seu nome pessoal não pode ter mais de 30 caracteres.</label>

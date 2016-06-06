@@ -2,35 +2,20 @@
 
 var app = angular.module('atadosApp');
 
-app.filter('as_location_string', function() {
+app.filter('as_location_string', ['$sce', function($sce) {
   return function(address) {
 
-    if (address.city === 0) {
-      return address.city_state;
-    }
-    if (!address.addressline) {
+    if (!address.address_line) {
       return 'Não tem endereço.';
     }
 
-    var out = address.addressline + ', ';
-    if (address.addressnumber) {
-      out += address.addressnumber + ' - ';
+    var out = address.address_line;
+    if (address.typed_address2) {
+      out += '<br>' + address.typed_address2;
     }
-    if (address.addressline2) {
-      out += address.addressline2 + ' - ';
-    }
-    if (address.neighborhood) {
-      out += address.neighborhood + ' - ';
-    }
-    if (address.city_state) {
-      out += address.city_state;
-    }
-    if (address.zipcode) {
-      out += ' - ' + address.zipcode;
-    }
-    return out;
+    return $sce.trustAsHtml(out);
   };
-});
+}]);
 
 app.filter('newlines', function ($sce) {
   return function(text) {

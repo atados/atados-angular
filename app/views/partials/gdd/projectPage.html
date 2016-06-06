@@ -7,17 +7,6 @@
       <div class="col-sm-5">
         <h1 id="project-name">{{project.name}}</h1>
         <div id="project-type">
-          <p ng-if="project.job">
-          <i class="fa fa-clock-o"></i> Vaga Pontual
-          </p>
-          <span ng-if="project.job && project.job.start_date && project.job.end_date">
-            <small ng-if="projectJobInOneDay && !projectJobInSameTime">
-              {{project.job.start_date | date:"(EEEE) dd 'de' MMMM 'de' yyyy"}} das {{project.job.start_date | date:"h:mm a"}} até {{project.job.end_date | date:"h:mm a"}}
-            </small>
-            <small ng-if="!projectJobInOneDay">
-              {{project.job.start_date | date:"dd 'de' MMMM 'de' yyyy"}} até {{project.job.end_date | date:"dd 'de' MMMM 'de' yyyy"}}
-            </small>
-          </span>
         </div>
         <div id="project-nonprofit">
           <a ui-sref="gdd.nonprofit({slug: nonprofit.user.slug})" id="nonprofit-img">

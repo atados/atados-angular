@@ -19,32 +19,23 @@ app.factory('Volunteer', function($http, $state, Restangular, Cleanup, api) {
       var volunteerCopy = {};
       angular.copy(volunteer, volunteerCopy);
 
-      var causes = [];
-      volunteerCopy.causes.forEach(function(c) {
-        causes.push(c.id);
-      });
-      volunteerCopy.causes = causes;
-
-      var skills = [];
-      volunteerCopy.skills.forEach(function(s) {
-        skills.push(s.id);
-      });
-      volunteerCopy.skills = skills;
-
-      if (volunteerCopy.address && volunteerCopy.address.city) {
-        volunteerCopy.address.city = volunteerCopy.address.city.id;
-        delete volunteerCopy.address.state;
-      }
-      volunteerCopy.user.address = volunteerCopy.address;
-
       if (volunteerCopy.birthDate) {
         if (typeof volunteerCopy.birthDate.getFullYear !== 'undefined') {
           volunteerCopy.birthDate = volunteerCopy.birthDate.getFullYear() + '-' + (volunteerCopy.birthDate.getMonth() + 1) + '-' + volunteerCopy.birthDate.getDate();
         }
       }
 
+      volunteerCopy.user.address.typed_address = volunteerCopy.user.address.addr.formatted_address;
+
       delete volunteerCopy.projects;
       delete volunteerCopy.nonprofits;
+      delete volunteerCopy.skills;
+      delete volunteerCopy.causes;
+      delete volunteerCopy.user.address.id;
+      delete volunteerCopy.user.address.lat;
+      delete volunteerCopy.user.address.lng;
+      delete volunteerCopy.user.address.addr;
+      delete volunteerCopy.user.address.address_line;
 
       $http.put(api + 'volunteers/' + volunteerCopy.slug + '/.json', volunteerCopy)
         .success(success).error(error);

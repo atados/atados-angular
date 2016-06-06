@@ -60,21 +60,23 @@ app.factory('Nonprofit', function(Restangular, $state, $stateParams, Cleanup, $h
 
       if (!nonprofitCopy.user.address) {
         nonprofitCopy.user.address = {};
+      } else {
+        nonprofitCopy.user.address.typed_address = nonprofitCopy.user.address.addr.formatted_address;
       }
 
-      nonprofitCopy.user.address.city = nonprofitCopy.address.city.id;
-      
-      delete nonprofitCopy.address;
       delete nonprofitCopy.projects;
       delete nonprofitCopy.image_url;
       delete nonprofitCopy.cover_url;
       delete nonprofitCopy.volunteers;
-      delete nonprofitCopy.user.address.city_state;
-      delete nonprofitCopy.user.address.state;
+      delete nonprofitCopy.address;
+      delete nonprofitCopy.user.address.id;
+      delete nonprofitCopy.user.address.lat;
+      delete nonprofitCopy.user.address.lng;
+      delete nonprofitCopy.user.address.addr;
       
       $http.put(api + 'nonprofit/' + nonprofit.slug + '/.json', nonprofitCopy)
         .success(function() {
-          toastr.success('Perfil da ONG salva!');
+          toastr.success('Perfil da ONG salvo!');
         }).error(function(error) {
           console.error(error);
           toastr.error('Problema ao salvar o perfil da ONG, por favor tente de novo');

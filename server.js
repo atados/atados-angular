@@ -33,7 +33,7 @@ require('./lib/config/express')(app);
 require('./lib/routes')(app);
 
 // Start server
-app.listen(config.port, function () {
+app.listen(config.port, '0.0.0.0', function () {
   console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
 });
 

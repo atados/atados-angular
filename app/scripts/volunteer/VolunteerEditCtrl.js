@@ -13,6 +13,14 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
     }
   });
 
+  $scope.$watch('volunteer.address.addr', function (value) {
+    if (value instanceof Object) {
+      $scope.volunteerEditForm.address.$invalid = false;
+    } else {
+      $scope.volunteerEditForm.address.$invalid = true;
+    }
+  });
+
   if ($scope.loggedUser && $scope.loggedUser.role === VOLUNTEER) {
     $scope.savedEmail = $scope.loggedUser.user.email;
     $scope.volunteer = $scope.loggedUser;
@@ -20,35 +28,6 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
     $state.transitionTo('root.home');
     toastr.error('Voluntário não logado para editar.');
   }
-
-  $scope.cityLoaded = false;
-  $scope.$watch('volunteer.address.state', function (value) {
-    $scope.cityLoaded = false;
-    $scope.stateCities = [];
-    if (value && !value.citiesLoaded) {
-      Restangular.all('cities').getList({page_size: 3000, state: value.id}).then(function (response) {
-        response.forEach(function(c) {
-          $scope.stateCities.push(c);
-          if ($scope.volunteer.address.city && (c.id === $scope.volunteer.address.city.id)) {
-            $scope.volunteer.address.city = c;
-          }
-          if (!c.active) {
-            $scope.cities().push(c);
-          }
-        });
-        value.citiesLoaded = true;
-        $scope.cityLoaded = true;
-      });
-    } else if(value){
-      var cities = $scope.cities();
-      cities.forEach(function (c) {
-        if (c.state.id === $scope.volunteer.address.state.id) {
-          $scope.stateCities.push(c);
-        }
-      });
-      $scope.cityLoaded = true;
-    }
-  });
 
   $scope.uploadProfileFile = function(files) {
     if (files) {
@@ -68,8 +47,7 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
       Photos.getFacebookPhoto(function (response) {
         toastr.success('Foto do facebook salva com sucesso');
         $scope.volunteer.image_url = response;
-      }, function (error) {
-        console.error(error);
+      }, function () {
         toastr.error('Error no servidor. Não consigo pegar foto do Facebook.');
       });
     }
@@ -81,7 +59,6 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
   });
 
   $scope.saveVolunteer = function () {
-
     Volunteer.save($scope.volunteer, function() {
       toastr.success('Perfil salvo!', $scope.volunteer.slug);
       if ($scope.password && $scope.password === $scope.passwordConfirm) {

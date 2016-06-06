@@ -99,7 +99,7 @@
         </gm-markers>
         </gm-map>
 
-        <p ng-if="project.address"><i class="fa fa-map-marker"></i> {{project.address | as_location_string}}</p>
+        <p ng-if="project.address"><i class="fa fa-map-marker"></i> <span ng-bind-html="project.address | as_location_string"></span> </p>
       </div>
       <p ng-if="isRemote(project)" id="project-remote"><i class="fa fa-rss"></i> Trabalho remoto</p>
 

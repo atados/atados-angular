@@ -8,7 +8,6 @@ app.controller('NonprofitEditCtrl', function($scope, $http, $state, $stateParams
       Restangular, Photos, Cleanup, api, VOLUNTEER, NONPROFIT, Nonprofit) {
 
   $scope.$watch('loggedUser', function (user) {
-
     if (!user) {
       $state.transitionTo('root.home');
       toastr.error('Nenhum usuário logado.');
@@ -29,6 +28,16 @@ app.controller('NonprofitEditCtrl', function($scope, $http, $state, $stateParams
     } else if (user.role === NONPROFIT) {
       $scope.nonprofit = $scope.loggedUser;
       Cleanup.nonprofitForEdit($scope.nonprofit);
+    }
+  });
+
+  $scope.$watch('nonprofit.address.addr', function (value) {
+    console.log($scope.nonprofit);
+    console.log('watch');
+    if (value instanceof Object) {
+      $scope.nonprofitForm.address.$invalid = false;
+    } else {
+      $scope.nonprofitForm.address.$invalid = true;
     }
   });
 

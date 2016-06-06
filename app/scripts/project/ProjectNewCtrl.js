@@ -4,17 +4,14 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeout, Restangular, Project, NONPROFIT) {
+app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeout, Restangular, Project) {
   $scope.project = {
     name: '',
     nonprofit: null,
     address: {
-      city: {},
-      neighborhood: '',
-      zipcode: '',
-      addressline: '',
-      addressline2: '',
-      addressnumber: ''
+      addr: {},
+      typed_address: '',
+      typed_address2: ''
     },
     description: '',
     details: '',
@@ -26,47 +23,13 @@ app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeou
     roles: [],
   };
 
-  $scope.cityLoaded = false;
-  $scope.$watch('project.address.state', function (value) {
-    $scope.cityLoaded = false;
-    $scope.stateCities = [];
-
-    if (value) {
-      Restangular.all('cities')
-      .getList({page_size: 3000, state: value.id})
-      .then(function (response) {
-        response.forEach(function(c) {
-          $scope.stateCities.push(c);
-        });
-        if ($scope.loggedUser.address && value.id === $scope.loggedUser.address.city.state.id) {
-          $scope.project.address.city = $scope.stateCities.find(function (city) {
-            return city.id === $scope.loggedUser.address.city.id;
-          });
-        }
-
-        value.citiesLoaded = true;
-        $scope.cityLoaded = true;
-      });
+  $scope.$watch('project.address.addr', function (value) {
+    if (value instanceof Object) {
+      $scope.newProjectForm.address.$invalid = false;
+    } else {
+      $scope.newProjectForm.address.$invalid = true;
     }
   });
-
-  if (!$scope.loggedUser) {
-    $state.transitionTo('root.home');
-    toastr.error('Nenhum usuário logado.');
-  } else if ($scope.loggedUser.user.is_staff) {
-    $scope.project.nonprofit = $stateParams.id;
-    $scope.project.address.state = $scope.states().find(function (s) {
-      return s.id === $scope.loggedUser.address.city.state.id;
-    });
-  } else if ($scope.loggedUser.role !== NONPROFIT) {
-    $state.transitionTo('root.home');
-    toastr.error('Precisa estar logado como ONG para fazer cadastro de uma nova vaga');
-  } else {
-    $scope.project.nonprofit = $scope.loggedUser.id;
-    $scope.project.address.state = $scope.states().find(function (s) {
-      return s.id === $scope.loggedUser.address.city.state.id;
-    });
-  }
 
   $scope.job = {
     start_date: new Date(),
