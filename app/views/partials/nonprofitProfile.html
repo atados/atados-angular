@@ -20,7 +20,7 @@
           data-send="false"></div>
       </div>
 
-      <div id="nonprofit-map" ng-if="nonprofit.address && nonprofit.address.latitude !== 0 && nonprofit.address.longitude !== 0 && !nonprofit.user.hidden_address">
+      <div id="nonprofit-map" ng-if="nonprofit.address && nonprofit.address.lat !== 0 && nonprofit.address.lng !== 0 && !nonprofit.user.hidden_address">
         <gm-map
         gm-map-id="'nonprofitAddressMap'"
         gm-center="center"

@@ -13,6 +13,7 @@ app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Res
   $scope.search.skill = '';
   $scope.search.cause = '';
 
+
   $scope.open_video = function (url) {
     $modal.open({
       animation: $scope.animationsEnabled,

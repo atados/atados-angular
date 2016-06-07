@@ -36,14 +36,14 @@ app.controller('NonprofitCtrl', function($scope, $rootScope, $state, $http, nonp
   if ($scope.nonprofit.address) {
     $scope.options = {
       map: {
-        center: new google.maps.LatLng($scope.nonprofit.address.latitude, $scope.nonprofit.address.longitude),
+        center: new google.maps.LatLng($scope.nonprofit.address.lat, $scope.nonprofit.address.lng),
         zoom: 15,
       },
     };
   }
   $scope.$watch('center', function(value) {
     if ($scope.nonprofit.address && value && value.d === 46) {
-      $scope.center = new google.maps.LatLng($scope.nonprofit.address.latitude, $scope.nonprofit.address.longitude);
+      $scope.center = new google.maps.LatLng($scope.nonprofit.address.lat, $scope.nonprofit.address.lng);
     }
   });
 
@@ -52,16 +52,10 @@ app.controller('NonprofitCtrl', function($scope, $rootScope, $state, $http, nonp
     if (nonprofit.projects) {
       if ($scope.activeProjects) {
         return $scope.nonprofit.projects.filter(function (p) {
-          if (!p.city_state && p.address) {
-            p.city_state = p.address.city_state;
-          }
           return !(p.closed || p.deleted) && p.published;
         });
       } else {
         return $scope.nonprofit.projects.filter(function (p) {
-          if (!p.city_state && p.address) {
-            p.city_state = p.address.city_state;
-          }
           return p.closed || p.deleted;
         });
       }

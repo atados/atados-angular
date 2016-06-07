@@ -16,9 +16,40 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
   var doneTypingInterval = 1000;
   var oldQuery = '';
 
+  $scope.regions = [
+    {
+      'name': 'São Paulo - Capital',
+      'address': {
+        formatted_address: 'São Paulo, São Paulo - SP, Brasil',
+        address_components: [{'long_name':'São Paulo','types':['administrative_area_level_2']}],
+      }
+    },
+    {
+      'name': 'Grande São Paulo',
+      'address': {
+        formatted_address: 'Região Metropolitana de São Paulo, São Paulo - SP, Brasil',
+        address_components: [{'long_name':'Região Metropolitana de São Paulo','types':['colloquial_area']}],
+      }
+    },
+    {
+      'name': 'Distrito Federal',
+      'address': {
+        formatted_address: 'Curitiba - PR, Brasil',
+        address_components: [{'long_name':'Distrito Federal','types':['administrative_area_level_1']}],
+      }
+    },
+    {
+      'name': 'Curitiba',
+      'address': {
+        formatted_address: 'Curitiba - PR, Brasil',
+        address_components: [{'long_name':'Curitiba','types':['administrative_area_level_2']}],
+      }
+    },
+  ];
+
   var search = function(value, old) {
     if (value !== old) {
-      if ($scope.landing && (Search.query || Search.cause.id || Search.skill.id || Search.address)) {
+      if ($scope.landing && (Search.query || Search.cause.id || Search.skill.id)) {
         $state.transitionTo('root.explore');
       }
       alreadySearchedProject = false;
@@ -38,6 +69,11 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
   });
   $scope.$watch('search.address', function(value, old) {
     search(value, old);
+  });
+  $scope.$watch('search.region_select', function(value, old) {
+    if (value !== old) {
+      $scope.search.address = value.address;
+    }
   });
 
   $('#searchInput').keyup(function(){
