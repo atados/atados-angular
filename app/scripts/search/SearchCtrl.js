@@ -25,7 +25,6 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
       alreadySearchedNonprofit = false;
       $scope.searchMoreDisabled = false;
 
-      console.log(Search.address);
       Search.filter(Search.query, Search.cause.id, Search.skill.id, Search.address);
       doneTyping = false;
     }

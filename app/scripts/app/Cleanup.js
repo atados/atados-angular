@@ -95,10 +95,18 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
         }
       }
 
-      user.address = user.user.address;
-      user.address.addr = {
-      formatted_address: user.address.address_line,
-    };
+      if (user.address) {
+        user.address = user.user.address;
+        user.address.addr = {
+          formatted_address: user.address.address_line,
+        };
+      } else {
+        user.address = {
+          addr: {
+            formatted_address: '',
+          }
+        };
+      }
     },
 
     volunteer: function (v) {
