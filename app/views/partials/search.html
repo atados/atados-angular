@@ -28,12 +28,12 @@
         </div>
 
         <!-- Input de busca (pg de busca)-->
-        <div class="form-group col-sm-6" ng-if="!landing">
+        <!--<div class="form-group col-sm-6" ng-if="!landing">
           <input required g-places-autocomplete force-selection="true" autocomplete="off" type="text" class="form-control" name="locality" ng-model="search.address" placeholder="Região" ng-hide="landing">
-        </div>
+        </div>-->
 
         <!-- Input de região (landing)-->
-        <div class="form-group col-sm-6" ng-if="landing">
+        <div class="form-group col-sm-6">
           <select id="searchRegion" class="form-control" ng-model="search.region_select" ng-options="region.name for region in regions">
             <option value="" disabled selected>Região</option>
           </select>
