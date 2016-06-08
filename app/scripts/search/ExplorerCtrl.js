@@ -12,7 +12,7 @@ var constants = {
 var app = angular.module('atadosApp');
 
 app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParams, $filter, Search,
-      notselected, selected, defaultZoom, saoPaulo, rioDeJaneiro, curitiba, brasilia, distancia) {
+      notselected, selected, defaultZoom, saoPaulo, rioDeJaneiro, curitiba, brasilia) {
 
   $scope.site.title = 'Atados - Explore';
   $rootScope.explorerView = true;
@@ -175,6 +175,7 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
     angular.element(document.querySelector('#' + cardId))
         .addClass('hover');
 
+
     if (marker) {
       $scope.iw.setContent(marker.title);
       $scope.iw.open(constants.map, marker); // Also centers map to the marker.
@@ -183,10 +184,10 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
       $scope.previousMarker = marker;
     } else { // No marker
       if (object.work) {
-        if (object.work.can_be_done_remotely || object.address.city.id === distancia.id) { // Trabalho a distancia
+        if (object.work.can_be_done_remotely) { // Trabalho a distancia
           $scope.distanceAddress = true;
           $('.map').css('opacity', 0.1);
-        } else if (object.address && (object.address.longitude === 0 || object.address.latitude === 0)) { // No address
+        } else if (object.address && (object.address.lat === 0 || object.address.lng === 0)) { // No address
           $scope.hasAddress = true;
           $('.map').css('opacity', 0.1);
         }

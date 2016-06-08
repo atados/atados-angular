@@ -97,10 +97,10 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
 
   function hasValidAddress(object) {
     // For project objects
-    if (object.address && object.address.addressline && object.address.latitude !== 0 && object.address.longitude !== 0) {
+    if (object.address && object.address.address_line && object.address.lat !== 0 && object.address.lng !== 0) {
       return true;
     // For Nonprofit objects
-    } else if (object.user && object.user.address.addressline && object.user.address && object.user.address.latitude !== 0 && object.user.address.longitude !== 0) {
+    } else if (object.user && object.user.address.address_line && object.user.address && object.user.address.lat !== 0 && object.user.address.lng !== 0) {
       return true;
     } else {
       return false;
