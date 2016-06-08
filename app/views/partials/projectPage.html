@@ -84,7 +84,7 @@
         <h5>Localização</h5>
 
         <gm-map
-        ng-if="project.address.latitude !== 0 && project.address.longitude !== 0"
+        ng-if="project.address.lat !== 0 && project.address.lng !== 0"
         gm-map-id="'projectAddressMap'"
         gm-center="center"
         gm-zoom="zoom"
@@ -95,7 +95,7 @@
         <gm-markers
         gm-objects="markers"
         gm-id="object.id"
-        gm-position="{ lat: object.latitude, lng: object.longitude }">
+        gm-position="{ lat: object.lat, lng: object.lng }">
         </gm-markers>
         </gm-map>
 
