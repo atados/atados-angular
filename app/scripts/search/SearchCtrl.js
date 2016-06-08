@@ -39,6 +39,13 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
       }
     },
     {
+      'name': 'Rio de Janeiro',
+      'address': {
+        formatted_address: 'RJ, Brasil',
+        address_components: [{'long_name':'Rio de Janeiro','types':['administrative_area_level_1']}],
+      }
+    },
+    {
       'name': 'Curitiba',
       'address': {
         formatted_address: 'Curitiba - PR, Brasil',
