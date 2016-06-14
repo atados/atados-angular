@@ -135,7 +135,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     .state('root.editproject', {
         url: '/editar/vaga/:slug',
         templateUrl: '/partials/projectEdit.html',
-        controller: 'ProjectEditCtrl'
+        controller: 'ProjectEditCtrl',
+        resolve: {
+          project: ['Project', '$stateParams', function (Project, $stateParams) {
+            return Project.get($stateParams.slug);
+          }]
+        }
       })
     .state('root.volunteer_success', {
         url: '/atado',
