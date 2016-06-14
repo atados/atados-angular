@@ -72,13 +72,6 @@ app.factory('Project', function($http, Restangular, Site, Auth, Cleanup, $state,
     },
     get: function(slug) {
       return Restangular.one('project', slug).get().then(function(project) {
-        var projectBelongsToLoggedUser = Auth.getLoggedUser() && project.nonprofit.id === Auth.getLoggedUser().id;
-        var userIsStaff = Auth.getLoggedUser() && Auth.getLoggedUser().user.is_staff;
-        if ((!project.published && !projectBelongsToLoggedUser) || (!project.published && !userIsStaff)) {
-          $state.transitionTo('root.home');
-          toastr.error('Vaga ainda não foi aprovada. Se isso é um erro entre em contato por favor.');
-          return null;
-        }
         Cleanup.project(project);
         return project;
       }, function() {

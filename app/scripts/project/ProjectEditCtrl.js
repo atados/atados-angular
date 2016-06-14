@@ -30,6 +30,9 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Restang
         if (p.slug === $stateParams.slug) {
           foundProject = true;
           $scope.project = p;
+          Project.get($stateParams.slug).then(function(project) {
+            $scope.project = project;
+          });
           prepareProject();
         }
       });

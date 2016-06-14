@@ -19,52 +19,81 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
   $scope.markers.push(project.address);
   $scope.showTimeTable = false;
 
-  $scope.isRemote = function (project) {
-    var remote = (project.work && project.work.can_be_done_remotely) || (project.job && project.job.can_be_done_remotely);
-    var address = (project.address && project.address.address_line);
-    return remote || !address;
-  };
-
-  if ($scope.project.address) {
-    $scope.options = {
-      map: {
-        center: new google.maps.LatLng($scope.project.address.lat, $scope.project.address.lng),
-        zoom: 15,
-      },
+  if ($scope.project.published) {
+    $scope.isRemote = function (project) {
+      var remote = (project.work && project.work.can_be_done_remotely) || (project.job && project.job.can_be_done_remotely);
+      var address = (project.address && project.address.address_line);
+      return remote || !address;
     };
-  }
 
-  if ($scope.loggedUser && $scope.loggedUser.role === VOLUNTEER) {
-    $http.get(api + 'has_volunteer_applied/?project=' + project.id.toString())
-      .success(function (response) {
-        if (response[0] === 'YES') {
-          $scope.alreadyApplied = true;
-        } else {
-          $scope.alreadyApplied = false;
-        }
-      });
-  }
+    if ($scope.project.address) {
+      $scope.options = {
+        map: {
+          center: new google.maps.LatLng($scope.project.address.lat, $scope.project.address.lng),
+          zoom: 15,
+        },
+      };
+    }
 
-  if ($scope.project.job) {
-    var start = new Date($scope.project.job.start_date);
-    var end = new Date($scope.project.job.end_date);
-    $scope.projectJobInOneDay = start.getDay() === end.getDay() &&
-                                start.getMonth() === end.getMonth() &&
-                                start.getYear() === end.getYear();
-  }
-
-  if ($scope.project.work) {
-    if ($scope.project.work.availabilities) {
-      angular.forEach($scope.project.work.availabilities, function(row) {
-        angular.forEach(row, function(cell) {
-          if (cell.checked) {
-            $scope.showTimeTable = true;
+    if ($scope.loggedUser && $scope.loggedUser.role === VOLUNTEER) {
+      $http.get(api + 'has_volunteer_applied/?project=' + project.id.toString())
+        .success(function (response) {
+          if (response[0] === 'YES') {
+            $scope.alreadyApplied = true;
+          } else {
+            $scope.alreadyApplied = false;
           }
         });
-      });
     }
-  }
 
+    if ($scope.project.job) {
+      var start = new Date($scope.project.job.start_date);
+      var end = new Date($scope.project.job.end_date);
+      $scope.projectJobInOneDay = start.getDay() === end.getDay() &&
+                                  start.getMonth() === end.getMonth() &&
+                                  start.getYear() === end.getYear();
+    }
+
+    if ($scope.project.work) {
+      if ($scope.project.work.availabilities) {
+        angular.forEach($scope.project.work.availabilities, function(row) {
+          angular.forEach(row, function(cell) {
+            if (cell.checked) {
+              $scope.showTimeTable = true;
+            }
+          });
+        });
+      }
+    }
+
+
+
+    $rootScope.$on('userLoggedIn', function(/*event, user*/) {
+      if ($state.is('root.project') && $scope.showApplyModal && !$scope.alreadyApplied) {
+        openApplyModal();
+      }
+      else {
+        $scope.showApplyModal = false;
+      }
+    });
+
+    $rootScope.$on('userLoggedOut', function(/*event,*/) {
+      $scope.alreadyApplied = false;
+    });
+
+    $scope.showApplyModal = false;
+
+    $scope.applyVolunteerToProject = function () {
+      if (!$scope.loggedUser) {
+        $scope.openLogin();
+        $scope.showApplyModal = true;
+        toastr.info('Você tem que logar primeiro!');
+      } else {
+        openApplyModal();
+      }
+    };
+
+  } 
 
   function openApplyModal () {
     var template = '/partials/volunteerContractModal.html';
@@ -154,30 +183,4 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
     }, function () {
     });
   }
-
-  $rootScope.$on('userLoggedIn', function(/*event, user*/) {
-    if ($state.is('root.project') && $scope.showApplyModal && !$scope.alreadyApplied) {
-      openApplyModal();
-    }
-    else {
-      $scope.showApplyModal = false;
-    }
-  });
-
-  $rootScope.$on('userLoggedOut', function(/*event,*/) {
-    $scope.alreadyApplied = false;
-  });
-
-  $scope.showApplyModal = false;
-
-  $scope.applyVolunteerToProject = function () {
-    if (!$scope.loggedUser) {
-      $scope.openLogin();
-      $scope.showApplyModal = true;
-      toastr.info('Você tem que logar primeiro!');
-    } else {
-      openApplyModal();
-    }
-  };
-
 });

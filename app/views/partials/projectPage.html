@@ -1,4 +1,4 @@
-<div id="project-page">
+<div id="project-page" ng-if="project.published">
   <div id="project-header" class="clearfix">
       <div class="col-xs-11 col-xs-offset-1 col-sm-3" id="project-image">
         <div style="padding-bottom: 75%; background: url('{{project.image_url}}') no-repeat center center / cover;">
@@ -127,8 +127,6 @@
         <p ng-if="role.vacancies"><strong>Vagas:</strong> {{role.vacancies}}</p>
       </div>
     </div>
-
-
     <div ng-if="project.work" id="project-availabilities">
       <h3>Horários disponíveis</h3>
       <p ng-if="project.work.weekly_hours"><strong>Horas por semana: </strong>{{project.work.weekly_hours}}</p>
@@ -165,8 +163,10 @@
     <div class="center" style="margin-top: 30px;">
       <button id="atar-button" class="col-sm-12" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-hide="project.closed || alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()">Quero me inscrever</button>
     </div>
-
     <div class="fb-comments" data-href="https://www.atados.com.br/vaga/{{project.slug}}" data-numposts="5" data-colorscheme="light"></div>
-
+    </div>
   </div>
+</div>
+<div id="project-not-published" ng-if="!project.published">
+  <p>Esta vaga ainda não foi aprovada.<br>Assim que nossa equipe aprovar, esta vaga ficará disponível.</p>
 </div>
