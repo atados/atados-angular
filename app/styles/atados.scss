@@ -1242,6 +1242,11 @@ $card-img-height: 170px;
   }
 }
 
+.pac-container {
+  /* This is a fix for autocomplete to show over modal */
+  z-index: 1200 !important;
+}
+
 /*
 #toast-container {
   > .toast-error {
