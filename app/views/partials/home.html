@@ -10,7 +10,7 @@
         <h1 class="text-center" ng-bind-html="banner.title | newlines"></h1>
         <p class="text-center" ng-bind-html="banner.text | newlines"></p>
       </div>
-      <div class="jumbotron-buttons" ng-if="banner.link_text">
+      <div class="jumbotron-buttons" ng-if="banner.link">
         <a ng-href="{{banner.link}}" class="btn btn-primary btn-lg" role="button">{{banner.link_text}}</a>
       </div>
     </slide>
