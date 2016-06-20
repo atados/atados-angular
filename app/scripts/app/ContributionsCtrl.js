@@ -16,6 +16,9 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
 
   $scope.contribution_monthly = true;
 
+  $scope.part1 = true;
+  $scope.part2 = false;
+
   var value = String($stateParams.value).replace(/\D/g,'');
   if (String($stateParams.value).replace(/[^a-zA-Z-@]/g, '') === '@') {
     $scope.contribution_monthly = false;
@@ -25,6 +28,30 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   $scope.optionsstyle = {'display': 'none'};
 
   $('.trustlogo').addClass('show-comodo');
+
+  $scope.step2 = function() {
+    if (!$scope.name || !$scope.email || !$scope.confirm_email) {
+      window.alert('Favor preencher todos os campos');
+      return;
+    }
+    if ($scope.email !== $scope.confirm_email) {
+      window.alert('Os endereços de email devem ser iguais');
+      return;
+    }
+
+    var data = {
+      'name': $scope.name,
+      'email': $scope.email,
+      'value': parseFloat($scope.contribution_price),
+    };
+    $scope.saving_intent=true;
+    $http.post(api + 'contribute-intent/', data).success(function(response) {
+      $scope.saving_intent=false;
+      $scope.part2=true;
+      $scope.part1=false;
+
+    });
+  };
 
   $scope.toggleOptions = function () {
     if ($scope.optionsstyle) {
