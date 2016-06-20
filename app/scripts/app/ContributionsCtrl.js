@@ -45,7 +45,7 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
       'value': parseFloat($scope.contribution_price),
     };
     $scope.saving_intent=true;
-    $http.post(api + 'contribute-intent/', data).success(function(response) {
+    $http.post(api + 'contribute-intent/', data).success(function() {
       $scope.saving_intent=false;
       $scope.part2=true;
       $scope.part1=false;
@@ -129,12 +129,7 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
       'doc': $scope.doc,
       'phone': $scope.phone,
 
-      'address_street': $scope.address_street,
-      'address_zip': $scope.address_zip,
-      'address_number': $scope.address_number,
-      'address_complement': $scope.address_complement,
-      'address_city': $scope.address_city,
-      'address_state': $scope.address_state,
+      'address': $scope.address,
 
       'card_holder_name': $scope.card_holder_name,
       'card_exp_month': exp_month,
