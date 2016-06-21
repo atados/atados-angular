@@ -1,6 +1,7 @@
 <div ng-class="{true: 'col-sm-10 col-sm-offset-1', false: 'col-sm-12'}[landing]" id="searchSpace">
-  <button class="btn btn-tab" ng-click="displayProjects()" ng-class="{active: search.showProjects}">Pesquisar Vagas <span ng-hide="landing || search.projects().length === 0">({{search.projects().length}})</span></button>
-  <button class="btn btn-tab" ng-click="displayNonprofits()" ng-class="{active: !search.showProjects}">Pesquisar ONGs <span ng-hide="landing || search.nonprofits().length === 0">({{search.nonprofits().length}})</span></button>
+
+  <button class="btn btn-tab" ng-click="displayProjects()" ng-class="{active: search.showProjects}">Pesquisar Vagas <span ng-hide="landing || search.projects().length === 0">({{search.projectCount()}})</span></button>
+  <button class="btn btn-tab" ng-click="displayNonprofits()" ng-class="{active: !search.showProjects}">Pesquisar ONGs <span ng-hide="landing || search.nonprofits().length === 0">({{search.nonprofitCount()}})</span></button>
 
   <small ng-show="search.showProjects && !landing" class="pull-right"> Mostrando {{search.projects().length}} de {{search.projectCount()}} vagas</small>
   <small ng-hide="search.showProjects || landing" class="pull-right"> Mostrando {{search.nonprofits().length}} de {{search.nonprofitCount()}} ONGs</small>
@@ -42,7 +43,6 @@
     </form>
   </div>
 
-
   <p ng-hide="landing">
     <small ng-show="search.query || search.city.id > 0 || (search.skill.id > 0 && search.showProjects) || search.cause.id > 0">
       Mostrando resultados
@@ -77,5 +77,4 @@
       {{ searchMoreNonprofitButtonText }}
     </a>
   </div>
-
 </div>
