@@ -1139,6 +1139,15 @@ $card-img-height: 170px;
       }
     }
   }
+
+  .donation-form {
+    display: inline-block;
+    input {
+      background: none;
+      border: none;
+      padding: 0 0;
+    }
+  }
 }
 
 .contribute-panel {
