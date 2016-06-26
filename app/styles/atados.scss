@@ -466,6 +466,13 @@ a:focus {
 }
 
 #volunteer-contract-modal {
+  .form-group {
+    margin: 0 0;
+    padding: 0 0;
+  }
+  .row {
+    margin-bottom: 10px;
+  }
   textarea {
     width: 100%;
     height: 100px;

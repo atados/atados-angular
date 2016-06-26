@@ -9,7 +9,7 @@
   <p>Você está prestes a se inscrever na vaga {{projectName}} da {{nonprofit.name}}</p>
   <p>Confirme os dados e bom trabalho!</p>
 
-  <div class="form-group row" ng-class="{error:contractForm.name.$dirty && contractForm.name.$invalid && phoneWarningMessage}">
+  <div class="row" ng-class="{error:contractForm.name.$dirty && contractForm.name.$invalid && phoneWarningMessage}">
     <label class="col-sm-3 control-label">Nome</label>
     <div class="col-sm-5">
       <input class="form-control" type="text" name="name" ng-model="contractForm.name" placeholder="Nome"/>
@@ -18,6 +18,13 @@
   <div class="row">
     <phone-input object="contractForm" form="contractForm"></phone-input>
   </div>
+  <div class="row">
+    <label class="col-sm-3 control-label">Email</label>
+    <div class="col-sm-5">
+      <input class="form-control" type="text" name="email" ng-model="contractForm.email" placeholder="Email"/>
+    </div>
+  </div>
+
   <br>
 
   <p>Você pode enviar suas dúvidas ou escrever uma mensagem para a ONG abaixo:</p>

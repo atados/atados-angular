@@ -2,10 +2,11 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('ProjectModalCtrl', function ($rootScope, $scope, $modalInstance, $modal, nonprofit, phone, name, projectName) {
+app.controller('ProjectModalCtrl', function ($rootScope, $scope, $window,  $modalInstance, $modal, nonprofit, phone, name, projectName) {
   $scope.nonprofit = nonprofit;
   $scope.projectName = projectName;
   $scope.contractForm = {
+    email: '',
     phone: phone,
     name: name,
     message: '',
@@ -19,10 +20,10 @@ app.controller('ProjectModalCtrl', function ($rootScope, $scope, $modalInstance,
   };
 
   $scope.ok = function () {
-    if (!$scope.contractForm.phone && !$scope.phoneWarningMessage) {
-      $scope.phoneWarningMessage = 'Não é obrigátorio colocar seu telefone e nome. Mas vai ajudar muito a ONG a entrar em contato com você rapidamente. Se você quer continuar sem telefone click em Ok e você vai ser cadastrado';
+    if (!$scope.contractForm.phone || !$scope.contractForm.phone || !$scope.contractForm.email) {
+      $window.alert('Preencha seu nome, telefone e email para participar desta vaga');
     } else {
-      $modalInstance.close({phone: $scope.contractForm.phone, name: $scope.contractForm.name, message: $scope.contractForm.message});
+      $modalInstance.close({phone: $scope.contractForm.phone, name: $scope.contractForm.name, email: $scope.contractForm.email});
     }
   };
 

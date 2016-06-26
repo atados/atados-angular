@@ -137,14 +137,16 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
       var volunteerMessage = '';
       var volunteerPhone = '';
       var volunteerName = '';
+      var volunteerEmail = '';
 
       if (modalDetails) {
         volunteerMessage = modalDetails.message;
         $scope.loggedUser.user.phone = volunteerPhone = modalDetails.phone;
         $scope.loggedUser.user.name = volunteerName = modalDetails.name;
+        volunteerEmail = modalDetails.email;
       }
 
-      $http.post(api + 'apply_volunteer_to_project/', {project: $scope.project.id, message: volunteerMessage, phone: volunteerPhone, name: volunteerName})
+      $http.post(api + 'apply_volunteer_to_project/', {project: $scope.project.id, message: volunteerMessage, phone: volunteerPhone, name: volunteerName, email: volunteerEmail})
       .success(function (response) {
         if (response[0] === 'Applied') {
           $scope.project.volunteers.push($scope.loggedUser);
