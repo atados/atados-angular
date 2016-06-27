@@ -28,44 +28,6 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Restang
       };
     }
 
-  $scope.project = project;
-  prepareProject();
-
-  $scope.$watch('loggedUser', function (user) {
-    if (!user) {
-      $state.transitionTo('root.home');
-      toastr.error('Nenhum usuário logado.');
-      return;
-    }
-    if (user.user.is_staff) {
-      Project.get($stateParams.slug).then(function(project) {
-        $scope.project = project;
-        prepareProject();
-      });
-      return;
-    }
-
-    if (user.role !== NONPROFIT ) {
-      $state.transitionTo('root.home');
-      toastr.error('Precisa estar logado como ONG da vaga para editar');
-      return;
-    } else {
-      if (Auth.getLoggedUser() && $scope.project.nonprofit.id !== Auth.getLoggedUser().id) {
-        $state.transitionTo('root.home');
-        toastr.error('Você não tem acesso para editar esta vaga.');
-      }
-    }
-  });
-
-  $scope.$watch('project.address.addr', function (value) {
-    if (value instanceof Object) {
-      $scope.editProjectForm.address.$invalid = false;
-    } else {
-      $scope.editProjectForm.address.$invalid = true;
-    }
-  });
-
-
     // Preparing the availability grid
     var availabilities = [];
     for (var period = 0; period < 3; period++) {
@@ -108,6 +70,45 @@ app.controller('ProjectEditCtrl', function($scope, $state, $stateParams, Restang
       $scope.project.address.city = saoPaulo.id;
     }
   }
+
+  $scope.project = project;
+  prepareProject();
+
+  $scope.$watch('loggedUser', function (user) {
+    if (!user) {
+      $state.transitionTo('root.home');
+      toastr.error('Nenhum usuário logado.');
+      return;
+    }
+    if (user.user.is_staff) {
+      Project.get($stateParams.slug).then(function(project) {
+        $scope.project = project;
+        prepareProject();
+      });
+      return;
+    }
+
+    if (user.role !== NONPROFIT ) {
+      $state.transitionTo('root.home');
+      toastr.error('Precisa estar logado como ONG da vaga para editar');
+      return;
+    } else {
+      if (Auth.getLoggedUser() && $scope.project.nonprofit.id !== Auth.getLoggedUser().id) {
+        $state.transitionTo('root.home');
+        toastr.error('Você não tem acesso para editar esta vaga.');
+      }
+    }
+  });
+
+  $scope.$watch('project.address.addr', function (value) {
+    if (value instanceof Object) {
+      $scope.editProjectForm.address.$invalid = false;
+    } else {
+      $scope.editProjectForm.address.$invalid = true;
+    }
+  });
+
+
 
   $scope.$watch('short_facebook_event', function (value) {
     if (!$scope.project) {
