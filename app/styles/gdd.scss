@@ -201,7 +201,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
     transition: background 0.1s linear;
 
     .navbar-brand {
-      background: url("https://s3-sa-east-1.amazonaws.com/atadosapp/images/dba-logo-branco.png") no-repeat center center / contain;
+      background: url("https://s3.amazonaws.com/atados-us/images/dba-logo-branco.png") no-repeat center center / contain;
       padding: 30px 20px;
     } 
 
@@ -220,7 +220,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
 
   #home {
     .jumbotron {
-      background: #B32E67 url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/dba-home-principal.jpg');
+      background: #B32E67 url('https://s3.amazonaws.com/atados-us/images/dba-home-principal.jpg');
       text-align: left;
       padding-top: 142px;
       height: 554px;
@@ -365,7 +365,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
 
 
   .our-history {
-    background: #CF2A76 url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/dba-home-historia.jpg');
+    background: #CF2A76 url('https://s3.amazonaws.com/atados-us/images/dba-home-historia.jpg');
     padding: 40px 0;
     color: #fff;
     
@@ -401,7 +401,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
       font-weight: normal;
     }
     .partner {
-      background: url('https://s3-sa-east-1.amazonaws.com/atadosapp/images/logo-placeholder.png') no-repeat center center / contain;
+      background: url('https://s3.amazonaws.com/atados-us/images/logo-placeholder.png') no-repeat center center / contain;
       display: inline-block;
       width: 100px;
       height: 100px;
@@ -499,7 +499,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
     padding: 40px 0;
 
     .atados-logo {
-      background: url(https://s3-sa-east-1.amazonaws.com/atadosapp/images/atados-sprite.png) -1.99px -99.98px no-repeat;
+      background: url(https://s3.amazonaws.com/atados-us/images/atados-sprite.png) -1.99px -99.98px no-repeat;
       width: 136px;
       height: 44px;
       margin: 5px 71px 5px 10px;

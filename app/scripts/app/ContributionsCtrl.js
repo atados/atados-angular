@@ -9,7 +9,7 @@ var app = angular.module('atadosApp');
 app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  function($scope, $stateParams, $http, api) {
   $scope.site.title = 'Atados - Juntando Gente Boa';
   $scope.site.og.url = 'https://www.atados.com.br';
-  $scope.site.og.image = 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/landing_cover.jpg';
+  $scope.site.og.image = 'https://s3.amazonaws.com/atados-us/images/landing_cover.jpg';
   $scope.site.description = 'Atados é uma rede social para voluntários e ONGs.';
   $scope.$parent.hide_header = true;
   $scope.$parent.hide_footer = true;

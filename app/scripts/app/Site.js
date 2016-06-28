@@ -21,7 +21,7 @@ app.factory('Site', function(Restangular, $http, storage, api) {
     og: {
       type: 'website',
       url: 'https://www.atados.com.br',
-      image: 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/landing_cover.jpg',
+      image: 'https://s3.amazonaws.com/atados-us/images/landing_cover.jpg',
     },
     contactEmail: 'contato@atados.com.br',
     copyright: 'Atados, ' + (new Date()).getFullYear(),

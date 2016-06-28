@@ -9,7 +9,7 @@ angular.module('atadosConstants', [])
 
 .constant('authApi', 'http://www.atadoslocal.com.br:9000/auth/client')
 
-.constant('storage', 'https://s3-sa-east-1.amazonaws.com/atadosapp/images/')
+.constant('storage', 'https://s3.amazonaws.com/atados-us/images/')
 
 .constant('selected', 'http://www.atadoslocal.com.br:8000/static/images/orange-pin.png')
 

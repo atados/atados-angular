@@ -30,7 +30,7 @@ app.controller('GddNonprofitGroupSignupCtrl', function($scope, $rootScope, $filt
     google_page:null,
     twitter_handle:null,
     website:null,
-    causes:[{"id":10,"name":"Participação Cidadã","checked":false,"image":"https://s3-sa-east-1.amazonaws.com/atadosapp/images/cause_10.png","class":"cause_10","$$hashKey":"object:21"}],
+    causes:[{"id":10,"name":"Participação Cidadã","checked":false,"image":"https://s3.amazonaws.com/atados-us/images/cause_10.png","class":"cause_10","$$hashKey":"object:21"}],
     notNonprofit: true,
   };
 
