@@ -131,6 +131,10 @@ app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeou
       $scope.project.work.availabilities = ava;
     }
 
+    if ($stateParams.id) {
+      $scope.project.nonprofit = $stateParams.id;
+    }
+
     Project.create($scope.project, $scope.files, function (response) {
       toastr.success('Vaga criada com sucesso. Agora espere o Atados entrar em contato para aprovação');
       $scope.project.slug = response.slug;
