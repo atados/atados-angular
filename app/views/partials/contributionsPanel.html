@@ -42,7 +42,7 @@
               <td>{{ sub.created_date | date:"(EEEE) dd 'de' MMMM 'de' yyyy"}}</td>
               <td>{{ sub.value | currency:"R$":2}}</td>
               <td>
-                <a href="#" ng-click="cancelSubscription($event, sub)" ng-if="(sub.status == 'paid' || sub.status == 'authorized') && sub.active">Cancelar</a>
+                <a href="#" ng-click="cancelSubscription($event, sub)" ng-if="(sub.status == 'paid' || sub.status == 'authorized') && sub.active && !sub.parent">Cancelar</a>
               </td>
             </tr>
           </tbody>
