@@ -31,8 +31,7 @@ app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Res
   $scope.news = {
     name:  '',
     email: '',
-    state: '',
-    city: '',
+    address: '',
   };
 
   $scope.add_to_news = function() {
@@ -41,8 +40,7 @@ app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Res
       $scope.news = {
         name: '',
         email: '',
-        state: '',
-        city: ''
+        address: '',
       };
     }).error(function() {
       toastr.error('Um erro ocorreu.');
