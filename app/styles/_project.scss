@@ -221,12 +221,6 @@
   .help-block {
     font-size: 12px;
   }
-  fieldset {
-    margin-top: 40px;
-    legend {
-      margin-bottom: 40px;
-    }
-  }
 }
 
 #project-availabilities {
@@ -285,5 +279,66 @@
     padding: 20px;
     text-align: center;
     margin: 0 0;
+  }
+}
+
+#project-new {
+  background: #F7FAFA;
+}
+
+.project-form {
+  .fields-container {
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #d9d9de;
+    margin-top: 40px;
+    padding: 40px 60px;
+  }
+  fieldset {
+    background: #f7fafa;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 6px;
+    &:first-child {
+      margin-top: 0px;
+    }
+
+    .form-control {
+      box-shadow: none;
+      border-radius: 6px;
+      border: 1px solid #d9d9de;
+      color: #666666;
+
+      &:focus {
+        border: 1px solid #009bd4;
+      }
+    }
+  }
+  form.dropzone {
+    border: 1px dashed #d9d9de;
+    border-radius: 6px;
+    font-size: 12px;
+    b {
+      color: #009AD6;
+    }
+    color: #666;
+  }
+  ul.tags {
+    margin: 10px 0 0;
+    padding: 0 0;
+
+    li {
+      border-radius: 4px;
+      background: #009ad6;
+      padding: 8px;
+      display: inline-block;
+      margin-right: 7px;
+      color: #fff;
+      margin-bottom: 7px;
+
+      a {
+        color: #fff;
+      }
+    }
   }
 }

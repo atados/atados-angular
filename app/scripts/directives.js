@@ -68,6 +68,14 @@ app.directive('nonprofitCard', function() {
   };
 });
 
+app.directive('projectForm', function() {
+  return {
+    restrict: 'E',
+    templateUrl: '/partials/projectForm.html',
+    controller: 'ProjectFormCtrl'
+  };
+});
+
 app.directive('phone', function () {
   return {
     restrict: 'E',

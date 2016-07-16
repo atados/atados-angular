@@ -13,7 +13,8 @@ var app = angular.module('atadosApp', [
   'linkify',
   'angular-loading-bar',
   'duScroll',
-  'google.places'
+  'google.places',
+  'ngDropzone'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {

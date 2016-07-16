@@ -1,0 +1,122 @@
+<div class="project-form">
+  <div class="menu"></div>
+  <div class="top-content"></div>
+
+  <div class="row">
+    <div class="col-sm-8 col-sm-push-2">
+      <div class="fields-container">
+        <fieldset>
+          <div class="row">
+            <div class="col-xs-12 col-sm-5">
+              <label for="name">Nome da vaga</label>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+              <input type="text" name="name" ng-model="project.name" class="form-control"></input>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="row">
+            <div class="col-xs-12 col-sm-5">
+              <label for="description">Mini-sinopse da vaga</label>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+              <textarea name="description" ng-model="project.description" class="form-control"></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="row">
+            <div class="col-xs-12 col-sm-5">
+              <label for="image">Imagem para a vaga</label>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+              <form class="dropzone"
+                    method="post"
+                    enctype="multipart/form-data"
+                    action="testupload"
+                    ng-dropzone
+                    dropzone="ctrl.dropzone"
+                    dropzone-config="ctrl.dropzoneConfig"
+                    event-handlers="{ 'addedfile': ctrl.dzAddedFile, 'error': ctrl.dzError }">
+                <div class="dz-message" data-dz-message>
+                  <b>Escolha uma imagem do seu computador</b><br>
+                  Essa imagem ficará associada à sua vaga.<br>
+                  JPG, PNG ou GIF - Limite de 2MB<br>
+                  Ao menos 800x450 pixels - Proporção 16:9
+                </div>
+              </form>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="row">
+            <div class="col-xs-12 col-sm-5">
+              <label for="tst">Causa da vaga</label>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+              <select class="form-control" name="causes" ng-model="tmp_cause" ng-options="c.name for c in filteredCauses" ng-disabled="project.causes.length >= 3">
+              </select>
+              <ul class="tags" ng-if="project.causes.length">
+                <li ng-repeat="cause in project.causes">
+                  <a href="#" ng-click="removeCause(cause.id)">&times;</a>
+                  {{cause.name}} 
+                </li>
+              </ul>
+              <small>Selecione uma ou mais causas para a vaga(limite de 3 causas).</small>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="row">
+            <div class="col-xs-12 col-sm-5">
+              <label for="tst">Habilidades possíveis para a vaga</label>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+              <select class="form-control" name="skills" ng-model="tmp_skill" ng-options="c.name for c in filteredSkills">
+              </select>
+              <small>Selecione uma ou mais habilidades possíveis para os voluntários.</small>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="row">
+            <div class="col-xs-12 col-sm-5">
+              <label for="tst">Endereço</label>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+              <input required g-places-autocomplete autocomplete="off" type="text" class="form-control" name="address" ng-model="project.address.addr">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="row">
+            <div class="col-xs-12 col-sm-5">
+              <label for="tst">Vaga recorrente ou pontual?</label>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+              <input type="text" name="tst" class="form-control"></input>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="row">
+            <div class="col-xs-12 col-sm-5">
+              <label for="tst">Essa vaga funcionará a distância?</label>
+            </div>
+            <div class="col-xs-12 col-sm-7">
+              <input type="text" name="tst" class="form-control"></input>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
