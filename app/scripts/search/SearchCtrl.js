@@ -52,6 +52,13 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
         address_components: [{'long_name':'Curitiba','types':['administrative_area_level_2']}],
       }
     },
+    {
+      'name': 'Trabalho à Distância',
+      'address': {
+        formatted_address: '',
+        address_components: [],
+      }
+    },
   ];
 
   var search = function(value, old) {
