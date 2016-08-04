@@ -14,7 +14,8 @@ var app = angular.module('atadosApp', [
   'angular-loading-bar',
   'duScroll',
   'google.places',
-  'ngDropzone'
+  'ngDropzone',
+  'datePicker'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {

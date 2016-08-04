@@ -10,8 +10,6 @@ app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeou
     nonprofit: null,
     address: {
       addr: {},
-      typed_address: '',
-      typed_address2: ''
     },
     description: '',
     details: '',

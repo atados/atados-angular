@@ -45,7 +45,7 @@ app.controller('NonprofitAdminCtrl', function($scope, $http, $state, $stateParam
       $state.transitionTo('root.home');
       toastr.error('Apenas ONGs tem acesso ao Painel de Controle');
       return;
-    } else if (user.role === VOLUNTEER && user.user.is_staff) {
+    } else if (user.user.is_staff) {
       $http.get(api + 'nonprofit/'+ $stateParams.slug + '/')
         .success(function(response) {
           $scope.nonprofit = response;

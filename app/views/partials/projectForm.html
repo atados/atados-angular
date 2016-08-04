@@ -1,122 +1,539 @@
 <div class="project-form">
-  <div class="menu"></div>
-  <div class="top-content"></div>
+  <div class="menu">
+    <ul>
+      <li ng-class="formStep == 1 ? 'menu-active' : ''">
+        <a href="#" ng-click="setFormStep(1)">
+          <i class="fa fa-check gray" ng-show="validation.step1.pristine"></i>
+          <span ng-show="!validation.step1.pristine">
+            <i class="fa fa-check green" ng-show="validation.step1.valid"></i>
+            <i class="fa fa-exclamation-triangle red" ng-show="!validation.step1.valid"></i>
+          </span>
+          Básico
+        </a>
+      </li>
 
-  <div class="row">
-    <div class="col-sm-8 col-sm-push-2">
-      <div class="fields-container">
-        <fieldset>
-          <div class="row">
-            <div class="col-xs-12 col-sm-5">
-              <label for="name">Nome da vaga</label>
-            </div>
-            <div class="col-xs-12 col-sm-7">
-              <input type="text" name="name" ng-model="project.name" class="form-control"></input>
-            </div>
-          </div>
-        </fieldset>
+      <li ng-class="formStep == 2 ? 'menu-active' : ''">
+        <a href="#" ng-click="setFormStep(2)">
+          <i class="fa fa-check gray" ng-show="validation.step2.pristine"></i>
+          <span ng-show="!validation.step2.pristine">
+            <i class="fa fa-check green" ng-show="validation.step2.valid"></i>
+            <i class="fa fa-exclamation-triangle red" ng-show="!validation.step2.valid"></i>
+          </span>
+          Detalhes e cargos
+        </a>
+      </li>
 
-        <fieldset>
-          <div class="row">
-            <div class="col-xs-12 col-sm-5">
-              <label for="description">Mini-sinopse da vaga</label>
-            </div>
-            <div class="col-xs-12 col-sm-7">
-              <textarea name="description" ng-model="project.description" class="form-control"></textarea>
-            </div>
-          </div>
-        </fieldset>
+      <li ng-class="formStep == 3 ? 'menu-active' : ''">
+        <a href="#" ng-click="setFormStep(3)">
+          <i class="fa fa-check gray" ng-show="validation.step3.pristine"></i>
+          <span ng-show="!validation.step3.pristine">
+            <i class="fa fa-check green" ng-show="validation.step3.valid"></i>
+            <i class="fa fa-exclamation-triangle red" ng-show="!validation.step3.valid"></i>
+          </span>
+          Responsável pela vaga
+        </a>
+      </li>
+    </ul>
+    <!--
+    <ul>
+      <li><a href="#">Pré-visualização</a></li>
+    </ul>-->
+    <ul>
+      <li ng-class="formStep == 4 ? 'menu-active' : ''">
+        <a href="#" ng-click="setFormStep(4)">Enviar para revisão</a>
+      </li>
+    </ul>
+  </div>
 
-        <fieldset>
-          <div class="row">
-            <div class="col-xs-12 col-sm-5">
-              <label for="image">Imagem para a vaga</label>
-            </div>
-            <div class="col-xs-12 col-sm-7">
-              <form class="dropzone"
-                    method="post"
-                    enctype="multipart/form-data"
-                    action="testupload"
-                    ng-dropzone
-                    dropzone="ctrl.dropzone"
-                    dropzone-config="ctrl.dropzoneConfig"
-                    event-handlers="{ 'addedfile': ctrl.dzAddedFile, 'error': ctrl.dzError }">
-                <div class="dz-message" data-dz-message>
-                  <b>Escolha uma imagem do seu computador</b><br>
-                  Essa imagem ficará associada à sua vaga.<br>
-                  JPG, PNG ou GIF - Limite de 2MB<br>
-                  Ao menos 800x450 pixels - Proporção 16:9
+  <form novalidate role="form" class="form-horizontal" name="projectForm" ng-submit="saveProject()" ng-disabled="saving">
+    <div class="step1" ng-show="formStep == 1">
+      <div class="top-content">
+        <h2>O básico e essencial da sua vaga!</h2>
+        <h3>Uma vaga bem descrita, completa e atrativa é o primeiro passo para conquistar o voluntário para sua organização!</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+          <div class="fields-container">
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="name">Nome da vaga</label>
                 </div>
-              </form>
-            </div>
-          </div>
-        </fieldset>
+                <div class="col-xs-12 col-sm-8">
+                  <input type="text" name="name" placeholder="Ex: SóLatinha" ng-model="project.name" class="form-control" ng-required="true" ng-minlength="3" ng-maxlength="40" input-show-length="true"></input>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-sm-push-4">
+                  <small>Escolher um nome atrativo e descolado faz a diferença. Seja criativo!<smsmall>
+                </div>
+              </div>
+              <div ng-show="projectForm.name.$pristine" class="indicator"></div>
+              <div ng-show="projectForm.name.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[projectForm.name.$invalid]"></div>
+              <div ng-show="projectForm.name.$dirty">
+                <label class="help-block" ng-show="projectForm.name.$error.minlength">Não pode ter menos de 3 caracteres.</label>
+                <label class="help-block" ng-show="projectForm.name.$error.maxlength">Não pode ter mais de 40 caracteres.</label>
+                <label class="help-block" ng-show="projectForm.name.$error.required">É necessário preencher este campo.</label>
+              </div>
+            </fieldset>
 
-        <fieldset>
-          <div class="row">
-            <div class="col-xs-12 col-sm-5">
-              <label for="tst">Causa da vaga</label>
-            </div>
-            <div class="col-xs-12 col-sm-7">
-              <select class="form-control" name="causes" ng-model="tmp_cause" ng-options="c.name for c in filteredCauses" ng-disabled="project.causes.length >= 3">
-              </select>
-              <ul class="tags" ng-if="project.causes.length">
-                <li ng-repeat="cause in project.causes">
-                  <a href="#" ng-click="removeCause(cause.id)">&times;</a>
-                  {{cause.name}} 
-                </li>
-              </ul>
-              <small>Selecione uma ou mais causas para a vaga(limite de 3 causas).</small>
-            </div>
-          </div>
-        </fieldset>
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="description">Mini-sinopse da vaga</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <textarea name="description" placeholder="Ex: Dia 09/04 faremos instalação de cestas para o descarte exclusivo de latas, facilitando a coleta pelos catadores. Faça parte dessa intervenção urbana e coletiva." ng-model="project.description" class="form-control" ng-required="true" ng-minlength="10" ng-maxlength="160" input-show-length="true"></textarea>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-sm-push-4">
+                  <small>Faça uma chamada atrativa e resumida do trabalho. Seja convidativo pois essa será a 1ª impressão que o voluntário terá da vaga.</small>
+                </div>
+              </div>
+              <div ng-show="projectForm.description.$pristine" class="indicator"></div>
+              <div ng-show="projectForm.description.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[projectForm.description.$invalid]"></div>
+              <div ng-show="projectForm.description.$dirty">
+                <label class="help-block" ng-show="projectForm.description.$error.minlength">Não pode ter menos de 10 caracteres.</label>
+                <label class="help-block" ng-show="projectForm.description.$error.maxlength">Não pode ter mais de 160 caracteres.</label>
+                <label class="help-block" ng-show="projectForm.description.$error.required">É necessário preencher este campo.</label>
+              </div>
+            </fieldset>
 
-        <fieldset>
-          <div class="row">
-            <div class="col-xs-12 col-sm-5">
-              <label for="tst">Habilidades possíveis para a vaga</label>
-            </div>
-            <div class="col-xs-12 col-sm-7">
-              <select class="form-control" name="skills" ng-model="tmp_skill" ng-options="c.name for c in filteredSkills">
-              </select>
-              <small>Selecione uma ou mais habilidades possíveis para os voluntários.</small>
-            </div>
-          </div>
-        </fieldset>
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="image">Imagem para a vaga</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <div class="dropzone" ng-dropzone dropzone="dropzone" dropzone-config="dropzoneConfig" event-handlers="{ 'addedfile': dzAddedFile, 'error': dzError }">
+                    <div class="dz-message" data-dz-message>
+                      <b>Escolha uma imagem do seu computador</b><br>
+                      Essa imagem ficará associada à sua vaga.<br>
+                      JPG, PNG ou GIF - Limite de 2MB<br>
+                      Ao menos 800x450 pixels - Proporção 16:9
+                    </div>
+                  </div>
+                  <small>Escolha uma foto bem bonita e de alta qualidade que represente a atividade a ser realizada.</small>
+                </div>
+              </div>
 
-        <fieldset>
-          <div class="row">
-            <div class="col-xs-12 col-sm-5">
-              <label for="tst">Endereço</label>
-            </div>
-            <div class="col-xs-12 col-sm-7">
-              <input required g-places-autocomplete autocomplete="off" type="text" class="form-control" name="address" ng-model="project.address.addr">
-            </div>
-          </div>
-        </fieldset>
+              <input type="hidden" name="image" ng-model="project.image.id" ng-required="true">
+              <div ng-show="projectForm.image.$pristine" class="indicator"></div>
+              <div ng-show="projectForm.image.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[projectForm.image.$invalid]"></div>
+              <div ng-show="projectForm.image.$dirty">
+                <label class="help-block" ng-show="projectForm.image.$error.required">É necessário colocar uma imagem.</label>
+              </div>
+            </fieldset>
 
-        <fieldset>
-          <div class="row">
-            <div class="col-xs-12 col-sm-5">
-              <label for="tst">Vaga recorrente ou pontual?</label>
-            </div>
-            <div class="col-xs-12 col-sm-7">
-              <input type="text" name="tst" class="form-control"></input>
-            </div>
-          </div>
-        </fieldset>
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="tst">Causa da vaga</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <select class="form-control" name="causes" ng-model="tmp.cause" ng-options="c.name for c in filteredCauses" ng-disabled="project.causes.length >= 3" ng-required="true">
+                  </select>
+                  <ul class="tags" ng-if="project.causes.length">
+                    <li ng-repeat="cause in project.causes">
+                      <a href="#" ng-click="removeCause(cause.id)">&times;</a>
+                      {{cause.name}} 
+                    </li>
+                  </ul>
+                  <small>Selecione uma ou mais causas para a vaga(limite de 3 causas).</small>
+                </div>
+              </div>
 
-        <fieldset>
+              <div ng-show="projectForm.causes.$pristine" class="indicator"></div>
+              <div ng-show="projectForm.causes.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[projectForm.causes.$invalid]"></div>
+              <div ng-show="projectForm.causes.$dirty">
+                <label class="help-block" ng-show="projectForm.causes.$error.required">É necessário selecionar ao menos uma causa.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="tst">Habilidades possíveis para a vaga</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <select class="form-control" name="skills" ng-model="tmp.skill" ng-options="c.name for c in filteredSkills" ng-required="true">
+                  </select>
+                  <ul class="tags" ng-if="project.skills.length">
+                    <li ng-repeat="skill in project.skills">
+                      <a href="#" ng-click="removeSkill(skill.id)">&times;</a>
+                      {{skill.name}} 
+                    </li>
+                  </ul>
+                  <small>Selecione uma ou mais habilidades possíveis para os voluntários.</small>
+                </div>
+              </div>
+
+              <div ng-show="projectForm.skills.$pristine" class="indicator"></div>
+              <div ng-show="projectForm.skills.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[projectForm.skills.$invalid]"></div>
+              <div ng-show="projectForm.skills.$dirty">
+                <label class="help-block" ng-show="projectForm.skills.$error.required">É necessário selecionar ao menos uma habilidade.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="tst">Endereço</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <div class="row gutter-5">
+                    <div class="col-xs-8">
+                      <input g-places-autocomplete autocomplete="off" type="text" class="form-control" name="address" ng-model="project.address.addr" placeholder="Endereço" ng-required="true">
+                    </div>
+                    <div class="col-xs-4">
+                      <input type="text" placeholder="Complemento" class="form-control" ng-model="project.address.typed_address2">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div ng-show="projectForm.address.$pristine" class="indicator"></div>
+              <div ng-show="projectForm.address.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[projectForm.address.$invalid]"></div>
+              <div ng-show="projectForm.address.$dirty">
+                <label class="help-block" ng-show="projectForm.address.$error.required">É necessário informar o endereço onde esta ação ocorrerá. Caso ela seja à distância, informe apenas a cidade.</label>
+                <label class="help-block" ng-show="projectForm.address.$error.string && !projectForm.address.$error.required">É necessário selecionar um endereço da lista.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row date-type">
+                <div class="col-xs-12 col-sm-4">
+                  <label>Vaga recorrente ou pontual?</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <div class="panel" ng-click="setDateType('work')">
+                    <i class="fa" ng-class="project.dates.type == 'work' ? 'fa-dot-circle-o' : 'fa-circle-o'"></i> Vaga Recorrente
+                    <i ng-show="project.dates.type == 'job'" class="pull-right fa fa-chevron-down"></i>
+                  </div>
+                  <div ng-show="project.dates.type == 'work'" class="controls">
+                    <div class="row gutter-5">
+                      <div class="col-xs-7">
+                        <div class="well">
+                          <small>Selecione o dia</small>
+                          <ul class="tags selectable restrict-width">
+                            <li ng-click="tmp_r_day=1" ng-class="tmp_r_day==1 ? 'tag-active': ''">Seg</li>
+                            <li ng-click="tmp_r_day=2" ng-class="tmp_r_day==2 ? 'tag-active': ''">Ter</li>
+                            <li ng-click="tmp_r_day=3" ng-class="tmp_r_day==3 ? 'tag-active': ''">Qua</li>
+                            <li ng-click="tmp_r_day=4" ng-class="tmp_r_day==4 ? 'tag-active': ''">Qui</li>
+                            <li ng-click="tmp_r_day=5" ng-class="tmp_r_day==5 ? 'tag-active': ''">Sex</li>
+                            <li ng-click="tmp_r_day=6" ng-class="tmp_r_day==6 ? 'tag-active': ''">Sáb</li>
+                            <li ng-click="tmp_r_day=0" ng-class="tmp_r_day==0 ? 'tag-active': ''">Dom</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-xs-5">
+                        <div class="well">
+                          <small>Selecione o período</small>
+                          <ul class="tags selectable">
+                            <li ng-click="tmp_r_period=0" ng-class="tmp_r_period==0 ? 'tag-active': ''">Manhã</li>
+                            <li ng-click="tmp_r_period=1" ng-class="tmp_r_period==1 ? 'tag-active': ''">Tarde</li>
+                            <li ng-click="tmp_r_period=2" ng-class="tmp_r_period==2 ? 'tag-active': ''">Noite</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <ul class="tags" ng-if="project.dates.work.availabilities.length">
+                      <li ng-repeat="a in project.dates.work.availabilities">
+                        <a href="#" ng-click="removeWorkAvailability(a.weekday, a.period)">&times;</a>
+                        <span ng-if="a.weekday==1">Segunda-feira</span>
+                        <span ng-if="a.weekday==2">Terça-feira</span>
+                        <span ng-if="a.weekday==3">Quarta-feira</span>
+                        <span ng-if="a.weekday==4">Quinta-feira</span>
+                        <span ng-if="a.weekday==5">Sexta-feira</span>
+                        <span ng-if="a.weekday==6">Sábado</span>
+                        <span ng-if="a.weekday==0">Domingo</span>
+                        <span ng-if="a.period==0">de manhã</span>
+                        <span ng-if="a.period==1">a tarde</span>
+                        <span ng-if="a.period==2">a noite</span>
+                      </li>
+                    </ul>
+
+                    <small>
+                      Adicione todas as opções dos dias da semana e períodos que os voluntários irão atuar nessa vaga recorrente.
+                    </small>
+                  </div>
+
+                  <div class="panel" ng-click="setDateType('job')">
+                    <i class="fa" ng-class="project.dates.type == 'job' ? 'fa-dot-circle-o' : 'fa-circle-o'"></i> Vaga Pontual
+                    <i ng-show="project.dates.type == 'work'" class="pull-right fa fa-chevron-down"></i>
+                  </div>
+                  <div ng-show="project.dates.type == 'job'" class="controls">
+                    <div class="gutter-5">
+                      <div class="col-xs-12">
+                        <div class="datepicker" date-picker="date" min-view="date" max-view="date" ng-model="project.dates.job.date"></div>
+                      </div>
+
+                      <div class="col-xs-6">
+                        <br><label>Horário início:</label>
+                        <div ng-model="project.dates.job.start">
+                          <timepicker show-meridian="true"></timepicker>
+                        </div>
+                      </div>
+                      <div class="col-xs-6">
+                        <br><label>Horário fim</label>
+                        <div ng-model="project.dates.job.end">
+                          <timepicker show-meridian="true"></timepicker>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <input type="hidden" name="date_type" ng-model="tmp.date_type">
+              <div ng-show="projectForm.date_type.$pristine" class="indicator"></div>
+              <div ng-show="projectForm.date_type.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[projectForm.date_type.$invalid]"></div>
+              <div ng-show="projectForm.date_type.$dirty">
+                <label class="help-block" ng-show="projectForm.date_type.$error.work_required">É necessário informar ao menos um horário para vagas recorrentes.</label>
+                <label class="help-block" ng-show="projectForm.date_type.$error.job_time">A ação não pode terminar em um horário antes de começar.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="can_be_done_remotely">Essa vaga funcionará a distância?</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <select class="form-control" name="can_be_done_remotely" ng-model="project.can_be_done_remotely" ng-required="true">
+                    <option value="1">Não</option>
+                    <option value="2">Sim</option>
+                  </select>
+                  <small>Caso o voluntário possa atuar à distância, selecione a opção 'Sim'</small>
+                </div>
+              </div>
+              <div ng-show="projectForm.can_be_done_remotely.$pristine" class="indicator"></div>
+              <div ng-show="projectForm.can_be_done_remotely.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[projectForm.can_be_done_remotely.$invalid]"></div>
+              <div ng-show="projectForm.can_be_done_remotely.$dirty">
+                <label class="help-block" ng-show="projectForm.can_be_done_remotely.$error.required">É necessário preencher este campo.</label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <div class="row step-control">
+        <div class="col-xs-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
           <div class="row">
-            <div class="col-xs-12 col-sm-5">
-              <label for="tst">Essa vaga funcionará a distância?</label>
-            </div>
-            <div class="col-xs-12 col-sm-7">
-              <input type="text" name="tst" class="form-control"></input>
+            <div class="col-xs-6 col-xs-push-6 text-right">
+              <button class="btn-success" type="button" ng-click="setFormStep(2)">Próximo passo</button>
             </div>
           </div>
-        </fieldset>
+        </div>
       </div>
     </div>
-  </div>
+
+    <div class="step2" ng-show="formStep == 2">
+      <div class="top-content">
+        <h2>Chegou o momento dos detalhes!</h2>
+        <h3>Pense bem na construção da vaga, seja claro e completo. É ela que encantará os voluntários.</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+          <div class="fields-container">
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="tst">Sobre a vaga</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <textarea type="text" name="details" placeholder="Ex: Venha montar, pintar e instalar cestas para o descarte exclusivo de latas, facilitando a coleta pelos catadores. No Brasil, 98,4% das latas de alumínio para bebidas é reciclado. Os catadores são os grandes responsáveis pela coleta das latas de alumínio nas ruas, mas não são reconhecidos pelo importante serviço que prestam. Em muitos lugares, encontramos catadores procurando por latinhas nos lixos da cidade. Esse processo de triagem pode machucar o catador, uma vez que ele tem que procurar manualmente pelas latas juntos aos outros resíduos, que podem ser cortantes. Além disso, as lixeiras podem ser danificadas, ou outros resíduos ficarem espalhados ao redor.
+No dia 9 de abril, o Pimp My Carroça propõe a instalação de 30 cestas, com uma placa informativa, para o descarte exclusivo de latas de alumínio, facilitando o processo de triagem para o catador, evitando que ele se machuque procurando por latinhas na lixeira comum e conscientizando a população sobre a importância do descarte correto dos resíduos. O Ato consiste na montagem das cestas, pintura das placas informativas e instalação das mesmas na região do Baixo Augusta. Acontecerá no dia 09 de abril, das 13h00 às 19h00, na região do Baixo Augusta." ng-model="project.details" class="form-control" ng-minlength="10" ng-maxlength="3000" ng-required="true" input-show-length="true"></textarea>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-sm-push-4">
+                  <small>Fale com paixão e clareza sobre a vaga. Que atividades o voluntário irá realizar; qual a importância dessa ação e do voluntário; qual é o público atendido; se haverá alguma capacitação; que habilidades a pessoa deve ter; disponibilidade e frequência exigidas; outras informações importantes que o voluntário possa ter dúvidas. Capriche!</small>
+                </div>
+              </div>
+
+              <div ng-show="projectForm.details.$pristine" class="indicator"></div>
+              <div ng-show="projectForm.details.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[projectForm.details.$invalid]"></div>
+              <div ng-show="projectForm.details.$dirty">
+                <label class="help-block" ng-show="projectForm.details.$error.minlength">Não pode ter menos de 10 caracteres.</label>
+                <label class="help-block" ng-show="projectForm.details.$error.maxlength">Não pode ter mais de 3000 caracteres.</label>
+                <label class="help-block" ng-show="projectForm.details.$error.required">É necessário preencher este campo.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="tst">Cargos</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <small>Caso sua vaga tenha demanda de diferentes cargos descreva-os aqui.</small>
+                  <label for="tmp_role_name">Nome do cago</label>
+                  <input type="text" class="form-control" name="tmp_role_name" ng-model="tmp.role_name" placeholder="Ex: Fotógrafo de Sorrisos">
+                  <br>
+
+                  <label for="tmp_role_details">Qual será a função do voluntário nesse cargo?</label>
+                  <textarea type="text" name="tmp_role_details" ng-model="tmp.role_details" class="form-control" placeholder="Ex: Fotograr o evento"></textarea>
+                  <br>
+
+                  <label for="tmp_role_prerequisites">Quais são os pré-requisitos necessários para o voluntário exercer o cargo?</label>
+                  <textarea type="text" name="tmp_role_prerequisites" ng-model="tmp.role_prerequisites" class="form-control" placeholder="Ex: Experiência com fotografia e equipamento fotográfico"></textarea>
+                  <br>
+ 
+
+                  <label for="tmp_role_vacancies">Quantidade de vagas</label>
+                  <input type="number" min="0" class="form-control" name="tmp_role_vacancies" ng-model="tmp.role_vacancies">
+                  <br>
+
+                  <button class="btn-success" type="button" ng-click="addRole()">Adicionar cargo</button>
+
+                  <ul class="roles">
+                    <li ng-repeat="role in project.roles">
+                      {{role.name}}
+                      <span class="actions">
+                        <a href="#" ng-click="editRole($index)">Editar</a> | <a href="#" ng-click="removeRole($index)">Remover</a>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <div class="row step-control">
+        <div class="col-xs-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+          <div class="row">
+            <div class="col-xs-6">
+              <button class="btn-success" type="button" ng-click="setFormStep(1)">Passo anterior</button>
+            </div>
+            <div class="col-xs-6 text-right">
+              <button class="btn-success" type="button" ng-click="setFormStep(3)">Próximo passo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step3" ng-show="formStep == 3">
+      <div class="top-content">
+        <h2>Quem é o responsável pela vaga?</h2>
+        <h3>Maecenas varius mattis blandit suspendisse.<br>Fringilla sit amet velit non tincidunt.</h3>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+          <div class="fields-container">
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="tst">Nome do responsável</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input type="text" name="responsible" ng-model="project.responsible" class="form-control" ng-minlength="3" ng-maxlength="50" ng-required="true" input-show-length="true"></input>
+                </div>
+              </div>
+              <div ng-show="projectForm.responsible.$pristine" class="indicator"></div>
+              <div ng-show="projectForm.responsible.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[projectForm.responsible.$invalid]"></div>
+              <div ng-show="projectForm.responsible.$dirty">
+                <label class="help-block" ng-show="projectForm.responsible.$error.minlength">Não pode ter menos de 3 caracteres.</label>
+                <label class="help-block" ng-show="projectForm.responsible.$error.maxlength">Não pode ter mais de 40 caracteres.</label>
+                <label class="help-block" ng-show="projectForm.responsible.$error.required">É necessário preencher este campo.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="tst">Email do responsável</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input type="email" name="email" ng-model="project.email" class="form-control" ng-required="true"></input>
+                </div>
+              </div>
+              <div ng-show="projectForm.email.$pristine" class="indicator"></div>
+              <div ng-show="projectForm.email.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[projectForm.email.$invalid]"></div>
+              <div ng-show="projectForm.email.$dirty">
+                <label class="help-block" ng-show="projectForm.email.$invalid && projectForm.email.$dirty && !projectForm.email.$error.required">Email inválido.</label>
+                <label class="help-block" ng-show="projectForm.email.$error.required">É necessário preencher este campo.</label>
+              </div>
+            </fieldset>
+            
+            <!--
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="confirm-email">Confirme o email</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input type="text" name="confirm-email" class="form-control"></input>
+                </div>
+              </div>
+            </fieldset>
+            -->
+
+            <fieldset>
+              <project-phone-input object="project" form="projectForm"></project-phone-input>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+
+      <div class="row step-control">
+        <div class="col-xs-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+          <div class="row">
+            <div class="col-xs-6">
+              <button class="btn-success" type="button" ng-click="setFormStep(2)">Passo anterior</button>
+            </div>
+            <div class="col-xs-6 text-right">
+              <button class="btn-success" type="button" ng-click="setFormStep(4)">Enviar para revisão</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step4" ng-show="formStep == 4">
+      <div class="container">
+        <div ng-show="validation.valid">
+          <div class="top-content">
+            <h2>Tudo pronto!</h2>
+            <h3>Você preencheu todos os campos corretamente. Agora é só enviar.</h3>
+          </div>
+          <div class="text-center">
+            <button class="btn-success" type="submit" ng-if="!saving">Enviar para revisão!</button>
+            <button class="btn-success" type="submit" ng-if="saving" disabled="disabled">Salvando...</button>
+          </div>
+        </div>
+
+        <div ng-show="!validation.valid">
+          <div class="top-content">
+            <h2>Ixi, não conseguimos criar a sua vaga :o</h2>
+            <h3 ng-show="!validation.step1.valid">Você esqueceu de completar a seção "Básico"</h3>
+            <h3 ng-show="validation.step1.valid && !validation.step2.valid">Você esqueceu de completar a seção "Detalhes e cargos"</h3>
+            <h3 ng-show="validation.step1.valid && validation.step2.valid && !validation.step3.valid">Você esqueceu de completar a seção "Responsável pela vaga"</h3>
+          </div>
+
+          <div class="text-center">
+            <button ng-show="!validation.step1.valid" class="btn-success" type="button" ng-click="setFormStep(1)">Voltar e corrigir</button>
+            <button ng-show="validation.step1.valid && !validation.step2.valid" class="btn-success" type="button" ng-click="setFormStep(2)">Voltar e corrigir</button>
+            <button ng-show="validation.step1.valid && validation.step2.valid && !validation.step3.valid" class="btn-success" type="button" ng-click="setFormStep(3)">Voltar e corrigir</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step5" ng-show="formStep == 5">
+      <div class="container">
+        <div ng-show="validation.valid">
+          <div class="top-content" ng-if="loadedProject">
+            <h2>Sua vaga foi salva!</h2>
+          </div>
+          <div class="top-content" ng-if="!loadedProject">
+            <h2>Parabéns! Sua vaga foi criada com sucesso. \o/</h2>
+            <h3>Agora é só esperar nossa equipe ver se ela está completa e nós iremos divulgar no nosso site.</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>

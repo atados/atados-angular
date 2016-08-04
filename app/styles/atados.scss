@@ -1286,3 +1286,15 @@ $card-img-height: 170px;
 @import 'footer';
 @import 'ligando';
 @import 'gdd';
+
+.input-field-counter {
+  position: absolute;
+  right: 25px;
+  bottom: 2px;
+  background: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+.input-field-counter-padding {
+  padding-right: 75px;
+}
