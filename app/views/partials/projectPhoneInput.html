@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <label for="phone">Telefone do responsável</label>
+  </div>
+  <div class="col-xs-12 col-sm-8">
+    <input type="text" class="form-control" name="phone" ng-model="object.phone" ng-minlength="8" ng-maxlength="20" ng-required="true">
+  </div>
+</div>
+
+<div ng-show="form.phone.$pristine" class="indicator"></div>
+<div ng-show="form.phone.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[form.phone.$invalid]"></div>
+<div ng-show="form.phone.$dirty">
+  <label class="help-block" ng-show="form.phone.$error.minlength">Não pode ter menos de 9 caracteres.</label>
+  <label class="help-block" ng-show="form.phone.$error.maxlength">Não pode ter mais de 20 caracteres.</label>
+  <label class="help-block" ng-show="form.phone.$error.required">É necessário preencher este campo.</label>
+</div>

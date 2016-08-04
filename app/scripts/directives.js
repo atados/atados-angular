@@ -68,6 +68,14 @@ app.directive('nonprofitCard', function() {
   };
 });
 
+app.directive('projectForm', function() {
+  return {
+    restrict: 'E',
+    templateUrl: '/partials/projectForm.html',
+    controller: 'ProjectFormCtrl'
+  };
+});
+
 app.directive('phone', function () {
   return {
     restrict: 'E',
@@ -129,6 +137,27 @@ app.directive('phoneInput', function () {
     templateUrl: '/partials/phoneInput.html',
     link: function() {
       $('#phoneInput').focus(
+        function(){
+          $(this).mask('(99) 9999-9999?9', {
+            completed:function(){
+              $(this).mask('(99) 99999-9999');
+            }
+          });
+        });
+    },
+  };
+});
+
+app.directive('projectPhoneInput', function () {
+  return {
+    restrict: 'E',
+    scope: {
+      object: '=object',
+      form: '=form',
+    },
+    templateUrl: '/partials/projectPhoneInput.html',
+    link: function($scope, element) {
+      element.find('input').focus(
         function(){
           $(this).mask('(99) 9999-9999?9', {
             completed:function(){
@@ -308,5 +337,22 @@ app.directive('cardExpiration', function() {
     link: function($scope, element) {
       element.mask('99/9999');
     } 
+  };
+});
+
+app.directive('inputShowLength', function() {
+  return {
+    link: function($scope, element, attrs) {
+      var fieldCounterWrapper = element.parent().append('<span class="input-field-counter"><span class="count">0</span>/<span>'+attrs.ngMaxlength+'</span></span>');
+      var count = fieldCounterWrapper.find('.count');
+      var updateCount = function(e) {
+          count.html(e.target.value.length);
+      };
+
+      element
+        .addClass('input-field-counter-padding')
+        .keyup (function(e) { updateCount(e); })
+        .change(function(e) { updateCount(e); });
+    }
   };
 });

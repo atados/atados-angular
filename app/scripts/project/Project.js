@@ -79,5 +79,17 @@ app.factory('Project', function($http, Restangular, Site, Auth, Cleanup, $state,
         toastr.error('Vaga não encontrada.');
       });
     },
+    createOrSave: function(project, success, error) {
+      var url, req;
+      if (project.id) {
+        url = 'save/project/';
+        req = $http.put;
+      } else {
+        url = 'create/project/';
+        req = $http.post;
+      }
+      req(api + url, {'project': project})
+        .success(success).error(error);
+    },
   };
 });

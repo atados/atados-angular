@@ -200,21 +200,6 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
     project: function (project) {
       project.causes = fixCauses(project.causes);
       project.skills = fixSkills(project.skills);
-
-      if (project.work) {
-        var availabilities = [];
-        for (var period = 0; period < 3; period++) {
-          var periods = [];
-          availabilities.push(periods);
-          for (var weekday = 0; weekday < 7; weekday++) {
-            periods.push({checked: false});
-          }
-        }
-        project.work.availabilities.forEach(function(a) {
-          availabilities[a.period][a.weekday].checked = true;
-        });
-        project.work.availabilities = availabilities;
-      }
     },
   };
 });

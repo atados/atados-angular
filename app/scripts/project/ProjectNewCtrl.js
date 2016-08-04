@@ -4,14 +4,12 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeout, Restangular, Project) {
+app.controller('ProjectNewCtrl', function ($scope, $state, $stateParams, $timeout, $filter, Restangular, Project) {
   $scope.project = {
     name: '',
     nonprofit: null,
     address: {
       addr: {},
-      typed_address: '',
-      typed_address2: ''
     },
     description: '',
     details: '',
