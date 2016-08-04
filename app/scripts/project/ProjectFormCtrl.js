@@ -4,7 +4,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeout, $filter, $http, api, Restangular, Project) {
+app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeout, $filter, $http, $window, api, Restangular, Project) {
   var filter = $filter('filter');
 
   // This variable includes extra data not needed by the api, such as the "dates" param
@@ -303,6 +303,7 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
 
   $scope.setFormStep = function(step) {
     $scope.formStep = step;
+    $window.scrollTo(0, 0);
   };
 
 
