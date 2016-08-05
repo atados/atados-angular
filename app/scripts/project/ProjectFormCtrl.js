@@ -364,7 +364,7 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
     init: function() {
       this.on('addedfile', function(f) {
         if (!this.files.length) { // only triggered if loading project(.emit('addedfile'))
-          this.files.push(f)
+          this.files.push(f);
         }
         if (this.files[1] !== null && this.files[1] !== undefined){
           this.removeFile(this.files[0]);

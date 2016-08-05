@@ -61,10 +61,10 @@
                   <label for="name">Nome da vaga</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                  <input type="text" name="name" placeholder="Ex: SóLatinha" ng-model="project.name" class="form-control" ng-required="true" ng-minlength="3" ng-maxlength="40" input-show-length="true"></input>
+                  <input type="text" name="name" placeholder="Ex: SóLatinha" ng-model="project.name" class="form-control" ng-required="true" ng-minlength="3" ng-maxlength="40" lock-maxlength="40" input-show-length="true"></input>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-sm-push-4">
-                  <small>Escolher um nome atrativo e descolado faz a diferença. Seja criativo!<smsmall>
+                  <small>Escolher um nome atrativo e descolado faz a diferença. Seja criativo!</small>
                 </div>
               </div>
               <div ng-show="projectForm.name.$pristine" class="indicator"></div>
@@ -82,7 +82,7 @@
                   <label for="description">Mini-sinopse da vaga</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                  <textarea name="description" placeholder="Ex: Dia 09/04 faremos instalação de cestas para o descarte exclusivo de latas, facilitando a coleta pelos catadores. Faça parte dessa intervenção urbana e coletiva." ng-model="project.description" class="form-control" ng-required="true" ng-minlength="10" ng-maxlength="160" input-show-length="true"></textarea>
+                  <textarea name="description" placeholder="Ex: Dia 09/04 faremos instalação de cestas para o descarte exclusivo de latas, facilitando a coleta pelos catadores. Faça parte dessa intervenção urbana e coletiva." ng-model="project.description" class="form-control" ng-required="true" ng-minlength="10" ng-maxlength="160" lock-maxlength="160" input-show-length="true"></textarea>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-sm-push-4">
                   <small>Faça uma chamada atrativa e resumida do trabalho. Seja convidativo pois essa será a 1ª impressão que o voluntário terá da vaga.</small>
@@ -342,7 +342,8 @@
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <textarea type="text" name="details" placeholder="Ex: Venha montar, pintar e instalar cestas para o descarte exclusivo de latas, facilitando a coleta pelos catadores. No Brasil, 98,4% das latas de alumínio para bebidas é reciclado. Os catadores são os grandes responsáveis pela coleta das latas de alumínio nas ruas, mas não são reconhecidos pelo importante serviço que prestam. Em muitos lugares, encontramos catadores procurando por latinhas nos lixos da cidade. Esse processo de triagem pode machucar o catador, uma vez que ele tem que procurar manualmente pelas latas juntos aos outros resíduos, que podem ser cortantes. Além disso, as lixeiras podem ser danificadas, ou outros resíduos ficarem espalhados ao redor.
-No dia 9 de abril, o Pimp My Carroça propõe a instalação de 30 cestas, com uma placa informativa, para o descarte exclusivo de latas de alumínio, facilitando o processo de triagem para o catador, evitando que ele se machuque procurando por latinhas na lixeira comum e conscientizando a população sobre a importância do descarte correto dos resíduos. O Ato consiste na montagem das cestas, pintura das placas informativas e instalação das mesmas na região do Baixo Augusta. Acontecerá no dia 09 de abril, das 13h00 às 19h00, na região do Baixo Augusta." ng-model="project.details" class="form-control" ng-minlength="10" ng-maxlength="3000" ng-required="true" input-show-length="true"></textarea>
+No dia 9 de abril, o Pimp My Carroça propõe a instalação de 30 cestas, com uma placa informativa, para o descarte exclusivo de latas de alumínio, facilitando o processo de triagem para o catador, evitando que ele se machuque procurando por latinhas na lixeira comum e conscientizando a população sobre a importância do descarte correto dos resíduos. O Ato consiste na montagem das cestas, pintura das placas informativas e instalação das mesmas na região do Baixo Augusta. Acontecerá no dia 09 de
+abril, das 13h00 às 19h00, na região do Baixo Augusta." ng-model="project.details" class="form-control" ng-minlength="10" ng-maxlength="3000" lock-maxlength="3000" ng-required="true" input-show-length="true"></textarea>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-sm-push-4">
                   <small>Fale com paixão e clareza sobre a vaga. Que atividades o voluntário irá realizar; qual a importância dessa ação e do voluntário; qual é o público atendido; se haverá alguma capacitação; que habilidades a pessoa deve ter; disponibilidade e frequência exigidas; outras informações importantes que o voluntário possa ter dúvidas. Capriche!</small>
@@ -416,7 +417,7 @@ No dia 9 de abril, o Pimp My Carroça propõe a instalação de 30 cestas, com u
     <div class="step3" ng-show="formStep == 3">
       <div class="top-content">
         <h2>Quem é o responsável pela vaga?</h2>
-        <h3>Maecenas varius mattis blandit suspendisse.<br>Fringilla sit amet velit non tincidunt.</h3>
+        <h3>Essa será a referência do voluntário na instituição. Irá entrar em contato, receber e orientá-lo.</h3>
       </div>
 
 
@@ -429,7 +430,7 @@ No dia 9 de abril, o Pimp My Carroça propõe a instalação de 30 cestas, com u
                   <label for="tst">Nome do responsável</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                  <input type="text" name="responsible" ng-model="project.responsible" class="form-control" ng-minlength="3" ng-maxlength="50" ng-required="true" input-show-length="true"></input>
+                  <input type="text" name="responsible" ng-model="project.responsible" class="form-control" ng-minlength="3" ng-maxlength="50" lock-maxlength="50" ng-required="true" input-show-length="true"></input>
                 </div>
               </div>
               <div ng-show="projectForm.responsible.$pristine" class="indicator"></div>
