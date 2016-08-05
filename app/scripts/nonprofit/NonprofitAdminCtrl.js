@@ -4,7 +4,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('NonprofitAdminCtrl', function($scope, $http, $state, $stateParams, $timeout, Restangular, Photos, Cleanup, api, VOLUNTEER, NONPROFIT) {
+app.controller('NonprofitAdminCtrl', function($scope, $http, $state, $stateParams, $timeout, Restangular, Photos, Cleanup, api, VOLUNTEER) {
 
   $scope.volunteerStatusOptions = [
     'Voluntário',
