@@ -505,6 +505,8 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
 
     if ($scope.validation.step1.valid && $scope.validation.step2.valid && $scope.validation.step3.valid) {
       $scope.validation.valid = true;
+    } else {
+      $scope.validation.valid = false;
     }
   };
 

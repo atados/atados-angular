@@ -78,7 +78,6 @@ app.factory('Nonprofit', function(Restangular, $state, $stateParams, Cleanup, $h
         .success(function() {
           toastr.success('Perfil da ONG salvo!');
         }).error(function(error) {
-          console.error(error);
           toastr.error('Problema ao salvar o perfil da ONG, por favor tente de novo');
         });
     }

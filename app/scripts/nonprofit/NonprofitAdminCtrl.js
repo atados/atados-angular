@@ -45,21 +45,20 @@ app.controller('NonprofitAdminCtrl', function($scope, $http, $state, $stateParam
       $state.transitionTo('root.home');
       toastr.error('Apenas ONGs tem acesso ao Painel de Controle');
       return;
-    } else if (user.user.is_staff) {
+    } else {
       $http.get(api + 'nonprofit/'+ $stateParams.slug + '/')
         .success(function(response) {
           $scope.nonprofit = response;
-          Cleanup.currentUser($scope.nonprofit);
           Cleanup.nonprofitForAdmin($scope.nonprofit);
           $scope.activeProject = $scope.nonprofit.projects[0];
+
+          if (user.slug === $stateParams.slug) {
+            Cleanup.currentUser($scope.nonprofit);
+          }
         }).error(function() {
           $state.transitionto('root.home');
           toastr.error('ONG não encontrada.');
         });
-    } else if (user.role === NONPROFIT) {
-      $scope.nonprofit = $scope.loggedUser;
-      Cleanup.nonprofitForAdmin($scope.nonprofit);
-      $scope.activeProject = $scope.nonprofit.projects[0];
     }
   });
 

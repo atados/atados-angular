@@ -1,5 +1,5 @@
 <div class="project-form">
-  <div class="menu">
+  <div class="menu" ng-show="formStep !== 5">
     <ul>
       <li ng-class="formStep == 1 ? 'menu-active' : ''">
         <a href="#" ng-click="setFormStep(1)">
@@ -526,11 +526,17 @@ No dia 9 de abril, o Pimp My Carroça propõe a instalação de 30 cestas, com u
       <div class="container">
         <div ng-show="validation.valid">
           <div class="top-content" ng-if="loadedProject">
-            <h2>Sua vaga foi salva!</h2>
+            <h2>Sua vaga foi salva! \o/</h2>
+            <div class="text-center">
+              <button ng-show="!loggedUser.is_staff" class="btn-success btn-primary" type="button" ui-sref="root.nonprofitadmin({slug: loggedUser.slug})">Voltar para o painel de controle</button>
+            </div>
           </div>
           <div class="top-content" ng-if="!loadedProject">
             <h2>Parabéns! Sua vaga foi criada com sucesso. \o/</h2>
             <h3>Agora é só esperar nossa equipe ver se ela está completa e nós iremos divulgar no nosso site.</h3>
+            <div class="text-center">
+              <button ng-show="!loggedUser.is_staff" class="btn-success btn-primary" type="button" ui-sref="root.nonprofitadmin({slug: loggedUser.slug})">Voltar para o painel de controle</button>
+            </div>
           </div>
         </div>
       </div>
