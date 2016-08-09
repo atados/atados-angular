@@ -130,7 +130,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
         controller: 'TokenCtrl'
       })
     .state('root.newproject', {
-      url: '/cadastro/vaga/:id',
+      url: '/cadastro/vaga/:nonprofit_slug',
         templateUrl: '/partials/projectNew.html',
         controller: 'ProjectNewCtrl'
       })

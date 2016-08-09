@@ -82,7 +82,7 @@
                   <label for="description">Mini-sinopse da vaga</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                  <textarea name="description" placeholder="Ex: Dia 09/04 faremos instalação de cestas para o descarte exclusivo de latas, facilitando a coleta pelos catadores. Faça parte dessa intervenção urbana e coletiva." ng-model="project.description" class="form-control" ng-required="true" ng-minlength="10" ng-maxlength="160" lock-maxlength="160" input-show-length="true"></textarea>
+                  <textarea name="description" placeholder="Ex: Dia 09/04 faremos instalação de cestas para o descarte exclusivo de latas, facilitando a coleta pelos catadores. Faça parte dessa intervenção urbana e coletiva." ng-model="project.description" class="form-control" ng-required="true" ng-minlength="10" ng-maxlength="160" lock-maxlength="160" input-show-length="true" rows="4"></textarea>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-sm-push-4">
                   <small>Faça uma chamada atrativa e resumida do trabalho. Seja convidativo pois essa será a 1ª impressão que o voluntário terá da vaga.</small>
@@ -329,7 +329,7 @@
     <div class="step2" ng-show="formStep == 2">
       <div class="top-content">
         <h2>Chegou o momento dos detalhes!</h2>
-        <h3>Pense bem na construção da vaga, seja claro e completo. É ela que encantará os voluntários.</h3>
+        <h3>Pense bem na construção da vaga, seja claro e completo.<br>É ela que encantará os voluntários.</h3>
       </div>
 
       <div class="row">
@@ -341,12 +341,10 @@
                   <label for="tst">Sobre a vaga</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                  <textarea type="text" name="details" placeholder="Ex: Venha montar, pintar e instalar cestas para o descarte exclusivo de latas, facilitando a coleta pelos catadores. No Brasil, 98,4% das latas de alumínio para bebidas é reciclado. Os catadores são os grandes responsáveis pela coleta das latas de alumínio nas ruas, mas não são reconhecidos pelo importante serviço que prestam. Em muitos lugares, encontramos catadores procurando por latinhas nos lixos da cidade. Esse processo de triagem pode machucar o catador, uma vez que ele tem que procurar manualmente pelas latas juntos aos outros resíduos, que podem ser cortantes. Além disso, as lixeiras podem ser danificadas, ou outros resíduos ficarem espalhados ao redor.
-No dia 9 de abril, o Pimp My Carroça propõe a instalação de 30 cestas, com uma placa informativa, para o descarte exclusivo de latas de alumínio, facilitando o processo de triagem para o catador, evitando que ele se machuque procurando por latinhas na lixeira comum e conscientizando a população sobre a importância do descarte correto dos resíduos. O Ato consiste na montagem das cestas, pintura das placas informativas e instalação das mesmas na região do Baixo Augusta. Acontecerá no dia 09 de
-abril, das 13h00 às 19h00, na região do Baixo Augusta." ng-model="project.details" class="form-control" ng-minlength="10" ng-maxlength="3000" lock-maxlength="3000" ng-required="true" input-show-length="true"></textarea>
+                  <textarea type="text" name="details" ng-model="project.details" class="form-control" ng-minlength="10" ng-maxlength="3000" lock-maxlength="3000" ng-required="true" input-show-length="true" rows="5"></textarea>
                 </div>
                 <div class="col-xs-12 col-sm-8 col-sm-push-4">
-                  <small>Fale com paixão e clareza sobre a vaga. Que atividades o voluntário irá realizar; qual a importância dessa ação e do voluntário; qual é o público atendido; se haverá alguma capacitação; que habilidades a pessoa deve ter; disponibilidade e frequência exigidas; outras informações importantes que o voluntário possa ter dúvidas. Capriche!</small>
+                  <small>Fale com paixão e clareza sobre a vaga. Que atividades o voluntário irá realizar? Qual a importância dessa ação e do voluntário? Qual é o público atendido? Haverá alguma capacitação? Que habilidades a pessoa deve ter? Disponibilidade e frequência exigidas? E outras informações importantes que o voluntário possa ter dúvidas. Capriche!</small>
                 </div>
               </div>
 
@@ -363,18 +361,18 @@ abril, das 13h00 às 19h00, na região do Baixo Augusta." ng-model="project.deta
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
                   <label for="tst">Cargos</label>
+                  <small><br>Adicione os cargos disponíveis para atuação dos voluntários.</small>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                  <small>Caso sua vaga tenha demanda de diferentes cargos descreva-os aqui.</small>
                   <label for="tmp_role_name">Nome do cago</label>
                   <input type="text" class="form-control" name="tmp_role_name" ng-model="tmp.role_name" placeholder="Ex: Fotógrafo de Sorrisos">
                   <br>
 
-                  <label for="tmp_role_details">Qual será a função do voluntário nesse cargo?</label>
+                  <label for="tmp_role_details">Função do voluntário nesse cargo</label>
                   <textarea type="text" name="tmp_role_details" ng-model="tmp.role_details" class="form-control" placeholder="Ex: Fotograr o evento"></textarea>
                   <br>
 
-                  <label for="tmp_role_prerequisites">Quais são os pré-requisitos necessários para o voluntário exercer o cargo?</label>
+                  <label for="tmp_role_prerequisites">Pré-requisitos necessários para o voluntário exercer o cargo</label>
                   <textarea type="text" name="tmp_role_prerequisites" ng-model="tmp.role_prerequisites" class="form-control" placeholder="Ex: Experiência com fotografia e equipamento fotográfico"></textarea>
                   <br>
  
@@ -389,7 +387,7 @@ abril, das 13h00 às 19h00, na região do Baixo Augusta." ng-model="project.deta
                     <li ng-repeat="role in project.roles">
                       {{role.name}}
                       <span class="actions">
-                        <a href="#" ng-click="editRole($index)">Editar</a> | <a href="#" ng-click="removeRole($index)">Remover</a>
+                        <a href="#" ng-click="editRole($index)">Editar</a> | <a href="#" ng-click="removeRole($index)">Excluir</a>
                       </span>
                     </li>
                   </ul>
@@ -430,7 +428,7 @@ abril, das 13h00 às 19h00, na região do Baixo Augusta." ng-model="project.deta
                   <label for="tst">Nome do responsável</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
-                  <input type="text" name="responsible" ng-model="project.responsible" class="form-control" ng-minlength="3" ng-maxlength="50" lock-maxlength="50" ng-required="true" input-show-length="true"></input>
+                  <input type="text" name="responsible" ng-model="project.responsible" class="form-control" ng-minlength="3" ng-maxlength="50" lock-maxlength="50" ng-required="true" input-show-length="true" row="4"></input>
                 </div>
               </div>
               <div ng-show="projectForm.responsible.$pristine" class="indicator"></div>
@@ -494,7 +492,7 @@ abril, das 13h00 às 19h00, na região do Baixo Augusta." ng-model="project.deta
     </div>
 
     <div class="step4" ng-show="formStep == 4">
-      <div class="container">
+      <div class="container padded-container">
         <div ng-show="validation.valid">
           <div class="top-content">
             <h2>Tudo pronto!</h2>
@@ -515,7 +513,7 @@ abril, das 13h00 às 19h00, na região do Baixo Augusta." ng-model="project.deta
           </div>
 
           <div class="text-center">
-            <button ng-show="!validation.step1.valid" class="btn-success" type="button" ng-click="setFormStep(1)">Voltar e corrigir</button>
+            <button ng-show="!validation.step1.valid" class="btn-success btn-primary" type="button" ng-click="setFormStep(1)">Voltar e corrigir</button>
             <button ng-show="validation.step1.valid && !validation.step2.valid" class="btn-success" type="button" ng-click="setFormStep(2)">Voltar e corrigir</button>
             <button ng-show="validation.step1.valid && validation.step2.valid && !validation.step3.valid" class="btn-success" type="button" ng-click="setFormStep(3)">Voltar e corrigir</button>
           </div>
@@ -524,19 +522,20 @@ abril, das 13h00 às 19h00, na região do Baixo Augusta." ng-model="project.deta
     </div>
 
     <div class="step5" ng-show="formStep == 5">
-      <div class="container">
+      <div class="container padded-container">
         <div ng-show="validation.valid">
           <div class="top-content" ng-if="loadedProject">
             <h2>Sua vaga foi salva! \o/</h2>
+            <h3>Você será redirecionado para o painel de controle em 5 segundos.</h3>
             <div class="text-center">
-              <button ng-show="!loggedUser.is_staff" class="btn-success btn-primary" type="button" ui-sref="root.nonprofitadmin({slug: loggedUser.slug})">Voltar para o painel de controle</button>
+              <button class="btn-success btn-primary" type="button" ui-sref="root.nonprofitadmin({slug: nonprofit_slug})">Voltar para o painel de controle</button>
             </div>
           </div>
           <div class="top-content" ng-if="!loadedProject">
             <h2>Parabéns! Sua vaga foi criada com sucesso. \o/</h2>
             <h3>Agora é só esperar nossa equipe ver se ela está completa e nós iremos divulgar no nosso site.</h3>
             <div class="text-center">
-              <button ng-show="!loggedUser.is_staff" class="btn-success btn-primary" type="button" ui-sref="root.nonprofitadmin({slug: loggedUser.slug})">Voltar para o painel de controle</button>
+              <button class="btn-success btn-primary" type="button" ui-sref="root.nonprofitadmin({slug: nonprofit_slug})">Voltar para o painel de controle</button>
             </div>
           </div>
         </div>

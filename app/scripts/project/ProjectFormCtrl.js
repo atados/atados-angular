@@ -55,6 +55,24 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
     step3: {pristine: true, valid: false},
   };
 
+  if (!$scope.loggedUser.user.is_staff) {
+    $scope.nonprofit_slug = $scope.loggedUser.slug;
+  } else {
+    // There's a route inconsistency problem here
+    // the nonprofit_slug param is only on project creation route(useful only for staff creating projects for nonprofits)
+    // there's no nonprofit_slug param for project edit(and there shouldn't be)
+    //
+    // therefore, on creation we use the state param
+    if ($stateParams.nonprofit_slug) {
+      $scope.nonprofit_slug = $stateParams.nonprofit_slug;
+    }
+    
+    // and on edit we load nonprofit info from the project
+    else {
+      $scope.nonprofit_slug = $scope.loadedProject.nonprofit.slug;
+    }
+  }
+
   /*
    * Save and load
    */
@@ -67,6 +85,9 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
       
       Project.createOrSave(json, function() {
         $scope.setFormStep(5);
+        $timeout(function() {
+          $state.go('root.nonprofitadmin', {slug: $scope.nonprofit_slug});
+        }, 5*1000);
       }, function() {
         $scope.saving = false;
         toastr.error('Aconteceu um erro. Revise os campos e tente novamente');
@@ -75,8 +96,8 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
   };
 
   $scope.convertProjectToApiFormat = function(p) {
-    if ($stateParams.id) {
-      p.nonprofit = $stateParams.id;
+    if ($stateParams.nonprofit_slug) {
+      p.nonprofit_slug = $stateParams.slug;
     }
 
     if (p.dates.type === 'work') {
