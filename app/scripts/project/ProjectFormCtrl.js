@@ -100,10 +100,15 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
       p.nonprofit_slug = $stateParams.slug;
     }
 
+    var can_be_done_remotely;
+    if (p.can_be_done_remotely) {
+      can_be_done_remotely = p.can_be_done_remotely - 1;
+    }
+
     if (p.dates.type === 'work') {
       p.work = {
         availabilities: p.dates.work.availabilities,
-        can_be_done_remotely: p.can_be_done_remotely,
+        can_be_done_remotely: can_be_done_remotely,
       };
     }
 
@@ -123,7 +128,7 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
       p.job = {
         start_date: start.getTime(),
         end_date: end.getTime(),
-        can_be_done_remotely: p.can_be_done_remotely,
+        can_be_done_remotely: can_be_done_remotely,
       };
     }
     return p;
