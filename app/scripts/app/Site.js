@@ -65,7 +65,7 @@ app.factory('Site', function(Restangular, $http, storage, api) {
       return _states;
     },
     numbers: function () {
-      return _numbers;
+      return _numbers + 50;
     }
   };
 });
