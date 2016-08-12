@@ -29,7 +29,7 @@ app.factory('Site', function(Restangular, $http, storage, api) {
       return $http.get(api + 'startup/')
         .then(function(response) {
           response = response.data;
-          _numbers = response.numbers;
+          _numbers = response.numbers+50;
           _states = response.states;
           _cities = response.cities;
           //_cities.splice(0, 0, {name: 'Todas Cidades', id: '', active: true, state: 0});
@@ -65,7 +65,7 @@ app.factory('Site', function(Restangular, $http, storage, api) {
       return _states;
     },
     numbers: function () {
-      return _numbers + 50;
+      return _numbers;
     }
   };
 });
