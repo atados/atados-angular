@@ -32,7 +32,6 @@ app.factory('Site', function(Restangular, $http, storage, api) {
           _numbers = response.numbers;
           _states = response.states;
           _cities = response.cities;
-          _numbers.volunteers = _numbers.volunteers + 50;
           //_cities.splice(0, 0, {name: 'Todas Cidades', id: '', active: true, state: 0});
 
           _skills = response.skills;
