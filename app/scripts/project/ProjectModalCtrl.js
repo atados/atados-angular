@@ -23,7 +23,7 @@ app.controller('ProjectModalCtrl', function ($rootScope, $scope, $window,  $moda
     if (!$scope.contractForm.phone || !$scope.contractForm.phone || !$scope.contractForm.email) {
       $window.alert('Preencha seu nome, telefone e email para participar desta vaga');
     } else {
-      $modalInstance.close({phone: $scope.contractForm.phone, name: $scope.contractForm.name, email: $scope.contractForm.email});
+      $modalInstance.close({phone: $scope.contractForm.phone, name: $scope.contractForm.name, email: $scope.contractForm.email, message: $scope.contractForm.message});
     }
   };
 
