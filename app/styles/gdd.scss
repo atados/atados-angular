@@ -326,7 +326,7 @@ $font-secondary: "Montserrat", Arial, sans-serif;
 
     .history-timeline {
       padding: 100px 0;
-      overflow-x: auto;
+      overflow-x: hidden;
 
       .history-timeline-content {
         background: #E17F1A;
