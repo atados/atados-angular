@@ -474,11 +474,12 @@ $font-secondary: "Montserrat", Arial, sans-serif;
       }
 
       .gdd-this-year-image {
-        margin-top: 80px;
 
-        > img {
-          max-width: 100%;
-        }
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        margin: 80px 20px 0;
+        min-height: 612px;
 
         @media (min-width: 769px) {
           position: absolute;
@@ -486,17 +487,9 @@ $font-secondary: "Montserrat", Arial, sans-serif;
           top: 0;
           bottom: 0;
           left: 50%;
-          margin: 0;
           overflow: hidden;
-
-          > img {
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            margin: auto;
-            max-width: none;
-          }
+          margin: 80px 0;
+          background-position: left center;
         }
       }
 
@@ -529,6 +522,28 @@ $font-secondary: "Montserrat", Arial, sans-serif;
             margin-right: 10px;
           }
         }
+      }
+    }
+
+    .check-atados {
+      background: #B70072;
+      padding: 50px 0;
+
+      img {
+        display: inline-block;
+        float: left;
+      }
+
+      h1 {
+        color: #fff;
+        line-height: 1.7;
+        margin-left: 110px;
+        font-weight: 300;
+      }
+
+      a {
+        color: #FFF !important;
+        text-decoration: underline;
       }
     }
   }
