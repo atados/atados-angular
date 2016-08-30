@@ -56,13 +56,9 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
 
     if ($scope.project.work) {
       if ($scope.project.work.availabilities) {
-        angular.forEach($scope.project.work.availabilities, function(row) {
-          angular.forEach(row, function(cell) {
-            if (cell.checked) {
-              $scope.showTimeTable = true;
-            }
-          });
-        });
+        if ($scope.project.work.availabilities.length) {
+          $scope.showTimeTable = true;
+        }
       }
     }
 

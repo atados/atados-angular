@@ -130,33 +130,18 @@
     <div ng-if="project.work" id="project-availabilities">
       <h3>Horários disponíveis</h3>
       <p ng-if="project.work.weekly_hours"><strong>Horas por semana: </strong>{{project.work.weekly_hours}}</p>
-      <div class="row" ng-if="showTimeTable">
-        <div class="col-sm-3 table-labels">
-          <div class="table-label">Manhã</div><span class="triangle"></span>
-          <div class="table-label">Tarde</div><span class="triangle"></span>
-          <div class="table-label">Noite</div><span class="triangle"></span>
-        </div>
-        <div class="col-sm-5">
-          <table cellspacing="0" cellpadding="0">
-            <colgroup span="7"></colgroup>
-            <tbody>
-              <tr class="weekdays">
-                <th scope="col" title="Domingo">Dom</th>
-                <th scope="col" title="Segunda">Seg</th>
-                <th scope="col" title="Terça">Ter</th>
-                <th scope="col" title="Quarta">Qua</th>
-                <th scope="col" title="Quinta">Qui</th>
-                <th scope="col" title="Sexta">Sex</th>
-                <th scope="col" title="Sabado">Sab</th>
-              </tr>
-              <tr ng-repeat="days in project.work.availabilities">
-                <td ng-repeat="period in days">
-                  <i ng-if="period.checked" class="fa fa-check" style="color:green;"></i>
-                  <i ng-if="!period.checked" class="fa fa-check" style="color:white;"></i>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+      <div ng-if="showTimeTable">
+        <div class="availability" ng-repeat="a in project.work.availabilities">
+          <span ng-if="a.weekday === 0">Domingo</span>
+          <span ng-if="a.weekday === 1">Segunda-feira</span>
+          <span ng-if="a.weekday === 2">Terça-feira</span>
+          <span ng-if="a.weekday === 3">Quarta-feira</span>
+          <span ng-if="a.weekday === 4">Quinta-feira</span>
+          <span ng-if="a.weekday === 5">Sexta-feira</span>
+          <span ng-if="a.weekday === 6">Sábado</span>
+          <span ng-if="a.period === 0">de manhã</span>
+          <span ng-if="a.period === 1">de tarde</span>
+          <span ng-if="a.period === 2">de noite</span>
         </div>
       </div>
     </div>
