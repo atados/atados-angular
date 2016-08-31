@@ -59,7 +59,7 @@
       <p ng-if="nonprofit.website"><i class="fa fa-laptop col-xs-1"></i><a href="{{nonprofit.website}}" target="_blank">{{nonprofit.website}}</a></p>
       <p ng-if="nonprofit.user.email"><i class="fa fa-inbox col-xs-1"></i><a href="mailto:{{nonprofit.user.email}}" target="_blank">{{nonprofit.user.email}}</a></p>
       <p ng-if="nonprofit.user.phone"><i class="fa fa-phone col-xs-1"></i>{{nonprofit.user.phone}}</p>
-      <p ng-if="nonprofit.address && !nonprofit.user.hidden_address"><i class="fa fa-map-marker col-xs-1"></i>{{nonprofit.address | as_location_string}}</p>
+      <p ng-if="nonprofit.address && !nonprofit.user.hidden_address"><i class="fa fa-map-marker col-xs-1"><i><span ng-bind-html="nonprofit.address | as_location_string"></span></i></p>
 
       <div id="nonprofit-causes">
         <div class="img-circle cause-image" ng-repeat="cause in nonprofit.causes">
