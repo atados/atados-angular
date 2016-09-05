@@ -44,11 +44,6 @@
     <!-- endbuild -->
 
     <script src="https://assets.pagar.me/js/pagarme.min.js"></script>
-    <script type="text/javascript"> //<![CDATA[
-      var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
-      document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
-      //]]>
-    </script>
   </head>
   <body>
 
@@ -104,7 +99,15 @@
     <script src="/bower_components/angular-datepicker/dist/angular-datepicker.js"></script>
     <script src="/bower_components/moment/moment.js"></script>
     <script src="/bower_components/moment-timezone/builds/moment-timezone.min.js"></script>
+
+
+
     <script src="/angular-gm.js"></script>
+    <!--
+    <script src="/bower_components/angular-gm-googlemaps/src/module.js"></script>
+    -->
+
+
     <script src="/angular-seo.js"></script>
     <script src="/oms.js"></script>
     <script src="/jquery.maskedinput.min.js"></script>
@@ -179,9 +182,9 @@
 
 
   <!-- Código do Google para tag de remarketing -->
-  <!--------------------------------------------------
+  <!--
   As tags de remarketing não podem ser associadas a informações pessoais de identificação nem inseridas em páginas relacionadas a categorias de confidencialidade. Veja mais informações e instruções sobre como configurar a tag em: http://google.com/ads/remarketingsetup
-  --------------------------------------------------->
+  -->
   <script type="text/javascript">
   /* <![CDATA[ */
   var google_conversion_id = 971695909;
@@ -196,7 +199,15 @@
   <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/971695909/?value=0&amp;guid=ON&amp;script=0"/>
   </div>
   </noscript>
-  <script class="trustlogo">
+
+  <script type="text/javascript" async> //<![CDATA[
+    (function(){
+      var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+      document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+    })()
+    //]]>
+  </script>
+  <script async class="trustlogo">
     window.TrustLogo("https://s3.amazonaws.com/atados-us/images/comodo_secure_100x85_transp.png", "CL1", "none");
   </script>
   </body>

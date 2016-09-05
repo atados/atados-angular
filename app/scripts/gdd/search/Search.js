@@ -7,7 +7,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
   var _cause = {};
   var _skill = {};
   var _city = {};
-  
+
   var _highlightedProjects = [];
   var _highlightedNonprofits = [];
 
@@ -53,7 +53,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
       gdd: gdd,
     };
     if (gdd) {
-      var urlHeaders['gdd'] = true;
+      urlHeaders['gdd'] = true;
     }
 
 

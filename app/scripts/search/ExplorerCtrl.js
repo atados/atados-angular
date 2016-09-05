@@ -173,8 +173,8 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
     $scope.previousSlug = object.slug;
     var cardId = 'card-' + object.slug;
     angular.element(document.querySelector('#' + cardId))
-        .addClass('hover');
-
+      .addClass('hover')
+    ;
 
     if (marker) {
       $scope.iw.setContent(marker.title);
