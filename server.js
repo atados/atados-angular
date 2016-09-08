@@ -33,9 +33,26 @@ require('./lib/config/express')(app);
 require('./lib/routes')(app);
 
 // Start server
-app.listen(config.port, '0.0.0.0', function () {
-  console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
-});
+if (process.env.NODE_ENV === 'development') {
+  app.listen(config.port, '0.0.0.0', function () {
+    console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
+  });
+} else {
+  var prj = null;
+  process.argv.forEach(function (val, index, array) {
+    if (val.indexOf('--prj') !== -1) {
+      prj = val.split('=')[1];
+    }
+  });
+  
+  if (prj) {
+    app.listen('/tmp/www.'+prj+'.socket', function () {
+      console.log('Express server listening in %s mode', app.get('env'));
+    });
+  } else {
+    console.log("Missing --prj flag");
+  }
+}
 
 // Expose app
 exports = module.exports = app;
