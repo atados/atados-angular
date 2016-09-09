@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === 'development') {
   });
   
   if (prj) {
-    app.listen('/tmp/www.'+prj+'.socket', function () {
+    app.listen('/tmp/www.run.'+prj+'.socket', function () {
       console.log('Express server listening in %s mode', app.get('env'));
     });
   } else {
