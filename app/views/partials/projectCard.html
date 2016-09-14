@@ -33,8 +33,9 @@
       <div class="row card-second">
         <div class="card-date col-xs-9">
           <strong ng-if="project.work"><i class="fa fa-refresh"></i> Vaga Recorrente</strong>
-          <strong ng-if="project.job && project.job.start_date"><i class="fa fa-calendar"></i> {{project.job.start_date | date: 'longDate'}}</strong>
-          <strong ng-if="project.job && !project.job.start_date && project.job.end_date"><i class="fa fa-calendar"></i> {{project.job.end_date | date: 'longDate'}}</strong>
+          <strong ng-if="project.job && project.job.start_date"><i class="fa fa-calendar"></i> {{project.job.start_date | date: 'dd/MM/yyyy'}}
+            <span ng-if="project.job && project.job.end_date"> até {{project.job.end_date | date: 'dd/MM/yyyy'}}</span>
+          </strong>
         </div>
         <div class="card-volunteer center col-xs-3">
           <span><i tooltip="Número de voluntários que já se ataram." class="fa fa-user"></i> {{project.volunteers_numbers}}</span>

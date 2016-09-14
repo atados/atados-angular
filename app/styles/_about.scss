@@ -1,61 +1,327 @@
 #about-page {
-  .container {
-    width: 1328px;
-    padding-left: 125px;
-  }
-  background-color: #EFEFEF;
-  h3 {color:white;}
-  p {color:white;}
-  #title {
+
+  .banner {
     text-align: center;
-    margin: 80px 0 100px 0;
-    color: #DF7D1A;
-    strong {
-      color: #127EB8;
+    background: url(https://static.pexels.com/photos/4154/clinic-doctor-health-hospital.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 500px;
+
+    .banner-title {
+      color: #fff;
+      padding: 10px 15px;
+      line-height: 1.5;
+      background: rgba(#000, .6);
+      max-width: 900px;
+      margin: 200px auto 0;
     }
   }
-  #quem-somos {
-    padding: 80px 0;
-    background-color: #0E6182;
-    p {
-      font-size: 20px;
-      line-height: 32px;
+
+  .statistics {
+
+
+    .statistic-item {
+      max-width: 400px;
+      padding-top: 60px;
+      padding-bottom: 60px;
+      text-align: center;
+      margin: 0 auto;
+
+      > h1 {
+        color: #E47F1E;
+        font-size: 84px;
+        font-weight: bold;
+      }
+
+      > p {
+        color: #6B6B6B;
+        font-size: 18px;
+      }
     }
-    h3 {
-      font-weight: bold;
+
+    .statistic-container-1 {
+      background: #F8F8F8;
+
+      @media (min-width: $grid-float-breakpoint) {
+        .statistic-item {
+          float: right;
+          margin-right: 50px;
+        }
+      }
     }
-    img {
-      border: 10px solid #01739E;
-      box-shadow: 2px 1px 7px #363030;
+
+    .statistic-container-2 {
+      background: #EDEDED;
+    }
+
+    .statistic-container-3 {
+      background: #E5E4E4;
+      @media (min-width: $grid-float-breakpoint) {
+        .statistic-item {
+          float: left;
+          margin-left: 50px;
+        }
+      }
+    }
+
+
+  }
+
+
+  .about-with-bubble {
+    background: #F7FAFA;
+
+
+    .about-with-bubble-slide {
+      min-height: 460px;
+      position: relative;
+
+      .slide {
+
+
+        @media (min-width: $grid-float-breakpoint) {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+        }
+
+
+        @media (min-width: $grid-float-breakpoint) {
+          left: 20px;
+          right: auto;
+          margin-right: 20px;
+          max-width: 800px;
+        }
+
+        .slide-body {
+          margin-left: 150px;
+          margin-right: 150px;
+        }
+
+        .slide-previous,
+        .slide-next {
+          position: absolute;
+          background: none;
+          border: none;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          cursor: pointer;
+          font-size: 72px;
+          color: #ADAEAE;
+          padding: 50px;
+          outline: 0 !important;
+
+          &:hover {
+            color: #777;
+          }
+        }
+
+        .slide-next {
+          left: auto;
+          right: 0;
+        }
+
+
+        .slide-item {
+          width: 100%;
+          height: 100%;
+          padding-top: 80px;
+          padding-bottom: 80px;
+          text-align: center;
+          font-style: italic;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+      }
+    }
+
+    .about-with-bubble-text {
+      padding-top: 80px;
+      padding-bottom: 80px;
+      background: #009AD6;
+      color: #fff;
+      position: relative;
+
+
+      @media (min-width: $grid-float-breakpoint) {
+        padding-top: 150px;
+        padding-bottom: 150px;
+        min-height: 460px;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        height: 0;
+        width: 0;
+        border-style: solid;
+        border-width: 24px 24px 0 24px;
+        border-color: #009AD6 transparent;
+        bottom: -24px;
+        right: 0;
+        left: 0;
+        margin: auto;
+
+
+
+        @media (min-width: $grid-float-breakpoint) {
+          border-width: 24px 0 24px 24px;
+          border-color: transparent #009AD6;
+          right: -24px;
+          top: 0;
+          left: auto;
+          bottom: 0;
+        }
+      }
+
+      > p {
+        position: relative;
+        font-size: 18px;
+        line-height: 1.5;
+        max-width: 600px;
+        margin: 0 auto;
+
+
+        @media (min-width: $grid-float-breakpoint) {
+          max-width: 260px;
+          float: right;
+          margin: 0 50px 0 0;
+        }
+
+        &:after {
+          content: '';
+          position: absolute;
+          width: 40%;
+          height: 3px;
+          background: #fff;
+          bottom: -25px;
+          left: 0;
+        }
+      }
     }
   }
-  #poder-voluntariado {
-    padding: 70px 0;
-    box-shadow: 0 2px 10px #020202;
-    background-color: #11759B;
-    h3 {
-      font-weight: bold;
+
+  .about-with-bubble-2 {
+    background: #F0F0F0;
+
+    .about-with-bubble-slide {
+      .slide {
+        @media (min-width: $grid-float-breakpoint) {
+          right: 20px;
+          left: auto;
+          margin-right: auto;
+          margin-left: 20px;
+        }
+      }
+    }
+
+    .about-with-bubble-text {
+      background: #E47F1E;
+
+      &:after {
+        border-color: #E47F1E transparent;
+      }
+
+      @media (min-width: $grid-float-breakpoint) {
+        float: right;
+
+        > p {
+          float: left;
+          margin-right: 0;
+          margin-left: 50px;
+        }
+
+        &:after {
+          border-width: 24px 24px 24px 0;
+          right: auto;
+          left: -24px;
+          border-color: transparent #E47F1E;
+        }
+      }
     }
   }
-  #abertos {
-    box-shadow: 0 2px 10px #020202;
-    padding: 70px 0;
-    background-color: #1893C7;
-    h3 {
-      font-weight: bold;
+
+  .about-projects {
+    padding: 50px 0 80px 0;
+    text-align: center;
+
+    .title {
+      margin-bottom: 40px;
     }
-  }
-  #team {
-    padding: 70px 0;
-    background-color: #D9ECF1;
-    .person {
-      margin-right: 60px;
-      width: 220px;
-      height: 230px; 
-      background-color: #9FCDE0;
+
+    .about-example-project {
+      width: 200px;
+      min-height: 245px;
+      padding: 90px 18px 18px;
+      position: relative;
+      margin: 90px 10px 10px;
+      text-align: center;
       display: inline-block;
+      vertical-align: top;
+
+      > img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        position: absolute;
+        top: -75px;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+
+      > h4 {
+        margin-top: 0;
+        line-height: 1.3;
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      > p {
+        margin-bottom: 0;
+      }
+
+      border: 2px solid #ccc;
+    }
+  }
+
+  .about-actions {
+    padding-bottom: 80px;
+
+    .about-action {
+      display: block;
+      text-decoration: none;
+      background: #F4F5F5;
+      min-height: 370px;
+      text-align: center;
+      cursor: pointer;
+      padding: 50px;
+      color: #666666;
+      margin-bottom: 50px;
+
+      @media (min-width: $grid-float-breakpoint) {
+        margin-bottom: 0;
+      }
+
+      > .fa {
+        font-size: 130px;
+        margin-bottom: 40px;
+      }
+
+      h4 {
+        line-height: 1.5;
+      }
+
       &:hover {
-        box-shadow: 0px 0px 13px #7DB6D4;
+        background: #E47F1E;
+        &, > h4 {
+          color: #fff;
+        }
       }
     }
   }
