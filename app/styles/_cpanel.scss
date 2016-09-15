@@ -3,6 +3,10 @@
   padding-top: 40px;
   padding-bottom: 80px;
 
+  .navbar {
+    margin-bottom: 20px;
+  }
+
   .text-upper {
     text-transform: uppercase;
   }
@@ -48,8 +52,26 @@
   }
 
   .notification-card {
-    margin-top: 20px;
-    margin-bottom: 10px;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+    height: 0;
+    transition: .8s;
+    min-height: auto;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    &.visible {
+      margin-bottom: 10px;
+      overflow: visible;
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+      min-height: 70px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
 
     > .fa {
       font-size: 24px;
@@ -212,55 +234,6 @@
       &:last-child {
         border-right-width: 0;
       }
-    }
-  }
-}
-
-
-.view-cpanel-new-project {
-  .section-form {
-    max-width: 860px;
-    margin: 0 auto;
-
-    .title-primary {
-      text-align: left;
-      margin: 50px 0;
-    }
-
-    .create-project-time {
-      .form-key {
-        padding-top: 0;
-      }
-    }
-
-    .btn-lg,
-    .input-group {
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-
-      .form-control {
-        max-width: 400px;
-      }
-
-      &.has-error {
-        .form-key {
-          color: #468;
-        }
-      }
-    }
-
-    textarea {
-      resize: vertical;
-    }
-
-    button[type="submit"] {
-      height: 64px;
-      font-weight: 700;
-      font-size: 22px;
     }
   }
 }

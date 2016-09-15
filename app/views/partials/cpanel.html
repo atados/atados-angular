@@ -18,10 +18,10 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div class="notification-card">
+        <div class="notification-card" ng-repeat="notification in cpanel.notifications" ng-class="{ visible: notification.visible !== false }">
           <i class="fa fa-exclamation-triangle"></i>
-          <b>Atenção!</b> Você possui 2 vagas pendentes para atualização! <a href="">Veja aqui.</a>
-          <button class="notification-button">
+          <b>Atenção!</b> {{notification.text}} <a href="notification.url">Veja aqui.</a>
+          <button class="notification-button" ng-click="notification.visible = false">
             <i class="fa fa-remove"></i>
           </button>
         </div>
