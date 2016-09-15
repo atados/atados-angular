@@ -11,6 +11,7 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
 
   $scope.searchIP = function() {
       var url = 'https://geoip.atados.com.br/';
+      var state = $state.current;
       $.get(url, function(data) {
         $rootScope.geoIP = data;
 
@@ -30,7 +31,9 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
           address_components: [{'long_name':long_name,'types':['administrative_area_level_1','political']}],
         };
 
-        Search.filter(null, null, null, address);
+        if (state.name!=='root.grandeSP') {
+          Search.filter(null, null, null, address);
+        }
       });
   };
   $scope.searchIP();
