@@ -1,0 +1,32 @@
+<div id="cpanel" ng-controller="CpanelCtrl as ctrl">
+  <div class="container text-center section-padding">
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="navbar navbar-dark">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a href="/painel">Painel de controle</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li><a href="">Criar nova vaga</a></li>
+              <li><a href="">Gerenciar vaga</a></li>
+              <li><a href="">Editar perfil</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="notification-card">
+          <i class="fa fa-exclamation-triangle"></i>
+          <b>Atenção!</b> Você possui 2 vagas pendentes para atualização! <a href="">Veja aqui.</a>
+          <button class="notification-button">
+            <i class="fa fa-remove"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ui-view></div>
+</div>

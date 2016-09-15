@@ -1,4 +1,4 @@
-<div id="about-page">
+<div id="about-page" ng-controller="AboutCtrl as ctrl">
   <div class="banner">
     <div class="container">
       <h2 class="banner-title">Somos uma comunidade que promove transformação social através da mobilização de pessoas para causas sociais.</h2>
@@ -31,14 +31,14 @@
     </div>
     <div class="col-md-7  about-with-bubble-slide">
       <div class="slide">
-        <button class="slide-previous"><i class="fa fa-angle-left" /></button>
+        <button class="slide-previous" ng-click="slides.first.previous"><i class="fa fa-angle-left" /></button>
         <div class="slide-body">
-          <div class="slide-item">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, earum, quae harum ducimus debitis dolores nulla sint tempore perspiciatis animi atque voluptates repellendus deserunt accusantium velit iure tenetur cum recusandae! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, earum, quae harum ducimus debitis dolores nulla sint tempore perspiciatis animi atque voluptates repellendus deserunt accusantium velit iure tenetur cum recusandae!</p>
-            <b>Vaga de passar o dia com as crianças na Casa de Ampara Tia Marly</b>
+          <div class="slide-item" ng-class="{ active: item.__active }" ng-repeat="item in slides.first.items">
+            <p>{{ item.text }}</p>
+            <b>{{ item.description }}</b>
           </div>
         </div>
-        <button class="slide-next"><i class="fa fa-angle-right" /></button>
+        <button class="slide-next" ng-click="slides.first.next()"><i class="fa fa-angle-right" /></button>
       </div>
     </div>
   </section>
@@ -48,14 +48,14 @@
     </div>
     <div class="col-md-7 about-with-bubble-slide">
       <div class="slide">
-        <button class="slide-previous"><i class="fa fa-angle-left" /></button>
+        <button class="slide-previous" ng-click="slides.second.previous"><i class="fa fa-angle-left" /></button>
         <div class="slide-body">
-          <div class="slide-item">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, earum, quae harum ducimus debitis dolores nulla sint tempore perspiciatis animi atque voluptates repellendus deserunt accusantium velit iure tenetur cum recusandae! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, earum, quae harum ducimus debitis dolores nulla sint tempore perspiciatis animi atque voluptates repellendus deserunt accusantium velit iure tenetur cum recusandae!</p>
-            <b>Vaga de passar o dia com as crianças na Casa de Ampara Tia Marly</b>
+          <div class="slide-item" ng-class="{ active: item.__active }" ng-repeat="item in slides.second.items">
+            <p>{{ item.text }}</p>
+            <b>{{ item.description }}</b>
           </div>
         </div>
-        <button class="slide-next"><i class="fa fa-angle-right" /></button>
+        <button class="slide-next" ng-click="slides.second.next()"><i class="fa fa-angle-right" /></button>
       </div>
     </div>
   </section>

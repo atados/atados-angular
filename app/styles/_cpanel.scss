@@ -1,0 +1,319 @@
+#cpanel {
+  background: #EEEEEE;
+  padding-top: 40px;
+  padding-bottom: 80px;
+
+  .text-upper {
+    text-transform: uppercase;
+  }
+
+  .text-bold {
+    font-weight: bold;
+  }
+
+  .d-block {
+    display: block;
+  }
+
+  .link-muted {
+    color: #666;
+    text-decoration: underline !important;
+    margin-top: 14px;
+    font-size: 16px;
+
+    &:hover {
+      color: #444;
+    }
+  }
+
+  .cpanel-list-sidebar {
+    > a.active {
+      background: none;
+      color: #333;
+      font-weight: bold;
+      border-color: #ccc;
+
+      &:before {
+        content: '>';
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .panel-heading {
+    color: #595959;
+    background: #E1E1E1;
+    padding:14px 20px;
+    font-weight: bold;
+  }
+
+  .notification-card {
+    margin-top: 20px;
+    margin-bottom: 10px;
+
+    > .fa {
+      font-size: 24px;
+      margin-right: 8px;
+      position: relative;
+      top: 4px;
+    }
+
+    a {
+      text-decoration: underline;
+      color: rgba(#FFF, .8);
+
+      &:hover,
+      &:focus {
+        color: #FFF;
+      }
+    }
+  }
+
+
+  .cpanel-title {
+    font-size: 52px;
+  }
+
+  .panel-header {
+
+    .btn {
+      margin: -.4rem;
+      color: #666;
+
+      > i {
+        font-size: 1.3rem;
+        position: relative;
+        top: 4px;
+      }
+    }
+  }
+
+  .cpanel-large-action {
+    max-width: 300px;
+    width: 100%;
+    min-height: 320px;
+    background: #FFF;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 20px 0;
+    padding: 25px 0 20px;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    text-decoration: none;
+
+    @media (min-width: $grid-float-breakpoint) {
+      margin: 20px 25px;
+    }
+
+    &:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 15px rgba(#000, .1);
+    }
+
+    > img {
+      min-height: 185px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 30px auto 0;
+      font-weight: bold;
+      color: #19A4DA;
+    }
+  }
+
+  .section-padding {
+    &:first-child {
+      padding-top: 20px;
+    }
+  }
+
+  .cpanel-status-select {
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    outline: none !important;
+    width: 100%;
+  }
+
+  .cpanel-status-volunteer {
+    background: #4BB494;
+    color: #fff;
+    border-color: #4BB494;
+  }
+
+  .cpanel-status-quitter {
+    background: #B14442;
+    color: #fff;
+    border-color: #B14442;
+  }
+
+  .cpanel-status-pending {
+    background: #E47F1E;
+    color: #fff;
+    border-color: #E47F1E;
+  }
+}
+
+.view-cpanel-projects {
+
+}
+
+.cpanel-projects-list .list-item,
+.cpanel-project-item {
+  padding: 20px 30px 20px 190px !important;
+  min-height: 161px;
+
+  > img {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    float: left;
+    margin-left: -150px;
+  }
+
+  .cpanel-project-title {
+    color: #595959 !important;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 28px;
+    line-height: 1;
+    display: block;
+  }
+
+  .cpanel-project-span,
+  .cpanel-project-volunteers {
+    display: block;
+    color: #666;
+    margin-bottom: 5px;
+  }
+
+  .cpanel-project-volunteers {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  > ul {
+    padding: 0;
+    margin: .6rem 0 0;
+    list-style: none;
+
+    > li > a {
+      text-decoration: underline;
+      color: #666;
+    }
+
+    > li {
+      border-right: 1px solid #666;
+      padding-right: 10px;
+      margin-right: 10px;
+      display: inline-block;
+
+      &:last-child {
+        border-right-width: 0;
+      }
+    }
+  }
+}
+
+
+.view-cpanel-new-project {
+  .section-form {
+    max-width: 860px;
+    margin: 0 auto;
+
+    .title-primary {
+      text-align: left;
+      margin: 50px 0;
+    }
+
+    .create-project-time {
+      .form-key {
+        padding-top: 0;
+      }
+    }
+
+    .btn-lg,
+    .input-group {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+
+      .form-control {
+        max-width: 400px;
+      }
+
+      &.has-error {
+        .form-key {
+          color: #468;
+        }
+      }
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    button[type="submit"] {
+      height: 64px;
+      font-weight: 700;
+      font-size: 22px;
+    }
+  }
+}
+
+
+.navbar-dark {
+  background: #595959;
+  text-transform: uppercase;
+  padding: 8px;
+
+  .navbar-header {
+    margin-right: 20px;
+
+    > a {
+      float: left;
+      padding: 15px 15px;
+      font-size: 18px;
+      line-height: 20px;
+      color: #0EA0D7;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .navbar-nav {
+    > li {
+      border-left: 1px solid rgba(#fff, .1);
+      padding: 0 10px;
+
+      > a {
+        color: rgba(#fff, .8);
+        &:hover,
+        &:focus {
+          color: #FFF;
+          background: none;
+        }
+      }
+    }
+  }
+}
+
+.cpanel-project-volunteers-table {
+  th,
+  td {
+    padding: 14px 20px !important;
+    vertical-align: middle !important;
+  }
+
+  .cpanel-status-td {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+  }
+
+}

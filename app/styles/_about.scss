@@ -78,7 +78,7 @@
       position: relative;
 
       .slide {
-
+        width: 100%;
 
         @media (min-width: $grid-float-breakpoint) {
           position: absolute;
@@ -99,6 +99,8 @@
         .slide-body {
           margin-left: 150px;
           margin-right: 150px;
+          position: relative;
+          width: 100%;
         }
 
         .slide-previous,
@@ -136,6 +138,20 @@
           font-style: italic;
           font-size: 16px;
           line-height: 1.5;
+          visibility: hidden;
+          opacity: 0;
+          transition: visibility 2s, opacity 2s;
+          max-width: 500px;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+        }
+
+        .slide-item.active {
+          visibility: visible;
+          opacity: 1;
         }
       }
     }

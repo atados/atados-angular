@@ -175,6 +175,38 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
        controller: 'ContributionsPanelCtrl'
      })
 
+     // Cpanel
+     .state('root.cpanel', {
+        templateUrl: '/partials/cpanel.html',
+        controller: 'CpanelCtrl'
+     })
+     .state('root.cpanel.home', {
+        url: '/painel',
+        templateUrl: '/partials/cpanel-home.html'
+     })
+    .state('root.cpanel.vacancies_create', {
+        url: '/painel/vagas/nova',
+        templateUrl: '/partials/cpanel-create-vacancy.html',
+        controller: 'CpanelCtrl'
+     })
+    .state('root.cpanel.manage_vacancy', {
+        url: '/painel/vaga/:id',
+        templateUrl: '/partials/cpanel-manage-vacancy.html',
+        controller: 'CpanelCtrl'
+     })
+     .state('root.cpanel.manage', {
+        url: '/painel/vagas',
+        templateUrl: '/partials/cpanel-manage-vacancies.html',
+        controller: 'CpanelCtrl'
+     })
+     .state('root.cpanel.profile_edit', {
+        url: '/painel/perfil/editar',
+        templateUrl: '/partials/cpanel-edit-profile.html',
+        controller: 'CpanelCtrl'
+     })
+
+
+     // Good Deeds Day
     .state('gdd', {
       url: '',
       abstract: true,
