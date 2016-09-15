@@ -30,23 +30,24 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
     project.volunteers = null;
 
     $http.get(api + 'project/' + project.slug + '/volunteers_and_applies/').then(function(response){
-      var volunteers = response.data.volunteers, applies = response.data.applies
-
+      var volunteers = response.data.volunteers//, applies = response.data.applies
       var volunteersEmails = []
-      var normApplies = {}
 
+      //-- var normApplies = {}
+      /*--
       if (applies && applies.length) {
         for (var i = 0, apply = applies[i]; i < applies.length;i++, apply = applies[i]) {
           normApplies[apply.volunteer] = apply
         }
       }
+      */
 
       if (volunteers && volunteers.length) {
         project.volunteers = volunteers
         for (var i = 0, volunteer = volunteers[i]; i < volunteers.length;i++, volunteer = volunteers[i]) {
           volunteersEmails.push(volunteer.email)
 
-          volunteer.status = normApplies[volunteer.slug].status.name
+          //-- volunteer.status = normApplies[volunteer.slug].status.name
           setStatusStyle(volunteer)
         }
       }
