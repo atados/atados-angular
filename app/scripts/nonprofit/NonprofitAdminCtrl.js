@@ -46,7 +46,7 @@ app.controller('NonprofitAdminCtrl', function($scope, $http, $state, $stateParam
       toastr.error('Apenas ONGs tem acesso ao Painel de Controle');
       return;
     } else {
-      $http.get(api + 'nonprofit/'+ $stateParams.slug + '/')
+      $http.get(api + 'nonprofit/' + $stateParams.slug + '/')
         .success(function(response) {
           $scope.nonprofit = response;
           Cleanup.nonprofitForAdmin($scope.nonprofit);

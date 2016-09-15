@@ -7,6 +7,9 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+
+var ENABLE_LIVERELOAD = false
+
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
@@ -190,7 +193,7 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
         options: {
-          livereload: true
+          livereload: ENABLE_LIVERELOAD
         }
       },
       jsTest: {
@@ -211,9 +214,8 @@ module.exports = function (grunt) {
           '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
           '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
         ],
-      
         options: {
-          livereload: true
+          livereload: ENABLE_LIVERELOAD
         }
       },
       express: {
@@ -223,7 +225,7 @@ module.exports = function (grunt) {
         ],
         tasks: ['newer:jshint:server', 'express:dev'],
         options: {
-          livereload: true,
+          livereload: ENABLE_LIVERELOAD,
           nospawn: true //Without this option specified express won't be reloaded
         }
       }
