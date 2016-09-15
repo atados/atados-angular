@@ -30,8 +30,7 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
     project.volunteers = null;
 
     $http.get(api + 'project/' + project.slug + '/volunteers_and_applies/').then(function(response){
-      var data = JSON.parse(response.data);
-      var volunteers = data.volunteers, applies = data.applies
+      var volunteers = response.data.volunteers, applies = response.data.applies
 
       var volunteersEmails = []
       var normApplies = {}
