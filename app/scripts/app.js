@@ -74,6 +74,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: '/partials/explore.html',
       controller: 'ExplorerCtrl'
     })
+    .state('root.grandeSP', {
+      url: '/GrandeSP',
+      controller: 'GrandeSPCtrl'
+    })
     .state('root.volunteer', {
       url: '/voluntario/:slug',
       templateUrl: '/partials/volunteerProfile.html',
