@@ -50,8 +50,6 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
           //-- volunteer.status = normApplies[volunteer.slug].status.name
           setStatusStyle(volunteer)
         }
-      } else {
-        console.log(project.name, volunteers)
       }
 
       project.emailAllString = 'mailto:' + nonprofit.user.email + '?bcc=' + volunteersEmails.join(',');
