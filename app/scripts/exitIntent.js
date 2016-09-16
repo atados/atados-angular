@@ -3,9 +3,13 @@
 var handle = window.addEventListener ? 'addEventListener' : 'attachEvent';
 
 var body = document.querySelector('body');
-var modal = document.querySelector('#exit-intent .modal');
-var underlay = document.querySelector('#exit-intent .underlay');
+var dialog;
+var underlay = document.querySelector('#exit-intent .modal-backdrop');
 var target = document.querySelector('#exit-intent');
+var closeButton;
+
+var _targetClassname;
+var _bodyClassName;
 
 ouibounce(target, {
   sensitivity: 40,
@@ -14,20 +18,29 @@ ouibounce(target, {
   aggressive: true,
   callback: function() {
     setTimeout(function() {
+      dialog = document.querySelector('#exit-intent .modal-dialog')
+      closeButton = document.querySelector('#modal-form-news-close-button')
+
+      closeButton[handle]('click', function() {
+        target.className = _targetClassname
+        document.body.className = _bodyClassName
+      })
+
+      _targetClassname = target.className
+      _bodyClassName = body.className
       target.className += " in"
-      document.body.className += "modal-open"
+      document.body.className += " modal-open"
     }, 20)
   }
 });
 
-// body[handle]('click', function () {
-//   target.style.display = 'none';
-// });
 
-// underlay[handle]('click', function () {
-//   target.style.display = 'none';
-// });
 
-// modal[handle]('click', function (e) {
-//   e.stopPropagation();
-// });
+
+underlay[handle]('click', function (e) {
+  if (!dialog.contains(e.target)) {
+    target.className = _targetClassname
+    document.body.className = _bodyClassName
+  }
+});
+
