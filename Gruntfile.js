@@ -8,7 +8,10 @@
 // 'test/spec/**/*.js'
 
 
-var ENABLE_LIVERELOAD = false
+var ENABLE_LIVERELOAD = true;
+if (process.env.ENABLE_LIVERELOAD !== undefined) {
+  ENABLE_LIVERELOAD = process.env.ENABLE_LIVERELOAD;
+} 
 
 module.exports = function (grunt) {
 
