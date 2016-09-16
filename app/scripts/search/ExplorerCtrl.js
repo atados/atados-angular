@@ -4,10 +4,12 @@
 /* global OverlappingMarkerSpiderfier: false */
 /* global $: false */
 
+
 var constants = {
   map: null,
   markers: []
 };
+
 
 var app = angular.module('atadosApp');
 
