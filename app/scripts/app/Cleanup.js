@@ -30,8 +30,8 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
     project.volunteers = null;
 
     $http.get(api + 'project/' + project.slug + '/volunteers_and_applies/').then(function(response){
-      var volunteers = response.data.volunteers//, applies = response.data.applies
-      var volunteersEmails = []
+      var volunteers = response.data.volunteers;//, applies = response.data.applies
+      var volunteersEmails = [];
 
       //-- var normApplies = {}
       /*--
@@ -43,17 +43,17 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
       */
 
       if (volunteers && volunteers.length) {
-        project.volunteers = volunteers
+        project.volunteers = volunteers;
         for (var i = 0, volunteer = volunteers[i]; i < volunteers.length;i++, volunteer = volunteers[i]) {
-          volunteersEmails.push(volunteer.email)
+          volunteersEmails.push(volunteer.email);
 
           //-- volunteer.status = normApplies[volunteer.slug].status.name
-          setStatusStyle(volunteer)
+          setStatusStyle(volunteer);
         }
       }
 
       project.emailAllString = 'mailto:' + nonprofit.user.email + '?bcc=' + volunteersEmails.join(',');
-    })
+    });
   };
 
   var fixCauses = function (inputCauses) {
@@ -93,7 +93,9 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
 
   return {
     currentUser: function (user) {
-      if (!user) return;
+      if (!user) {
+        return;
+      }
 
       user.causes = fixCauses(user.causes);
       user.skills = fixSkills(user.skills);

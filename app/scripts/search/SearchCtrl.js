@@ -185,8 +185,4 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
       }
     }
   };
-
-
-
-  console.log($scope.query)
 });
