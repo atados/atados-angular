@@ -11,17 +11,23 @@ ouibounce(target, {
   sensitivity: 40,
   delay: 150,
   sitewide: true,
-  aggressive: true
+  aggressive: true,
+  callback: function() {
+    setTimeout(function() {
+      target.className += " in"
+      document.body.className += "modal-open"
+    }, 20)
+  }
 });
 
-body[handle]('click', function () {
-  target.style.display = 'none';
-});
+// body[handle]('click', function () {
+//   target.style.display = 'none';
+// });
 
-underlay[handle]('click', function () {
-  target.style.display = 'none';
-});
+// underlay[handle]('click', function () {
+//   target.style.display = 'none';
+// });
 
-modal[handle]('click', function (e) {
-  e.stopPropagation();
-});
+// modal[handle]('click', function (e) {
+//   e.stopPropagation();
+// });

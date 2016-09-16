@@ -70,11 +70,10 @@
     <div
       id="exit-intent"
       ng-controller="HomeCtrl"
+      class="modal fade"
     >
-      <div class="underlay"></div>
-      <div class="modal landing-info">
-        <div class="modal-body" ng-include="'partials/form-news.html'"></div>
-      </div>
+      <div class="modal-backdrop"></div>
+      <div ng-include="'partials/modal-form-news.html'"></div>
     </div>
 
     <!--[if lt IE 9]>
