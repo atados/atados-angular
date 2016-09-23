@@ -14,7 +14,12 @@
     <div id="project-management" ng-hide="nonprofit.projects.length === 0">
       <div class="col-md-4" id="project-list">
         <button class="btn col-md-12" ng-repeat="project in nonprofit.projects" ng-class="{choosenProject: project===activeProject}" ng-click="changeActiveProject(project)" >
-          <span ng-style="project.statusStyle" class="badge">{{project.volunteers.length}}</span>
+          <span ng-if="project.volunteers">
+            <span ng-style="project.statusStyle" class="badge">{{project.volunteers.length | number}}</span>
+          </span>
+          <span ng-if="!project.volunteers">
+            <span ng-style="project.statusStyle" class="badge">0</span>
+          </span>
           {{project.name}}
         </button>
       </div>
