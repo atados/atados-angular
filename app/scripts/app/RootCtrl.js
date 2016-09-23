@@ -129,7 +129,9 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
         $rootScope.modalInstance.close();
       }
       if (user.role === 'NONPROFIT') {
-        $location.path('/controle/' + user.slug);
+        if ($state.current.name !== 'root.newproject') {
+          $location.path('/controle/' + user.slug);
+        }
       }
       // if (!user.address) {
       //   $rootScope.askForAddress(user);

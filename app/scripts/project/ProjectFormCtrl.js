@@ -4,7 +4,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeout, $filter, $http, $window, api, Restangular, Project) {
+app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $stateParams, $timeout, $filter, $http, $window, api, Restangular, Project) {
   var filter = $filter('filter');
 
   // This variable includes extra data not needed by the api, such as the "dates" param
@@ -55,22 +55,33 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
     step3: {pristine: true, valid: false},
   };
 
-  if (!$scope.loggedUser.user.is_staff) {
-    $scope.nonprofit_slug = $scope.loggedUser.slug;
+  $scope.displayTimeSelection = false;
+  $scope.tmp_r_day = null;
+  $scope.tmp_r_period = null;
+
+  if ($scope.loggedUser) {
+    if (!$scope.loggedUser.user.is_staff) {
+      $scope.nonprofit_slug = $scope.loggedUser.slug;
+    } else {
+      if ($scope.loggedUser.role === 'NONPROFIT') {
+        // There's a route inconsistency problem here
+        // the nonprofit_slug param is only on project creation route(useful only for staff creating projects for nonprofits)
+        // there's no nonprofit_slug param for project edit(and there shouldn't be)
+        //
+        // therefore, on creation we use the state param
+        if ($stateParams.nonprofit_slug) {
+          $scope.nonprofit_slug = $stateParams.nonprofit_slug;
+        }
+        
+        // and on edit we load nonprofit info from the project
+        else {
+          $scope.nonprofit_slug = $scope.loadedProject.nonprofit.slug;
+        }
+      } else {
+        $state.go('root.home');
+      }
+    }
   } else {
-    // There's a route inconsistency problem here
-    // the nonprofit_slug param is only on project creation route(useful only for staff creating projects for nonprofits)
-    // there's no nonprofit_slug param for project edit(and there shouldn't be)
-    //
-    // therefore, on creation we use the state param
-    if ($stateParams.nonprofit_slug) {
-      $scope.nonprofit_slug = $stateParams.nonprofit_slug;
-    }
-    
-    // and on edit we load nonprofit info from the project
-    else {
-      $scope.nonprofit_slug = $scope.loadedProject.nonprofit.slug;
-    }
   }
 
   /*
@@ -90,7 +101,7 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
         }, 5*1000);
       }, function() {
         $scope.saving = false;
-        toastr.error('Aconteceu um erro. Revise os campos e tente novamente');
+        toastr.error('Aconteceu um erro. Revise os campos e tente novamente.');
       });
     }
   };
@@ -300,6 +311,16 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
     $scope.addWorkAvailability();
   });
 
+  $scope.setTmpRDay = function(n) {
+    $scope.tmp_r_day = n;
+  }
+  $scope.setTmpRPeriod = function(n) {
+    $scope.tmp_r_period = n;
+  }
+  $scope.displayTS = function(n) {
+    $scope.displayTimeSelection = true;
+  }
+
   $scope.addWorkAvailability = function() {
     if (parseInt($scope.tmp_r_day,    10) === $scope.tmp_r_day &&
         parseInt($scope.tmp_r_period, 10) === $scope.tmp_r_period) {
@@ -311,6 +332,7 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
       }
       $scope.tmp_r_day = null;
       $scope.tmp_r_period = null;
+      $scope.displayTimeSelection = false;
     }
   };
 
@@ -386,7 +408,8 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
     paramName: 'image',
     headers: {
       Authorization: $http.defaults.headers.common.Authorization,
-    },
+      'X-Atados-Unauthenticated-Upload': true,
+    }, // we send both the auth header and unauthenticated-upload header as the user may be logged out at this stage
     init: function() {
       this.on('addedfile', function(f) {
         if (!this.files.length) { // only triggered if loading project(.emit('addedfile'))
@@ -409,6 +432,21 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
       });
     }
   };
+
+  /*
+   * Login event
+   */ 
+  $rootScope.$on('userLoggedIn', function(e, u) {
+    if (u.role === 'NONPROFIT') {
+      $scope.nonprofit_slug = u.slug;
+      if ($scope.formStep === 101) {
+        $scope.setFormStep(4);
+      }
+    } else {
+      $state.go('root.home');
+    }
+  });
+
 
 
   /*
@@ -480,6 +518,8 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
   $scope.$watch('projectForm.address.$valid', function() { $scope.validate(); });
   $scope.$watch('projectForm.date_type.$valid', function() { $scope.validate(); });
   $scope.$watch('projectForm.image.$valid', function() { $scope.validate(); });
+  $scope.$watch('projectForm.email.$valid', function() { $scope.validate(); });
+  $scope.$watch('projectForm.password.$valid', function() { $scope.validate(); });
 
 
   // Model watchers
@@ -554,6 +594,10 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
       });
     }
   };
+
+  $scope.$watch('dropzone', function(e) {
+    console.log('dropzone', e);
+  });
 
   // only executed after all directives are loaded
   $timeout(function() { 

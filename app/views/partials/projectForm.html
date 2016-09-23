@@ -34,10 +34,18 @@
         </a>
       </li>
     </ul>
-    <!--
-    <ul>
-      <li><a href="#">Pré-visualização</a></li>
-    </ul>-->
+    <ul ng-if="!loggedUser">
+      <li>
+        <a href="#" ng-click="setFormStep(101)">
+          <i class="fa fa-check gray" ng-show="nonprofitValidation.step1.pristine"></i>
+          <span ng-show="!nonprofitValidation.step1.pristine">
+            <i class="fa fa-check green" ng-show="nonprofitValidation.step1.valid"></i>
+            <i class="fa fa-exclamation-triangle red" ng-show="!nonprofitValidation.step1.valid"></i>
+          </span>
+          Sobre a ONG
+        </a>
+      </li>
+    </ul>
     <ul>
       <li ng-class="formStep == 4 ? 'menu-active' : ''">
         <a href="#" ng-click="setFormStep(4)">Enviar para revisão</a>
@@ -126,7 +134,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Causa da vaga</label>
+                  <label for="causes">Causa da vaga</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <select class="form-control" name="causes" ng-model="tmp.cause" ng-options="c.name for c in filteredCauses" ng-disabled="project.causes.length >= 3" ng-required="true">
@@ -151,7 +159,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Habilidades possíveis para a vaga</label>
+                  <label for="skills">Habilidades possíveis para a vaga</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <select class="form-control" name="skills" ng-model="tmp.skill" ng-options="c.name for c in filteredSkills" ng-required="true">
@@ -176,7 +184,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Endereço</label>
+                  <label for="address">Endereço</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <div class="row gutter-5">
@@ -209,28 +217,32 @@
                   </div>
                   <div ng-show="project.dates.type == 'work'" class="controls">
                     <div class="row gutter-5">
-                      <div class="col-xs-7">
-                        <div class="well">
-                          <small>Selecione o dia</small>
-                          <ul class="tags selectable restrict-width">
-                            <li ng-click="tmp_r_day=1" ng-class="tmp_r_day==1 ? 'tag-active': ''">Seg</li>
-                            <li ng-click="tmp_r_day=2" ng-class="tmp_r_day==2 ? 'tag-active': ''">Ter</li>
-                            <li ng-click="tmp_r_day=3" ng-class="tmp_r_day==3 ? 'tag-active': ''">Qua</li>
-                            <li ng-click="tmp_r_day=4" ng-class="tmp_r_day==4 ? 'tag-active': ''">Qui</li>
-                            <li ng-click="tmp_r_day=5" ng-class="tmp_r_day==5 ? 'tag-active': ''">Sex</li>
-                            <li ng-click="tmp_r_day=6" ng-class="tmp_r_day==6 ? 'tag-active': ''">Sáb</li>
-                            <li ng-click="tmp_r_day=0" ng-class="tmp_r_day==0 ? 'tag-active': ''">Dom</li>
-                          </ul>
+                      <div class="col-xs-12">
+                        <div ng-class="displayTimeSelection ? 'hidden' : ''">
+                          <button class="btn-success" ng-click="displayTS()">Adicione um horário</button>
                         </div>
-                      </div>
-                      <div class="col-xs-5">
-                        <div class="well">
-                          <small>Selecione o período</small>
-                          <ul class="tags selectable">
-                            <li ng-click="tmp_r_period=0" ng-class="tmp_r_period==0 ? 'tag-active': ''">Manhã</li>
-                            <li ng-click="tmp_r_period=1" ng-class="tmp_r_period==1 ? 'tag-active': ''">Tarde</li>
-                            <li ng-click="tmp_r_period=2" ng-class="tmp_r_period==2 ? 'tag-active': ''">Noite</li>
-                          </ul>
+                        <div ng-if="displayTimeSelection">
+                          <div class="well" ng-class="tmp_r_day !== null ? 'hidden' : ''">
+                            <small>Selecione o dia</small>
+                            <ul class="tags selectable restrict-width">
+                              <li ng-click="setTmpRDay(1)" ng-class="tmp_r_day==1 ? 'tag-active': ''">Seg</li>
+                              <li ng-click="setTmpRDay(2)" ng-class="tmp_r_day==2 ? 'tag-active': ''">Ter</li>
+                              <li ng-click="setTmpRDay(3)" ng-class="tmp_r_day==3 ? 'tag-active': ''">Qua</li>
+                              <li ng-click="setTmpRDay(4)" ng-class="tmp_r_day==4 ? 'tag-active': ''">Qui</li>
+                              <li ng-click="setTmpRDay(5)" ng-class="tmp_r_day==5 ? 'tag-active': ''">Sex</li>
+                              <li ng-click="setTmpRDay(6)" ng-class="tmp_r_day==6 ? 'tag-active': ''">Sáb</li>
+                              <li ng-click="setTmpRDay(0)" ng-class="tmp_r_day==0 ? 'tag-active': ''">Dom</li>
+                            </ul>
+                          </div>
+
+                          <div class="well" ng-class="tmp_r_day !== null ? '' : 'hidden'">
+                            <small>Selecione o período</small>
+                            <ul class="tags selectable">
+                              <li ng-click="setTmpRPeriod(0)" ng-class="tmp_r_period==0 ? 'tag-active': ''">Manhã</li>
+                              <li ng-click="setTmpRPeriod(1)" ng-class="tmp_r_period==1 ? 'tag-active': ''">Tarde</li>
+                              <li ng-click="setTmpRPeriod(2)" ng-class="tmp_r_period==2 ? 'tag-active': ''">Noite</li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -338,7 +350,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Sobre a vaga</label>
+                  <label for="details">Sobre a vaga</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <textarea type="text" name="details" ng-model="project.details" class="form-control" ng-minlength="10" ng-maxlength="3000" lock-maxlength="3000" ng-required="true" input-show-length="true" rows="5"></textarea>
@@ -360,7 +372,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Cargos</label>
+                  <label for="tmp_role_name">Cargos</label>
                   <small><br>Adicione os cargos disponíveis para atuação dos voluntários.</small>
                 </div>
                 <div class="col-xs-12 col-sm-8">
@@ -425,7 +437,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Nome do responsável</label>
+                  <label for="responsible">Nome do responsável</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <input type="text" name="responsible" ng-model="project.responsible" class="form-control" ng-minlength="3" ng-maxlength="50" lock-maxlength="50" ng-required="true" input-show-length="true" row="4"></input>
@@ -443,7 +455,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Email do responsável</label>
+                  <label for="email">Email do responsável</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <input type="email" name="email" ng-model="project.email" class="form-control" ng-required="true"></input>
@@ -484,7 +496,8 @@
               <button class="btn-success" type="button" ng-click="setFormStep(2)">Passo anterior</button>
             </div>
             <div class="col-xs-6 text-right">
-              <button class="btn-success" type="button" ng-click="setFormStep(4)">Enviar para revisão</button>
+              <button class="btn-success" type="button" ng-click="setFormStep(4)" ng-if="loggedUser">Enviar para revisão</button>
+              <button class="btn-success" type="button" ng-click="setFormStep(101)" ng-if="!loggedUser">Próximo passo</button>
             </div>
           </div>
         </div>
@@ -493,7 +506,7 @@
 
     <div class="step4" ng-show="formStep == 4">
       <div class="container padded-container">
-        <div ng-show="validation.valid">
+        <div ng-show="validation.valid && ((nonprofitValidation.step1.valid && !loggedUser) || (loggedUser))">
           <div class="top-content">
             <h2>Tudo pronto!</h2>
             <h3>Você preencheu todos os campos corretamente. Agora é só enviar.</h3>
@@ -504,12 +517,13 @@
           </div>
         </div>
 
-        <div ng-show="!validation.valid">
+        <div ng-show="!validation.valid || (!nonprofitValidation.step1.valid && !loggedUser)">
           <div class="top-content">
             <h2>Ixi, não conseguimos criar a sua vaga :o</h2>
             <h3 ng-show="!validation.step1.valid">Você esqueceu de completar a seção "Básico"</h3>
             <h3 ng-show="validation.step1.valid && !validation.step2.valid">Você esqueceu de completar a seção "Detalhes e cargos"</h3>
             <h3 ng-show="validation.step1.valid && validation.step2.valid && !validation.step3.valid">Você esqueceu de completar a seção "Responsável pela vaga"</h3>
+            <h3 ng-show="validation.step1.valid && validation.step2.valid && validation.step3.valid && !nonprofitValidation.step1.valid">Você esqueceu de completar a seção "Sobre a ONG"</h3>
           </div>
 
           <div class="text-center">
@@ -542,4 +556,12 @@
       </div>
     </div>
   </form>
+
+    <div class="step5" ng-show="formStep == 101">
+      <div id="nonprofit-new">
+        <div class="container">
+          <nonprofit-form></nonprofitform>
+        </div>
+      </div>
+    </div>
 </div>

@@ -187,6 +187,7 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
       });
     },
     nonprofit: function(nonprofit) {
+      nonprofit.causes = fixCauses(nonprofit.causes);
       if (nonprofit.projects) {
         nonprofit.projects.forEach(function (p) {
           p.causes = fixCauses(p.causes);
