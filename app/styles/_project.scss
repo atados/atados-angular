@@ -1,5 +1,5 @@
 #project-page {
-  
+
   .availability {
     background: #009bd4;
     color: white;
@@ -16,29 +16,39 @@
     }
     border:none;
     box-shadow: 0 0px 1px #858484;
-    margin-right: 20px;
-    margin-bottom: 50px;
+    width: 100%;
     text-transform: uppercase;
     background-image: linear-gradient(#FFF, #E8E8E8);
     font-weight: bold;
     color: #0281B2;
-    width: 250px;
     height: 44px;
   }
   #project-header {
     padding: 40px 0;
     background-color: #0E6281;
     color: white;
-    
+
     p {
       font-size: 14px;
       font-weight: bold;
     }
     #project-image {
-      width: 375px;
-      height: 260px;
+      max-width: 375px;
+      min-height: 260px;
       overflow: hidden;
-      margin-bottom: 15px;
+      margin: 0 auto 30px;
+
+      @media (min-width: $grid-float-breakpoint) {
+        margin: 0 0 15px 0;
+      }
+
+      > button {
+        margin-top: 20px;
+      }
+
+      > div {
+        background-color: rgba(0,0,0,.2) !important;
+      }
 
       img {
         width: 100%;
@@ -86,7 +96,7 @@
         font-size: 13px;
         margin: 0;
       }
-      a { 
+      a {
         i {
           color: white;
           margin-right: 5px;
@@ -94,7 +104,7 @@
       }
     }
     #project-icons {
-      .icon-image { 
+      .icon-image {
         box-shadow: 0 0 3px #808080;
         height: 30px;
         width: 30px;
@@ -125,14 +135,14 @@
     }
   }
 
-  
+
 
   #project-details {
     padding: 60px 0;
     background-color: #EEEEEE;
     .active {
       i {
-        color: red !important; 
+        color: red !important;
       }
     }
     .btn-info {
@@ -145,23 +155,23 @@
       background-image: linear-gradient(#009BD4, #0081B2) !important;
       color: #FFF;
     }
-    
+
     #left-sidebar {
-      width: 373px;
+      margin-bottom: 40px;
+
       #project-remote {
         margin-top:40px;
       }
-      
+
       #project-map {
         margin: 20px 0;
       }
       i {
-        margin: 0 10px;
         font-size: 20px;
       }
-      
+
       #project-responsible {
-        margin-top: 60px;
+        margin-top: 30px;
       }
     }
     #project-facebook {
@@ -277,7 +287,7 @@
     color: #0E6282;
     text-align: center;
   }
-  
+
   td {
     color: #0E6282;
     text-align: center;
@@ -515,10 +525,10 @@
         }
       }
     }
-    
+
     &.restrict-width {
       li {
-        width: 48px; 
+        width: 48px;
       }
     }
   }
@@ -536,7 +546,7 @@
       &:not(:first-child) {
         margin-top: 15px;
       }
-      
+
       .actions {
         float: right;
         font-weight: normal;

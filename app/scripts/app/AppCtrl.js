@@ -42,6 +42,7 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
   $scope.openLogin = function(type) {
     $rootScope.modalInstance = $modal.open({
       templateUrl: '/partials/loginModal.html',
+      windowClass: 'modal-login',
       controller: ['$scope', 'Site', function ($scope, Site) {
         $scope.states = Site.states;
 

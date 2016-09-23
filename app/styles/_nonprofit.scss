@@ -7,8 +7,16 @@
 
 #nonprofit-signup-form {
   margin-bottom: 40px;
+    .nonprofit-fieldset-divider {
+      @media (min-width: $grid-float-breakpoint) {
+        border-right: 2px solid #CFCFCF;
+        padding-right: 70px;
+      }
+    }
+
   fieldset {
     margin-bottom: 30px;
+
     legend {
       margin-top: 60px;
     }
@@ -166,7 +174,7 @@
     }
   }
   #nonprofit-causes {
-    .cause-image { 
+    .cause-image {
       box-shadow: 0 0 3px #808080;
       height: 30px;
       width: 30px;
@@ -193,7 +201,7 @@
     }
     .active {
       i {
-        color: red !important; 
+        color: red !important;
       }
       background-image: linear-gradient(#009BD4, #0081B2) !important;
       color: #FFF !important;
@@ -208,7 +216,7 @@
         color: $link-color;
       }
     }
-    
+
     #left-sidebar {
       font-weight: bold;
       #logo {
@@ -259,8 +267,7 @@
         }
       }
     }
-    
-    padding: 10px 50px;
+
     h1, h3 {
       font-weight: bold;
     }

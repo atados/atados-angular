@@ -1,8 +1,10 @@
 <div class="modal-body">
 
   <div class="row">
-    <a type="button" class="btn modalTab col-xs-6" ng-class="{active: volunteerActive}" ng-click="volunteerActive=true">Voluntário</a>
-    <a type="button" class="btn modalTab col-xs-6" ng-class="{active: !volunteerActive}" ng-click="volunteerActive=false">ONG</a>
+    <div class="col-xs-12">
+      <a type="button" class="btn modalTab col-xs-6" ng-class="{active: volunteerActive}" ng-click="volunteerActive=true">Voluntário</a>
+      <a type="button" class="btn modalTab col-xs-6" ng-class="{active: !volunteerActive}" ng-click="volunteerActive=false">ONG</a>
+    </div>
   </div>
 
   <hr>
@@ -27,9 +29,11 @@
       </div>
       <div class="label label-important">{{ error }}</div>
       <div class="row">
-        <a ng-click="forgotPassword()" id="forgotPasswordLink" class="btn btn-link col-xs-offset-7 col-xs-4">Esqueci minha senha</a>
+        <div class="col-md-12 text-right">
+          <a ng-click="forgotPassword()" class="btn btn-link">Esqueci minha senha</a>
+        </div>
       </div>
-      <div class="row">
+      <div class="row margin-top-sm">
         <div class="checkbox col-xs-6">
           <label>
             <input type="checkbox" ng-model="remember"> Lembre de mim
@@ -78,15 +82,23 @@
               <label class="help-block" ng-show="wrongCredentials">Usuário ou senha estão errados :(</label>
             </div>
             <div class="row">
-              <a ng-click="forgotPassword()" id="forgotPasswordLink" class="btn btn-link col-xs-offset-7 col-xs-4">Esqueci minha senha</a>
+              <div class="col-md-12 text-right">
+                <a ng-click="forgotPassword()" class="btn btn-link">Esqueci minha senha</a>
+              </div>
             </div>
-            <div class="row">
-              <div class="checkbox col-xs-6">
+            <div class="row margin-top-sm">
+              <div class="checkbox col-md-6">
                 <label><input type="checkbox" ng-model="remember"> Lembrar de mim</label>
               </div>
-              <button type="submit" ng-disabled="loginForm.$invalid" id="signinButton" class="btn btn-info col-xs-6">Entrar</button>
+              <div class="col-md-6">
+                <button type="submit" ng-disabled="loginForm.$invalid" id="signinButton" class="btn text-upper fill-width btn-info">Entrar</button>
+              </div>
             </div>
-            <p style="margin-top: 30px;">Não tem cadastro? <a ng-click="switchLoginActive()">Crie sua conta</a>!</p>
+            <div class="row margin-top">
+              <div class="col-md-12">
+                <p>Não tem cadastro? <a ng-click="switchLoginActive()">Crie sua conta</a>!</p>
+              </div>
+            </div>
           </form>
 
           <form novalidate name="resetPasswordForm" role="form" ng-show="showForgotPassword">

@@ -254,9 +254,12 @@ h1, h2, h3, h4, h5, h6,
 }
 
 #top, #small_top {
-  form {
-    padding: 0 0;
+  @media (max-width: $grid-float-breakpoint) {
+    .navbar-form {
+      padding: 20px 15px 20px 65px;
+    }
   }
+
   .form-control {
     border: none;
   }
@@ -297,19 +300,33 @@ h1, h2, h3, h4, h5, h6,
   white-space:nowrap;
 }
 
+.site-search-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
+  @media (min-width: $grid-float-breakpoint) {
+    width: 295px;
+  }
+}
 
 #searchIcon {
+  top: 0;
+  right: 0;
+  bottom: 0;
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
   color: #808080;
   border: 0;
   display: inline-block;
-  margin-left: -28px;
+  position: absolute;
+  padding: 5px 10px;
 }
 
 #siteSearch {
-  width: 295px;
+  width: 100%;
   font-size: 14px;
+  padding-right: 30px;
 }
 
 @media (max-width: $grid-float-breakpoint) {
@@ -332,10 +349,13 @@ h1, h2, h3, h4, h5, h6,
 // _modals.scss
 $modal-content-bg: #efefef;
 .modal .modal-dialog {
-  width: 430px;
+  width: 100% !important;
+  max-width: 430px;
+
   &.modal-lg {
-    width: 650px;
+    max-width: 650px;
   }
+
   @media (max-width: 767px) {
     &.modal-lg {
       width: 100%;
@@ -379,8 +399,7 @@ $modal-content-bg: #efefef;
   }
 
   #signinButton {
-    text-transform:uppercase;
-    padding: 10px 60px;
+    padding: 10px;
   }
 
   hr {
@@ -469,6 +488,9 @@ a:focus {
   .form-group {
     margin: 0 0;
     padding: 0 0;
+  }
+  .row{
+    padding: 0;
   }
   .row {
     margin-bottom: 10px;
@@ -778,7 +800,7 @@ $card-img-height: 170px;
   li.checked {
     .square {
       background-color: white;
-      border: 2px solid #008dc1;
+      border-color:#008dc1;
     }
     i {
       opacity: 1;
@@ -786,10 +808,18 @@ $card-img-height: 170px;
   }
 
   .square {
+    border:  2px solid transparent;
+    cursor: pointer;
     height: 110px;
     width: 110px;
-    border: 1px solid transparent;
     padding: 4px;
+    text-align: center;
+
+    > div {
+      margin: 0 auto;
+      margin-top: 4px;
+    }
+
     &:hover {
       background-color: white;
       border: 2px solid #008dc1;
@@ -1292,6 +1322,9 @@ $card-img-height: 170px;
 @import 'footer';
 @import 'ligando';
 @import 'gdd';
+@import 'partials/all';
+@import 'utilities';
+
 
 .input-field-counter {
   position: absolute;

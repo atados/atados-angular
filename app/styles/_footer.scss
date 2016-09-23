@@ -2,10 +2,10 @@
   padding-top: 20px;
   background-color: $footer-bg;
   color: $footer-color;
-  height: $footer-height;
+  min-height: $footer-height;
 
   @media screen and (max-width: $screen-sm) {
-    height: $footer-xs-height;
+    min-height: $footer-xs-height;
   }
 
   .logo-rio {
@@ -59,6 +59,9 @@
 
   .fb_iframe_widget {
     margin: 15px auto;
+    max-width: 100%;
+    overflow: hidden;
+
     iframe {
       display: block;
     }
