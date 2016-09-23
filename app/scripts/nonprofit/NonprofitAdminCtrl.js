@@ -56,7 +56,7 @@ app.controller('NonprofitAdminCtrl', function($scope, $http, $state, $stateParam
             Cleanup.currentUser($scope.nonprofit);
           }
         }).error(function() {
-          $state.transitionto('root.home');
+          $state.transitionTo('root.home');
           toastr.error('ONG não encontrada.');
         });
     }
