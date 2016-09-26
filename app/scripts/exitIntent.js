@@ -18,6 +18,7 @@ ouibounce(target, {
   aggressive: true,
   callback: function() {
     setTimeout(function() {
+      window.exitIntent.isOpen = true;
       dialog = document.querySelector('#exit-intent .modal-dialog')
       closeButton = document.querySelector('#modal-form-news-close-button')
 
@@ -35,12 +36,20 @@ ouibounce(target, {
 });
 
 
-
+window.exitIntent = {
+  close: function() {
+    window.exitIntent.isOpen = false;
+    target.className = _targetClassname
+    document.body.className = _bodyClassName
+    setTimeout(function() {
+      target.style.display = "none"
+    }, 200)
+  }
+}
 
 underlay[handle]('click', function (e) {
   if (!dialog.contains(e.target)) {
-    target.className = _targetClassname
-    document.body.className = _bodyClassName
+    window.exitIntent.close()
   }
 });
 

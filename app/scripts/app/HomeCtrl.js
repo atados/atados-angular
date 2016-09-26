@@ -13,6 +13,36 @@ app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Res
   $scope.search.skill = '';
   $scope.search.cause = '';
 
+
+
+  // News
+  $scope.news = {
+    name:  '',
+    email: '',
+    state: '',
+    city: '',
+  };
+
+  $scope.add_to_news = function() {
+    $http.post(api + 'add_to_newsletter/', $scope.news).success(function(response) {
+      toastr.success(response.msg);
+
+      if (window.exitIntent.isOpen) {
+        window.exitIntent.close()
+      }
+
+      $scope.news = {
+        name: '',
+        email: '',
+        state: '',
+        city: ''
+      };
+    }).error(function() {
+      toastr.error('Um erro ocorreu.');
+    });
+  };
+
+
   $scope.open_video = function (url) {
     $modal.open({
       animation: $scope.animationsEnabled,
@@ -24,27 +54,6 @@ app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Res
           return url;
         }
       }
-    });
-  };
-
-  $scope.news = {
-    name:  '',
-    email: '',
-    state: '',
-    city: '',
-  };
-
-  $scope.add_to_news = function() {
-    $http.post(api + 'add_to_newsletter/', $scope.news).success(function(response) {
-      toastr.success(response.msg);
-      $scope.news = {
-        name: '',
-        email: '',
-        state: '',
-        city: ''
-      };
-    }).error(function() {
-      toastr.error('Um erro ocorreu.');
     });
   };
 

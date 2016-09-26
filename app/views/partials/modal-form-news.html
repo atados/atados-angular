@@ -8,10 +8,10 @@
       <div class="form-group">
         <div class="row">
           <div class="col-md-8">
-            <input type="text" class="form-control" placeholder="Escreva seu email aqui">
+            <input type="text" class="form-control" placeholder="Escreva seu email aqui" required ng-model="news.email">
           </div>
           <div class="col-md-4">
-            <button class="btn">Enviar</button>
+            <button type="button" class="btn" ng-click="$parent.add_to_news()">Enviar</button>
           </div>
         </div>
       </div>
