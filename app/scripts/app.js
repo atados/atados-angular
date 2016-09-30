@@ -19,7 +19,7 @@ var app = angular.module('atadosApp', [
 ]);
 
 app.config(function($provide, $stateProvider, $urlRouterProvider, $locationProvider) {
-  if (window.Rollbar && (window.host.indexOf('local') !== -1)) {
+  if (window.Rollbar && (window.host && (window.host.indexOf('local') !== -1))) {
     $provide.decorator("$exceptionHandler", function ($delegate) {
       return function (exception, cause) {
         if (exception.message.indexOf('[ngModel:numfmt]') !== -1) {
