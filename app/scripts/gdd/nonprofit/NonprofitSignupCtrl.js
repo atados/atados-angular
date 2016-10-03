@@ -166,7 +166,7 @@ app.controller('GddNonprofitSignupCtrl', function($scope, $rootScope, $filter, $
         $scope.creatingNonprofit = false;
         $scope.buttonText = 'Finalizar cadastro';
         if (error.detail && error.detail === 'Nonprofit already exists.') {
-          toastr.error('Esta ONG já está em nosso banco. Favor utilizar efetuar login ou entrar em contato.');
+          toastr.error('Esta ONG já está em nosso banco. Favor efetuar login ou entrar em contato.');
         }
       });
     } else {

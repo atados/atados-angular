@@ -20,7 +20,7 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth)
     $scope.passwordDoesNotMatch = $scope.password !== $scope.passwordConfirm;
   });
 
-  $scope.sendingSignup = false;
+  $scope.signingUp = false;
   $scope.signup = function () {
     dataLayer.push({
       'event': 'criarConta',
@@ -38,7 +38,7 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth)
         data.gdd = true;
       }
 
-      $scope.sendingSignup = true;
+      $scope.signingUp = true;
       Auth.volunteerSignup(data,
         function () {
           Auth.login({
@@ -46,7 +46,7 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth)
             password: $scope.password,
             remember: $scope.remember
           }, function (response) {
-            $scope.sendingSignup = false;
+            $scope.signingUp = false;
 
             Auth.getCurrentUser(response.access_token).then(
               function (user) {
@@ -56,12 +56,12 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth)
               }
             );
           }, function () {
-            $scope.sendingSignup = false;
+            $scope.signingUp = false;
             $scope.error = 'Usuário ou senha estão errados :(';
           });
         },
         function (error) {
-          $scope.sendingSignup = false;
+          $scope.signingUp = false;
           toastr.error('Não conseguimos criar sua conta agora. :(');
         }
       );

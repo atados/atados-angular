@@ -66,38 +66,55 @@ app.controller('NonprofitAdminCtrl', function($scope, $http, $state, $stateParam
     $scope.activeProject = newProject;
   };
 
+  $scope.changingVolunteerStatus = false
   $scope.changeVolunteerStatus = function (volunteer, newStatus) {
     volunteer.status = newStatus;
     setStatusStyle(volunteer);
-    $http.post(api + 'change_volunteer_status/', {volunteer: volunteer.email, project: $scope.activeProject.slug, volunteerStatus: volunteer.status});
+    $scope.changingVolunteerStatus = true
+    $http
+      .post(api + 'change_volunteer_status/', {volunteer: volunteer.email, project: $scope.activeProject.slug, volunteerStatus: volunteer.status})
+      .then(function(){
+        $scope.changingVolunteerStatus = false
+      })
   };
 
   $scope.editProject = function (project) {
     $state.transitionTo('root.editproject', {slug: project.slug});
   };
 
+  $scope.cloneProject = false
   $scope.cloneProject = function (project) {
+    $scope.cloneProject = true
     $http.post(api + 'project/' + project.slug + '/clone/').success(function (response) {
       Cleanup.adminProject(project, $scope.nonprofit);
       $scope.nonprofit.projects.push(response);
+      $scope.cloneProject = false
     });
   };
 
+  $scope.closingOrOpeningProject = false
   $scope.closeOrOpenProject = function (project) {
+    $scope.closingOrOpeningProject = true
     if (project.closed) {
       $http.put(api + 'open/project/', {'project': project.id}).then(function() {
         project.closed = false;
         setProjectStatusStyle(project);
+      }).then(function(){
+        $scope.closingOrOpeningProject = false
       });
     } else {
       $http.put(api + 'close/project/', {'project': project.id}).then(function() {
         project.closed = true;
         setProjectStatusStyle(project);
+      }).then(function(){
+        $scope.closingOrOpeningProject = false
       });
     }
   };
 
+  $scope.exportingList = false
   $scope.exportList = function (project) {
+    $scope.exportingList = true
     $http.get(api + 'project/' + project.slug + '/export/').success(function (response) {
       var dataUrl = 'data:text/csv;utf-9,' + encodeURI(response.volunteers);
       var link = document.createElement('a');
@@ -105,6 +122,9 @@ app.controller('NonprofitAdminCtrl', function($scope, $http, $state, $stateParam
         .attr('href', dataUrl)
         .attr('download', 'Voluntários ' + project.name); // Pretty much only works in chrome
       link.click();
+
+
+      $scope.exportingList = false
     });
   };
 });

@@ -39,9 +39,9 @@
         <div class="checkbox col-xs-6">
           <label><input type="checkbox" ng-model="remember"> Lembrar de mim</label>
         </div>
-        <button type="submit" ng-disabled="loginForm.$invalid" id="signinButton" class="btn btn-info col-xs-6">Entrar</button>
+        <button type="submit" ng-disabled="loginForm.$invalid || loggingIn" id="signinButton" class="btn btn-info col-xs-6">Entrar</button>
       </div>
-    </form> 
+    </form>
 
     <form novalidate name="resetPasswordForm" role="form" ng-show="showForgotPassword">
       <label class="help-block">Digite seu email para receber uma nova senha.</label>
@@ -69,9 +69,9 @@
         <label class="help-block" ng-show="signupForm.password.$error.minlength">Senha tem que ter mais de 6 caracteres</label>
       </div>
       <div class="row">
-        <button type="submit" class="btn btn-info col-xs-6 col-xs-offset-6" ng-disabled="signupForm.$invalid">Criar conta</button>
+        <button type="submit" class="btn btn-info col-xs-6 col-xs-offset-6" ng-disabled="signupForm.$invalid || signingUp">Criar conta</button>
       </div>
-    </form> 
+    </form>
   </div>
 </div>
 </div>

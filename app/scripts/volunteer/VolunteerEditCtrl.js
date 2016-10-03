@@ -29,15 +29,19 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
     toastr.error('Voluntário não logado para editar.');
   }
 
+  $scope.uploadingProfileFile = false
   $scope.uploadProfileFile = function(files) {
     if (files) {
+      $scope.uploadingProfileFile = true
       var fd = new FormData();
       fd.append('file', files[0]);
       Photos.setVolunteerPhoto(fd, function(response) {
         $scope.volunteer.image_url = response.file;
         toastr.success('Foto do voluntário salva com sucesso.');
+        $scope.uploadingProfileFile = false
       }, function() {
         toastr.error('Error no servidor. Não consigo atualizar sua foto :(');
+        $scope.uploadingProfileFile = false
       });
     }
   };
@@ -58,8 +62,11 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
     $scope.volunteerEditForm.password.$invalid = $scope.volunteerEditForm.password.doesNotMatch;
   });
 
+  $scope.savingVolunteer = false
   $scope.saveVolunteer = function () {
+    $scope.savingVolunteer = true
     Volunteer.save($scope.volunteer, function() {
+      $scope.savingVolunteer = false
       toastr.success('Perfil salvo!', $scope.volunteer.slug);
       if ($scope.password && $scope.password === $scope.passwordConfirm) {
         Auth.changePassword({email: $scope.volunteer.user.email, password: $scope.password}, function () {
@@ -70,6 +77,7 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
         }
     }, function () {
       toastr.error('Problema em salvar seu perfil :(');
+      $scope.savingVolunteer = false
     });
 
     

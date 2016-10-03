@@ -21,16 +21,19 @@ app.controller('LoginCtrl', function($scope, $rootScope, $state, Auth, ezfb) {
     }
   });
 
+  $scope.loggingIn = false
   $scope.login = function() {
     if (!($scope.password && $scope.email)) {
       return;
     }
 
+    $scope.loggingIn = true
     Auth.login({
       username: $scope.email,
       password: $scope.password,
       remember: $scope.remember
     }, function (response) {
+      $scope.loggingIn = false
       Auth.getCurrentUser(response.access_token).then(
         function (user) {
           $rootScope.$emit('userLoggedIn', user);
@@ -40,6 +43,7 @@ app.controller('LoginCtrl', function($scope, $rootScope, $state, Auth, ezfb) {
 
     }, function () {
       $scope.wrongCredentials = true;
+      $scope.loggingIn = false
     });
   };
 
