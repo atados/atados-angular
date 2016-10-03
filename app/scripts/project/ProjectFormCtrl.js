@@ -4,7 +4,7 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeout, $filter, $http, $window, api, Restangular, Project) {
+app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $stateParams, $timeout, $filter, $http, $window, $modal, api, Restangular, Project) {
   var filter = $filter('filter');
 
   // This variable includes extra data not needed by the api, such as the "dates" param
@@ -22,7 +22,7 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
     dates: {
       type: null, // work or job
       work: {
-        availabilities: [],
+        escription: '',
       },
       job: {
         date: {
@@ -30,6 +30,7 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
         },
         start: new Date(),
         end: new Date(),
+        dates: []
       }
     },
     roles: [],
@@ -55,22 +56,33 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
     step3: {pristine: true, valid: false},
   };
 
-  if (!$scope.loggedUser.user.is_staff) {
-    $scope.nonprofit_slug = $scope.loggedUser.slug;
+  $scope.displayTimeSelection = false;
+  $scope.tmp_r_day = null;
+  $scope.tmp_r_period = null;
+
+  if ($scope.loggedUser) {
+    if (!$scope.loggedUser.user.is_staff) {
+      $scope.nonprofit_slug = $scope.loggedUser.slug;
+    } else {
+      if ($scope.loggedUser.role === 'NONPROFIT') {
+        // There's a route inconsistency problem here
+        // the nonprofit_slug param is only on project creation route(useful only for staff creating projects for nonprofits)
+        // there's no nonprofit_slug param for project edit(and there shouldn't be)
+        //
+        // therefore, on creation we use the state param
+        if ($stateParams.nonprofit_slug) {
+          $scope.nonprofit_slug = $stateParams.nonprofit_slug;
+        }
+        
+        // and on edit we load nonprofit info from the project
+        else {
+          $scope.nonprofit_slug = $scope.loadedProject.nonprofit.slug;
+        }
+      } else {
+        $state.go('root.home');
+      }
+    }
   } else {
-    // There's a route inconsistency problem here
-    // the nonprofit_slug param is only on project creation route(useful only for staff creating projects for nonprofits)
-    // there's no nonprofit_slug param for project edit(and there shouldn't be)
-    //
-    // therefore, on creation we use the state param
-    if ($stateParams.nonprofit_slug) {
-      $scope.nonprofit_slug = $stateParams.nonprofit_slug;
-    }
-    
-    // and on edit we load nonprofit info from the project
-    else {
-      $scope.nonprofit_slug = $scope.loadedProject.nonprofit.slug;
-    }
   }
 
   /*
@@ -81,53 +93,54 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
     var json = $scope.convertProjectToApiFormat($scope.project);
 
     if (!$scope.saving && $scope.validation.valid) {
-      $scope.saving = true;
-      
-      Project.createOrSave(json, function() {
-        $scope.setFormStep(5);
-        $timeout(function() {
-          $state.go('root.nonprofitadmin', {slug: $scope.nonprofit_slug});
-        }, 5*1000);
-      }, function() {
-        $scope.saving = false;
-        toastr.error('Aconteceu um erro. Revise os campos e tente novamente');
-      });
-    }
+      if (!$scope.loadedUser) {
+        $scope.saving = true;
+
+        $scope.saveNonprofit(function() {
+          $scope._save(json);
+        }, function() {
+          $scope.saving = false;
+          $scope.error = true;
+        });
+      } else {
+        $scope._save(json);
+      }
+    };
   };
+  $scope._save = function(json) {
+    Project.createOrSave(json, function() {
+      $scope.setFormStep(6);
+      $timeout(function() {
+        $state.go('root.nonprofitadmin', {slug: $scope.nonprofit_slug});
+      }, 5*1000);
+    }, function() {
+      $scope.saving = false;
+      $scope.error = true;
+      toastr.error('Aconteceu um erro. Revise os campos e tente novamente.');
+    });
+  }
 
   $scope.convertProjectToApiFormat = function(p) {
     if ($stateParams.nonprofit_slug) {
       p.nonprofit_slug = $stateParams.slug;
     }
 
-    var can_be_done_remotely;
+    var can_be_done_remotely = false;
     if (p.can_be_done_remotely) {
-      can_be_done_remotely = p.can_be_done_remotely - 1;
+      can_be_done_remotely = !!(p.can_be_done_remotely - 1);
     }
+    p.can_be_done_remotely = can_be_done_remotely;
 
     if (p.dates.type === 'work') {
       p.work = {
-        availabilities: p.dates.work.availabilities,
+        description: p.dates.work.description,
         can_be_done_remotely: can_be_done_remotely,
       };
     }
 
     if (p.dates.type === 'job') {
-      var year = p.dates.job.date._d.getFullYear(),
-          month = p.dates.job.date._d.getMonth(),
-          day = p.dates.job.date._d.getDate(),
-          start = p.dates.job.start,
-          end = p.dates.job.end;
-
-      start.setFullYear(year);
-      start.setMonth(month);
-      start.setDate(day);
-      end.setFullYear(year);
-      end.setMonth(month);
-      end.setDate(day);
       p.job = {
-        start_date: start.getTime(),
-        end_date: end.getTime(),
+        dates: p.dates.job.dates,
         can_be_done_remotely: can_be_done_remotely,
       };
     }
@@ -146,18 +159,14 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
       causes: [],
       skills: [],
       roles: [],
-      can_be_done_remotely: false,
+      can_be_done_remotely: 1,
       dates: {
         type: null, // work or job
         work: {
-          availabilities: [],
+          description: '',
         },
         job: {
-          date: {
-            _d: new Date(),
-          },
-          start: new Date(),
-          end: new Date(),
+          dates: []
         }
       },
       image: {
@@ -185,31 +194,26 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
 
     if (p.job) {
       client_json.dates.type = 'job';
-      client_json.can_be_done_remotely = p.job.can_be_done_remotely;
-      client_json.dates.job.start = new Date(p.job.start_date);
-      client_json.dates.job.end = new Date(p.job.end_date);
+      client_json.can_be_done_remotely = p.job.can_be_done_remotely ? 2 : 1;
+
+      angular.forEach(p.job.dates, function(v, k) {
+        var dt = {
+          name: v.name,
+          start: new Date(v.start_date),
+          end: new Date(v.end_date),
+        };
+        client_json.dates.job.dates.push(dt);
+      });
 
 
-      var year = client_json.dates.job.start.getFullYear(),
-          month = client_json.dates.job.start.getMonth(),
-          day = client_json.dates.job.start.getDate();
-
-      client_json.dates.job.date._d.setFullYear(year);
-      client_json.dates.job.date._d.setMonth(month);
-      client_json.dates.job.date._d.setDate(day);
     } else {
       client_json.dates.type = 'work';
       if (p.work && p.work.can_be_done_remotely) {
-        client_json.can_be_done_remotely = p.work.can_be_done_remotely;
+        client_json.can_be_done_remotely = p.work.can_be_done_remotely ? 2 : 1;
       }
-      if (p.work && p.work.availabilities) {
-        client_json.dates.work.availabilities = p.work.availabilities;
+      if (p.work && p.work.description) {
+        client_json.dates.work.description = p.work.description;
       }
-    }
-
-    // cast to int
-    if (client_json.can_be_done_remotely) {
-      client_json.can_be_done_remotely = client_json.can_be_done_remotely ? 2 : 1;
     }
 
     if (p.address && p.address.address_line) {
@@ -300,6 +304,16 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
     $scope.addWorkAvailability();
   });
 
+  $scope.setTmpRDay = function(n) {
+    $scope.tmp_r_day = n;
+  }
+  $scope.setTmpRPeriod = function(n) {
+    $scope.tmp_r_period = n;
+  }
+  $scope.displayTS = function(n) {
+    $scope.displayTimeSelection = true;
+  }
+
   $scope.addWorkAvailability = function() {
     if (parseInt($scope.tmp_r_day,    10) === $scope.tmp_r_day &&
         parseInt($scope.tmp_r_period, 10) === $scope.tmp_r_period) {
@@ -311,6 +325,7 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
       }
       $scope.tmp_r_day = null;
       $scope.tmp_r_period = null;
+      $scope.displayTimeSelection = false;
     }
   };
 
@@ -330,6 +345,12 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
   $scope.setFormStep = function(step) {
     $scope.formStep = step;
     $window.scrollTo(0, 0);
+
+    if ($scope.formStep == 5) {
+      if ($scope.validation.valid && (($scope.nonprofitValidation.step1.valid && !$scope.loggedUser) || ($scope.loggedUser))) {
+        $scope.saveProject();
+      }
+    }
   };
 
 
@@ -386,7 +407,8 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
     paramName: 'image',
     headers: {
       Authorization: $http.defaults.headers.common.Authorization,
-    },
+      'X-Atados-Unauthenticated-Upload': true,
+    }, // we send both the auth header and unauthenticated-upload header as the user may be logged out at this stage
     init: function() {
       this.on('addedfile', function(f) {
         if (!this.files.length) { // only triggered if loading project(.emit('addedfile'))
@@ -407,6 +429,94 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
         }
         $scope.projectForm.image.$setViewValue(null);
       });
+    }
+  };
+
+  /*
+   * Login event
+   */ 
+  $rootScope.$on('userLoggedIn', function(e, u) {
+    if (u.role === 'NONPROFIT') {
+      $scope.nonprofit_slug = u.slug;
+      if ($scope.formStep === 101) {
+        $scope.setFormStep(4);
+      }
+    } else {
+      $state.go('root.home');
+    }
+  });
+
+  /*
+   * Date modal
+   */
+  $scope.openDateModal = function() {
+    var dateModal = $modal.open({
+      backdrop: 'static',
+      keyboard: false,
+      templateUrl: '/partials/dateModal.html',
+      controller: ['$scope', function (scope) {
+        scope.dates = {
+          name: '',
+          dates: [
+
+          ],
+          start: new Date(),
+          end: new Date(),
+        };
+
+        scope.$watch('dates.start', function () { scope.validateDate(); }, true);
+        scope.$watch('dates.end', function () { scope.validateDate(); }, true);
+        scope.$watch('dates.dates', function () { scope.validateDate(); }, true);
+
+        scope.validateDate = function() {
+          var start = scope.dates.start;
+          var end = scope.dates.end;
+          var job_time_valid = end.getHours() > start.getHours() || (end.getHours() === start.getHours() && end.getMinutes() >= start.getMinutes());
+
+          scope.dateForm.end.$setValidity('job_time', job_time_valid);
+          scope.dateForm.date_input.$setValidity('required', (scope.dates.dates.length > 0));
+        };
+
+        scope.cancel = function() {
+          dateModal.close();
+        };
+        scope.save = function() {
+          $scope.addDate(scope.dates, function() {
+            dateModal.close();
+          });
+        };
+      }]
+    });
+  };
+
+  $scope.addDate = function(dates, s, e) {
+    angular.forEach(dates.dates, function(date) {
+      if (!dates.name) {
+         dates.name = 'Ação';
+      }
+      var st = angular.copy(dates.start);
+      var end = angular.copy(dates.end);
+      st.setDate(date._d.getDate());
+      st.setMonth(date._d.getMonth());
+      st.setYear(date._d.getYear());
+      end.setDate(date._d.getDate());
+      end.setMonth(date._d.getMonth());
+      end.setYear(date._d.getYear());
+
+      $scope.project.dates.job.dates.push({
+        name: dates.name,
+        start: st,
+        end: end,
+        date: date._d
+      });
+    });
+    console.log($scope.project.dates.job.dates);
+    s();
+  }
+
+  $scope.removeDate = function(date) {
+    if (confirm('Deseja remover esta data da ação? Essa ação não poderá ser desfeita.')) {
+      $scope.project.dates.job.dates = $filter('filter')($scope.project.dates.job.dates, {$$hashKey: '!'+date.$$hashKey});
     }
   };
 
@@ -435,20 +545,13 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
 
 
       if ($scope.project.dates.type === 'work') {
-        $scope.projectForm.date_type.$setValidity('work_required', !!$scope.project.dates.work.availabilities.length);
-        $scope.projectForm.date_type.$setValidity('job_date', true);
-        $scope.projectForm.date_type.$setValidity('job_time', true);
+        $scope.projectForm.date_type.$setValidity('work_required', $scope.projectForm.work_description.$valid);
+        $scope.projectForm.date_type.$setValidity('job_required', true);
       }
 
       if ($scope.project.dates.type === 'job') {
         $scope.projectForm.date_type.$setValidity('work_required', true);
-
-        var start = $scope.project.dates.job.start;
-        var end = $scope.project.dates.job.end;
-        var job_time_valid = end.getHours() > start.getHours() || (end.getHours() === start.getHours() && end.getMinutes() >= start.getMinutes());
-
-        $scope.projectForm.date_type.$setValidity('job_time', job_time_valid);
-        $scope.projectForm.date_type.$setValidity('job_date', ($scope.project.dates.job.date._d instanceof Date));
+        $scope.projectForm.date_type.$setValidity('job_required', !!$scope.project.dates.job.dates.length);
       }
     } else {
       $scope.projectForm.date_type.$setValidity('required', false);
@@ -480,6 +583,9 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
   $scope.$watch('projectForm.address.$valid', function() { $scope.validate(); });
   $scope.$watch('projectForm.date_type.$valid', function() { $scope.validate(); });
   $scope.$watch('projectForm.image.$valid', function() { $scope.validate(); });
+  $scope.$watch('projectForm.email.$valid', function() { $scope.validate(); });
+  $scope.$watch('projectForm.password.$valid', function() { $scope.validate(); });
+  $scope.$watch('projectForm.work_description.$valid', function() { $scope.validateDateType(); });
 
 
   // Model watchers
@@ -488,10 +594,8 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
   $scope.$watchCollection('project.skills', function() { $scope.validateCausesOrSkills('skills'); });
 
   $scope.$watch('project.dates.type', function () { $scope.validateDateType(); }, true);
-  $scope.$watch('project.dates.work.availabilities', function () { $scope.validateDateType(); }, true);
-  $scope.$watch('project.dates.job.start', function () { $scope.validateDateType(); }, true);
-  $scope.$watch('project.dates.job.end', function () { $scope.validateDateType(); }, true);
-  $scope.$watch('project.dates.job.date._d', function () { $scope.validateDateType(); }, true);
+  $scope.$watch('project.dates.work.description', function () { $scope.validateDateType(); }, true);
+  $scope.$watch('project.dates.job.dates', function () { $scope.validateDateType(); }, true);
 
 
   $scope.validate = function() {
@@ -525,7 +629,6 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
       $scope.validation.step2.valid = false;
     }
 
-
     if ($scope.projectForm.responsible.$valid && $scope.projectForm.email.$valid && ($scope.projectForm.phone !== undefined && $scope.projectForm.phone.$valid)) {
       $scope.validation.step3.valid = true;
     } else {
@@ -552,8 +655,13 @@ app.controller('ProjectFormCtrl', function ($scope, $state, $stateParams, $timeo
           val.$setDirty();
         }
       });
+      $scope.validateDateType();
     }
   };
+
+  $scope.$watch('dropzone', function(e) {
+    console.log('dropzone', e);
+  });
 
   // only executed after all directives are loaded
   $timeout(function() { 

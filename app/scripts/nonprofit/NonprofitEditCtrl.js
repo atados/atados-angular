@@ -5,7 +5,9 @@
 var app = angular.module('atadosApp');
 
 app.controller('NonprofitEditCtrl', function($scope, $http, $state, $stateParams, $timeout,
-      Restangular, Photos, Cleanup, api, VOLUNTEER, NONPROFIT, Nonprofit) {
+      Restangular, Photos, Cleanup, api, VOLUNTEER, NONPROFIT, Nonprofit, nonprofit) {
+
+  $scope.loadedNonprofit = nonprofit;
 
   $scope.$watch('loggedUser', function (user) {
     if (!user) {
@@ -30,52 +32,52 @@ app.controller('NonprofitEditCtrl', function($scope, $http, $state, $stateParams
       Cleanup.nonprofitForEdit($scope.nonprofit);
     }
   });
-
-  $scope.$watch('nonprofit.address.addr', function (value) {
-    console.log($scope.nonprofit);
-    console.log('watch');
-    if (value instanceof Object) {
-      $scope.nonprofitForm.address.$invalid = false;
-    } else {
-      $scope.nonprofitForm.address.$invalid = true;
-    }
-  });
-
-  $scope.$watch('password + passwordConfirm', function() {
-    $scope.nonprofitForm.password.doesNotMatch = $scope.password !== $scope.passwordConfirm;
-    $scope.nonprofitForm.password.$invalid = $scope.nonprofitForm.password.doesNotMatch;
-  });
-
-  $scope.save = function(nonprofit) {
-    Nonprofit.save(nonprofit);
-
-    if ($scope.password && $scope.password === $scope.passwordConfirm) {
-      Nonprofit.savePassword(nonprofit.user.email, $scope.password, nonprofit.user.slug);
-    }
-  };
-
-  $scope.uploadProfileFile = function(files) {
-    if (files) {
-      var fd = new FormData();
-      fd.append('file', files[0]);
-      Photos.setNonprofitProfilePhoto(fd, $scope.nonprofit.id, function(response) {
-        $scope.nonprofit.image_url = response.file;
-        toastr.success('Logo da ONG salva com sucesso.');
-      }, function() {
-        toastr.error('Error no servidor. Não consigo atualizar sua foto :(');
-      });
-    }
-  };
-  $scope.uploadCoverFile = function(files) {
-    if (files) {
-      var fd = new FormData();
-      fd.append('file', files[0]);
-      Photos.setNonprofitCoverPhoto(fd, $scope.nonprofit.id, function(response) {
-        $scope.nonprofit.cover_url = response.file;
-        toastr.success('Foto cover da ONG salva com sucesso.');
-      }, function() {
-        toastr.error('Error no servidor. Não consigo atualizar sua foto :(');
-      });
-    }
-  };
+//
+//  $scope.$watch('nonprofit.address.addr', function (value) {
+//    console.log($scope.nonprofit);
+//    console.log('watch');
+//    if (value instanceof Object) {
+//      $scope.nonprofitForm.address.$invalid = false;
+//    } else {
+//      $scope.nonprofitForm.address.$invalid = true;
+//    }
+//  });
+//
+//  $scope.$watch('password + passwordConfirm', function() {
+//    $scope.nonprofitForm.password.doesNotMatch = $scope.password !== $scope.passwordConfirm;
+//    $scope.nonprofitForm.password.$invalid = $scope.nonprofitForm.password.doesNotMatch;
+//  });
+//
+//  $scope.save = function(nonprofit) {
+//    Nonprofit.save(nonprofit);
+//
+//    if ($scope.password && $scope.password === $scope.passwordConfirm) {
+//      Nonprofit.savePassword(nonprofit.user.email, $scope.password, nonprofit.user.slug);
+//    }
+//  };
+//
+//  $scope.uploadProfileFile = function(files) {
+//    if (files) {
+//      var fd = new FormData();
+//      fd.append('file', files[0]);
+//      Photos.setNonprofitProfilePhoto(fd, $scope.nonprofit.id, function(response) {
+//        $scope.nonprofit.image_url = response.file;
+//        toastr.success('Logo da ONG salva com sucesso.');
+//      }, function() {
+//        toastr.error('Error no servidor. Não consigo atualizar sua foto :(');
+//      });
+//    }
+//  };
+//  $scope.uploadCoverFile = function(files) {
+//    if (files) {
+//      var fd = new FormData();
+//      fd.append('file', files[0]);
+//      Photos.setNonprofitCoverPhoto(fd, $scope.nonprofit.id, function(response) {
+//        $scope.nonprofit.cover_url = response.file;
+//        toastr.success('Foto cover da ONG salva com sucesso.');
+//      }, function() {
+//        toastr.error('Error no servidor. Não consigo atualizar sua foto :(');
+//      });
+//    }
+//  };
 });

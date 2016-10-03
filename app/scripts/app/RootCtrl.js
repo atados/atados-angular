@@ -117,19 +117,25 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
   //   $rootScope.askForAddress($scope.loggedUser);
   // }
 
-  $rootScope.$on('userLoggedIn', function(event, user, message) {
+  $rootScope.$on('userLoggedIn', function(event, user, message, callback) {
     if (user) {
       $scope.loggedUser = user;
-      if (message) {
-        toastr.success(message, $scope.loggedUser.slug);
+      if (!callback) {
+        if (message) {
+          toastr.success(message, $scope.loggedUser.slug);
+        } else {
+          toastr.success('Oi! Bom te ver por aqui :)', $scope.loggedUser.slug);
+        }
+        if ($rootScope.modalInstance) {
+          $rootScope.modalInstance.close();
+        }
+        if (user.role === 'NONPROFIT') {
+          if ($state.current.name !== 'root.newproject') {
+            $location.path('/controle/' + user.slug);
+          }
+        }
       } else {
-        toastr.success('Oi! Bom te ver por aqui :)', $scope.loggedUser.slug);
-      }
-      if ($rootScope.modalInstance) {
-        $rootScope.modalInstance.close();
-      }
-      if (user.role === 'NONPROFIT') {
-        $location.path('/controle/' + user.slug);
+        callback();
       }
       // if (!user.address) {
       //   $rootScope.askForAddress(user);

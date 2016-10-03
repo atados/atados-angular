@@ -15,7 +15,7 @@ var app = angular.module('atadosApp', [
   'duScroll',
   'google.places',
   'ngDropzone',
-  'datePicker'
+  'multipleDatePicker'
 ]);
 
 app.config(function($provide, $stateProvider, $urlRouterProvider, $locationProvider) {
@@ -122,7 +122,12 @@ app.config(function($provide, $stateProvider, $urlRouterProvider, $locationProvi
     .state('root.nonprofitedit', {
       url: '/editar/ong/:slug',
       templateUrl: '/partials/nonprofitEdit.html',
-      controller: 'NonprofitEditCtrl'
+      controller: 'NonprofitEditCtrl',
+      resolve: {
+        nonprofit: ['Nonprofit', '$stateParams', function (Nonprofit, $stateParams) {
+          return Nonprofit.get($stateParams.slug);
+        }],
+      }
     })
     .state('root.nonprofitsignup', {
         url: '/cadastro/ong',
