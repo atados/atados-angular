@@ -1,5 +1,7 @@
 'use strict';
 
+/* global toastr: false */
+
 var app = angular.module('atadosApp');
 
 app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state, $http, $timeout, Nonprofit, api, Auth) {
@@ -26,11 +28,13 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
     step1: {pristine: true, valid: false},
   };
 
+
   $scope.saving = false;
 
   if ($scope.project) {
     $scope.insideProject = true;
   }
+
 
 
   /*
@@ -60,7 +64,7 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
       });
     }
 
-    if (n.facebook_page_short) {
+    if (n.facebook_page) {
       var parser = document.createElement('a');
       parser.href = n.facebook_page;
       client_json.facebook_page_short = parser.pathname;
@@ -105,10 +109,10 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
 
   $scope.convertNonprofitToApiFormat = function(n) {
     var api_json = {
-      image: {
+      uploaded_image: {
         id: n.image.id,
       },
-      cover: {
+      uploaded_cover: {
         id: n.cover.id,
       },
       hidden_address: n.hidden_address,
@@ -137,12 +141,12 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
       api_json.id = n.id;
       api_json.user.password = n.newPassword;
       api_json.user.address = api_json.address;
-      api_json.user.hidden_address = n.hidden_address,
+      api_json.user.hidden_address = n.hidden_address;
       api_json.user.is_staff = false;
       api_json.user.phone = n.phone;
 
       var causes = [];
-      angular.forEach(api_json.causes, function(v, k) {
+      angular.forEach(api_json.causes, function(v) {
         causes.push(v.id);
       });
       api_json.causes = causes;
@@ -177,10 +181,12 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
           });
         } else {
           $scope.saving = false;
-          $scope.success = true;
+          //$scope.success = true; // commented to avoid flickering
+          $state.go('root.nonprofitadmin', {slug: $scope.nonprofit.slug});
         }
       }, function() {
         $scope.saving = false;
+        $scope.success = false;
         toastr.error('Aconteceu um erro. Revise os campos e tente novamente');
         if (e) { e(); }
       });
@@ -277,7 +283,18 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
       'X-Atados-Unauthenticated-Upload': true,
     },
     init: function() {
-      $scope.dzInit(this, 'image');
+      this.on('addedfile', function(f) {
+        if (!this.files.length) { // only triggered if loading project(.emit('addedfile'))
+          this.files.push(f);
+        }
+        if (this.files[1] !== null && this.files[1] !== undefined){
+          this.removeFile(this.files[0]);
+        }
+      });
+
+      this.on('complete', function (file) {
+        $scope.imgComplete(file, 'image');
+      });
     }
   };
 
@@ -290,8 +307,32 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
       'X-Atados-Unauthenticated-Upload': true,
     },
     init: function() {
-      $scope.dzInit(this, 'cover');
+      this.on('addedfile', function(f) {
+        if (!this.files.length) { // only triggered if loading project(.emit('addedfile'))
+          this.files.push(f);
+        }
+        if (this.files[1] !== null && this.files[1] !== undefined){
+          this.removeFile(this.files[0]);
+        }
+      });
+
+      this.on('complete', function (file) {
+        $scope.imgComplete(file, 'cover');
+      });
     }
+  };
+
+  $scope.imgComplete = function(file, attr) {
+    if (file.xhr.status === 201) {
+      var result = JSON.parse(file.xhr.response);
+      if (result.id) {
+        console.log(result.id);
+        $scope.nonprofitForm[attr].$setViewValue(result.id);
+        return;
+      }
+    }
+    $scope.nonprofitForm[attr].$setViewValue(null);
+  
   };
 
   /*

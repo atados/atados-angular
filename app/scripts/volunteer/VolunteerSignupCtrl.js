@@ -62,6 +62,7 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth)
         },
         function (error) {
           $scope.signingUp = false;
+          $scope.sendingSignup = false;
           toastr.error('Não conseguimos criar sua conta agora. :(');
         }
       );

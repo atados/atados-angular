@@ -530,9 +530,70 @@
   </form>
 
   <div class="step5" ng-show="formStep == 101">
-    <div id="nonprofit-new">
+    <div id="nonprofit-login" ng-show="!showRegistration">
       <div class="container">
-        <nonprofit-form></nonprofitform>
+        <div class="top-content">
+          <h2>Sobre a ONG</h2>
+          <h3>Conte-nos mais sobre sua ONG.</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+            <div class="fields-container">
+              <form ng-submit="login()" ng-disabled="logginIn">
+                <fieldset>
+                  <h2>Faça o login</h2>
+                  <div class="row mg">
+                    <div class="col-xs-12 col-sm-3 col-sm-push-2 text-right">
+                      <label for="name">Email</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-sm-push-2">
+                      <input type="email" name="username" ng-model="loginData.username" class="form-control" ng-required="true"></input>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-3 col-sm-push-2 text-right">
+                      <label for="name">Senha</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-sm-push-2">
+                      <input type="password" name="password" ng-model="loginData.password" class="form-control" ng-required="true"></input>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                      <div class="alert alert-danger" ng-show="wrongCredentials">
+                        Usuário ou senha incorretos.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row text-right">
+                    <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                      <br>
+                      <button type="submit" class="btn-success btn-large" ng-show="!logginIn" ng-disabled="logginIn">Entrar</button><br>
+                      <button type="submit" class="btn-success btn-large" ng-show="logginIn" ng-disabled="true">
+                        <i class="fa fa-circle-o-notch fa-spin"></i>
+                      </button><br>
+                      <small>
+                        Não tem uma conta ainda?<br>
+                      </small>
+                      <small>
+                        Continue o processo de cadastro <a href="#" ng-click="setShowRegistration(true)">clicando aqui</a>.
+                      </small>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="nonprofit-new" ng-show="showRegistration">
+      <div class="container">
+        <nonprofit-form></nonprofit-form>
       </div>
     </div>
   </div>

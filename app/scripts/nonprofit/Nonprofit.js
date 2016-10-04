@@ -22,12 +22,14 @@ app.factory('Nonprofit', function(Restangular, $state, $stateParams, Cleanup, $h
         toastr.error('Não conseguimos atualizar sua senha :(');
       });
     },
-    save: function (nonprofit) {
-      $http.put(api + 'nonprofit/' + nonprofit.slug + '/.json', nonprofit)
-        .success(function() {
+    save: function (nonprofit, success, error) {
+      $http.patch(api + 'nonprofit/' + nonprofit.user.slug + '/.json', nonprofit)
+        .success(function(r) {
           toastr.success('Perfil da ONG salvo!');
-        }).error(function() {
+          success(r, 'save');
+        }).error(function(r) {
           toastr.error('Problema ao salvar o perfil da ONG, por favor tente de novo');
+          error(r, 'save');
         });
     },
     create: function(nonprofit, success, error) {
@@ -40,7 +42,7 @@ app.factory('Nonprofit', function(Restangular, $state, $stateParams, Cleanup, $h
     },
     createOrSave: function(nonprofit, success, error) {
       if (nonprofit.id) {
-        this.save(nonprofit, success, error)
+        this.save(nonprofit, success, error);
       } else {
         this.create(nonprofit, success, error);
       }

@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-xs-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
           <div class="log-link" ng-if="insideProject">
-            Caso sua ONG já esteja cadastrada, <a href="#" ng-click="openLogin('nonprofit');">faça o login</a>.
+            Caso sua ONG já esteja cadastrada, <a href="#" ng-click="setShowRegistration(false);">faça o login</a>.
           </div>
           <div class="fields-container nopd">
             <fieldset>
@@ -282,7 +282,7 @@
               </div>
               <div class="col-xs-6 col-xs-push-6 text-right">
                 <divi ng-if="loadedNonprofit">
-                  <button class="btn-success" type="button" ng-click="saveNonprofit()" ng-disabled="!validation.valid">Salvar</button>
+                  <button class="btn-success" type="button" ng-click="saveNonprofit()" ng-disabled="!validation.valid || saving">Salvar</button>
                 </div>
                 <divi ng-if="!loadedNonprofit">
                   <div ng-if="!insideProject">

@@ -1,10 +1,11 @@
 'use strict';
 
 /* global toastr: false */
+/* global moment: false */
 
 var app = angular.module('atadosApp');
 
-app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $stateParams, $timeout, $filter, $http, $window, $modal, api, Restangular, Project) {
+app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $stateParams, $timeout, $filter, $http, $window, $modal, api, Restangular, Project, Auth) {
   var filter = $filter('filter');
 
   // This variable includes extra data not needed by the api, such as the "dates" param
@@ -85,6 +86,51 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
   } else {
   }
 
+
+
+  /*
+   * Login
+   */
+  $scope.loginData = {
+    username: '',
+    password: '',
+    remember: true,
+  };
+
+  $scope.showRegistration = false;
+
+  $scope.logginIn = false;
+
+  $scope.setShowRegistration = function(v) {
+    $scope.showRegistration = v;
+  };
+
+  $scope.login = function() {
+    if (!($scope.loginData.password && $scope.loginData.username)) {
+      window.alert('Insira o email e a senha');
+      return;
+    }
+
+    $scope.logginIn = true;
+    Auth.login($scope.loginData, function (response) {
+      Auth.getCurrentUser(response.access_token).then(
+        function (user) {
+          $scope.setFormStep(5);
+          $rootScope.$emit('userLoggedIn', user, null, function() {});
+          $scope.logginIn = false;
+        }, function (error) {
+          toastr.error(error);
+          $scope.logginIn = false;
+        });
+    }, function () {
+      $scope.wrongCredentials = true;
+      $scope.logginIn = false;
+      $timeout(function() {
+        $scope.wrongCredentials = false;
+      }, 4500);
+    });
+  };
+
   /*
    * Save and load
    */
@@ -93,7 +139,7 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
     var json = $scope.convertProjectToApiFormat($scope.project);
 
     if (!$scope.saving && $scope.validation.valid) {
-      if (!$scope.loadedUser) {
+      if (!$scope.loggedUser) {
         $scope.saving = true;
 
         $scope.saveNonprofit(function() {
@@ -105,7 +151,7 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
       } else {
         $scope._save(json);
       }
-    };
+    }
   };
   $scope._save = function(json) {
     Project.createOrSave(json, function() {
@@ -118,7 +164,7 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
       $scope.error = true;
       toastr.error('Aconteceu um erro. Revise os campos e tente novamente.');
     });
-  }
+  };
 
   $scope.convertProjectToApiFormat = function(p) {
     if ($stateParams.nonprofit_slug) {
@@ -127,7 +173,9 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
 
     var can_be_done_remotely = false;
     if (p.can_be_done_remotely) {
-      can_be_done_remotely = !!(p.can_be_done_remotely - 1);
+      /*jshint -W018 */
+      can_be_done_remotely = (!!(p.can_be_done_remotely - 1));
+      /*jshint +W018 */
     }
     p.can_be_done_remotely = can_be_done_remotely;
 
@@ -144,6 +192,7 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
         can_be_done_remotely: can_be_done_remotely,
       };
     }
+
     return p;
   };
 
@@ -196,7 +245,7 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
       client_json.dates.type = 'job';
       client_json.can_be_done_remotely = p.job.can_be_done_remotely ? 2 : 1;
 
-      angular.forEach(p.job.dates, function(v, k) {
+      angular.forEach(p.job.dates, function(v) {
         var dt = {
           name: v.name,
           start: new Date(v.start_date),
@@ -306,13 +355,13 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
 
   $scope.setTmpRDay = function(n) {
     $scope.tmp_r_day = n;
-  }
+  };
   $scope.setTmpRPeriod = function(n) {
     $scope.tmp_r_period = n;
-  }
-  $scope.displayTS = function(n) {
+  };
+  $scope.displayTS = function() {
     $scope.displayTimeSelection = true;
-  }
+  };
 
   $scope.addWorkAvailability = function() {
     if (parseInt($scope.tmp_r_day,    10) === $scope.tmp_r_day &&
@@ -346,7 +395,7 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
     $scope.formStep = step;
     $window.scrollTo(0, 0);
 
-    if ($scope.formStep == 5) {
+    if ($scope.formStep === 5) {
       if ($scope.validation.valid && (($scope.nonprofitValidation.step1.valid && !$scope.loggedUser) || ($scope.loggedUser))) {
         $scope.saveProject();
       }
@@ -454,7 +503,8 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
       backdrop: 'static',
       keyboard: false,
       templateUrl: '/partials/dateModal.html',
-      controller: ['$scope', function (scope) {
+      controller: ['$scope', '$timeout', function (scope, $timeout) {
+
         scope.dates = {
           name: '',
           dates: [
@@ -463,6 +513,10 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
           start: new Date(),
           end: new Date(),
         };
+
+        $timeout(function() { 
+          moment.locale('pt-br');
+        });
 
         scope.$watch('dates.start', function () { scope.validateDate(); }, true);
         scope.$watch('dates.end', function () { scope.validateDate(); }, true);
@@ -489,7 +543,7 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
     });
   };
 
-  $scope.addDate = function(dates, s, e) {
+  $scope.addDate = function(dates, s) {
     angular.forEach(dates.dates, function(date) {
       if (!dates.name) {
          dates.name = 'Ação';
@@ -498,10 +552,10 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
       var end = angular.copy(dates.end);
       st.setDate(date._d.getDate());
       st.setMonth(date._d.getMonth());
-      st.setYear(date._d.getYear());
+      st.setFullYear(date._d.getFullYear());
       end.setDate(date._d.getDate());
       end.setMonth(date._d.getMonth());
-      end.setYear(date._d.getYear());
+      end.setFullYear(date._d.getFullYear());
 
       $scope.project.dates.job.dates.push({
         name: dates.name,
@@ -510,12 +564,11 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
         date: date._d
       });
     });
-    console.log($scope.project.dates.job.dates);
     s();
-  }
+  };
 
   $scope.removeDate = function(date) {
-    if (confirm('Deseja remover esta data da ação? Essa ação não poderá ser desfeita.')) {
+    if (window.confirm('Deseja remover esta data da ação? Essa ação não poderá ser desfeita.')) {
       $scope.project.dates.job.dates = $filter('filter')($scope.project.dates.job.dates, {$$hashKey: '!'+date.$$hashKey});
     }
   };
@@ -658,10 +711,6 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
       $scope.validateDateType();
     }
   };
-
-  $scope.$watch('dropzone', function(e) {
-    console.log('dropzone', e);
-  });
 
   // only executed after all directives are loaded
   $timeout(function() { 

@@ -144,7 +144,11 @@
     <div ng-if="project.work" id="project-availabilities">
       <h3>Horários disponíveis</h3>
       <p ng-if="project.work.weekly_hours"><strong>Horas por semana: </strong>{{project.work.weekly_hours}}</p>
-      <div ng-if="showTimeTable">
+      <div ng-if="project.work.description">
+        <h4>Descrição dos horários:</h4>
+        {{project.work.description}}
+      </div>
+      <div ng-if="showTimeTable && project.work.availabilities.length">
         <div class="availability" ng-repeat="a in project.work.availabilities">
           <span ng-switch="a.weekday">
             <span ng-switch-when="0">Domingo</span>
@@ -162,6 +166,7 @@
           </span>
         </div>
       </div>
+
     </div>
     <div class="center" style="margin-top: 30px;">
       <button id="atar-button" class="col-sm-12 btn"

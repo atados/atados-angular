@@ -80,10 +80,11 @@ app.directive('nonprofitForm', function() {
   return {
     restrict: 'E',
     scope: true,
-    link: function(scope, element, attr) {
+    link: function(scope) {
       scope.$parent.nonprofitValidation = scope.validation;
       scope.$parent.saveNonprofit = scope.saveNonprofit;
       scope.setStep = scope.$parent.setFormStep;
+      scope.setShowRegistration = scope.$parent.setShowRegistration;
     },
     templateUrl: '/partials/nonprofitForm.html',
     controller: 'NonprofitFormCtrl'

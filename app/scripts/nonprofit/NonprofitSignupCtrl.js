@@ -2,5 +2,5 @@
 
 var app = angular.module('atadosApp');
 
-app.controller('NonprofitSignupCtrl', function($scope) {
+app.controller('NonprofitSignupCtrl', function() {
 });

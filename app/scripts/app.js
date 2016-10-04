@@ -1,6 +1,7 @@
 'use strict';
 
 /* global $: false */
+/* global Rollbar: false */
 
 var app = angular.module('atadosApp', [
   'restangular',
@@ -26,7 +27,7 @@ app.config(function($provide, $stateProvider, $urlRouterProvider, $locationProvi
           return;
         }
         $delegate(exception, cause);
-        Rollbar.error("Frontend error", exception);
+        Rollbar.error('Frontend error', exception);
       };
     });
   }
