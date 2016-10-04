@@ -161,6 +161,70 @@ module.exports = function (grunt) {
             lng: 0
           }
         }
+      },
+      homolog: {
+        options: {
+          dest: '<%= yeoman.dist %>/public/scripts/constants.js'
+        },
+        constants: {
+          ENV: 'homolog',
+          api: 'https://apihomolog.atados.com.br/v1/',
+          authApi: 'https://homolog.atados.com.br/auth/client',
+          storage: 'https://s3.amazonaws.com/atados-us/images/',
+          selected: 'https://s3.amazonaws.com/atados-us/images/heart.png',
+          notselected: 'https://s3.amazonaws.com/atados-us/images/blue.png',
+          facebookClientId: '430973993601792',
+          locale: 'pt_BR',
+          accessTokenCookie: 'access_token',
+          csrfCookie: 'csrftoken',
+          sessionIdCookie: 'sessionid',
+          grantType: 'password',
+          page_size: 30,
+          active_cities: 4,
+          static_page_size: 300,
+          weekdays: [
+            {1: 'Segunda'},
+            {2: 'Terça'},
+            {3: 'Quarta'},
+            {4: 'Quinta'},
+            {5: 'Sexta'},
+            {6: 'Sabado'},
+            {7: 'Domingo'}
+          ],
+          periods: [
+            {0: 'Manha'},
+            {1: 'Tarde'},
+            {2: 'Noite'}
+          ],
+          defaultZoom: 10,
+          VOLUNTEER: 'VOLUNTEER',
+          NONPROFIT: 'NONPROFIT',
+          saoPaulo: {
+            id: 9422,
+            lat: -23.5505199,
+            lng: -46.6333094
+          },
+          curitiba: {
+            id: 5915,
+            lat: -25.4808762,
+            lng: -49.3044253
+          },
+          brasilia: {
+            id: 1724,
+            lat: -15.79211,
+            lng: -47.897751
+          },
+          rioDeJaneiro: {
+            id:6861,
+            lat:-22.9082998,
+            lng:-43.1970773
+          },
+          distancia: {
+            id: 0,
+            lat: 0,
+            lng: 0
+          }
+        }
       }
     },
     // Project settings
