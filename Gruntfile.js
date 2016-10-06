@@ -596,6 +596,22 @@ module.exports = function (grunt) {
     'usemin'
   ]);
 
+  grunt.registerTask('buildhomolog', [
+    'clean:dist',
+    'ngconstant:homolog',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngAnnotate',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'rev',
+    'usemin'
+  ]);
+
   grunt.registerTask('default', [
     'newer:jshint',
     'test',

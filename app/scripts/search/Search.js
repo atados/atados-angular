@@ -26,7 +26,7 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
   var _loading = false;
 
   var toHttps = function (url) {
-    if (url && ENV === 'production') {
+    if (url && (ENV === 'production' || ENV === 'homolog')) {
       return url.replace('http','https');
     }
     return url;
