@@ -73,7 +73,7 @@ app.factory('Nonprofit', function(Restangular, $state, $stateParams, Cleanup, $h
       delete nonprofitCopy.user.address.lat;
       delete nonprofitCopy.user.address.lng;
       delete nonprofitCopy.user.address.addr;
-      
+
       $http.put(api + 'nonprofit/' + nonprofit.slug + '/.json', nonprofitCopy)
         .success(function() {
           toastr.success('Perfil da ONG salvo!');

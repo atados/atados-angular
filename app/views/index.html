@@ -108,11 +108,12 @@
     <!-- endbuild -->
 
   <script>
+    var env = location.hostname == "www.atados.com.br" ? 'production' : (location.hostname == "homolog.atados.com.br" ? 'homolog' : 'development'
     var _rollbarConfig = {
-        accessToken: "f3b06ad06ddb4a3e99707d599026d087",
+        accessToken: 'f3b06ad06ddb4a3e99707d599026d087',
         captureUncaught: true,
         payload: {
-            environment: "production"
+            environment: env
         }
     };
     // Rollbar Snippet
