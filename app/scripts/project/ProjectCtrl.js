@@ -70,6 +70,7 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
       }
       else {
         $scope.showApplyModal = false;
+        $scope.applyingVolunteerToProject = false;
       }
     });
 
@@ -78,18 +79,19 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
     });
 
     $scope.showApplyModal = false;
+    $scope.applyingVolunteerToProject = false;
 
     $scope.applyVolunteerToProject = function () {
       if (!$scope.loggedUser) {
         $scope.openLogin();
         $scope.showApplyModal = true;
+        $scope.applyingVolunteerToProject = true;
         toastr.info('Você tem que logar primeiro!');
       } else {
         openApplyModal();
       }
     };
-
-  } 
+  }
 
   function openApplyModal () {
     var template = '/partials/volunteerContractModal.html';
@@ -105,6 +107,7 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
         $scope.cancel = function () {
           $modalInstance.dismiss('cancel');
           $scope.showApplyModal = false;
+          $scope.applyingVolunteerToProject = false
         };
       }];
     }

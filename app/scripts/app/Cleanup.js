@@ -25,21 +25,35 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
     }
   };
 
-  var sanitizeProject = function (p, nonprofit) {
-    p.emailAllString = 'mailto:' + nonprofit.user.email + '?bcc=';
-    setProjectStatusStyle(p);
-    Restangular.one('project', p.slug).getList('volunteers', {page_size: 1000}).then(function (response) {
-      p.volunteers = response;
-      p.volunteers.forEach(function (v) {
-        p.emailAllString += v.email + ',';
-        Restangular.all('applies').getList({project_slug: p.slug, volunteer_slug: v.slug}).then(function (a) {
-          v.status = a[0].status.name;
-          setStatusStyle(v);
-          return;
-        });
-      });
-    });
+  var sanitizeProject = function(project, nonprofit) {
+    setProjectStatusStyle(project);
+    project.volunteers = null;
 
+    $http.get(api + 'project/' + project.slug + '/volunteers_and_applies/').then(function(response){
+      var volunteers = response.data.volunteers;//, applies = response.data.applies
+      var volunteersEmails = [];
+
+      //-- var normApplies = {}
+      /*--
+      if (applies && applies.length) {
+        for (var i = 0, apply = applies[i]; i < applies.length;i++, apply = applies[i]) {
+          normApplies[apply.volunteer] = apply
+        }
+      }
+      */
+
+      if (volunteers && volunteers.length) {
+        project.volunteers = volunteers;
+        for (var i = 0, volunteer = volunteers[i]; i < volunteers.length;i++, volunteer = volunteers[i]) {
+          volunteersEmails.push(volunteer.email);
+
+          //-- volunteer.status = normApplies[volunteer.slug].status.name
+          setStatusStyle(volunteer);
+        }
+      }
+
+      project.emailAllString = 'mailto:' + nonprofit.user.email + '?bcc=' + volunteersEmails.join(',');
+    });
   };
 
   var fixCauses = function (inputCauses) {
@@ -85,7 +99,7 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
 
       user.causes = fixCauses(user.causes);
       user.skills = fixSkills(user.skills);
-      
+
       if (user.role === NONPROFIT) {
         if (user.projects) {
           user.projects.forEach(function(p) {

@@ -59,10 +59,24 @@
 
       </div>
       <div class="col-sm-2">
-        <button id="atar-button" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-hide="project.closed || alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()">Quero me inscrever</button>
-        <button id="atar-button" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-show="alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()"><i class="fa fa-chain-broken"></i> Não quero mais</button>
-        <button id="atar-button" disabled ng-hide="alreadyApplied || !project.closed" class="btn"><i class="fa fa-times"></i> Vaga Fechada</button>
+        <button id="atar-button" class="btn"
+          ng-class="{active: alreadyApplied}"
+          ng-disabled="(loggedUser && loggedUser.role==='NONPROFIT') || applyingVolunteerToProject"
+          ng-hide="project.closed || alreadyApplied"
+          ng-click="applyVolunteerToProject()"
+        >Quero me inscrever</button>
 
+        <button id="atar-button" class="btn"
+          ng-disabled="(loggedUser && loggedUser.role==='NONPROFIT') || applyingVolunteerToProject"
+          ng-show="alreadyApplied"
+          ng-class="{active: alreadyApplied}"
+          ng-click="applyVolunteerToProject()"
+        ><i class="fa fa-chain-broken"></i>Não quero mais</button>
+
+        <button id="atar-button" disabled class="btn"
+          ng-hide="alreadyApplied || !project.closed"
+        ><i class="fa fa-times"></i>Vaga Fechada</button>
+        <!-- -->
         <div id="project-volunteers">
           <h4 ng-show="project.volunteers.length > 1">{{project.volunteers.length}} voluntários inscritos</h4>
           <h4 ng-show="project.volunteers.length == 1">{{project.volunteers.length}} voluntário inscrito</h4>
@@ -132,21 +146,30 @@
       <p ng-if="project.work.weekly_hours"><strong>Horas por semana: </strong>{{project.work.weekly_hours}}</p>
       <div ng-if="showTimeTable">
         <div class="availability" ng-repeat="a in project.work.availabilities">
-          <span ng-if="a.weekday === 0">Domingo</span>
-          <span ng-if="a.weekday === 1">Segunda-feira</span>
-          <span ng-if="a.weekday === 2">Terça-feira</span>
-          <span ng-if="a.weekday === 3">Quarta-feira</span>
-          <span ng-if="a.weekday === 4">Quinta-feira</span>
-          <span ng-if="a.weekday === 5">Sexta-feira</span>
-          <span ng-if="a.weekday === 6">Sábado</span>
-          <span ng-if="a.period === 0">de manhã</span>
-          <span ng-if="a.period === 1">de tarde</span>
-          <span ng-if="a.period === 2">de noite</span>
+          <span ng-switch="a.weekday">
+            <span ng-switch-when="0">Domingo</span>
+            <span ng-switch-when="1">Segunda-feira</span>
+            <span ng-switch-when="2">Terça-feira</span>
+            <span ng-switch-when="3">Quarta-feira</span>
+            <span ng-switch-when="4">Quinta-feira</span>
+            <span ng-switch-when="5">Sexta-feira</span>
+            <span ng-switch-when="6">Sábado</span>
+          </span>
+          <span ng-switch="a.period">
+            <span ng-switch-when="0">de manhã</span>
+            <span ng-switch-when="1">de tarde</span>
+            <span ng-switch-when="2">de noite</span>
+          </span>
         </div>
       </div>
     </div>
     <div class="center" style="margin-top: 30px;">
-      <button id="atar-button" class="col-sm-12" ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'" ng-hide="project.closed || alreadyApplied" class="btn" ng-class="{active: alreadyApplied}" ng-click="applyVolunteerToProject()">Quero me inscrever</button>
+      <button id="atar-button" class="col-sm-12 btn"
+        ng-class="{active: alreadyApplied}"
+        ng-disabled="loggedUser && loggedUser.role==='NONPROFIT'"
+        ng-hide="project.closed || alreadyApplied"
+        ng-click="applyVolunteerToProject()"
+      >Quero me inscrever</button>
     </div>
     <div class="fb-comments" data-href="https://www.atados.com.br/vaga/{{project.slug}}" data-numposts="5" data-colorscheme="light"></div>
     </div>

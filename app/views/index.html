@@ -44,11 +44,6 @@
     <!-- endbuild -->
 
     <script src="https://assets.pagar.me/js/pagarme.min.js"></script>
-    <script type="text/javascript"> //<![CDATA[
-      var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
-      document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
-      //]]>
-    </script>
   </head>
   <body>
 
@@ -105,11 +100,26 @@
     <script src="/bower_components/moment/moment.js"></script>
     <script src="/bower_components/moment-timezone/builds/moment-timezone.min.js"></script>
     <script src="/angular-gm.js"></script>
+
     <script src="/angular-seo.js"></script>
     <script src="/oms.js"></script>
     <script src="/jquery.maskedinput.min.js"></script>
     <script src="/markerclusterer_compiled.js"></script>
     <!-- endbuild -->
+
+  <script>
+    var env = location.hostname == "www.atados.com.br" ? 'production' : (location.hostname == "homolog.atados.com.br" ? 'homolog' : 'development'
+    var _rollbarConfig = {
+        accessToken: 'f3b06ad06ddb4a3e99707d599026d087',
+        captureUncaught: true,
+        payload: {
+            environment: env
+        }
+    };
+    // Rollbar Snippet
+    !function(r){function o(e){if(t[e])return t[e].exports;var n=t[e]={exports:{},id:e,loaded:!1};return r[e].call(n.exports,n,n.exports,o),n.loaded=!0,n.exports}var t={};return o.m=r,o.c=t,o.p="",o(0)}([function(r,o,t){"use strict";var e=t(1).Rollbar,n=t(2);_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://d37gvrvc0wt4s1.cloudfront.net/js/v1.8/rollbar.min.js";var a=e.init(window,_rollbarConfig),i=n(a,_rollbarConfig);a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,i)},function(r,o){"use strict";function t(){var r=window.console;r&&"function"==typeof r.log&&r.log.apply(r,arguments)}function e(r,o){return o=o||t,function(){try{return r.apply(this,arguments)}catch(t){o("Rollbar internal error:",t)}}}function n(r,o,t){window._rollbarWrappedError&&(t[4]||(t[4]=window._rollbarWrappedError),t[5]||(t[5]=window._rollbarWrappedError._rollbarContext),window._rollbarWrappedError=null),r.uncaughtError.apply(r,t),o&&o.apply(window,t)}function a(r){var o=function(){var o=Array.prototype.slice.call(arguments,0);n(r,r._rollbarOldOnError,o)};return o.belongsToShim=!0,o}function i(r){this.shimId=++p,this.notifier=null,this.parentShim=r,this.logger=t,this._rollbarOldOnError=null}function l(r){var o=i;return e(function(){if(this.notifier)return this.notifier[r].apply(this.notifier,arguments);var t=this,e="scope"===r;e&&(t=new o(this));var n=Array.prototype.slice.call(arguments,0),a={shim:t,method:r,args:n,ts:new Date};return window._rollbarShimQueue.push(a),e?t:void 0})}function u(r,o){if(o.hasOwnProperty&&o.hasOwnProperty("addEventListener")){var t=o.addEventListener;o.addEventListener=function(o,e,n){t.call(this,o,r.wrap(e),n)};var e=o.removeEventListener;o.removeEventListener=function(r,o,t){e.call(this,r,o&&o._wrapped?o._wrapped:o,t)}}}var p=0;i.init=function(r,o){var t=o.globalAlias||"Rollbar";if("object"==typeof r[t])return r[t];r._rollbarShimQueue=[],r._rollbarWrappedError=null,o=o||{};var n=new i;return e(function(){if(n.configure(o),o.captureUncaught){n._rollbarOldOnError=r.onerror,r.onerror=a(n);var e,i,l="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(e=0;e<l.length;++e)i=l[e],r[i]&&r[i].prototype&&u(n,r[i].prototype)}return r[t]=n,n},n.logger)()},i.prototype.loadFull=function(r,o,t,n,a){var i=function(){var o;if(void 0===r._rollbarPayloadQueue){var t,e,n,i;for(o=new Error("rollbar.js did not load");t=r._rollbarShimQueue.shift();)for(n=t.args,i=0;i<n.length;++i)if(e=n[i],"function"==typeof e){e(o);break}}"function"==typeof a&&a(o)},l=!1,u=o.createElement("script"),p=o.getElementsByTagName("script")[0],s=p.parentNode;u.src=n.rollbarJsUrl,u.async=!t,u.onload=u.onreadystatechange=e(function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){u.onload=u.onreadystatechange=null;try{s.removeChild(u)}catch(r){}l=!0,i()}},this.logger),s.insertBefore(u,p)},i.prototype.wrap=function(r,o){try{var t;if(t="function"==typeof o?o:function(){return o||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._wrapped){r._wrapped=function(){try{return r.apply(this,arguments)}catch(o){throw o._rollbarContext=t()||{},o._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=o,o}},r._wrapped._isWrap=!0;for(var e in r)r.hasOwnProperty(e)&&(r._wrapped[e]=r[e])}return r._wrapped}catch(n){return r}};for(var s="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError".split(","),c=0;c<s.length;++c)i.prototype[s[c]]=l(s[c]);r.exports={Rollbar:i,_rollbarWindowOnError:n}},function(r,o){"use strict";r.exports=function(r,o){return function(t){if(!t&&!window._rollbarInitialized){var e=window.RollbarNotifier,n=o||{},a=n.globalAlias||"Rollbar",i=window.Rollbar.init(n,r);i._processShimQueue(window._rollbarShimQueue||[]),window[a]=i,window._rollbarInitialized=!0,e.processPayloads()}}}}]);
+    // End Rollbar Snippet
+  </script>
 
 
     <script src="/scripts/constants.js"></script>
@@ -154,6 +164,7 @@
     <script src="/scripts/project/ProjectModalCtrl.js"></script>
     <script src="/scripts/project/ProjectNewCtrl.js"></script>
     <script src="/scripts/project/ProjectFormCtrl.js"></script>
+    <script src="/scripts/app/GrandeSPCtrl.js"></script>
     <script src="/scripts/search/ExplorerCtrl.js"></script>
     <script src="/scripts/search/Search.js"></script>
     <script src="/scripts/search/SearchCtrl.js"></script>
@@ -182,9 +193,9 @@
 
 
   <!-- Código do Google para tag de remarketing -->
-  <!--------------------------------------------------
+  <!--
   As tags de remarketing não podem ser associadas a informações pessoais de identificação nem inseridas em páginas relacionadas a categorias de confidencialidade. Veja mais informações e instruções sobre como configurar a tag em: http://google.com/ads/remarketingsetup
-  --------------------------------------------------->
+  -->
   <script type="text/javascript">
   /* <![CDATA[ */
   var google_conversion_id = 971695909;
@@ -199,8 +210,46 @@
   <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/971695909/?value=0&amp;guid=ON&amp;script=0"/>
   </div>
   </noscript>
-  <script class="trustlogo">
-    window.TrustLogo("https://s3.amazonaws.com/atados-us/images/comodo_secure_100x85_transp.png", "CL1", "none");
+  <!-- -->
+  <script type="text/javascript" async> //<![CDATA[
+  (function(){
+    var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+    var tlJsUrl  = tlJsHost+ "trustlogo/javascript/trustlogo.js";
+    var tlJsElm;
+
+    function injectTrustLogoImage() {
+      var element = document.createElement("script");
+      element.className = 'trustlogo';
+      element.innerText = 'window.TrustLogo("https://s3.amazonaws.com/atados-us/images/comodo_secure_100x85_transp.png", "CL1", "none");'
+      document.body.appendChild(element);
+      console.log("injected trustlogo image")
+    }
+    //----- ----- ----- ----- -----
+    function downloadJSAtOnload() {
+      var element = document.createElement("script");
+      element.src = tlJsUrl;
+      //----- ----- ----- ----- -----
+      if (element.addEventListener) {
+        element.addEventListener("load", injectTrustLogoImage, false);
+      } else if (element.attachEvent) {
+        element.attachEvent("onload", injectTrustLogoImage);
+      } else {
+        element.onload = injectTrustLogoImage;
+      }
+      //----- ----- ----- ----- -----
+      document.body.appendChild(element);
+      console.log("injected trustlogo script")
+    }
+    //----- ----- ----- ----- -----
+    if (document.addEventListener) {
+      document.addEventListener("load", downloadJSAtOnload, false);
+    } else if (document.attachEvent) {
+      document.attachEvent("onload", downloadJSAtOnload);
+    } else {
+      document.onload = downloadJSAtOnload;
+    }
+  })();
+  //]]>
   </script>
   </body>
 </html>

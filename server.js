@@ -22,9 +22,10 @@ if (process.env.NODE_ENV == 'development') {
       next();
     }
   })
+} else {
+  app.use(require('prerender-node').set('prerenderToken', '3iULJkT9S6jMjdwulf9h'));
 }
 
-app.use(require('prerender-node').set('prerenderToken', '3iULJkT9S6jMjdwulf9h'));
 
 // Express settings
 require('./lib/config/express')(app);

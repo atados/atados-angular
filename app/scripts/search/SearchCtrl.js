@@ -168,6 +168,7 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
     $state.go($state.current, {tab: 'ongs'}, {notify:false, reload:$state.current});
   };
 
+
   $scope.getMore = function () {
     if ($scope.landing) {
       $scope.$emit('landingToExplorer', {

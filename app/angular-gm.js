@@ -1,6 +1,6 @@
 /**
  * AngularGM - Google Maps Directives for AngularJS
- * @version v1.0.0 - 2014-01-01
+ * @version v1.0.2 - 2016-09-16
  * @link http://dylanfprice.github.com/angular-gm
  * @author Dylan Price <the.dylan.price@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -10,10 +10,10 @@
  * @name angulargm
  *
  * @description
- * Module for embedding Google Maps into AngularJS applications. 
+ * Module for embedding Google Maps into AngularJS applications.
  *
  * # Example Plunkers ([fullscreen](http://embed.plnkr.co/PYDYjVuRHaJpdntoJtqL))
- *  
+ *
  * <iframe style="width: 100%; height: 400px" src="http://embed.plnkr.co/PYDYjVuRHaJpdntoJtqL" frameborder="0" allowfullscreen="allowfullscreen">
  * </iframe>
  *
@@ -54,6 +54,7 @@
       'precision': 3,
       'markerConstructor': google.maps.Marker,
       'polylineConstructor': google.maps.Polyline,
+      'circleConstructor': google.maps.Circle,
       'mapOptions': {
         zoom : 8,
         center : new google.maps.LatLng(46, -120),
@@ -64,13 +65,59 @@
 
 })();
 
+(function () {
+    'use strict';
+    
+    angular.module('AngularGM').
+
+  directive('gmCircles', ['$parse', '$compile', '$timeout', '$log', 'angulargmUtils', 'angulargmShape',
+    function ($parse, $compile, $timeout, $log, angulargmUtils, angulargmShape) {
+     
+        var objToLatLng = angulargmUtils.objToLatLng;
+
+        function link(scope, element, attrs, controller) {
+            if (!('gmCircleCenter' in attrs)) {
+                throw 'gmCircleCenter attribute required';
+            }
+
+            var circleOptions = function (object) {
+                var latLngObj = scope.gmCircleCenter({ object: object });    
+                var center = objToLatLng(latLngObj);
+                if (center == null) {
+                    return null;
+                }
+                var circleOptions = scope.gmCircleOptions({ object: object });
+                var options = {};
+                angular.extend(options, circleOptions, { center: center });
+                return options;
+            };
+                
+            angulargmShape.createShapeDirective(
+                'circle', scope, attrs, controller, circleOptions
+            );
+        }
+            
+        return {
+            restrict: 'AE',
+            priority: 100,
+            scope: {
+                gmObjects: '&',
+                gmId: '&',
+                gmCircleCenter: '&',
+                gmCircleOptions: '&'
+            },
+            require: '^gmMap',
+            link: link
+        };
+    }]);
+})();
 /**
  * @ngdoc directive
  * @name angulargm.directive:gmInfoWindow
  * @element ANY
- * 
+ *
  * @description
- * A directive for creating a google.maps.InfoWindow.  
+ * A directive for creating a google.maps.InfoWindow.
  *
  * @param {expression} gm-info-window scope variable to store the
  * [google.maps.InfoWindow](https://developers.google.com/maps/documentation/javascript/reference#InfoWindow)
@@ -86,7 +133,7 @@
  * event.  The variable `infoWindow` evaluates to the InfoWindow.  For example:
  * ```html
  * gm-on-closeclick="myCloseclickFn(infoWindow)"
- * ``` 
+ * ```
  * will call your myCloseclickFn whenever the InfoWindow is clicked closed. You
  * may have multiple `gm-on-*event*` handlers, but only one for each type of
  * event.
@@ -100,10 +147,10 @@
    * Much of this code is taken from the Angular UI team, see:
    * https://github.com/angular-ui/ui-map/blob/master/ui-map.js
    */
-  directive('gmInfoWindow', 
-    ['$parse', '$compile', '$timeout', 'angulargmUtils', 
+  directive('gmInfoWindow',
+    ['$parse', '$compile', '$timeout', 'angulargmUtils',
     function ($parse, $compile, $timeout, angulargmUtils) {
-   
+
     /** aliases */
     var getEventHandlers = angulargmUtils.getEventHandlers;
 
@@ -130,19 +177,6 @@
           });
         });
       });
-
-      /* The info window's contents dont' need to be on the dom anymore,
-       google maps has them stored. So we just replace the infowindow
-       element with an empty div. (we don't just straight remove it from
-       the dom because straight removing things from the dom can mess up
-       angular) */
-      element.replaceWith('<div></div>');
-
-      //Decorate infoWindow.open to $compile contents before opening
-      var _open = infoWindow.open;
-      infoWindow.open = function open(map, anchor) {
-        _open.call(infoWindow, map, anchor);
-      };
     }
 
     return {
@@ -159,9 +193,9 @@
  * @ngdoc directive
  * @name angulargm.directive:gmMap
  * @element ANY
- * 
+ *
  * @description
- * A directive for embedding google maps into your app. 
+ * A directive for embedding google maps into your app.
  *
  * `gm-map-id` is required. The `gm-center`, `gm-zoom`, `gm-bounds`, and
  * `gm-map-type-id` variables do not have to exist in the current scope--they
@@ -235,7 +269,7 @@
  * @name angulargm.directive:gmMap#gmMapIdle
  * @eventOf angulargm.directive:gmMap
  * @eventType emit on current gmMap scope
- * 
+ *
  * @description Emitted when the map is finished loading (when the map fires
  * the 'idle' event).
  *
@@ -256,8 +290,9 @@
 
   angular.module('AngularGM').
 
-  directive('gmMap', ['$timeout', 'angulargmUtils', function ($timeout, angulargmUtils) {
-  
+
+  directive('gmMap', ['$timeout', 'angulargmUtils', 'debounce', function ($timeout, angulargmUtils, debounce) {
+
     /** aliases **/
     var getEventHandlers = angulargmUtils.getEventHandlers;
 
@@ -299,7 +334,7 @@
         hasMapTypeId = true;
       }
 
-      var updateScope = function() {
+      var _updateScope = function() {
         $timeout(function () {
           if (hasCenter || hasZoom || hasBounds || hasMapTypeId) {
             scope.$apply(function (s) {
@@ -323,6 +358,7 @@
         });
       };
 
+      var updateScope = debounce(_updateScope, 100);
 
       // Add event listeners to the map
       controller.addMapListener('drag', updateScope);
@@ -364,7 +400,7 @@
           }
         }, true);
       }
-      
+
       if (hasZoom) {
         scope.$watch('gmZoom', function (newValue, oldValue) {
           var ok = (newValue != null && !isNaN(newValue));
@@ -380,7 +416,7 @@
           if (changed && !controller.dragging) {
             var bounds = newValue;
             if (bounds)
-              controller.bounds = bounds; 
+              controller.bounds = bounds;
           }
         });
       }
@@ -410,9 +446,9 @@
     return {
       restrict: 'AE',
       priority: 100,
-      template: '<div>' + 
-                  '<div id="" style="width:100%;height:100%;"></div>' + 
-                  '<div ng-transclude></div>' + 
+      template: '<div>' +
+                  '<div id="" style="width:100%;height:100%;"></div>' +
+                  '<div ng-transclude></div>' +
                 '</div>',
       transclude: true,
       replace: true,
@@ -464,7 +500,7 @@
  * ```js
  * ...
  * $scope.myObjects = [
- *   { id: 0, location: { lat: 5, lng: 5} }, 
+ *   { id: 0, location: { lat: 5, lng: 5} },
  *   { id: 1, location: { lat: 6, lng: 6} }
  * ]
  * ...
@@ -487,7 +523,7 @@
  *
  *
  * @param {expression} gm-events a variable in the current scope that is used to
- * simulate events on markers. Setting this variable to an object of the form 
+ * simulate events on markers. Setting this variable to an object of the form
  * ```js
  *     [
  *       {
@@ -502,15 +538,15 @@
  * must set it to a new object for the changes to be detected.  Code like
  * ```js
  * myEvents[0]["ids"] = [0]
- * ``` 
+ * ```
  * will not work.
- *                      
+ *
  *
  * @param {expression} gm-on-*event* an angular expression which evaluates to
  * an event handler. This handler will be attached to each marker's \*event\*
  * event.  The variables 'object' and 'marker' evaluate to your object and the
  * [google.maps.Marker](https://developers.google.com/maps/documentation/javascript/reference#Marker),
- * respectively. For example: 
+ * respectively. For example:
  * ```html
  * gm-on-click="myClickFn(object, marker)"
  * ```
@@ -541,7 +577,7 @@
  * $scope.$broadcast('gmMarkersUpdate', 'myObjects');
  * ```
  */
- 
+
 /**
  * @ngdoc event
  * @name angulargm.directive:gmMarkers#gmMarkersRedraw
@@ -561,13 +597,13 @@
  * $scope.$broadcast('gmMarkersRedraw', 'myObjects');
  * ```
  */
- 
+
 /**
  * @ngdoc event
  * @name angulargm.directive:gmMarkers#gmMarkersUpdated
  * @eventOf angulargm.directive:gmMarkers
  * @eventType emit on current gmMarkers scope
- * 
+ *
  * @description Emitted when markers are updated.
  *
  * @param {string} objects the name of the scope variable which holds the
@@ -589,7 +625,7 @@
 
   angular.module('AngularGM').
 
-  directive('gmMarkers', 
+  directive('gmMarkers',
     ['$log', '$parse', '$timeout', 'angulargmUtils', 'angulargmShape',
     function($log, $parse, $timeout, angulargmUtils, angulargmShape) {
 
@@ -685,7 +721,7 @@
  * unspecified, google maps api defaults will be used.
  *
  * @param {expression} gm-events a variable in the current scope that is used to
- * simulate events on polylines. Setting this variable to an object of the form 
+ * simulate events on polylines. Setting this variable to an object of the form
  * ```js
  *     [
  *       {
@@ -700,15 +736,15 @@
  * must set it to a new object for the changes to be detected.  Code like
  * ```js
  * myEvents[0]["ids"] = [0]
- * ``` 
+ * ```
  * will not work.
- *                      
+ *
  *
  * @param {expression} gm-on-*event* an angular expression which evaluates to
  * an event handler. This handler will be attached to each polyline's \*event\*
  * event.  The variables 'object' and 'polyline' evaluate to your object and the
  * [google.maps.Polyline](https://developers.google.com/maps/documentation/javascript/reference#Polyline),
- * respectively. For example: 
+ * respectively. For example:
  * ```html
  * gm-on-click="myClickFn(object, polyline)"
  * ```
@@ -739,7 +775,7 @@
  * $scope.$broadcast('gmPolylinesUpdate', 'myObjects');
  * ```
  */
- 
+
 /**
  * @ngdoc event
  * @name angulargm.directive:gmPolylines#gmPolylinesRedraw
@@ -878,7 +914,7 @@
      */
     function addMap(mapId, map) {
       if (!(map instanceof google.maps.Map)) {
-        throw 'map not a google.maps.Map: ' + map; 
+        throw 'map not a google.maps.Map: ' + map;
       } else if (mapId in maps) {
         throw 'already contain map with id ' + mapId;
       }
@@ -906,8 +942,12 @@
      *   when the map is added
      */
     function getMapPromise(mapId) {
-      var defer = defers[mapId] || $q.defer();  
+      var defer = defers[mapId] || $q.defer();
+      var map = getMap(mapId);
       defers[mapId] = defer;
+      if (map !== undefined) {
+        defer.resolve(map);
+      }
       return defer.promise;
     }
 
@@ -959,8 +999,8 @@
 
   angular.module('AngularGM').
 
-  factory('angulargmShape', 
-    ['$timeout', 'angulargmUtils', 
+  factory('angulargmShape',
+    ['$timeout', 'angulargmUtils',
     function($timeout, angulargmUtils) {
 
     /**
@@ -1013,10 +1053,14 @@
               $timeout(function() {
                 var context = {object: object};
                 context[type] = element;
-                     // scope is this directive's isolate scope
-                     // scope.$parent is the scope of ng-transclude
-                     // scope.$parent.$parent is the one we want
-                handler(scope.$parent.$parent, context);
+                if ((angular.version.major <= 1) && (angular.version.minor <= 2)) {
+                  // scope is this directive's isolate scope
+                  // scope.$parent is the scope of ng-transclude
+                  // scope.$parent.$parent is the one we want
+                  handler(scope.$parent.$parent, context);
+                } else {
+                  handler(scope.$parent.$parent.$parent , context);
+                }    
               });
             });
           });
@@ -1029,7 +1073,7 @@
      */
     function _removeOrphanedElements(type, scope, controller, objectCache) {
       var orphaned = [];
-      
+
       controller.forEachElementInScope(type, scope.$id, function(element, id) {
         if (!(id in objectCache)) {
           orphaned.push(id);
@@ -1056,7 +1100,7 @@
      * - listening for events
      */
     function _attachEventListeners(type, scope, attrs, controller, updateElements) {
- 
+
       // watch objects
       scope.$watch('gmObjects().length', function(newValue, oldValue) {
         if (newValue != null && newValue !== oldValue) {
@@ -1101,7 +1145,7 @@
     }
 
     /**
-     * Takes care of setting up the directive for the given type of shape. 
+     * Takes care of setting up the directive for the given type of shape.
      * Assumes the following directive scope:
      *   scope: {
      *     gmId: '&',
@@ -1167,7 +1211,7 @@
   factory('angulargmUtils', ['$parse', function($parse) {
 
     /**
-     * Check if two floating point numbers are equal. 
+     * Check if two floating point numbers are equal.
      *
      * @param {number} f1 first number
      * @param {number} f2 second number
@@ -1188,9 +1232,9 @@
      * or not google.maps.LatLng objects returns false.
      */
     function latLngEqual(l1, l2) {
-      if (!(l1 instanceof google.maps.LatLng && 
+      if (!(l1 instanceof google.maps.LatLng &&
             l2 instanceof google.maps.LatLng)) {
-        return false; 
+        return false;
       }
       return floatEqual(l1.lat(), l2.lat()) && floatEqual(l1.lng(), l2.lng());
     }
@@ -1228,7 +1272,7 @@
      * @throw if latLng not instanceof google.maps.LatLng
      */
     function latLngToObj(latLng) {
-      if (!(latLng instanceof google.maps.LatLng)) 
+      if (!(latLng instanceof google.maps.LatLng))
         throw 'latLng not a google.maps.LatLng';
 
       return {
@@ -1242,7 +1286,7 @@
      * @name #objToLatLng
      * @methodOf angulargm.service:angulargmUtils
      *
-     * @param {Object} obj of the form { lat: 40, lng: -120 } 
+     * @param {Object} obj of the form { lat: 40, lng: -120 }
      * @return {google.maps.LatLng} returns null if problems with obj (null,
      * NaN, etc.)
      */
@@ -1255,7 +1299,7 @@
         if (ok) {
           return new google.maps.LatLng(lat, lng);
         }
-      }  
+      }
       return null;
     }
 
@@ -1322,6 +1366,51 @@
 })();
 
 /**
+ * @ngdoc service
+ * @name angulargm.service:debounce
+ *
+ * @description
+ * Debounce function. Stolen from https://github.com/shahata/angular-debounce
+ */
+(function () {
+'use strict';
+
+  angular.module('AngularGM').
+
+  factory('debounce', ['$timeout', function ($timeout) {
+    return function (func, wait, immediate) {
+      var timeout, args, context, result;
+      function debounce() {
+        /* jshint validthis:true */
+        context = this;
+        args = arguments;
+        var later = function () {
+          timeout = null;
+          if (!immediate) {
+            result = func.apply(context, args);
+          }
+        };
+        var callNow = immediate && !timeout;
+        if (timeout) {
+          $timeout.cancel(timeout);
+        }
+        timeout = $timeout(later, wait);
+        if (callNow) {
+          result = func.apply(context, args);
+        }
+        return result;
+      }
+      debounce.cancel = function () {
+        $timeout.cancel(timeout);
+        timeout = null;
+      };
+      return debounce;
+    };
+  }]);
+
+})();
+
+/**
  * Directive controller which is owned by the [gmMap]{@link module:gmMap}
  * directive and shared among all other angulargm directives.
  */
@@ -1360,7 +1449,7 @@
       var config = this._getConfig($scope, angulargmDefaults);
 
       // 'private' properties
-      this._map = this._createMap(mapId, mapDiv, config, angulargmContainer, $scope);
+      constants.map = this._map = this._createMap(mapId, mapDiv, config, angulargmContainer, $scope);
       this._elements = {};
       this._listeners = {};
 
@@ -1465,8 +1554,6 @@
         this.mapTrigger('resize');
         map.setOptions(config);
       }
-
-      constants.map = map;
       return map;
     };
 
@@ -1480,10 +1567,6 @@
 
       this.addMapListener('idle', function () {
         self.dragging = false;
-      });
-
-      this.addMapListener('drag', function() {
-        self.dragging = true;
       });
     };
 
@@ -1506,6 +1589,11 @@
           });
         });
       });
+
+      var streetView = this._map.getStreetView();
+      if (streetView && streetView.getVisible()) {
+        streetView.setVisible(false);
+      }
     };
 
 
@@ -1531,8 +1619,13 @@
      * @param {Function} a handler for the event
      */
     this.addMapListenerOnce = function(event, handler) {
-      google.maps.event.addListenerOnce(this._map,
-          event, handler);
+      var listener = google.maps.event.addListenerOnce(this._map, event, handler);
+
+      if (this._listeners[event] === undefined) {
+        this._listeners[event] = [];
+      }
+
+      this._listeners[event].push(listener);
     };
 
 
@@ -1581,7 +1674,13 @@
                 throw 'polylineOptions did not contain a path';
             }
             return new angulargmDefaults.polylineConstructor(opts);
-        } else {
+        } else if (type === 'circle') {
+            if (!(opts.center instanceof google.maps.LatLng)) {
+                throw 'circleOptions did not contain a marker position';
+            }
+            return new angulargmDefaults.circleConstructor(opts);
+        }
+        else {
           throw 'unrecognized type ' + type;
         }
     };
@@ -1596,7 +1695,7 @@
     /**
      * Adds a new element to the map.
      * @return {boolean} true if an element was added, false if there was already
-     *   an element with the given id     
+     *   an element with the given id
      * @throw if any arguments are null/undefined or elementOptions does not
      *   have all the required options (i.e. position)
      */

@@ -132,9 +132,9 @@
               </select>
             </div>
             <div class="row">
-              <button type="submit" class="btn btn-info col-xs-6 col-xs-offset-6" ng-disabled="signupForm.$invalid">Criar conta</button>
+              <button type="submit" class="btn btn-info col-xs-6 col-xs-offset-6" ng-disabled="signupForm.$invalid || signingUp">Criar conta</button>
             </div>
-          </form> 
+          </form>
           <p style="margin-top: 30px;">Já tem conta? <a ng-click="switchLoginActive()">Faça seu login</a>!</p>
         </div>
       </div>

@@ -111,6 +111,7 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
     $scope.$apply();
   };
 
+  $scope.signingUp = false;
   $scope.signup = function () {
     if ($scope.signupForm.$valid && $scope.nonprofit.causes.length && $scope.imageUploaded && $scope.coverUploaded) {
       $scope.nonprofit.user.password = $scope.password;
@@ -124,6 +125,8 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
       $scope.creatingNonprofit = true;
       $scope.buttonText = 'Finalizando cadastro...';
 
+      $scope.signingUp = true;
+
       Auth.nonprofitSignup($scope.files, function () {
         Auth.login({
             username: $scope.nonprofit.user.email,
@@ -132,6 +135,7 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
           }, function (response) {
             $scope.creatingNonprofit = false;
             $scope.buttonText = 'Finalizar cadastro';
+            $scope.signingUp = false;
             Auth.getCurrentUser(response.access_token).then(
               function (user) {
                 $rootScope.$emit('userLoggedIn', user, 'Bem vinda ONG ao atados! Sua ONG ainda precisa ser aprovada. Espere pelo nosso email.');
@@ -142,14 +146,16 @@ app.controller('NonprofitSignupCtrl', function($scope, $rootScope, $filter, $sta
                 $state.transitionTo('root.home');
               });
           }, function () {
+            $scope.signingUp = false;
             $scope.error = 'Usuário ou senha estão errados :(';
           });
       },
       function (error) {
+        $scope.signingUp = false;
         $scope.creatingNonprofit = false;
         $scope.buttonText = 'Finalizar cadastro';
         if (error.detail && error.detail === 'Nonprofit already exists.') {
-          toastr.error('Esta ONG já está em nosso banco. Favor utilizar efetuar login ou entrar em contato.');
+          toastr.error('Esta ONG já está em nosso banco. Favor efetuar login ou entrar em contato.');
         }
       });
     } else {

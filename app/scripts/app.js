@@ -18,7 +18,18 @@ var app = angular.module('atadosApp', [
   'datePicker'
 ]);
 
-app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+app.config(function($provide, $stateProvider, $urlRouterProvider, $locationProvider) {
+  if (window.Rollbar && (window.host && (window.host.indexOf('local') !== -1))) {
+    $provide.decorator("$exceptionHandler", function ($delegate) {
+      return function (exception, cause) {
+        if (exception.message.indexOf('[ngModel:numfmt]') !== -1) {
+          return;
+        }
+        $delegate(exception, cause);
+        Rollbar.error("Frontend error", exception);
+      };
+    });
+  }
 
   $urlRouterProvider.when('/ato/:slug', '/vaga/:slug');
   $urlRouterProvider.when('/cadastro/ato/:id', 'cadastro/vaga/:id');
@@ -73,6 +84,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/explore/:tab',
       templateUrl: '/partials/explore.html',
       controller: 'ExplorerCtrl'
+    })
+    .state('root.grandeSP', {
+      url: '/GrandeSP',
+      controller: 'GrandeSPCtrl'
     })
     .state('root.volunteer', {
       url: '/voluntario/:slug',

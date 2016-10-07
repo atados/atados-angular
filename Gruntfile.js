@@ -7,6 +7,12 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+
+var ENABLE_LIVERELOAD = true;
+if (process.env.ENABLE_LIVERELOAD !== undefined) {
+  ENABLE_LIVERELOAD = process.env.ENABLE_LIVERELOAD;
+} 
+
 module.exports = function (grunt) {
 
   // Load grunt tasks automatically
@@ -155,6 +161,70 @@ module.exports = function (grunt) {
             lng: 0
           }
         }
+      },
+      homolog: {
+        options: {
+          dest: '<%= yeoman.dist %>/public/scripts/constants.js'
+        },
+        constants: {
+          ENV: 'homolog',
+          api: 'https://apihomolog.atados.com.br/v1/',
+          authApi: 'https://homolog.atados.com.br/auth/client',
+          storage: 'https://s3.amazonaws.com/atados-us/images/',
+          selected: 'https://s3.amazonaws.com/atados-us/images/heart.png',
+          notselected: 'https://s3.amazonaws.com/atados-us/images/blue.png',
+          facebookClientId: '430973993601792',
+          locale: 'pt_BR',
+          accessTokenCookie: 'access_token',
+          csrfCookie: 'csrftoken',
+          sessionIdCookie: 'sessionid',
+          grantType: 'password',
+          page_size: 30,
+          active_cities: 4,
+          static_page_size: 300,
+          weekdays: [
+            {1: 'Segunda'},
+            {2: 'Terça'},
+            {3: 'Quarta'},
+            {4: 'Quinta'},
+            {5: 'Sexta'},
+            {6: 'Sabado'},
+            {7: 'Domingo'}
+          ],
+          periods: [
+            {0: 'Manha'},
+            {1: 'Tarde'},
+            {2: 'Noite'}
+          ],
+          defaultZoom: 10,
+          VOLUNTEER: 'VOLUNTEER',
+          NONPROFIT: 'NONPROFIT',
+          saoPaulo: {
+            id: 9422,
+            lat: -23.5505199,
+            lng: -46.6333094
+          },
+          curitiba: {
+            id: 5915,
+            lat: -25.4808762,
+            lng: -49.3044253
+          },
+          brasilia: {
+            id: 1724,
+            lat: -15.79211,
+            lng: -47.897751
+          },
+          rioDeJaneiro: {
+            id:6861,
+            lat:-22.9082998,
+            lng:-43.1970773
+          },
+          distancia: {
+            id: 0,
+            lat: 0,
+            lng: 0
+          }
+        }
       }
     },
     // Project settings
@@ -190,7 +260,7 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
         options: {
-          livereload: true
+          livereload: ENABLE_LIVERELOAD
         }
       },
       jsTest: {
@@ -211,9 +281,8 @@ module.exports = function (grunt) {
           '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
           '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
         ],
-      
         options: {
-          livereload: true
+          livereload: ENABLE_LIVERELOAD
         }
       },
       express: {
@@ -223,7 +292,7 @@ module.exports = function (grunt) {
         ],
         tasks: ['newer:jshint:server', 'express:dev'],
         options: {
-          livereload: true,
+          livereload: ENABLE_LIVERELOAD,
           nospawn: true //Without this option specified express won't be reloaded
         }
       }
@@ -514,6 +583,22 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'ngconstant:production',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'concat',
+    'ngAnnotate',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    'rev',
+    'usemin'
+  ]);
+
+  grunt.registerTask('buildhomolog', [
+    'clean:dist',
+    'ngconstant:homolog',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',

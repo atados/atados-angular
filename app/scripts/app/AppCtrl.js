@@ -16,6 +16,12 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
   $scope.states = Site.states;
   $scope.numbers = Site.numbers;
 
+  /*
+  if ($scope.site) {
+    $scope.site.name = $scope.site.name || 'Atados - Juntando Gente Boa'
+    $scope.site.title = $scope.site.title || 'Atados - Juntando Gente Boa'
+  }
+  */
   // Called from Footer links
   $scope.citySearch = function (city) {
     $scope.cities().forEach(function (c) {

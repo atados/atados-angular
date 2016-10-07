@@ -14,7 +14,12 @@
     <div id="project-management" ng-hide="nonprofit.projects.length === 0">
       <div class="col-md-4" id="project-list">
         <button class="btn col-md-12" ng-repeat="project in nonprofit.projects" ng-class="{choosenProject: project===activeProject}" ng-click="changeActiveProject(project)" >
-          <span ng-style="project.statusStyle" class="badge">{{project.volunteers.length}}</span>
+          <span ng-if="project.volunteers">
+            <span ng-style="project.statusStyle" class="badge">{{project.volunteers.length | number}}</span>
+          </span>
+          <span ng-if="!project.volunteers">
+            <span ng-style="project.statusStyle" class="badge">0</span>
+          </span>
           {{project.name}}
         </button>
       </div>
@@ -27,13 +32,28 @@
             <span tooltip="O pessoal do Atados está analisando a sua Vaga e já entrará em contato!" ng-show="!activeProject.published" class="pull-right label label-warning">Vaga em aprovação</span>
           </h3>
         </div>
-        <div class="" id="project-action-buttons">
-          <a class="" ng-click="editProject(activeProject)" id="edit-project"><i class="fa fa-edit"></i> Editar Vaga</a>
-          <a class="" ng-click="cloneProject(activeProject)" id="clone-project"><i class="fa fa-copy"></i> Duplicar Vaga</a>
-          <a class="" ng-click="closeOrOpenProject(activeProject)" id="close-project" ng-hide="activeProject.closed || !activeProject.published"><i class="fa fa-times-circle-o"></i> Fechar Inscrições</a>
-          <a class="" ng-click="closeOrOpenProject(activeProject)" id="open-project" ng-show="activeProject.closed && activeProject.published"><i class="fa fa-times-circle-o"></i> Abrir Inscrições</a>
-          <a class="" href="{{activeProject.emailAllString}}" target="_blank" id="send-email-all"><i class="fa fa-envelope-o"></i> Enviar Email para todos</a>
-          <a class="" ng-click="exportList(activeProject)" id="export-list"><i class="fa fa-table"></i> Exportar lista como planilha</a>
+        <div id="project-action-buttons">
+          <a ng-click="editProject(activeProject)" id="edit-project"><i class="fa fa-edit"></i> Editar Vaga</a>
+
+          <a id="clone-project" class=""
+            ng-click="cloneProject(activeProject)"
+            ng-disabled="cloningProject"
+          ><i class="fa fa-copy"></i> Duplicar Vaga</a>
+
+          <a id="close-project"
+            ng-click="closeOrOpenProject(activeProject)"
+            ng-hide="activeProject.closed || !activeProject.published"
+            ng-disabled="closingOrOpeningProject"
+          ><i class="fa fa-times-circle-o"></i> Fechar Inscrições</a>
+          <a id="open-project"
+            ng-click="closeOrOpenProject(activeProject)"
+            ng-show="activeProject.closed && activeProject.published"
+            ng-disabled="closingOrOpeningProject"
+          ><i class="fa fa-times-circle-o"></i> Abrir Inscrições</a>
+          <a href="{{activeProject.emailAllString}}" target="_blank" id="send-email-all"><i class="fa fa-envelope-o"></i> Enviar Email para todos</a>
+          <a id="export-list"
+            ng-click="exportList(activeProject)"
+          ><i class="fa fa-table"></i> Exportar lista como planilha</a>
         </div>
         <table class="table table-striped" id="project-volunteer-table">
           <tr>
@@ -57,7 +77,9 @@
               </a>
               <ul class="dropdown-menu">
                 <li ng-repeat="status in volunteerStatusOptions">
-                <a ng-click="changeVolunteerStatus(volunteer, status)">{{status}}</a>
+                <a
+                  ng-click="changeVolunteerStatus(volunteer, status)"
+                  ng-disabled="changingVolunteerStatus">{{status}}</a>
                 </li>
               </ul>
               </li>

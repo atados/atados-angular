@@ -4,10 +4,12 @@
 /* global OverlappingMarkerSpiderfier: false */
 /* global $: false */
 
+
 var constants = {
   map: null,
   markers: []
 };
+
 
 var app = angular.module('atadosApp');
 
@@ -173,14 +175,14 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
     $scope.previousSlug = object.slug;
     var cardId = 'card-' + object.slug;
     angular.element(document.querySelector('#' + cardId))
-        .addClass('hover');
-
+      .addClass('hover')
+    ;
 
     if (marker) {
       $scope.iw.setContent(marker.title);
       $scope.iw.open(constants.map, marker); // Also centers map to the marker.
       marker.setIcon(selected);
-      marker.setZIndex(100);
+      marker.setZIndex(201);
       $scope.previousMarker = marker;
     } else { // No marker
       if (object.work) {
