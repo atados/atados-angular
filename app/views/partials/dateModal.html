@@ -1,0 +1,45 @@
+<div class="modal-body date-modal">
+  <form novalidate role="form" name="dateForm" ng-submit="addDate()">
+    <div class="form-group">
+      <div>
+        <label for="">Evento do dia</label>
+      </div>
+      <input class="form-control" type="text" name="name" ng-model="dates.name" placeholder="Ex: Capacitação inicial">
+    </div>
+    <div class="form-group">
+      <div>
+        <label for="">Data</label>
+      </div>
+      <multiple-date-picker ng-model="dates.dates"></multiple-date-picker>
+      <input type="hidden" name="date_input" ng-model="tmp.date_input"><!-- input used only for validation -->
+      <label class="help-block" ng-show="dateForm.date_input.$error.required">É necessário informar uma data.</label>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div>
+          <label for="">Horário de inicio</label>
+        </div>
+        <div ng-model="dates.start" name="start">
+          <timepicker show-meridian="true"></timepicker>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div>
+          <label for="">Horário de fim</label>
+        </div>
+        <div ng-model="dates.end" name="end">
+          <timepicker show-meridian="true"></timepicker>
+        </div>
+      </div>
+    </div>
+    <div>
+      <label class="help-block" ng-show="dateForm.end.$error.job_time">O horário de fim deve ser após o horário de início.</label>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 text-right">
+        <a href="#" ng-click="cancel()">Cancelar</a>&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="btn btn-info" ng-click="save()" ng-disabled="dateForm.$invalid">Salvar</button>
+      </div>
+    </div>
+  </form> 
+</div>

@@ -1,5 +1,5 @@
 <div class="project-form">
-  <div class="menu" ng-show="formStep !== 5">
+  <div class="menu" ng-show="formStep !== 6">
     <ul>
       <li ng-class="formStep == 1 ? 'menu-active' : ''">
         <a href="#" ng-click="setFormStep(1)">
@@ -34,13 +34,21 @@
         </a>
       </li>
     </ul>
-    <!--
+    <ul ng-if="!loggedUser">
+      <li>
+        <a href="#" ng-click="setFormStep(101)">
+          <i class="fa fa-check gray" ng-show="nonprofitValidation.step1.pristine"></i>
+          <span ng-show="!nonprofitValidation.step1.pristine">
+            <i class="fa fa-check green" ng-show="nonprofitValidation.step1.valid"></i>
+            <i class="fa fa-exclamation-triangle red" ng-show="!nonprofitValidation.step1.valid"></i>
+          </span>
+          Sobre a ONG
+        </a>
+      </li>
+    </ul>
     <ul>
-      <li><a href="#">Pré-visualização</a></li>
-    </ul>-->
-    <ul>
-      <li ng-class="formStep == 4 ? 'menu-active' : ''">
-        <a href="#" ng-click="setFormStep(4)">Enviar para revisão</a>
+      <li ng-class="formStep == 5 ? 'menu-active' : ''">
+        <a href="#" ng-click="setFormStep(5)">Enviar para revisão</a>
       </li>
     </ul>
   </div>
@@ -126,7 +134,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Causa da vaga</label>
+                  <label for="causes">Causa da vaga</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <select class="form-control" name="causes" ng-model="tmp.cause" ng-options="c.name for c in filteredCauses" ng-disabled="project.causes.length >= 3" ng-required="true">
@@ -151,7 +159,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Habilidades possíveis para a vaga</label>
+                  <label for="skills">Habilidades possíveis para a vaga</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <select class="form-control" name="skills" ng-model="tmp.skill" ng-options="c.name for c in filteredSkills" ng-required="true">
@@ -176,7 +184,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Endereço</label>
+                  <label for="address">Endereço</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <div class="row gutter-5">
@@ -209,50 +217,12 @@
                   </div>
                   <div ng-show="project.dates.type == 'work'" class="controls">
                     <div class="row gutter-5">
-                      <div class="col-xs-7">
-                        <div class="well">
-                          <small>Selecione o dia</small>
-                          <ul class="tags selectable restrict-width">
-                            <li ng-click="tmp_r_day=1" ng-class="tmp_r_day==1 ? 'tag-active': ''">Seg</li>
-                            <li ng-click="tmp_r_day=2" ng-class="tmp_r_day==2 ? 'tag-active': ''">Ter</li>
-                            <li ng-click="tmp_r_day=3" ng-class="tmp_r_day==3 ? 'tag-active': ''">Qua</li>
-                            <li ng-click="tmp_r_day=4" ng-class="tmp_r_day==4 ? 'tag-active': ''">Qui</li>
-                            <li ng-click="tmp_r_day=5" ng-class="tmp_r_day==5 ? 'tag-active': ''">Sex</li>
-                            <li ng-click="tmp_r_day=6" ng-class="tmp_r_day==6 ? 'tag-active': ''">Sáb</li>
-                            <li ng-click="tmp_r_day=0" ng-class="tmp_r_day==0 ? 'tag-active': ''">Dom</li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="col-xs-5">
-                        <div class="well">
-                          <small>Selecione o período</small>
-                          <ul class="tags selectable">
-                            <li ng-click="tmp_r_period=0" ng-class="tmp_r_period==0 ? 'tag-active': ''">Manhã</li>
-                            <li ng-click="tmp_r_period=1" ng-class="tmp_r_period==1 ? 'tag-active': ''">Tarde</li>
-                            <li ng-click="tmp_r_period=2" ng-class="tmp_r_period==2 ? 'tag-active': ''">Noite</li>
-                          </ul>
-                        </div>
+                      <div class="col-xs-12">
+                        <textarea name="work_description" ng-model="project.dates.work.description" class="form-control" ng-required="true" ng-maxlength="4000" lock-maxlength="4000" input-show-length="true" rows="4"></textarea>
                       </div>
                     </div>
-
-                    <ul class="tags" ng-if="project.dates.work.availabilities.length">
-                      <li ng-repeat="a in project.dates.work.availabilities">
-                        <a href="#" ng-click="removeWorkAvailability(a.weekday, a.period)">&times;</a>
-                        <span ng-if="a.weekday==1">Segunda-feira</span>
-                        <span ng-if="a.weekday==2">Terça-feira</span>
-                        <span ng-if="a.weekday==3">Quarta-feira</span>
-                        <span ng-if="a.weekday==4">Quinta-feira</span>
-                        <span ng-if="a.weekday==5">Sexta-feira</span>
-                        <span ng-if="a.weekday==6">Sábado</span>
-                        <span ng-if="a.weekday==0">Domingo</span>
-                        <span ng-if="a.period==0">de manhã</span>
-                        <span ng-if="a.period==1">a tarde</span>
-                        <span ng-if="a.period==2">a noite</span>
-                      </li>
-                    </ul>
-
                     <small>
-                      Adicione todas as opções dos dias da semana e períodos que os voluntários irão atuar nessa vaga recorrente.
+                      Descreva os horários em que o projeto poderá ser realizado pelos voluntários
                     </small>
                   </div>
 
@@ -263,19 +233,21 @@
                   <div ng-show="project.dates.type == 'job'" class="controls">
                     <div class="gutter-5">
                       <div class="col-xs-12">
-                        <div class="datepicker" date-picker="date" min-view="date" max-view="date" ng-model="project.dates.job.date"></div>
-                      </div>
-
-                      <div class="col-xs-6">
-                        <br><label>Horário início:</label>
-                        <div ng-model="project.dates.job.start">
-                          <timepicker show-meridian="true"></timepicker>
-                        </div>
-                      </div>
-                      <div class="col-xs-6">
-                        <br><label>Horário fim</label>
-                        <div ng-model="project.dates.job.end">
-                          <timepicker show-meridian="true"></timepicker>
+                        <small>Adicione as datas em que a ação irá ocorrer</small>
+                        <button class="btn-success" type="button" ng-click="openDateModal()">Adicionar uma data</button>
+                        <div ng-if="project.dates.job.dates.length">
+                          <br><label>Datas da ação:</label>
+                          <div ng-if="!project.dates.job.dates.length">
+                            <small><i>Nenhuma data foi inserida.</i></small>
+                          </div>
+                          <div ng-if="project.dates.job.dates.length">
+                            <ul class="tags block">
+                              <li ng-repeat="date in project.dates.job.dates">
+                                <a href="#" ng-click="removeDate(date)">&times;</a>
+                                {{date.name}} - Data: {{date.start | date:"dd/MM/yy"}}
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -288,7 +260,7 @@
               <div ng-show="projectForm.date_type.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[projectForm.date_type.$invalid]"></div>
               <div ng-show="projectForm.date_type.$dirty">
                 <label class="help-block" ng-show="projectForm.date_type.$error.work_required">É necessário informar ao menos um horário para vagas recorrentes.</label>
-                <label class="help-block" ng-show="projectForm.date_type.$error.job_time">A ação não pode terminar em um horário antes de começar.</label>
+                <label class="help-block" ng-show="projectForm.date_type.$error.job_required">É necessário informar ao menos uma data para vagas pontuais.</label>
               </div>
             </fieldset>
 
@@ -338,7 +310,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Sobre a vaga</label>
+                  <label for="details">Sobre a vaga</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <textarea type="text" name="details" ng-model="project.details" class="form-control" ng-minlength="10" ng-maxlength="3000" lock-maxlength="3000" ng-required="true" input-show-length="true" rows="5"></textarea>
@@ -360,7 +332,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Cargos</label>
+                  <label for="tmp_role_name">Cargos</label>
                   <small><br>Adicione os cargos disponíveis para atuação dos voluntários.</small>
                 </div>
                 <div class="col-xs-12 col-sm-8">
@@ -425,7 +397,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Nome do responsável</label>
+                  <label for="responsible">Nome do responsável</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <input type="text" name="responsible" ng-model="project.responsible" class="form-control" ng-minlength="3" ng-maxlength="50" lock-maxlength="50" ng-required="true" input-show-length="true" row="4"></input>
@@ -443,7 +415,7 @@
             <fieldset>
               <div class="row">
                 <div class="col-xs-12 col-sm-4">
-                  <label for="tst">Email do responsável</label>
+                  <label for="email">Email do responsável</label>
                 </div>
                 <div class="col-xs-12 col-sm-8">
                   <input type="email" name="email" ng-model="project.email" class="form-control" ng-required="true"></input>
@@ -484,32 +456,46 @@
               <button class="btn-success" type="button" ng-click="setFormStep(2)">Passo anterior</button>
             </div>
             <div class="col-xs-6 text-right">
-              <button class="btn-success" type="button" ng-click="setFormStep(4)">Enviar para revisão</button>
+              <button class="btn-success" type="button" ng-click="setFormStep(5)" ng-if="loggedUser">Enviar para revisão</button>
+              <button class="btn-success" type="button" ng-click="setFormStep(101)" ng-if="!loggedUser">Próximo passo</button>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="step4" ng-show="formStep == 4">
+    <div class="step5" ng-show="formStep == 5">
       <div class="container padded-container">
-        <div ng-show="validation.valid">
+      </div>
+    </div>
+
+    <div class="step5" ng-show="formStep == 5">
+      <div class="container padded-container">
+        <div ng-show="validation.valid && ((nonprofitValidation.step1.valid && !loggedUser) || (loggedUser))">
           <div class="top-content">
-            <h2>Tudo pronto!</h2>
-            <h3>Você preencheu todos os campos corretamente. Agora é só enviar.</h3>
+            <div ng-if="!error">
+              <h2>Salvando...</h2>
+              <h3>Você preencheu todos os campos corretamente. Estamos enviando a vaga para revisão.<h3>
+              <i class="fa fa-spin fa-circle-o-notch fa-3x"></i>
+            </div>
+            <div ng-if="error">
+              <h2>Erro ao salvar.</h2>
+              <h3>Um erro aconteceu ao salvar a vaga. Tente novamente mais tarde.<h3>
+            </div>
           </div>
-          <div class="text-center">
+          <div class="text-center" ng-hide="true">
             <button class="btn-success" type="submit" ng-if="!saving">Enviar para revisão!</button>
             <button class="btn-success" type="submit" ng-if="saving" disabled="disabled">Salvando...</button>
           </div>
         </div>
 
-        <div ng-show="!validation.valid">
+        <div ng-show="!validation.valid || (!nonprofitValidation.step1.valid && !loggedUser)">
           <div class="top-content">
             <h2>Ixi, não conseguimos criar a sua vaga :o</h2>
             <h3 ng-show="!validation.step1.valid">Você esqueceu de completar a seção "Básico"</h3>
             <h3 ng-show="validation.step1.valid && !validation.step2.valid">Você esqueceu de completar a seção "Detalhes e cargos"</h3>
             <h3 ng-show="validation.step1.valid && validation.step2.valid && !validation.step3.valid">Você esqueceu de completar a seção "Responsável pela vaga"</h3>
+            <h3 ng-show="validation.step1.valid && validation.step2.valid && validation.step3.valid && !nonprofitValidation.step1.valid">Você esqueceu de completar a seção "Sobre a ONG"</h3>
           </div>
 
           <div class="text-center">
@@ -521,7 +507,7 @@
       </div>
     </div>
 
-    <div class="step5" ng-show="formStep == 5">
+    <div class="step6" ng-show="formStep == 6">
       <div class="container padded-container">
         <div ng-show="validation.valid">
           <div class="top-content" ng-if="loadedProject">
@@ -542,4 +528,73 @@
       </div>
     </div>
   </form>
+
+  <div class="step5" ng-show="formStep == 101">
+    <div id="nonprofit-login" ng-show="!showRegistration">
+      <div class="container">
+        <div class="top-content">
+          <h2>Sobre a ONG</h2>
+          <h3>Conte-nos mais sobre sua ONG.</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+            <div class="fields-container">
+              <form ng-submit="login()" ng-disabled="logginIn">
+                <fieldset>
+                  <h2>Faça o login</h2>
+                  <div class="row mg">
+                    <div class="col-xs-12 col-sm-3 col-sm-push-2 text-right">
+                      <label for="name">Email</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-sm-push-2">
+                      <input type="email" name="username" ng-model="loginData.username" class="form-control" ng-required="true"></input>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-3 col-sm-push-2 text-right">
+                      <label for="name">Senha</label>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-sm-push-2">
+                      <input type="password" name="password" ng-model="loginData.password" class="form-control" ng-required="true"></input>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                      <div class="alert alert-danger" ng-show="wrongCredentials">
+                        Usuário ou senha incorretos.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row text-right">
+                    <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                      <br>
+                      <button type="submit" class="btn-success btn-large" ng-show="!logginIn" ng-disabled="logginIn">Entrar</button><br>
+                      <button type="submit" class="btn-success btn-large" ng-show="logginIn" ng-disabled="true">
+                        <i class="fa fa-circle-o-notch fa-spin"></i>
+                      </button><br>
+                      <small>
+                        Não tem uma conta ainda?<br>
+                      </small>
+                      <small>
+                        Continue o processo de cadastro <a href="#" ng-click="setShowRegistration(true)">clicando aqui</a>.
+                      </small>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="nonprofit-new" ng-show="showRegistration">
+      <div class="container">
+        <nonprofit-form></nonprofit-form>
+      </div>
+    </div>
+  </div>
 </div>

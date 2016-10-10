@@ -76,6 +76,21 @@ app.directive('projectForm', function() {
   };
 });
 
+app.directive('nonprofitForm', function() {
+  return {
+    restrict: 'E',
+    scope: true,
+    link: function(scope) {
+      scope.$parent.nonprofitValidation = scope.validation;
+      scope.$parent.saveNonprofit = scope.saveNonprofit;
+      scope.setStep = scope.$parent.setFormStep;
+      scope.setShowRegistration = scope.$parent.setShowRegistration;
+    },
+    templateUrl: '/partials/nonprofitForm.html',
+    controller: 'NonprofitFormCtrl'
+  };
+});
+
 app.directive('phone', function () {
   return {
     restrict: 'E',
@@ -137,6 +152,27 @@ app.directive('phoneInput', function () {
     templateUrl: '/partials/phoneInput.html',
     link: function() {
       $('#phoneInput').focus(
+        function(){
+          $(this).mask('(99) 9999-9999?9', {
+            completed:function(){
+              $(this).mask('(99) 99999-9999');
+            }
+          });
+        });
+    },
+  };
+});
+
+app.directive('nonprofitPhoneInput', function () {
+  return {
+    restrict: 'E',
+    scope: {
+      object: '=object',
+      form: '=form',
+    },
+    templateUrl: '/partials/nonprofitPhoneInput.html',
+    link: function($scope, element) {
+      element.find('input').focus(
         function(){
           $(this).mask('(99) 9999-9999?9', {
             completed:function(){

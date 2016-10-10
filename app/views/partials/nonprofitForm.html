@@ -1,0 +1,311 @@
+<div class="nonprofit-form">
+  <form novalidate role="form" class="form-horizontal" name="nonprofitForm" ng-submit="saveNonprofit()" ng-disabled="saving || !validation.valid">
+    <div ng-if="!success">
+      <div class="top-content">
+        <h2>Sobre a ONG</h2>
+        <h3>Conte-nos mais sobre sua ONG.</h3>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-push-1 col-lg-8 col-lg-push-2">
+          <div class="log-link" ng-if="insideProject">
+            Caso sua ONG já esteja cadastrada, <a href="#" ng-click="setShowRegistration(false);">faça o login</a>.
+          </div>
+          <div class="fields-container nopd">
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="name">Nome da ONG</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input type="text" name="name" placeholder="" ng-model="nonprofit.name" class="form-control" ng-required="true" ng-minlength="3" ng-maxlength="40" lock-maxlength="40" input-show-length="true"></input>
+                </div>
+              </div>
+              <div ng-show="nonprofitForm.name.$pristine" class="indicator"></div>
+              <div ng-show="nonprofitForm.name.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[nonprofitForm.name.$invalid]"></div>
+              <div ng-show="nonprofitForm.name.$dirty">
+                <label class="help-block" ng-show="nonprofitForm.name.$error.minlength">Não pode ter menos de 3 caracteres.</label>
+                <label class="help-block" ng-show="nonprofitForm.name.$error.maxlength">Não pode ter mais de 40 caracteres.</label>
+                <label class="help-block" ng-show="nonprofitForm.name.$error.required">É necessário preencher este campo.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="description">Mini-descrição da ONG</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <textarea name="description" ng-model="nonprofit.description" class="form-control" ng-required="true" ng-minlength="10" ng-maxlength="160" lock-maxlength="160" input-show-length="true" rows="4"></textarea>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-sm-push-4">
+                  <small>Faça uma descrição atrativa e resumida do trabalho!</small>
+                </div>
+              </div>
+              <div ng-show="nonprofitForm.description.$pristine" class="indicator"></div>
+              <div ng-show="nonprofitForm.description.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[nonprofitForm.description.$invalid]"></div>
+              <div ng-show="nonprofitForm.description.$dirty">
+                <label class="help-block" ng-show="nonprofitForm.description.$error.minlength">Não pode ter menos de 10 caracteres.</label>
+                <label class="help-block" ng-show="nonprofitForm.description.$error.maxlength">Não pode ter mais de 160 caracteres.</label>
+                <label class="help-block" ng-show="nonprofitForm.description.$error.required">É necessário preencher este campo.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="details">Descrição completa da ONG</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <textarea name="details" ng-model="nonprofit.details" class="form-control" ng-required="true" ng-minlength="10" ng-maxlength="3000" lock-maxlength="3000" input-show-length="true" rows="4"></textarea>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-sm-push-4">
+                  <small>Qual o público atendido e a importância desse trabalho; conte um pouco da história; detalhe as atividades e projetos desenvolvidos.</small>
+                </div>
+              </div>
+              <div ng-show="nonprofitForm.details.$pristine" class="indicator"></div>
+              <div ng-show="nonprofitForm.details.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[nonprofitForm.details.$invalid]"></div>
+              <div ng-show="nonprofitForm.details.$dirty">
+                <label class="help-block" ng-show="nonprofitForm.details.$error.minlength">Não pode ter menos de 10 caracteres.</label>
+                <label class="help-block" ng-show="nonprofitForm.details.$error.maxlength">Não pode ter mais de 3000 caracteres.</label>
+                <label class="help-block" ng-show="nonprofitForm.details.$error.required">É necessário preencher este campo.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="image">Logo da ONG</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <div class="dropzone" ng-dropzone dropzone="imageDropzone" dropzone-config="imageDropzoneConfig" traverse="2" event-handlers="{ 'addedfile': dzAddedFile, 'error': dzError }">
+                    <div class="dz-message" data-dz-message>
+                      <b>Escolha uma imagem do seu computador</b><br>
+                      Essa imagem ficará associada à sua vaga.<br>
+                      JPG, PNG ou GIF - Limite de 2MB<br>
+                      Ao menos 800x450 pixels - Proporção 16:9
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <input type="hidden" name="image" ng-model="nonprofit.image.id" ng-required="true">
+              <div ng-show="nonprofitForm.image.$pristine" class="indicator"></div>
+              <div ng-show="nonprofitForm.image.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[nonprofitForm.image.$invalid]"></div>
+              <div ng-show="nonprofitForm.image.$dirty">
+                <label class="help-block" ng-show="nonprofitForm.image.$error.required">É necessário colocar uma imagem.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="cover">Imagem para a capa do perfil</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <div class="dropzone" ng-dropzone dropzone="coverDropzone" dropzone-config="coverDropzoneConfig" traverse="2" event-handlers="{ 'addedfile': dzAddedFile, 'error': dzError }">
+                    <div class="dz-message" data-dz-message>
+                      <b>Escolha uma imagem do seu computador</b><br>
+                      Essa imagem ficará associada à sua vaga.<br>
+                      JPG, PNG ou GIF - Limite de 2MB<br>
+                      Ao menos 800x450 pixels - Proporção 16:9
+                    </div>
+                  </div>
+                  <small>Escolha uma imagem atrativa que represente o seu trabalho.</small>
+                </div>
+              </div>
+
+              <input type="hidden" name="cover" ng-model="nonprofit.cover.id" ng-required="true">
+              <div ng-show="nonprofitForm.cover.$pristine" class="indicator"></div>
+              <div ng-show="nonprofitForm.cover.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[nonprofitForm.cover.$invalid]"></div>
+              <div ng-show="nonprofitForm.cover.$dirty">
+                <label class="help-block" ng-show="nonprofitForm.cover.$error.required">É necessário colocar uma imagem.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <nonprofit-phone-input object="nonprofit" form="nonprofitForm"></nonprofit-phone-input>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="address">Endereço</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <div class="row gutter-5">
+                    <div class="col-xs-8">
+                      <input g-places-autocomplete autocomplete="off" type="text" class="form-control" name="address" ng-model="nonprofit.address.addr" ng-required="true">
+                    </div>
+                    <div class="col-xs-4">
+                      <input type="text" placeholder="Complemento" class="form-control" ng-model="nonprofit.address.typed_address2">
+                    </div>
+                  </div>
+
+                  <small>
+                    <input type="checkbox" name="hidden_address" ng-model="nonprofit.hidden_address"> Não quero que publiquem o endereço a ONG.
+                  </small>
+                </div>
+              </div>
+              <div ng-show="nonprofitForm.address.$pristine" class="indicator"></div>
+              <div ng-show="nonprofitForm.address.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[nonprofitForm.address.$invalid]"></div>
+              <div ng-show="nonprofitForm.address.$dirty">
+                <label class="help-block" ng-show="nonprofitForm.address.$error.required">É necessário informar o endereço da organização.</label>
+                <label class="help-block" ng-show="nonprofitForm.address.$error.string && !nonprofitForm.address.$error.required">É necessário selecionar um endereço da lista.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="causes">Causa da ONG</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <select class="form-control" name="causes" ng-model="tmp.cause" ng-options="c.name for c in filteredCauses" ng-disabled="nonprofit.causes.length >= 3" ng-required="true">
+                  </select>
+                  <ul class="tags" ng-if="nonprofit.causes.length">
+                    <li ng-repeat="cause in nonprofit.causes">
+                      <a href="#" ng-click="removeCause(cause.id)">&times;</a>
+                      {{cause.name}} 
+                    </li>
+                  </ul>
+                  <small>Selecione uma ou mais causas para a vaga(limite de 3 causas).</small>
+                </div>
+              </div>
+
+              <div ng-show="nonprofitForm.causes.$pristine" class="indicator"></div>
+              <div ng-show="nonprofitForm.causes.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[nonprofitForm.causes.$invalid]"></div>
+              <div ng-show="nonprofitForm.causes.$dirty">
+                <label class="help-block" ng-show="nonprofitForm.causes.$error.required">É necessário selecionar ao menos uma causa.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="website">Website</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input type="text" name="website" placeholder="" ng-model="nonprofit.website" class="form-control" ng-required="false" ng-maxlength="60" lock-maxlength="60"></input>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-sm-push-4">
+                  <small>Se tiver um site, coloque aqui.</small>
+                </div>
+              </div>
+              <div ng-show="nonprofitForm.website.$pristine" class="indicator"></div>
+              <div ng-show="nonprofitForm.website.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[nonprofitForm.website.$invalid]"></div>
+              <div ng-show="nonprofitForm.website.$dirty">
+                <label class="help-block" ng-show="nonprofitForm.website.$error.maxlength">Não pode ter mais de 60 caracteres.</label>
+                <label class="help-block" ng-show="nonprofitForm.website.$error.required">É necessário preencher este campo.</label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="facebook_page_short">Facebook</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <div class="input-group">
+                    <span class="input-group-addon">fb.com/</span>
+                    <input type="text" name="facebook_page_short" placeholder="" ng-model="nonprofit.facebook_page_short" class="form-control" ng-required="false" ng-maxlength="60" lock-maxlength="60"></input>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-sm-push-4">
+                  <small>Tem uma página no face? Mostra pra gente.</small>
+                </div>
+              </div>
+              <div ng-show="nonprofitForm.facebook_page_short.$pristine" class="indicator"></div>
+              <div ng-show="nonprofitForm.facebook_page_short.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[nonprofitForm.facebook_page_short.$invalid]"></div>
+              <div ng-show="nonprofitForm.facebook_page_short.$dirty">
+                <label class="help-block" ng-show="nonprofitForm.facebook_page_short.$error.maxlength">Não pode ter mais de 60 caracteres.</label>
+              </div>
+            </fieldset>
+
+            <fieldset ng-if="!loadedNonprofit">
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="email">Email</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input type="email" name="email" ng-model="nonprofit.email" class="form-control" ng-required="true"></input>
+                </div>
+              </div>
+              <div ng-show="nonprofitForm.email.$pristine" class="indicator"></div>
+              <div ng-show="nonprofitForm.email.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[nonprofitForm.email.$invalid]"></div>
+              <div ng-show="nonprofitForm.email.$dirty">
+                <label class="help-block" ng-show="nonprofitForm.email.$invalid && nonprofitForm.email.$dirty && !nonprofitForm.email.$error.required">Email inválido.</label>
+                <label class="help-block" ng-show="nonprofitForm.email.$error.required">É necessário preencher este campo.</label>
+              </div>
+            </fieldset>
+
+            <fieldset ng-if="!loadedNonprofit">
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="password">Senha</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input type="password" name="password" ng-model="nonprofit.password" class="form-control" ng-required="true" ng-minlength="6"></input>
+                </div>
+              </div>
+              <div ng-show="nonprofitForm.password.$pristine" class="indicator"></div>
+              <div ng-show="nonprofitForm.password.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[nonprofitForm.password.$invalid]"></div>
+              <div ng-show="nonprofitForm.password.$dirty">
+                <label class="help-block" ng-show="nonprofitForm.password.$error.minlength">A senha deve ter ao menos 6 caracteres.</label>
+                <label class="help-block" ng-show="nonprofitForm.password.$error.required">É necessário preencher este campo.</label>
+              </div>
+            </fieldset>
+
+            <fieldset ng-if="loadedNonprofit">
+              <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                  <label for="password">Nova senha</label>
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                  <input type="password" name="newPassword" ng-model="nonprofit.newPassword" class="form-control" ng-minlength="6"></input>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-sm-push-4">
+                  <small>Preencha apenas caso queira alterar sua senha.</small>
+                </div>
+              </div>
+              <div ng-show="nonprofitForm.newPassword.$pristine" class="indicator"></div>
+              <div ng-show="nonprofitForm.newPassword.$dirty" ng-class="{true: 'indicator error', false: 'indicator success'}[nonprofitForm.newPassword.$invalid]"></div>
+              <div ng-show="nonprofitForm.newPassword.$dirty">
+                <label class="help-block" ng-show="nonprofitForm.newPassword.$error.minlength">A nova senha deve ter ao menos 6 caracteres.</label>
+              </div>
+            </fieldset>
+
+
+            <div class="row step-control">
+              <div class="col-xs-12 text-right">
+                <small ng-if="!validation.valid">Preencha todos os campos corretamente para prosseguir.</small>
+              </div>
+              <div class="col-xs-6 col-xs-push-6 text-right">
+                <divi ng-if="loadedNonprofit">
+                  <button class="btn-success" type="button" ng-click="saveNonprofit()" ng-disabled="!validation.valid || saving">Salvar</button>
+                </div>
+                <divi ng-if="!loadedNonprofit">
+                  <div ng-if="!insideProject">
+                    <button class="btn-success" type="button" ng-click="saveNonprofit()" ng-disabled="!validation.valid">Cadastrar</button>
+                  </div>
+                  <div ng-if="insideProject" class="text-right">
+                    <button class="btn-success" type="button" ng-click="setStep(5)">Próximo passo</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div ng-if="success">
+      <div class="top-content">
+        <h2>Parabéns! Sua ONG foi criada com sucesso. \o/</h2>
+        <h3>Agora é só esperar nossa equipe revisar e ela deve estar em nosso site em alguns dias.</h3>
+        <div class="text-center">
+          <button class="btn-success btn-primary" type="button" ui-sref="root.newproject">Cadastrar minha primeira vaga</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
