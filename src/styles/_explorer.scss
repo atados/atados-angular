@@ -1,0 +1,93 @@
+#atados-explorer-outer {
+  .map-outer {
+    padding: 0;
+    box-shadow: inset -1px 0 1px rgba(0, 0, 0, 0.3);
+
+    #map-message {
+      font-size: 15px;
+      font-weight: 800;
+      position: absolute;
+      width: 100%;
+      top: 150px;
+      margin-left: 30%;
+    }
+    .map {
+      width:100%;
+    }
+  }
+}
+
+#atados-explorer {
+  overflow: auto;
+  background-color: #efefef;
+  padding: 30px 15px;
+
+  .explanation {
+    text-align: center;
+
+    h4 {
+      color: #999;
+      font-weight:bold;
+      font-size: 30px;
+      text-shadow: 1px 0 1px rgba(0,0,0,0.2);
+      #atos {
+        color: $orange;
+        cursor: pointer;
+      }
+      #ongs {
+        color: $blue-dark;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .btn-tab {
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
+    color: #666;
+    background-color: #ececec;
+    padding: 15px;
+    margin-right: -5px;
+    box-shadow: none;
+  }
+  .btn-tab.active {
+    box-shadow: none;
+    background-color: rgba(222, 222, 222, 0.5);
+  }
+}
+
+.filters {
+  background-color: rgba(222, 222, 222, 0.5);
+  border-radius: 5px;
+  padding: 20px 10px;
+  color: $blue-dark;
+  margin-bottom: 20px;
+  .form-group {
+    padding: 0px 5px;
+      select {
+        -moz-appearance: none;
+        text-indent: 0.01px;
+        text-overflow: ' ';
+        height: 44px;
+        background: #fafafa $arrow-down no-repeat 95% 50%;
+        color: $gray-light;
+        -webkit-appearance: none;
+      }
+      input {
+        height: 44px;
+      }
+  }
+  #searchInput {
+    height: 44px;
+  }
+  #search-bar {
+    margin-left: 0px;
+    margin-bottom: 10px;
+  }
+  
+  #searchProjects {
+    height: 44px;
+    width: 150px;
+    background: linear-gradient($blue, $blue-dark);
+  }
+}

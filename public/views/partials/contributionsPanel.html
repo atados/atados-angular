@@ -1,0 +1,53 @@
+<div class="contribute-panel">
+  <div class="container">
+    <form class="access-form" ng-submit="accessPanel($event)" ng-hide="subs">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-push-3 login">
+          <p>Acesse seu painel de doador para consultar suas contribuições ou cancelar.</p>
+          <div class="row">
+            <div class="col-xs-12">
+              <label>
+                CPF
+                <input type="text" class="form-control" ng-model="doc"></input>
+              </label>
+            </div>
+            <div class="col-xs-12">
+              <label>
+                Email
+                <input type="text" class="form-control" ng-model="email"></input>
+              </label>
+            </div>
+            <div class="col-xs-12">
+              <input type="submit" class="btn btn-info" value="Acessar">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-push-3 subs-list" ng-show="subs">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Data</th>
+              <th>Valor</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="sub in subs">
+              <td><span class="status" ng-class="sub.status == 'paid' || sub.status == 'authorized' ? 'green' : ''"></span></td>
+              <td>{{ sub.created_date | date:"(EEEE) dd 'de' MMMM 'de' yyyy"}}</td>
+              <td>{{ sub.value | currency:"R$":2}}</td>
+              <td>
+                <a href="#" ng-click="cancelSubscription($event, sub)" ng-if="(sub.status == 'paid' || sub.status == 'authorized') && sub.active && !sub.parent">Cancelar</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

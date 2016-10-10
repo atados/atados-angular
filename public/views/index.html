@@ -1,0 +1,201 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-controller="AppCtrl"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-controller="AppCtrl"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" ng-controller="AppCtrl"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="atadosApp" ng-controller="AppCtrl"> <!--<![endif]-->
+<!--
+  Oooo xereta, tá fuçando por aqui é?
+  Quer dizer então que você gosta de programação e essas paradas?
+  Que acha de usar essa sua habilidade única pra fazer um trabalho voluntário?
+  Tem um monte de ONGs e projetos precisando de "nerdões" como nós!
+  Explore nossas vagas no filtro Informática / Eletrônica =)
+-->
+  <head>
+    <base href="/" />
+    <meta name="fragment" content="!">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title ng-bind="site.title">Atados - Juntando Gente boa</title>
+    <meta name="description" content="{{site.description}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Open Graph objects-->
+    <meta property="og:title" content="{{site.title}}" />
+    <meta property="og:type" content="{{site.og.type}}" />
+    <meta property="og:url" content="{{site.og.url}}" />
+    <meta property="og:image" content="{{site.og.image}}" />
+    <meta property="og:description" content="{{site.description}}" />
+    <!-- End of Open Graph -->
+
+    <link rel="shortcut icon" href="https://www.atados.com.br/favicon.ico" />
+
+    <!-- build:css(app) /styles/vendor.css -->
+    <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/bower_components/angular-loading-bar/build/loading-bar.min.css" />
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp,app}) /styles/main.css -->
+    <link rel="stylesheet" href="/styles/atados.css">
+    <!-- endbuild -->
+
+    <script src="https://assets.pagar.me/js/pagarme.min.js"></script>
+    <script type="text/javascript"> //<![CDATA[
+      var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
+      document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
+      //]]>
+    </script>
+  </head>
+  <body>
+
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-M3WZQJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M3WZQJ');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <!--[if lt IE 7]>
+      <div class="alert">
+        <p class="browsehappy">Você está usando um navegador <strong>antiquado</strong>. Por favor <a href="https://www.google.com/intl/pt/chrome/browser/">atualize seu navegador</a> para melhorar sua experiencia na web.</p>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      </div>
+    <![endif]-->
+
+    <div ui-view=""></div>
+    <div
+      id="exit-intent"
+      ng-controller="HomeCtrl"
+      class="modal fade"
+    >
+      <div class="modal-backdrop"></div>
+      <div ng-include="'/views/partials/modal-form-news.html'"></div>
+    </div>
+
+    <!--[if lt IE 9]>
+      <script src="/bower_components/es5-shim/es5-shim.js"></script>
+      <script src="/bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+
+    <script src="https://maps.googleapis.com/maps/api/js?language=pt_BR"></script>
+
+    <!-- build:js(app) /scripts/vendor.js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/ouibounce/build/ouibounce.js"></script>
+    <script src="/bower_components/angular-i18n/angular-locale_pt-br.js"></script>
+    <script src="/bower_components/angular-easyfb/angular-easyfb.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="/bower_components/restangular/dist/restangular.js"></script>
+    <script src="/bower_components/underscore/underscore.js"></script>
+    <script src="/bower_components/toastr/toastr.js"></script>
+    <script src="/bower_components/pace/pace.js"></script>
+    <script src="/bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script src="/bower_components/atados-angular-linkify/angular-linkify.js"></script>
+    <script src="/bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="/bower_components/angular-scroll/angular-scroll.js"></script>
+    <script src="/angular-gm.js"></script>
+    <script src="/angular-seo.js"></script>
+    <script src="/oms.js"></script>
+    <script src="/jquery.maskedinput.min.js"></script>
+    <script src="/markerclusterer_compiled.js"></script>
+    <!-- endbuild -->
+
+    <script src="/scripts/exitIntent.js"></script>
+    <script src="/scripts/constants.js"></script>
+
+    <!-- build:js({.tmp,app}) /scripts/scripts.js -->
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/directives.js"></script>
+    <script src="/scripts/filters.js"></script>
+
+    <script src="/scripts/app/AboutCtrl.js"></script>
+    <script src="/scripts/app/ContactCtrl.js"></script>
+    <script src="/scripts/app/FaqCtrl.js"></script>
+    <script src="/scripts/app/AppCtrl.js"></script>
+    <script src="/scripts/app/Auth.js"></script>
+    <script src="/scripts/app/Cleanup.js"></script>
+    <script src="/scripts/app/Cookies.js"></script>
+    <script src="/scripts/app/ContributionsCtrl.js"></script>
+    <script src="/scripts/app/ContributionsPanelCtrl.js"></script>
+    <script src="/scripts/app/HomeCtrl.js"></script>
+    <script src="/scripts/app/TokenCtrl.js"></script>
+    <script src="/scripts/app/LandingCtrl.js"></script>
+    <script src="/scripts/app/Legacy.js"></script>
+    <script src="/scripts/app/LegacyCtrl.js"></script>
+    <script src="/scripts/app/LoginCtrl.js"></script>
+    <script src="/scripts/app/Photos.js"></script>
+    <script src="/scripts/app/RootCtrl.js"></script>
+    <script src="/scripts/app/Site.js"></script>
+    <script src="/scripts/app/Question.js"></script>
+    <script src="/scripts/nonprofit/Nonprofit.js"></script>
+    <script src="/scripts/nonprofit/NonprofitAdminCtrl.js"></script>
+    <script src="/scripts/nonprofit/NonprofitEditCtrl.js"></script>
+    <script src="/scripts/nonprofit/NonprofitCtrl.js"></script>
+    <script src="/scripts/nonprofit/NonprofitSignupCtrl.js"></script>
+    <script src="/scripts/project/Project.js"></script>
+    <script src="/scripts/project/Work.js"></script>
+    <script src="/scripts/project/Job.js"></script>
+    <script src="/scripts/project/ProjectCtrl.js"></script>
+    <script src="/scripts/project/ProjectEditCtrl.js"></script>
+    <script src="/scripts/project/ProjectModalCtrl.js"></script>
+    <script src="/scripts/project/ProjectNewCtrl.js"></script>
+    <script src="/scripts/search/ExplorerCtrl.js"></script>
+    <script src="/scripts/search/Search.js"></script>
+    <script src="/scripts/search/SearchCtrl.js"></script>
+    <script src="/scripts/volunteer/Volunteer.js"></script>
+    <script src="/scripts/volunteer/VolunteerCtrl.js"></script>
+    <script src="/scripts/volunteer/VolunteerEditCtrl.js"></script>
+    <script src="/scripts/volunteer/VolunteerModalCtrl.js"></script>
+    <script src="/scripts/volunteer/VolunteerSignupCtrl.js"></script>
+    <script src="/scripts/banner/Banner.js"></script>
+
+    <script src="/scripts/gdd/directives.js"></script>
+    <script src="/scripts/gdd/app/RootCtrl.js"></script>
+    <script src="/scripts/gdd/app/HomeCtrl.js"></script>
+    <script src="/scripts/gdd/app/ExploreCtrl.js"></script>
+    <script src="/scripts/gdd/app/IdeasCtrl.js"></script>
+    <script src="/scripts/gdd/project/ProjectCtrl.js"></script>
+    <script src="/scripts/gdd/project/ProjectNewCtrl.js"></script>
+    <script src="/scripts/gdd/project/ProjectEditCtrl.js"></script>
+    <script src="/scripts/gdd/search/SearchCtrl.js"></script>
+    <script src="/scripts/gdd/nonprofit/NonprofitSignupCtrl.js"></script>
+    <script src="/scripts/gdd/nonprofit/NonprofitGroupSignupCtrl.js"></script>
+    <script src="/scripts/gdd/nonprofit/NonprofitSignupSplashCtrl.js"></script>
+    <script src="/scripts/gdd/nonprofit/NonprofitAdminCtrl.js"></script>
+    <script src="/scripts/gdd/nonprofit/NonprofitCtrl.js"></script>
+    <!-- endbuild -->
+
+
+  <!-- Código do Google para tag de remarketing -->
+  <!--
+  As tags de remarketing não podem ser associadas a informações pessoais de identificação nem inseridas em páginas relacionadas a categorias de confidencialidade. Veja mais informações e instruções sobre como configurar a tag em: http://google.com/ads/remarketingsetup
+  -->
+  <script type="text/javascript">
+  /* <![CDATA[ */
+  var google_conversion_id = 971695909;
+  var google_custom_params = window.google_tag_params;
+  var google_remarketing_only = true;
+  /* ]]> */
+  </script>
+  <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+  </script>
+  <noscript>
+  <div style="display:inline;">
+  <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/971695909/?value=0&amp;guid=ON&amp;script=0"/>
+  </div>
+  </noscript>
+  <script class="trustlogo">
+    window.TrustLogo("https://s3-sa-east-1.amazonaws.com/atadosapp/images/comodo_secure_100x85_transp.png", "CL1", "none");
+  </script>
+  </body>
+</html>

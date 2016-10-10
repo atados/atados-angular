@@ -1,0 +1,338 @@
+#home {
+  .jumbotron {
+    margin-bottom: 0;
+    height: 460px;
+    background: none;
+
+    .jumbotron-header {
+      margin-top: 30px;
+      h1 {
+        font-size: 50px;
+        font-weight: bold;
+      }
+      p {
+        font-size: 35px;
+        margin-top: 15px;
+      }
+    }
+    .jumbotron-buttons {
+      text-align: center;
+      margin-top: 50px;
+      .btn {
+        &:first-child {
+          margin-right: 30px;
+        }
+        padding: 24px 36px;
+        letter-spacing: 1px;
+      }
+      .btn.btn-primary {
+        border-radius: 4px;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f99b44+0,e17e2d+100 */
+        background: #f99b44 !important; /* Old browsers */
+        background: -moz-linear-gradient(top, #f99b44 0%, #e17e2d 100%) !important; /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f99b44), color-stop(100%,#e17e2d)) !important; /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, #f99b44 0%,#e17e2d 100%) !important; /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, #f99b44 0%,#e17e2d 100%) !important; /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, #f99b44 0%,#e17e2d 100%) !important; /* IE10+ */
+        background: linear-gradient(to bottom, #f99b44 0%,#e17e2d 100%) !important; /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f99b44', endColorstr='#e17e2d',GradientType=0  ) !important; /* IE6-9 */
+
+        border: 0px !important;
+        text-transform: uppercase;
+        white-space: normal;
+      }
+    }
+
+    @media (min-width: 420px) and (max-width: 767px) {
+      height: 330px;
+    }
+
+    @media (min-width: 768px) and (max-width: 992px) {
+      #jumbotron-header {
+        h1 {
+          font-size: 40px;
+        }
+        p {
+          margin-top: 30px;
+        }
+      }
+    }
+    @media (max-width: $screen-sm) {
+      #jumbotron-header {
+        margin-top: 15px;
+        h1 {
+          font-size: 53px;
+        }
+        p {
+          margin-top: 10px;
+        }
+      }
+      #jumbotron-buttons {
+        margin-top: 30px;
+      }
+    }
+    @media (max-width: $screen-sm) {
+      #jumbotron-header {
+        margin-top: 0px;
+        h1 {
+          font-size: 43px;
+        }
+        p {
+          margin-top: 10px;
+          font-size: 18px;
+        }
+      }
+      #jumbotron-buttons {
+        .btn {
+          &:first-child {
+            margin-right: 0px;
+          }
+          padding: 10px 15px;
+        }
+      }
+    }
+  }
+}
+
+#landing-info {
+  padding: 30px 0px;
+  background: url('https://s3.amazonaws.com/atados-us/images/bg-newsletter.jpg') no-repeat center center / cover;
+
+  .wrapper {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 55px 15px 73px;
+
+    h2, h3 {
+       text-transform: uppercase;
+       color: white;
+       text-align: center;
+       font-weight: bold;
+    }
+
+    h2 {
+      font-size: 30px;
+    }
+
+    h3 {
+       font-size: 20px;
+    }
+
+    p {
+      color: white;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    &.wrapper-news {
+      padding: 127px 30px;
+    }
+
+    .form-control {
+       box-shadow: none;
+       background: rgba(255, 255, 255, 0.2);
+       border: 0px;
+       border-radius: 2px;
+       color: #fafafa;
+       height: 41px;
+    }
+    select.form-control {
+      -moz-appearance: none;
+      text-indent: 0.01px;
+      text-overflow: '';
+      color: #c1c1c1;
+      &[disabled] {
+       color: #c1c1c1;
+      }
+    }
+
+    ::-webkit-input-placeholder {
+       color: #c1c1c1;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color: #c1c1c1;
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: #c1c1c1;
+    }
+
+    :-ms-input-placeholder {
+       color: #c1c1c1;
+    }
+
+    .row {
+       margin-top: 20px;
+    }
+
+    .number {
+       color: white;
+       display: block;
+       margin-top: 15px;
+       font-size: 55px;
+       text-align: center;
+       font-weight: 900;
+    }
+
+    .name {
+       font-size: 20px;
+       text-align: center;
+       display: block;
+       color: #FFB33B;
+    }
+
+    .btn-default {
+       background: #E27F2E;
+       border-radius: 2px;
+       border: 0px;
+       color: white;
+       height: 41px;
+       width: 100%;
+    }
+  }
+}
+
+#parceirosMidia {
+  text-align: center;
+  img {
+    margin-bottom: 20px;
+  }
+  padding-top: 20px;
+  padding-bottom: 60px;
+  h3 {
+    color: $blue;
+    font-weight: bold;
+    font-size: 23px;
+    text-transform:uppercase;
+    margin: 40px 0;
+    text-align: left;
+  }
+}
+
+.we-are-what-we-do {
+  padding: 60px 0 30px;
+
+  .box {
+    height: 300px;
+    margin-bottom: 30px;
+    color: #fff;
+    transition: 0.08s ease-out all;
+    .title, .subtitle {
+      text-align: center;
+      font-weight: 900;
+    }
+    .title {
+      font-size: 35px;
+    }
+    .subtitle {
+      font-size: 18px;
+    }
+  }
+  h3 {
+    color: $blue;
+    font-weight: bold;
+    font-size: 23px;
+    text-transform:uppercase;
+    margin: 40px 0 0;
+  }
+  h4 {
+     color: #4f4f4f;
+     margin-bottom: 40px;
+  }
+  .overlay {
+    padding-top: 110px;
+    position: relative;
+  }
+  .world-cup {
+    background: url('https://s3.amazonaws.com/atados-us/images/copa-do-mundo-refugiados.jpg') no-repeat center center / cover;
+  }
+  .marriage {
+    background: url('https://s3.amazonaws.com/atados-us/images/casamento-agenor-isabel.jpg') no-repeat center center / cover;
+  }
+  .feminicidade {
+    background: url('https://s3.amazonaws.com/atados-us/images/feminicidade.jpg') no-repeat center center / cover;
+  }
+  .face-and-book {
+    background: url('https://s3.amazonaws.com/atados-us/images/carta-e-livro.jpg') no-repeat center center / cover;
+  }
+  .no-hunger-city {
+    background: url('https://s3.amazonaws.com/atados-us/images/cidades-sem-fome.jpg') no-repeat center center / cover;
+  }
+  a:hover {
+    text-decoration: none;
+    .box {
+      transform: scale(1.1);
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .we-are-what-we-do {
+    .box {
+      height: 230px;
+    }
+    .overlay {
+      padding-top: 60px;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .we-are-what-we-do {
+    .overlay {
+      padding-top: 75px;
+      .title {
+        font-size: 25px;
+      }
+    }
+  }
+
+  #landing-info {
+    .wrapper {
+      &.wrapper-news {
+        margin-top: 30px;
+        padding: 30px 25px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .we-are-what-we-do {
+    .overlay {
+      padding-top: 75px;
+      .title {
+        font-size: 25px;
+      }
+    }
+    .col-xs-6 {
+      .box {
+        height: 200px;
+        .title {
+          font-size: 18px;
+        }
+        .subtitle {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  #landing-info {
+    .wrapper {
+      &.wrapper-news {
+        margin-top: 30px;
+        padding: 30px 25px;
+      }
+    }
+  }
+}
+
+.img-logo {
+  /*zoom: 0.8;
+  -ms-zoom: 0.8;
+  -webkit-zoom: 0.8;
+  -moz-zoom: 0.8;*/
+  margin-right: 16px;
+}

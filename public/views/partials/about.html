@@ -1,0 +1,113 @@
+<div id="about-page" ng-controller="AboutCtrl as ctrl">
+  <div class="banner">
+    <div class="container">
+      <h2 class="banner-title">Somos uma comunidade que promove transformação social através da mobilização de pessoas para causas sociais.</h2>
+    </div>
+  </div>
+  <div class="statistics clearfix">
+    <div class="col-md-4 statistic-container-1">
+      <div class="statistic-item">
+        <h1>1700</h1>
+        <p>vagas já foram abertas</p>
+      </div>
+    </div>
+    <div class="col-md-4 statistic-container-2">
+      <div class="statistic-item ">
+        <h1>97%</h1>
+        <p>das vagas criadas foram preenchidas</p>
+      </div>
+    </div>
+    <div class="col-md-4 statistic-container-3">
+      <div class="statistic-item">
+        <h1>50.000</h1>
+        <p>Voluntários cadastrados no site</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="about-with-bubble clearfix">
+    <div class="col-md-5 about-with-bubble-text">
+      <p><b>Voluntários</b> se conectam com <b>organizações sociais</b> para viabilizar milhares de projetos. Desde digitação de notas fiscais até revitalização de espaços públicos.</p>
+    </div>
+    <div class="col-md-7  about-with-bubble-slide">
+      <div class="slide">
+        <button class="slide-previous" ng-click="slides.first.previous"><i class="fa fa-angle-left" ></i></button>
+        <div class="slide-body">
+          <div class="slide-item" ng-class="{ active: item.__active }" ng-repeat="item in slides.first.items">
+            <p>{{ item.text }}</p>
+            <b>{{ item.description }}</b>
+          </div>
+        </div>
+        <button class="slide-next" ng-click="slides.first.next()"><i class="fa fa-angle-right" ></i></button>
+      </div>
+    </div>
+  </section>
+  <section class="about-with-bubble about-with-bubble-2 clearfix">
+    <div class="col-md-5 about-with-bubble-text">
+      <p>Convidar <b>pessoas</b> para trabalhar na sua <b>organização</b> é mais que volutariado. É construir uma <b>comunidade</b> que fortalece a sua causa.</p>
+    </div>
+    <div class="col-md-7 about-with-bubble-slide">
+      <div class="slide">
+        <button class="slide-previous" ng-click="slides.second.previous"><i class="fa fa-angle-left"  ></i></button>
+        <div class="slide-body">
+          <div class="slide-item" ng-class="{ active: item.__active }" ng-repeat="item in slides.second.items">
+            <p>{{ item.text }}</p>
+            <b>{{ item.description }}</b>
+          </div>
+        </div>
+        <button class="slide-next" ng-click="slides.second.next()"><i class="fa fa-angle-right"  ></i></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-projects">
+    <div class="container">
+      <h1 class="title">Conheça alguns dos projetos mais legais que a gente já fez.</h1>
+      <div class="about-example-project">
+        <img src="https://67.media.tumblr.com/6387dd2a29a9fb5cecc969eb89559f19/tumblr_od1yo09JQD1qz7t0xo1_540.jpg" alt="">
+        <h4>Dia das Boas Ações</h4>
+        <p>O maior dia de mobilização voluntária do mundo aqui no Brasil.</p>
+      </div>
+      <div class="about-example-project">
+        <img src="https://67.media.tumblr.com/6387dd2a29a9fb5cecc969eb89559f19/tumblr_od1yo09JQD1qz7t0xo1_540.jpg" alt="">
+        <h4>Sementes de Transformação</h4>
+        <p>Porque o amor não tem idade, muito menos a solidariedade.</p>
+      </div>
+      <div class="about-example-project">
+        <img src="https://67.media.tumblr.com/6387dd2a29a9fb5cecc969eb89559f19/tumblr_od1yo09JQD1qz7t0xo1_540.jpg" alt="">
+        <h4>Abraço Cultural</h4>
+        <p>Uma inusitada competição que gerou muita integração.</p>
+      </div>
+      <div class="about-example-project">
+        <img src="https://67.media.tumblr.com/6387dd2a29a9fb5cecc969eb89559f19/tumblr_od1yo09JQD1qz7t0xo1_540.jpg" alt="">
+        <h4>Feminicidade</h4>
+        <p>Um ato pra lembra que o faminino e a cidade podem coexistir.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-actions">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <a href="" class="about-action">
+            <i class="fa fa-search"></i>
+            <h4>Encontre vagas</h4>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <div class="about-action">
+            <i class="fa fa-building"></i>
+            <h4>Leve o Atados para sua Empresa</h4>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="about-action">
+            <i class="fa fa-life-ring"></i>
+            <h4>Apoie o Atados com uma doação mensal</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

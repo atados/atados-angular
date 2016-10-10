@@ -1,0 +1,22 @@
+<div class="card-outer" ng-class="{true: 'col-lg-3 col-md-4 col-sm-5 col-xs-12', false: 'col-lg-4 col-sm-6 col-xs-12'}[landing]" ng-mouseenter="selectMarker(null, nonprofit)" ng-mouseleave="removeMarker(null, nonprofit)" itemscope>
+  <div class="card height-2 center-block" id="card-{{nonprofit.slug}}">
+    <div class="card-img">
+      <div class="card-description">
+        <a ui-sref="root.nonprofit({slug: nonprofit.slug})">
+          <p>{{nonprofit.description}}</p>
+        </a>
+      </div>
+      <div style="height: 170px; background: url('{{ nonprofit.medium_image_url }}') no-repeat center center / contain">
+      </div>
+    </div>
+    <div class="card-footer clearfix">
+      <div class="row card-quick-info">
+        <div class="wrapper">
+          <a ui-sref="root.nonprofit({slug: nonprofit.slug})"><p class="nonprofit-name"><strong>{{nonprofit.name}}</strong></p></a>
+          <p class="card-local col-xs-9" ng-show="nonprofit.city_state"><i class="fa fa-map-marker"></i> {{ nonprofit.city_state }}</p>
+          <span class="card-volunteer center col-xs-3"><i tooltip="Número de voluntários que já se ataram." class="fa fa-user"></i> {{nonprofit.volunteers_numbers}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

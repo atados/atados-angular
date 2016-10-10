@@ -1,0 +1,43 @@
+<style>
+  .modal .modal-dialog {
+    width: 730px;
+  }
+</style>
+
+<div id="volunteer-contract-modal" class="modal-body">
+  <p>Oi :-)</p>
+  <p>Você está prestes a se inscrever na vaga {{projectName}} da {{nonprofit.name}}</p>
+  <p>Confirme os dados e bom trabalho!</p>
+
+  <div class="row margin-top-md" ng-class="{error:contractForm.name.$dirty && contractForm.name.$invalid && phoneWarningMessage}">
+    <label class="col-sm-3 control-label">Nome</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" name="name" ng-model="contractForm.name" placeholder="Nome"/>
+    </div>
+  </div>
+  <div class="row">
+    <phone-input object="contractForm" form="contractForm"></phone-input>
+  </div>
+  <div class="row">
+    <label class="col-sm-3 control-label">Email</label>
+    <div class="col-sm-9">
+      <input class="form-control" type="text" name="email" ng-model="contractForm.email" placeholder="Email"/>
+    </div>
+  </div>
+
+  <br>
+
+  <p>Você pode enviar suas dúvidas ou escrever uma mensagem para a ONG abaixo:</p>
+
+  <textarea placeholder="Digite sua mensagem aqui..." class="form-control" ng-model="contractForm.message"></textarea>
+
+  <div class="margin-top-sm">
+    <input type="checkbox" class="margin-right" required="required" /> Concordo com o <a class="alert-link" tabindex="-1" ng-click="openTermsModal()" href="">termo de adesão</a>.
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-info" ng-click="ok()">Confirmar inscrição</button>
+  <button class="btn btn-danger" ng-click="cancel()">Cancelar</button>
+  <doubt-atados/>
+</div>

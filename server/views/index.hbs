@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="no-js" ng-app="atadosApp" ng-controller="AppCtrl">
+  <head>
+    <base href="/" />
+    <meta name="fragment" content="!">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{title}}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {{#metas}}
+      <meta name="{{{name}}}" content="{{{content}}}">
+      {{#repeat_with_prefix}}
+        <meta name="{{.}}{{{name}}}" content="{{{content}}}">
+      {{/repeat_with_prefix}}
+    {{/metas}}
+    {{#initialState}}
+      <script>
+        window.INITIAL_STATE = {{{initialState}}};
+      </script>
+    {{/initialState}}
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600" rel="stylesheet">
+  </head>
+  <body>
+
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-M3WZQJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-M3WZQJ');</script>
+    <!-- End Google Tag Manager -->
+    <!--[if lt IE 7]>
+      <div class="alert">
+        <p class="browsehappy">Você está usando um navegador <strong>antiquado</strong>. Por favor <a href="https://www.google.com/intl/pt/chrome/browser/">atualize seu navegador</a> para melhorar sua experiencia na web.</p>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      </div>
+    <![endif]-->
+
+    <div ui-view=""></div>
+
+    <!-- Código do Google para tag de remarketing -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{google_maps_api_key}}&language=pt_BR"></script>
+    <!--
+    As tags de remarketing não podem ser associadas a informações pessoais de identificação nem inseridas em páginas relacionadas a categorias de confidencialidade. Veja mais informações e instruções sobre como configurar a tag em: http://google.com/ads/remarketingsetup
+    -->
+    <script type="text/javascript">
+    /* <![CDATA[ */
+    var google_conversion_id = 971695909;
+    var google_custom_params = window.google_tag_params;
+    var google_remarketing_only = true;
+    /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+    <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/971695909/?value=0&amp;guid=ON&amp;script=0"/>
+    </div>
+    </noscript>
+
+
+    <div id="root"></div>
+  </body>
+</html>

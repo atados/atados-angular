@@ -1,0 +1,67 @@
+.modal-form-news {
+  background: #F3F3F3;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  margin: 0 auto;
+  width: auto !important;
+  max-width: 1000px !important;
+  margin-top: 170px;
+  border-radius: 10px;
+  position: relative;
+
+  .modal-form-news-close-button {
+    position: absolute;
+    right: -45px;
+    top: -45px;
+    cursor: pointer;
+  }
+
+  .modal-form-news-content {
+    padding-left: 140px;
+    padding-right: 40px;
+
+    > img {
+      margin-left: -120px;
+      float: left;
+    }
+  }
+
+  h1 {
+    color: #009BD4;
+    font-size: 42px;
+    font-weight: bold;
+  }
+
+  h3 {
+    color: #7C7C7C;
+    margin-bottom: 40px;
+    font-size: 24px;
+  }
+
+  .form-control {
+    height: 70px;
+    font-size: 24px;
+    box-shadow: none !important;
+    padding: 15px;
+  }
+
+  .btn {
+    width: 100%;
+    height: 70px;
+    background: #E27F2D;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    outline: none !important;
+
+    &:hover {
+      background: darken(#E27F2D, 8%);
+    }
+
+    &:hover,
+    &:focus {
+      color: #fff;
+    }
+  }
+}

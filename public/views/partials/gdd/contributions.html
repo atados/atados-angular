@@ -1,0 +1,184 @@
+<div class="contribute">
+  <div class="container contribute-container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-push-8">
+        <div class="contribution">
+          <div class="box">
+            <h4>Valor da contribuição</h4>
+            <span class="price" ng-style="pricestyle">R$ {{contribution_price | number: 2}}</span>
+            <input type="text" ng-model="contribution_price" ng-style="optionsstyle" class="price-input">
+            <div class="edit" ng-click="toggleOptions()">Editar</div>
+            <ul class="options">
+              <li ng-click="setRecurrent()" ng-class="contribution_monthly ? 'active' : ''">Mensal</li>
+              <li ng-click="unsetRecurrent()" ng-class="!contribution_monthly ? 'active' : ''">Pontual</li>
+            </ul>
+            <p>Você irá contribuir com R$ {{contribution_price | number: 2}} <span ng-show="!contribution_monthly">pontualmente</span><span ng-show="contribution_monthly">mensalmente</span>, ajudando o Atados a realizar seus sonhos.</p>
+          </div>
+        </div>
+      </div>
+      <form id="cardform" name="cardform" ng-submit="submit(cardform)" novalidate>
+        <div class="col-xs-12 col-sm-8 col-sm-pull-4">
+          <h2>Preencha e revise os dados para colaborar</h2>
+          <h4>Esses dados serão utilizados para validar a colaboração</h4>
+          <div class="row">
+            <div class="col-xs-12">
+              <label>
+                Nome completo
+                <input type="text" class="form-control" ng-model="name"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                Email
+                <input type="text" class="form-control" ng-model="email"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                Confirme seu email
+                <input type="text" class="form-control" ng-model="confirm_email"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                CPF / CNPJ
+                <input type="text" class="form-control" ng-model="doc"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                Telefone
+                <input type="text" class="form-control" ng-model="phone"></input>
+              </label>
+            </div>
+          </div>
+          <h3>Endereço <small>Vamos enviar alguns mimos para sua casa ;-)</small></h3>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                Endereço
+                <input type="text" class="form-control" ng-model="address_street"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <label>
+                Número
+                <input type="text" class="form-control" ng-model="address_number"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <label>
+                Complemento
+                <input type="text" class="form-control" ng-model="address_complement"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <label>
+                Cidade
+                <input type="text" class="form-control" ng-model="address_city"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-3">
+              <label>
+                Estado
+                <input type="text" class="form-control" ng-model="address_state"></input>
+              </label>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+              <label>
+                CEP
+                <input type="text" class="form-control" ng-model="address_zip"></input>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <h4>Preencha os dados de pagamento (cartão de crédito)</h4>
+              <img src="https://s3.amazonaws.com/atados-us/images/mastercard_visa.png" alt="" style="width: 140px;">
+            </div>
+            <div class="col-xs-12">
+              <div class="row">
+                <div class="col-xs-12 col-sm-5">
+                  <label>
+                    Nome (igual do cartão)
+                    <input type="text" class="form-control" ng-model="card_holder_name"></input>
+                    <span class="feedback">{{card_holder_name_error}}</span>
+                  </label>
+                </div>
+                <div class="col-xs-12 col-sm-7">
+                  <label>
+                    Número do cartão
+                    <input type="text" class="form-control" ng-model="card_number"></input>
+                    <span class="feedback">{{card_number_error}}</span>
+                  </label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                  <label>
+                    Expiração (mm/aaaa)
+                    <input type="text" class="form-control" ng-model="card_expires" ui-mask="99/99" card-expiration></input>
+                    <span class="feedback">{{card_expires_error}}</span>
+                  </label>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                  <label>
+                    Cód. Segurança
+                    <input type="text" class="form-control" ng-model="card_cvv"></input>
+                    <span class="feedback">{{card_cvv_error}}</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <button type="submit" class="btn btn-info btn-submit">Doar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="card-refused-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h2>Ops :(</h2>
+          <b>A sua transação não foi realizada! :(</b><br>
+          Parece que seu cartão foi recusado. Recomendamos que entre em contato com a operadora para consultar o motivo.
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="invalid-flag-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h2>Ops :(</h2>
+          <b>A sua transação não foi realizada! :(</b><br>
+          Uma pena, mas nosso sistema não aceita Diners e Amex. Você poderia tentar novamente com um cartão diferente?
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="thank-you-container">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h2>Muito obrigado!</h2>
+          <b>O processo de doação foi realizado com sucesso.</b><br>
+          Você acaba de ajudar a multiplicar nossos sonhos!
+          <br><br>
+          Enviaremos para o seu email uma mensagem de confirmação, só pra garantir ;)
+          <br><br>
+          Aproveite esse momento e conheça diversas possibilidades de voluntariado para colocar a mão na massa:
+          <br><br>
+          <a ui-sref="root.explore()" class="btn btn-primary">Quero fazer trabalho voluntário</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

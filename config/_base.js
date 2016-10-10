@@ -1,0 +1,82 @@
+var path = require('path');
+var config = {
+  env : process.env.NODE_ENV || 'development',
+
+  // ----------------------------------
+  // Project Structure
+  // ----------------------------------
+  path_base  : path.resolve(__dirname, '..'),
+  dir_client : 'src',
+  dir_build  : '.build',
+  dir_public : 'public',
+  dir_server : 'server',
+  // ----------------------------------
+  // App Configuration
+  // ----------------------------------
+  app_entry : 'index.js',
+  api_url   : 'http://www.atadoslocal.com.br:8000/v1',
+  google_maps_api_key: 'AIzaSyA6FtG9g5KebYrjsnA8iBtX4NDty3Rofp0',
+
+  // ----------------------------------
+  // Server Configuration
+  // ----------------------------------
+  server_port: process.env.PORT || 3000,
+  server_host: process.env.HOST || 'localhost',
+  server_protocol: process.env.HTTPS === 'true' ? "https" : "http",
+  server_preserve_log: false,
+  server_open_browser: true
+}
+
+// ------------------------------------
+// Environment
+// ------------------------------------
+config.globals = {
+  'process.env'  : {
+    'NODE_ENV' : JSON.stringify(config.env)
+  },
+  'NODE_ENV'     : config.env,
+  '__DEV__'      : config.env === 'development',
+  '__PROD__'     : config.env === 'production',
+  '__TEST__'     : config.env === 'test',
+  '__DEBUG__'    : config.env === 'development',
+  '__DEBUG_NEW_WINDOW__' : false,
+  '__BASENAME__' : JSON.stringify(process.env.BASENAME || ''),
+  'API': config.api_url,
+}
+
+var paths = (function() {
+  var resolve = path.resolve
+
+  var base = resolve.bind(resolve, config.path_base)
+
+  return {
+    base   : base,
+    client : base.bind(resolve, config.dir_client),
+    build   : base.bind(resolve, config.dir_build),
+    server : base.bind(resolve, config.dir_server),
+    public : base.bind(resolve, config.dir_public)
+  }
+})();
+
+config.paths = paths
+
+var nodePaths = (process.env.NODE_PATH || '')
+  .split(process.platform === 'win32' ? ';' : ':')
+  .filter(Boolean)
+  .map(function(p) {
+    return paths.base(p)
+  });
+
+
+// Compiler configuration
+config.compiler = {
+  entry: paths.client(config.app_entry),
+  build: paths.base(config.dir_build),
+  publicPath: '/',
+  nodePaths: nodePaths
+}
+
+config.api = path.resolve.bind(path.resolve, config.api_url)
+
+process.env.NODE_ENV = config.env
+module.exports = config
