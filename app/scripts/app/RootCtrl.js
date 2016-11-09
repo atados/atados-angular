@@ -118,6 +118,13 @@ app.controller('RootCtrl', function ($scope, $rootScope, $modal, $state, $locati
   // }
 
   $rootScope.$on('userLoggedIn', function(event, user, message, callback) {
+    console.log({
+      event: event,
+      user: user,
+      message: message,
+      callback: callback,
+    })
+    //----- ----- -----
     if (user) {
       $scope.loggedUser = user;
       if (!callback) {
