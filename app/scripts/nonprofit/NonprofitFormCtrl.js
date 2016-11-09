@@ -171,7 +171,9 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
             $scope.saving = false;
 
             Auth.getCurrentUser(response.access_token).then(
+              $scope.saving = true; // Hack/Gamb
               function (user) {
+                $scope.saving = false; // Hack/Gamb
                 $rootScope.$emit('userLoggedIn', user, null, function() {
                   if (s) { s(); }
                 });
