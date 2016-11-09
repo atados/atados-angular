@@ -314,14 +314,6 @@ app.directive('contactatados', function() {
   };
 });
 
-app.directive('doubtAtados', function() {
-  return {
-    restrict: 'E',
-    scope: {},
-    template: '<p>Entre em contato clicando abaixo no canto direito se estiver com dúvidas.</p>'
-  };
-});
-
 app.directive('backgroundImg', function () {
   return function (scope, element, attrs) {
     var url = attrs.backgroundImg;
