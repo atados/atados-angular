@@ -168,6 +168,8 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
             password: $scope.nonprofit.password,
             remember: true,
           }, function(response) {
+            $scope.saving = false;
+
             Auth.getCurrentUser(response.access_token).then(
               function (user) {
                 $rootScope.$emit('userLoggedIn', user, null, function() {

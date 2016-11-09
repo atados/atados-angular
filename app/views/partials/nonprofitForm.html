@@ -286,7 +286,7 @@
                 </div>
                 <divi ng-if="!loadedNonprofit">
                   <div ng-if="!insideProject">
-                    <button class="btn-success" type="button" ng-click="saveNonprofit()" ng-disabled="!validation.valid">Cadastrar</button>
+                    <button class="btn-success" type="button" ng-click="saveNonprofit()" ng-disabled="!validation.valid || saving">Cadastrar</button>
                   </div>
                   <div ng-if="insideProject" class="text-right">
                     <button class="btn-success" type="button" ng-click="setStep(5)">Próximo passo</button>
