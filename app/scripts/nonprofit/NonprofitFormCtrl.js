@@ -171,10 +171,10 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
             $scope.saving = false;
 
             Auth.getCurrentUser(response.access_token).then(
-              $scope.saving = true
               function (user) {
-                $scope.saving = false
+                $scope.saving = true 
                 $rootScope.$emit('userLoggedIn', user, null, function() {
+                  $scope.saving = false
                   if (s) { s(); }
                 });
               }, function (error) {
