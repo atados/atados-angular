@@ -63,7 +63,12 @@ app.controller('VolunteerSignupCtrl', function($scope, $rootScope, $state, Auth)
         function (error) {
           $scope.signingUp = false;
           $scope.sendingSignup = false;
-          toastr.error('Não conseguimos criar sua conta agora. :(');
+
+          if (error.detail == 'User already exists.') {
+            $scope.error = 'Email já cadastrado! Tente efetuar login ou resetar sua senha.'
+          } else {
+            toastr.error('Email já cadastrado! Tente efetuar login ou resetar sua senha.');
+          }
         }
       );
     }
