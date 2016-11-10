@@ -172,11 +172,19 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
 
             Auth.getCurrentUser(response.access_token).then(
               function (user) {
-                $scope.saving = true 
-                $rootScope.$emit('userLoggedIn', user, null, function() {
+                $scope.saving = true
+
+                console.log("Nonprofit.save.callback", s)
+
+                if (s) {
+                  $rootScope.$emit('userLoggedIn', user, null, function() {
+                    $scope.saving = false
+                    if (s) { s(); }
+                  });
+                } else {
                   $scope.saving = false
-                  if (s) { s(); }
-                });
+                  $rootScope.$emit('userLoggedIn', user);
+                }
               }, function (error) {
                 toastr.error(error);
               });
