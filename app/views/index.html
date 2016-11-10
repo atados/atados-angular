@@ -209,43 +209,5 @@
   </div>
   </noscript>
   <!-- -->
-  <script type="text/javascript" async> //<![CDATA[
-    (function(){
-      var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.comodo.com/" : "http://www.trustlogo.com/");
-      var tlJsUrl  = tlJsHost+ "trustlogo/javascript/trustlogo.js";
-      var tlJsElm;
-
-      function injectTrustLogoImage() {
-        var element = document.createElement("script");
-        element.className = 'trustlogo';
-        element.innerText = 'window.TrustLogo("https://s3.amazonaws.com/atados-us/images/comodo_secure_100x85_transp.png", "CL1", "none");'
-        document.getElementsByTagName('body')[0].appendChild(element);
-      }
-      //----- ----- ----- ----- -----
-      function downloadJSAtOnload() {
-        var element = document.createElement("script");
-        element.src = tlJsUrl;
-        //----- ----- ----- ----- -----
-        if (element.addEventListener) {
-          element.addEventListener("load", injectTrustLogoImage, false);
-        } else if (element.attachEvent) {
-          element.attachEvent("onload", injectTrustLogoImage);
-        } else {
-          element.onload = injectTrustLogoImage;
-        }
-        //----- ----- ----- ----- -----
-        document.getElementsByTagName('head')[0].appendChild(element);
-      }
-      //----- ----- ----- ----- -----
-      if (document.addEventListener) {
-        document.addEventListener("load", downloadJSAtOnload, false);
-      } else if (document.attachEvent) {
-        document.attachEvent("onload", downloadJSAtOnload);
-      } else {
-        document.onload = downloadJSAtOnload;
-      }
-    })();
-  //]]>
-  </script>
   </body>
 </html>

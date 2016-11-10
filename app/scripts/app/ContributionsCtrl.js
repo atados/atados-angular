@@ -27,8 +27,6 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   $scope.contribution_price = value; 
   $scope.optionsstyle = {'display': 'none'};
 
-  $('.trustlogo').addClass('show-comodo');
-
   $scope.step2 = function() {
     if (!$scope.name || !$scope.email || !$scope.confirm_email) {
       window.alert('Favor preencher todos os campos');
@@ -175,6 +173,5 @@ app.controller('ContributionsCtrl', ['$scope', '$stateParams', '$http', 'api',  
   $scope.$on('$stateChangeStart', function () {
     $scope.$parent.hide_header = false;
     $scope.$parent.hide_footer = false;
-    $('.trustlogo').removeClass('show-comodo');
   });
 }]);
