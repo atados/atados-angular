@@ -4,16 +4,31 @@
 
 var app = angular.module('atadosApp');
 
-app.factory('Nonprofit', function(Restangular, $state, $stateParams, Cleanup, $http, api, Auth) {
+app.factory('Nonprofit', function(Restangular, $state, $q, $stateParams, Cleanup, $http, api, Auth) {
   return {
     get: function (slug) {
-      return Restangular.one('nonprofit', slug).get().then(function(nonprofit) {
-        Cleanup.nonprofit(nonprofit);
-        return nonprofit;
-      }, function() {
-        $state.transitionTo('root.home');
-        toastr.error('ONG não existe.', $stateParams.slug);
-      });
+      // First look for the project on Initial State
+      // if it's not there, then request it
+      return $q(function(r){r(slug)})
+        .then(function(slug) {
+          const initialState = window.INITIAL_STATE
+          if (initialState && initialState.ong && initialState.ong.slug === slug) {
+            return initialState.ong
+          }
+          return Restangular.one('nonprofit', slug).get()
+        })
+        .then(function(nonprofit) {
+          if (!nonprofit.published) {
+            $state.transitionTo('root.home');
+            toastr.error('ONG ainda não foi aprovada. Se isso é um erro entre em contato por favor.');
+          } else {
+            Cleanup.nonprofit(nonprofit);
+            return nonprofit;
+          }
+        }, function() {
+          $state.transitionTo('root.home');
+          toastr.error('ONG não existe.', $stateParams.slug);
+        });
     },
     savePassword: function (email, password, slug) {
       Auth.changePassword({'email': email, 'password': password}, function () {

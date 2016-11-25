@@ -11,7 +11,7 @@
 var ENABLE_LIVERELOAD = true;
 if (process.env.ENABLE_LIVERELOAD !== undefined) {
   ENABLE_LIVERELOAD = process.env.ENABLE_LIVERELOAD;
-} 
+}
 
 module.exports = function (grunt) {
 
@@ -276,7 +276,7 @@ module.exports = function (grunt) {
       },
       livereload: {
         files: [
-          '<%= yeoman.app %>/views/{,*//*}*.{html,jade}',
+          '<%= yeoman.app %>/views/{,*//*}*.{hbs,html,jade}',
           '{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css',
           '{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js',
           '<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}',
@@ -409,7 +409,7 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: ['<%= yeoman.app %>/views/index.html'],
+      html: ['<%= yeoman.app %>/views/index.hbs'],
       options: {
         dest: '<%= yeoman.dist %>/public'
       }
@@ -417,7 +417,7 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= yeoman.dist %>/views/{,*/}*.html'],
+      html: ['<%= yeoman.dist %>/views/{,*/}*.html', '<%= yeoman.dist %>/views/{,*/}*.hbs'],
       css: ['<%= yeoman.dist %>/public/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= yeoman.dist %>/public', '<%= yeoman.dist %>/public/images']
@@ -458,7 +458,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.app %>/views',
-          src: ['*.html', 'partials/*.html', 'partials/gdd/*.html'],
+          src: ['*.html', '*.hbs', 'partials/*.html', 'partials/gdd/*.html'],
           dest: '<%= yeoman.dist %>/views'
         }]
       }
@@ -480,7 +480,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/views/*.html']
+        html: ['<%= yeoman.dist %>/views/*.hbs']
       }
     },
 

@@ -14,7 +14,7 @@ var config = require('./lib/config/config');
 
 var app = express();
 
-if (process.env.NODE_ENV == 'development') {
+if (process.env.NODE_ENV === 'development') {
   app.get('/*', function(req, res, next) {
     if (!req.headers.host.match(/^www/)) {
       res.redirect('http://www.' + req.headers.host + req.url);
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV == 'development') {
     }
   })
 } else {
-  app.use(require('prerender-node').set('prerenderToken', '3iULJkT9S6jMjdwulf9h'));
+  //app.use(require('prerender-node').set('prerenderToken', '3iULJkT9S6jMjdwulf9h'));
 }
 
 
@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === 'development') {
       prj = val.split('=')[1];
     }
   });
-  
+
   if (prj) {
     app.listen('/tmp/www.run.'+prj+'.socket', function () {
       console.log('Express server listening in %s mode', app.get('env'));

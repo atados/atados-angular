@@ -2,7 +2,7 @@
 
 var app = angular.module('atadosApp');
 
-app.factory('Site', function(Restangular, $http, storage, api) {
+app.factory('Site', function(Restangular, $http, $q, storage, api) {
   var _causes = [];
   var _skills = [];
   var _cities = [];
@@ -25,16 +25,23 @@ app.factory('Site', function(Restangular, $http, storage, api) {
     },
     contactEmail: 'contato@atados.com.br',
     copyright: 'Atados, ' + (new Date()).getFullYear(),
-    startup: function () {
-      return $http.get(api + 'startup/')
+    startup: function() {
+      return $q(function(resolve, reject) {
+          if (window.INITIAL_STATE && window.INITIAL_STATE.startup){
+            resolve(window.INITIAL_STATE.startup)
+          } else {
+            $http.get(api + 'startup/').then(function(response){
+              resolve(response.data)
+            })
+          }
+        })
         .then(function(response) {
-          response = response.data;
           _numbers = response.numbers;
           _states = response.states;
           _cities = response.cities;
-          //_cities.splice(0, 0, {name: 'Todas Cidades', id: '', active: true, state: 0});
+          _causes = response.causes;
+          _skills = response.skills || [];
 
-          _skills = response.skills;
           _skills.forEach(function (s) {
             s.image = storage + 'skill_' + s.id + '.png';
             s.class = 'skill_' + s.id;

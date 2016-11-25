@@ -15,18 +15,21 @@
     <meta name="fragment" content="!">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title ng-bind="site.title">Atados - Juntando Gente boa</title>
-    <meta name="description" content="{{site.description}}">
+    <title ng-bind="site.title">{{title}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-site-verification" content="juLVwN1rBKs03Ff9zyMo3nzz-Xcr0FJ1yzppwEjM13g" />
 
-    <!-- Open Graph objects-->
-    <meta property="og:title" content="{{site.title}}" />
-    <meta property="og:type" content="{{site.og.type}}" />
-    <meta property="og:url" content="{{site.og.url}}" />
-    <meta property="og:image" content="{{site.og.image}}" />
-    <meta property="og:description" content="{{site.description}}" />
-    <!-- End of Open Graph -->
+    {{#metas}}
+      <meta property="{{name}}" content="{{{content}}}">
+      {{#repeat_with_prefix}}
+        <meta property="{{.}}{{name}}" content="{{{content}}}">
+      {{/repeat_with_prefix}}
+    {{/metas}}
+    {{#initialState}}
+      <script>
+        window.INITIAL_STATE = {{{initialState}}};
+      </script>
+    {{/initialState}}
 
     <link rel="shortcut icon" href="https://www.atados.com.br/favicon.ico" />
 
