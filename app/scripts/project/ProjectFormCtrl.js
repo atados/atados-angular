@@ -407,7 +407,7 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
    * Skills and causes
    */
   $scope.filteredCauses = $filter('filter')($scope.causes(), {name: '!Todas Causas'});
-  $scope.filteredSkills = $filter('filter')($scope.skills(), function(v) { return !(v.name === 'Todas Habilidades' || v.name === 'Outros'); });
+  $scope.filteredSkills = $filter('filter')($scope.skills(), function(v) { return !(v.name === 'Todas Habilidades'); });
 
 
   $scope.removeCause = function(id) {
