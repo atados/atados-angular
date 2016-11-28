@@ -75,7 +75,7 @@ app.factory('Project', function($http, $q, Restangular, Site, Auth, Cleanup, $st
         // First look for the project on Initial State
         // if it's not there, then request it
         .then(function(slug) {
-          const initialState = window.INITIAL_STATE
+          var initialState = window.INITIAL_STATE
           if (initialState && initialState.project && initialState.project.slug === slug) {
             return initialState.project
           }

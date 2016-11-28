@@ -11,7 +11,7 @@ app.factory('Nonprofit', function(Restangular, $state, $q, $stateParams, Cleanup
       // if it's not there, then request it
       return $q(function(r){r(slug)})
         .then(function(slug) {
-          const initialState = window.INITIAL_STATE
+          var initialState = window.INITIAL_STATE
           if (initialState && initialState.ong && initialState.ong.slug === slug) {
             return initialState.ong
           }
