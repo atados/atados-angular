@@ -6,7 +6,7 @@ www
 
 Frontend app para nova versão do atados.com.br programado com AngularJS.
 
-## O que precisa estar intalado
+## O que precisa estar instalado
 - [node.js](http://nodejs.org)
 - [Ruby](http://ruby-lang.org)
 
