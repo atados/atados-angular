@@ -135,6 +135,10 @@ iframe {
   display: none;
 }
 
+div iframe {
+  display: block;
+}
+
 fieldset {
   legend {
     font-weight: bold;
