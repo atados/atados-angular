@@ -160,7 +160,7 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
 
     if (!$scope.saving && $scope.validation.valid) {
       $scope.saving = true;
-      
+
       Nonprofit.createOrSave(json, function(data, action) {
         if (action === 'create') {
           Auth.login({
@@ -196,10 +196,14 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
           //$scope.success = true; // commented to avoid flickering
           $state.go('root.nonprofitadmin', {slug: $scope.nonprofit.slug});
         }
-      }, function() {
+      }, function(response, action) {
         $scope.saving = false;
         $scope.success = false;
-        toastr.error('Aconteceu um erro. Revise os campos e tente novamente');
+        if (response.status == 409) {
+          toastr.error('O Email da ONG informado já está cadastrado em nossa plataforma, verifique se a ONG já está cadastrada em nossa plataforma.');
+        } else {
+          toastr.error('Aconteceu um erro. Revise os campos e tente novamente');
+        }
         if (e) { e(); }
       });
     }
