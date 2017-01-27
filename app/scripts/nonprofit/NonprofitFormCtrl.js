@@ -11,8 +11,6 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
     description: null,
     image: { id: null },
     cover: { id: null },
-    image: { id: null },
-    cover: { id: null },
     causes: [],
     website: null,
     facebook_page_short: null,
