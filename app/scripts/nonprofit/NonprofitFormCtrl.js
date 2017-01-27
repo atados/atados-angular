@@ -11,6 +11,8 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
     description: null,
     image: { id: null },
     cover: { id: null },
+    image: { id: null },
+    cover: { id: null },
     causes: [],
     website: null,
     facebook_page_short: null,
@@ -173,9 +175,6 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
             Auth.getCurrentUser(response.access_token).then(
               function (user) {
                 $scope.saving = true
-
-                console.log("Nonprofit.save.callback", s)
-
                 if (s) {
                   $rootScope.$emit('userLoggedIn', user, null, function() {
                     $scope.saving = false
@@ -199,8 +198,8 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
       }, function(response, action) {
         $scope.saving = false;
         $scope.success = false;
-        if (response.status == 409) {
-          toastr.error('O Email da ONG informado já está cadastrado em nossa plataforma, verifique se a ONG já está cadastrada em nossa plataforma.');
+        if ((response.detail == "Nonprofit already exists.") || (response.status == 409)) {
+          toastr.error('O Email da ONG informado já está cadastrado em nossa plataforma, verifique quem cadastrou em sua ONG ou envie um e-mail para: contato@atados.com.br');
         } else {
           toastr.error('Aconteceu um erro. Revise os campos e tente novamente');
         }
@@ -342,13 +341,11 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
     if (file.xhr.status === 201) {
       var result = JSON.parse(file.xhr.response);
       if (result.id) {
-        console.log(result.id);
         $scope.nonprofitForm[attr].$setViewValue(result.id);
         return;
       }
     }
     $scope.nonprofitForm[attr].$setViewValue(null);
-  
   };
 
   /*
