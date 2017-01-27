@@ -75,7 +75,7 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
   };
 
   var addDevelopmentUrl = function(image) {
-    if (image.indexOf('http') === -1) {
+    if (image && image.indexOf('http') === -1) {
       return 'http://www.atadoslocal.com.br:8000' + image;
     }
     return image;
