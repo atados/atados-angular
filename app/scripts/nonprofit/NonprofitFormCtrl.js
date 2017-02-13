@@ -7,6 +7,7 @@ var app = angular.module('atadosApp');
 app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state, $http, $timeout, Nonprofit, api, Auth) {
   $scope.nonprofit = {
     name: null,
+    person_name: null,
     details: null,
     description: null,
     image: { id: null },
@@ -44,6 +45,7 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
     var client_json = {
       id: n.id,
       name: n.name,
+      person_name: n.person_name,
       slug: n.slug,
       description: n.description,
       details: n.details,
@@ -57,6 +59,8 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
       facebook_page_short: null,
       password: null
     };
+
+    console.log(client_json);
 
     if (n.causes) {
       angular.forEach(n.causes, function(c) {
@@ -125,6 +129,7 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
       phone: n.phone,
       description: n.description,
       name: n.name,
+      person_name: n.person_name,
       details: n.details,
       user: {
         name: n.name,
@@ -136,6 +141,8 @@ app.controller('NonprofitFormCtrl', function($scope, $rootScope, $filter, $state
       website: n.website,
       causes: n.causes,
     };
+
+    console.log(api_json);
 
     if (n.id) {
       api_json.id = n.id;
