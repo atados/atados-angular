@@ -1,7 +1,5 @@
 'use strict';
 
-window.location = 'https://global.good-deeds-day.org/br';
-
 /* global toastr: false */
 
 var app = angular.module('atadosApp');
