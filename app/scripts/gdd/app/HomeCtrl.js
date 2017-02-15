@@ -5,6 +5,7 @@
 var app = angular.module('atadosApp');
 
 app.controller('GddHomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Restangular, api, $location) {
+  window.location = 'https://global.good-deeds-day.org/br';
   $scope.site.title = 'Atados - Juntando Gente Boa';
   $scope.site.og.url = 'https://www.atados.com.br';
   $scope.site.og.image = 'https://s3.amazonaws.com/atados-us/images/landing_cover.jpg';

@@ -6,7 +6,7 @@
 var app = angular.module('atadosApp');
 
 app.controller('GddRootCtrl', function ($scope, $rootScope, $modal, $state, $location, $timeout, $http, api, Cookies,  Auth, loggedUser, NONPROFIT, storage, Search, saoPaulo, curitiba, brasilia, rioDeJaneiro, Site) {
-
+  window.location = 'https://global.good-deeds-day.org/br';
   $scope.loggedUser = loggedUser;
 
   $scope.contact = function() {
