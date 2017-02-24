@@ -65,6 +65,10 @@ app.controller('VolunteerEditCtrl', function($scope, $filter, Auth, Photos, Volu
   $scope.savingVolunteer = false
   $scope.saveVolunteer = function () {
     $scope.savingVolunteer = true
+    $scope.volunteer.user.address.address_line = (typeof $scope.volunteer.user.address.address_line === 'string')
+                                                  ? $scope.volunteer.user.address.address_line
+                                                  : $scope.volunteer.user.address.address_line.formatted_address;
+    
     Volunteer.save($scope.volunteer, function() {
       $scope.savingVolunteer = false
       toastr.success('Perfil salvo!', $scope.volunteer.slug);

@@ -24,8 +24,10 @@ app.factory('Volunteer', function($http, $state, Restangular, Cleanup, api) {
           volunteerCopy.birthDate = volunteerCopy.birthDate.getFullYear() + '-' + (volunteerCopy.birthDate.getMonth() + 1) + '-' + volunteerCopy.birthDate.getDate();
         }
       }
-
-      volunteerCopy.user.address.typed_address = volunteerCopy.user.address.addr.formatted_address;
+      
+      volunteerCopy.user.address.typed_address = (typeof volunteerCopy.user.address.address_line === 'string')
+                                                  ? volunteerCopy.user.address.address_line
+                                                  : volunteerCopy.user.address.address_line.formatted_address;
 
       delete volunteerCopy.projects;
       delete volunteerCopy.nonprofits;
