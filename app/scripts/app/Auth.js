@@ -81,6 +81,7 @@ app.factory('Auth', function($http, Cookies, Cleanup, api, accessTokenCookie, au
         .success(function (response) {
           user.client_id = response.id;
           user.client_secret = response.secret;
+          console.log($.param(user));
           $http({
             method: 'POST',
             url: api + 'oauth2/access_token/',

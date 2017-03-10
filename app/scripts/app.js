@@ -169,6 +169,10 @@ app.config(function($provide, $stateProvider, $urlRouterProvider, $locationProvi
         url: '/atado',
         templateUrl: '/partials/joinedProject.html',
       })
+    .state('root.volunteer_success_dba', {
+        url: '/atado-dba',
+        templateUrl: '/partials/joinedProjectDBA.html',
+      })
     .state('legacynonprofit', {
         url: '/site/instituicoes/:nonprofitUid/profile',
         controller: 'LegacyCtrl'

@@ -1,6 +1,7 @@
 <div id="project-page" ng-if="project.published">
   <div id="project-header" class="clearfix">
       <div class="col-xs-11 col-xs-offset-1 col-sm-3" id="project-image">
+        <div class="gdd-label" ng-if="project.gdd"></div>
         <div style="padding-bottom: 75%; background: url('{{project.image_url}}') no-repeat center center / cover;">
         </div>
       </div>
@@ -22,13 +23,14 @@
 
         </div>
         <div id="project-nonprofit">
-          <a ui-sref="root.nonprofit({slug: nonprofit.user.slug})" id="nonprofit-img">
+          <a ng-if="! project.gdd" ui-sref="root.nonprofit({slug: nonprofit.user.slug})" id="nonprofit-img">
             <div style="padding-bottom: 100%; background: #fff url('{{project.nonprofit_image}}') no-repeat center center / contain; border-radius: 5px;">
             </div>
           </a>
           <span>
             <a ui-sref="root.nonprofit({slug: nonprofit.user.slug})">
-              <p id="nonprofit-name"><strong>{{nonprofit.name}}</strong></p>
+              <p id="nonprofit-name" ng-if="! project.gdd"><strong>{{nonprofit.name}}</strong></p>
+              <p id="nonprofit-name" ng-if="! project.gdd"><strong>{{project.gdd_json}}</strong></p>
             </a>
             <p id="nonprofit-local">{{project.nonprofit_city_state}}</p>
             <a ng-if="nonprofit.facebook_page" href="{{nonprofit.facebook_page}}" target="_blank"><i class="fa fa-facebook-square"></i></a>
@@ -38,7 +40,7 @@
           </span>
         </div>
 
-        <div id="project-icons">
+        <div id="project-icons" ng-if="!project.gdd">
           <div class="col-xs-6" ng-if="project.causes">
             <p>Causas</p>
             <div class="img-circle icon-image" ng-repeat="cause in project.causes">

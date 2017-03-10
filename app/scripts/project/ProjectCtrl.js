@@ -82,6 +82,11 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
     $scope.applyingVolunteerToProject = false;
 
     $scope.applyVolunteerToProject = function () {
+      if ($scope.project.gdd) {
+        openApplyModal();
+        return false;
+      }
+
       if (!$scope.loggedUser) {
         $scope.openLogin();
         $scope.showApplyModal = true;
@@ -96,7 +101,7 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
   function openApplyModal () {
     var template = '/partials/volunteerContractModal.html';
     var controller = 'ProjectModalCtrl';
-
+  
     if ($scope.alreadyApplied) {
       template = '/partials/volunteerUnapplyModal.html';
       controller = ['$scope', '$modalInstance', function ($scope, $modalInstance) {
@@ -116,16 +121,16 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
       templateUrl: template,
       resolve: {
         nonprofit: function () {
-          return $scope.project.nonprofit;
+          return ($scope.loggedUser) ? $scope.project.nonprofit : '';
         },
         projectName: function () {
-          return $scope.project.name;
+          return ($scope.loggedUser) ? $scope.project.name : '';
         },
         phone: function () {
-          return $scope.loggedUser.user.phone;
+          return ($scope.loggedUser) ? $scope.loggedUser.user.phone : '';
         },
         name: function () {
-          return $scope.loggedUser.user.name;
+          return ($scope.loggedUser) ? $scope.loggedUser.user.name : '';
         }
       },
       controller: controller
@@ -138,11 +143,34 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
       var volunteerName = '';
       var volunteerEmail = '';
 
-      if (modalDetails) {
+      if (modalDetails && !$scope.project.gdd) {
         volunteerMessage = modalDetails.message;
         $scope.loggedUser.user.phone = volunteerPhone = modalDetails.phone;
         $scope.loggedUser.user.name = volunteerName = modalDetails.name;
         volunteerEmail = modalDetails.email;
+      } else {
+        volunteerMessage = modalDetails.message;
+        volunteerPhone = modalDetails.phone;
+        volunteerName = modalDetails.name;
+        volunteerEmail = modalDetails.email;
+      }
+
+      if ($scope.project.gdd) {
+        if (window.location.hostname == 'www.atadoslocal.com.br') {
+          var api_gdd = 'http://127.0.0.1:8001';
+        } else if(window.location.hostname == 'homolog.atados.com.br') {
+          var api_gdd = 'http://api.homolog.global.good-deeds-day.org';
+        } else {
+          var api_gdd = 'http://api.global.good-deeds-day.org';
+        }
+
+        $http.post(api_gdd+'/projects/'+$scope.project.gdd_refer+'/applies/apply/', {phone: volunteerPhone, username: volunteerName, email: volunteerEmail})
+        .success(function (response) {
+          $location.path('/atado-dba');
+        }).error(function(response) {
+          alert('Este email já se encontra cadastrado nessa ação')
+        });
+        return false;
       }
 
       $http.post(api + 'apply_volunteer_to_project/', {project: $scope.project.id, message: volunteerMessage, phone: volunteerPhone, name: volunteerName, email: volunteerEmail})

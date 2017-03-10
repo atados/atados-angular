@@ -137,7 +137,7 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
   $scope.saving = false;
   $scope.saveProject = function() {
     var json = $scope.convertProjectToApiFormat($scope.project);
-
+    console.log(json);
     if (!$scope.saving && $scope.validation.valid) {
       if (!$scope.loggedUser) {
         $scope.saving = true;
