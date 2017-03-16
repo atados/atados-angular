@@ -91,6 +91,8 @@ app.factory('Project', function($http, $q, Restangular, Site, Auth, Cleanup, $st
             return null;
           }
           Cleanup.project(project);
+          project.gdd_org_image = project.gdd_org_image.replace('/media', '');
+          project.gdd_image = project.gdd_image.replace('/media', '');
           return project;
         }, function() {
           $state.transitionTo('root.home');

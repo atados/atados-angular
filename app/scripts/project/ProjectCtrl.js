@@ -170,6 +170,7 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
         }).error(function(response) {
           alert('Este email já se encontra cadastrado nessa ação')
         });
+        
         return false;
       }
 
