@@ -131,7 +131,7 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
       if (nonprofit.facebook_page) {
         var parser = document.createElement('a');
         parser.href = nonprofit.facebook_page;
-        nonprofit.facebook_page_short = parser.pathname;
+        nonprofit.facebook_page_short = parser.pathname || '';
         nonprofit.facebook_page_short = nonprofit.facebook_page_short.replace(/\//, '');
       }
       if (nonprofit.google_page) {
@@ -142,7 +142,7 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
       if (nonprofit.twitter_handle) {
         var parser3 = document.createElement('a');
         parser3.href = nonprofit.google_page;
-        nonprofit.twitter_handle_short = parser3.pathname;
+        nonprofit.twitter_handle_short = parser3.pathname || '';
         nonprofit.twitter_handle_short = nonprofit.twitter_handle_short.replace(/\//, '');
       }
       if (!nonprofit.address) {
@@ -156,19 +156,19 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
       if (nonprofit.facebook_page) {
         var parser = document.createElement('a');
         parser.href = nonprofit.facebook_page;
-        nonprofit.facebook_page_short = parser.pathname;
+        nonprofit.facebook_page_short = parser.pathname || '';
         nonprofit.facebook_page_short = nonprofit.facebook_page_short.replace(/\//, '');
       }
       if (nonprofit.google_page) {
         var parser2 = document.createElement('a');
         parser2.href = nonprofit.google_page;
-        nonprofit.google_page_short = parser2.pathname;
+        nonprofit.google_page_short = parser2.pathname || '';
         nonprofit.google_page_short = nonprofit.google_page_short.replace(/\//, '');
       }
       if (nonprofit.twitter_handle) {
         var parser3 = document.createElement('a');
         parser3.href = nonprofit.google_page;
-        nonprofit.twitter_handle_short = parser3.pathname;
+        nonprofit.twitter_handle_short = parser3.pathname || '';
         nonprofit.twitter_handle_short = nonprofit.twitter_handle_short.replace(/\//, '');
       }
 
@@ -194,12 +194,20 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
     },
     projectForSearch: function (p) {
       if (p.gdd) {
-        p.gdd_org_image = p.gdd_org_image.replace('/media', '/good-deeds-day');
-        p.gdd_image = p.gdd_image.replace('/media', '/good-deeds-day');
-        var aux_img = p.gdd_image.split('?');
-        var aux_org = p.gdd_org_image.split('?');
-        p.gdd_image = aux_img[0];
-        p.gdd_org_image = aux_org[0];
+        if (p.gdd_org_image) {
+          try {
+            p.gdd_org_image = p.gdd_org_image.replace('/media', '/good-deeds-day').split('?').shift();
+          } catch(err) {
+            p.gdd_org_image = null
+          }
+        }
+        if (p.gdd_image) {
+          try {
+            p.gdd_image = p.gdd_image.replace('/media', '/good-deeds-day').split('?').shift();
+          } catch(err) {
+            p.gdd_image = null
+          }
+        }
       }
 
       p.image_url = addDevelopmentUrl(p.image_url);
