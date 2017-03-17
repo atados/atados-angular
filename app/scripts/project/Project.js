@@ -91,12 +91,16 @@ app.factory('Project', function($http, $q, Restangular, Site, Auth, Cleanup, $st
             return null;
           }
           Cleanup.project(project);
-          // project.gdd_org_image = project.gdd_org_image.replace('/media', '');
-          // project.gdd_image = project.gdd_image.replace('/media', '');
-          // var aux_img = project.gdd_image.split('?');
-          // var aux_org = project.gdd_org_image.split('?');
-          // project.gdd_image = aux_img[0];
-          // project.gdd_org_image = aux_org[0];
+          
+          if (project.gdd) {
+            project.gdd_org_image = project.gdd_org_image.replace('/media', '/good-deeds-day');
+            project.gdd_image = project.gdd_image.replace('/media', '/good-deeds-day');
+            var aux_img = project.gdd_image.split('?');
+            var aux_org = project.gdd_org_image.split('?');
+            project.gdd_image = 'https://storage.googleapis.com'+aux_img[0];
+            project.gdd_org_image = 'https://storage.googleapis.com'+aux_org[0];
+          }
+
           return project;
         }, function() {
           $state.transitionTo('root.home');
