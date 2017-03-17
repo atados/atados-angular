@@ -7,14 +7,18 @@
         </a>
       </div>
       <div class="gdd-label" ng-if="project.gdd"></div>
-      <div style="height: 170px; background: url('{{ project.small_image_url }}') no-repeat center center / cover">
+      <div ng-if="! project.gdd" style="height: 170px; background: url('{{ project.small_image_url }}') no-repeat center center / cover">
+      </div>
+      <div ng-if="project.gdd" style="height: 170px; background: url('{{ project.gdd_image }}') no-repeat center center / cover">
       </div>
     </div>
     <div class="card-footer clearfix">
       <a class="card-name" ui-sref="root.project({slug: project.slug})"><h4>{{ project.name}}</h4></a>
       <div class="row card-quick-info">
         <a ui-sref="root.nonprofit({slug: project.nonprofit_slug})" class="nonprofit-img">
-          <div width="60" style="height: 50px; background: url('{{ project.nonprofit_image }}') no-repeat center center / contain">
+          <div ng-if="! project.gdd" width="60" style="height: 50px; background: url('{{ project.nonprofit_image }}') no-repeat center center / contain">
+          </div>
+          <div ng-if="project.gdd" width="60" style="height: 50px; background: url('{{ project.gdd_org_image }}') no-repeat center center / contain">
           </div>
         </a>
         <span>
