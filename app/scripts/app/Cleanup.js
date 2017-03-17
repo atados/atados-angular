@@ -193,6 +193,15 @@ app.factory('Cleanup', function ($http, $q, Site, Restangular, api, NONPROFIT) {
       n.causes = fixCauses(n.causes);
     },
     projectForSearch: function (p) {
+      if (p.gdd) {
+        p.gdd_org_image = p.gdd_org_image.replace('/media', '/good-deeds-day');
+        p.gdd_image = p.gdd_image.replace('/media', '/good-deeds-day');
+        var aux_img = p.gdd_image.split('?');
+        var aux_org = p.gdd_org_image.split('?');
+        p.gdd_image = aux_img[0];
+        p.gdd_org_image = aux_org[0];
+      }
+
       p.image_url = addDevelopmentUrl(p.image_url);
       p.nonprofit_image = addDevelopmentUrl(p.nonprofit_image);
 

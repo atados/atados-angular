@@ -33,15 +33,6 @@ app.factory('Search', function (Restangular, ENV, Cleanup) {
   };
 
   var fixProjects = function (projects) {
-    if (projects.gdd) {
-      projects.gdd_org_image = projects.gdd_org_image.replace('/media', '/good-deeds-day');
-      projects.gdd_image = projects.gdd_image.replace('/media', '/good-deeds-day');
-      var aux_img = projects.gdd_image.split('?');
-      var aux_org = projects.gdd_org_image.split('?');
-      projects.gdd_image = aux_img[0];
-      projects.gdd_org_image = aux_org[0];
-    }
-    
     projects.forEach(Cleanup.projectForSearch);
     return projects;
   };
