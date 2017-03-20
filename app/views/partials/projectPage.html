@@ -25,20 +25,22 @@
 
         </div>
         <div id="project-nonprofit">
-          <a ui-sref="root.nonprofit({slug: nonprofit.user.slug})" id="nonprofit-img">
-            <div ng-if="! project.gdd" style="padding-bottom: 100%; background: #fff url('{{project.nonprofit_image}}') no-repeat center center / contain; border-radius: 5px;">
+          <a ng-if="! project.gdd" ui-sref="root.nonprofit({slug: nonprofit.user.slug})" id="nonprofit-img">
+            <div style="padding-bottom: 100%; background: #fff url('{{project.nonprofit_image}}') no-repeat center center / contain; border-radius: 5px;">
             </div>
+          </a>
+          <div id="nonprofit-img">
             <div ng-if="project.gdd" style="padding-bottom: 100%; 
             background: #fff url('{{project.gdd_org_image}}') no-repeat center center / contain; border-radius: 5px;">
             </div>
-          </a>
+          </div>
           <span>
-            <a ui-sref="root.nonprofit({slug: nonprofit.user.slug})">
-              <p id="nonprofit-name" ng-if="! project.gdd"><strong>{{nonprofit.name}}</strong></p>
-              <p id="nonprofit-name" ng-if="project.gdd"><strong>{{project.gdd_org_name}}</strong></p>
+            <a ng-if="! project.gdd" ui-sref="root.nonprofit({slug: nonprofit.user.slug})">
+              <p id="nonprofit-name"><strong>{{nonprofit.name}}</strong></p>
             </a>
+            <p id="nonprofit-name" ng-if="project.gdd"><strong>{{project.gdd_org_name}}</strong></p>
             <p id="nonprofit-local">{{project.nonprofit_city_state}}</p>
-            <a ng-if="nonprofit.facebook_page" href="{{nonprofit.facebook_page}}" target="_blank"><i class="fa fa-facebook-square"></i></a>
+            <a ng-if="nonprofit.facebook_page && ! project.gdd" href="{{nonprofit.facebook_page}}" target="_blank"><i class="fa fa-facebook-square"></i></a>
             <a ng-if="nonprofit.google_page" href="{{nonprofit.google_page}}" target="_blank"><i class="fa fa-twitter"></i></a>
             <a ng-if="nonprofit.twitter_handle" href="{{nonprofit.twitter_handle}}" target="_blank"><i class="fa fa-google-plus"></i></a>
             <a ng-if="nonprofit.website" href="{{nonprofit.website}}" target="_blank"><i class="fa fa-home"></i></a>

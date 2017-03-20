@@ -15,14 +15,17 @@
     <div class="card-footer clearfix">
       <a class="card-name" ui-sref="root.project({slug: project.slug})"><h4>{{ project.name}}</h4></a>
       <div class="row card-quick-info">
-        <a ui-sref="root.nonprofit({slug: project.nonprofit_slug})" class="nonprofit-img">
-          <div ng-if="! project.gdd" width="60" style="height: 50px; background: url('{{ project.nonprofit_image }}') no-repeat center center / contain">
-          </div>
-          <div ng-if="project.gdd" width="60" style="height: 50px; background: url('{{ project.gdd_org_image }}') no-repeat center center / contain">
+        <a ng-if="! project.gdd" ui-sref="root.nonprofit({slug: project.nonprofit_slug})" class="nonprofit-img">
+          <div width="60" style="height: 50px; background: url('{{ project.nonprofit_image }}') no-repeat center center / contain">
           </div>
         </a>
+        <div class="nonprofit-img">
+          <div ng-if="project.gdd" width="60" style="height: 50px; background: url('{{ project.gdd_org_image }}') no-repeat center center / contain">
+          </div>
+        </div>
         <span>
-          <a ui-sref="root.nonprofit({slug: project.nonprofit_slug})"><p class="nonprofit-name"><strong>{{project.nonprofit_name}}</strong></p></a>
+          <a ng-if="! project.gdd" ui-sref="root.nonprofit({slug: project.nonprofit_slug})"><p class="nonprofit-name"><strong>{{project.nonprofit_name}}</strong></p></a>
+          <p ng-if="project.gdd" class="nonprofit-name"><strong>{{project.gdd_org_name}}</strong></p>
           <p class="card-local" ng-show="project.city_state"><i class="fa fa-map-marker"></i>
             <span ng-switch="project.work.can_be_done_remotely">
               <span ng-switch-when="true">
@@ -41,7 +44,7 @@
           <strong ng-if="project.job && project.job.start_date"><i class="fa fa-calendar"></i> {{project.job.start_date | date: 'longDate'}}</strong>
           <strong ng-if="project.job && !project.job.start_date && project.job.end_date"><i class="fa fa-calendar"></i> {{project.job.end_date | date: 'longDate'}}</strong>
         </div>
-        <div class="card-volunteer center col-xs-3">
+        <div ng-if="! project.gdd" class="card-volunteer center col-xs-3">
           <span><i tooltip="Número de voluntários que já se ataram." class="fa fa-user"></i> {{project.volunteers_numbers}}</span>
         </div>
       </div>
