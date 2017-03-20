@@ -92,6 +92,23 @@ app.factory('Project', function($http, $q, Restangular, Site, Auth, Cleanup, $st
           }
           Cleanup.project(project);
 
+          if (project.gdd) {
+            if (project.gdd_org_image) {
+              try {
+                project.gdd_org_image = project.gdd_org_image.replace('/media', '/good-deeds-day').split('?').shift();
+              } catch(err) {
+                project.gdd_org_image = null
+              }
+            }
+            if (project.gdd_image) {
+              try {
+                project.gdd_image = project.gdd_image.replace('/media', '/good-deeds-day').split('?').shift();
+              } catch(err) {
+                project.gdd_image = null
+              }
+            }
+          }
+
           return project;
         }, function() {
           $state.transitionTo('root.home');
