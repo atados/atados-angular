@@ -322,7 +322,7 @@ app.controller('ProjectFormCtrl', function ($rootScope, $scope, $state, $statePa
       return;
     }
     if (!role.vacancies) {
-      window.alert('Deve haver ao menos uma vaga para ester cago');
+      window.alert('Deve haver ao menos uma vaga para ester cargo');
       return;
     }
     if (role.details.length > 1024 || role.prerequisites.length > 1024) {
