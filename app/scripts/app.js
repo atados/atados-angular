@@ -82,7 +82,7 @@ app.config(function($provide, $stateProvider, $urlRouterProvider, $locationProvi
       templateUrl: '/partials/404.html'
     })
     .state('root.explore', {
-      url: '/explore/:tab',
+      url: '/explore/:tab/?q',
       templateUrl: '/partials/explore.html',
       controller: 'ExplorerCtrl'
     })

@@ -38,7 +38,7 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
 
   // Called from search bar on navbar
   $scope.siteSearch = function () {
-    $state.transitionTo('root.explore');
+    $state.transitionTo('root.explore', {q: $scope.search.landingQuery});
     $scope.search.query = $scope.search.landingQuery;
     $scope.search.landingQuery = '';
     Search.filter(Search.query, Search.cause.id, Search.skill.id, Search.city.id);

@@ -25,7 +25,7 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
   } else if ($stateParams.tab === 'ongs') {
     Search.showProjects = false;
   } else {
-    $state.transitionTo('root.explore', {tab: 'vagas'});
+    $state.transitionTo('root.explore', {tab: 'vagas', q: $stateParams.q});
   }
 
   $scope.$on('$destroy', function () {
