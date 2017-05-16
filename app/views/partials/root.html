@@ -47,14 +47,15 @@
         <ul class="nav navbar-nav">
           <li><a ui-sref="root.explore">Vagas de voluntariado</a></li>
           <li ng-if="!loggedUser || (loggedUser && loggedUser.role==='NONPROFIT')"><a ui-sref="root.newproject">Cadastre sua Vaga</a></li>
+          <li><a ui-sref="root.nonprofitsignup">Cadastre sua ONG</a></li>
           <!--<li><a href="#">Como Funciona</a></li>-->
           <li><a ui-sref="root.about" class="hidden-md hidden-lg">Sobre Nós</a></li>
           <li><a href="http://servicos.atados.com.br" class="hidden-md hidden-lg">Empresas</a></li>
-          <li><a href="http://multiplicar.atados.com.br" id="btn-header-doar-mobile" class="btn-contribute hidden-md hidden-lg">Doar</a></li>
+          <!-- <li><a href="http://multiplicar.atados.com.br" id="btn-header-doar-mobile" class="btn-contribute hidden-md hidden-lg">Doar</a></li> -->
           <!--<li><a href="#" class="hidden-md hidden-lg">Contato</a></li>-->
         </ul>
         <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search" ng-submit="siteSearch()" ng-hide="explorerView">
-          <a href="http://multiplicar.atados.com.br" id="btn-header-doar" class="btn-contribute hidden-xs-inline-block hidden-sm-inline-block">Doar</a>
+          <!-- <a href="http://multiplicar.atados.com.br" id="btn-header-doar" class="btn-contribute hidden-xs-inline-block hidden-sm-inline-block">Doar</a> -->
           <input id="siteSearch" class="form-control" ng-model="search.landingQuery" type="text" placeholder="Pesquise vagas de voluntariado">
           <button id="searchIcon"><i class="fa fa-search"></i></button>
         </form>
