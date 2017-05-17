@@ -53,6 +53,13 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
       }
     },
     {
+      'name': 'Florianópolis',
+      'address': {
+        formatted_address: 'Florianópolis - SC, Brasil',
+        address_components: [{'long_name':'Florianópolis','types':['administrative_area_level_2']}],
+      }
+    },
+    {
       'name': 'Trabalho à Distância',
       'address': {
         formatted_address: '',
