@@ -191,18 +191,4 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
       }
     }
   };
-
-
-  var url_query = window.location.search.substr(1).split('&')
-    .map(function(part){return part.split('=')})
-    .reduce(function(obj,ary){return (obj[ary[0]]=decodeURIComponent(ary[1])), obj}, {});
-
-  if (url_query['q'] && url_query['q'].length > 0) {
-    setTimeout(function(){
-      $scope.$apply(function(){
-        search(url_query['q'], '')
-        Search.query = url_query['q']
-      })
-    }, 5000)
-  }
 });

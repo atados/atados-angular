@@ -41,7 +41,11 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
     $state.transitionTo('root.explore', {q: $scope.search.landingQuery});
     $scope.search.query = $scope.search.landingQuery;
     $scope.search.landingQuery = '';
-    Search.filter(Search.query, Search.cause.id, Search.skill.id, Search.city.id);
+    Search.filter(Search.query,
+      Search.cause ? Search.cause.id : null,
+      Search.skill ? Search.skill.id : null,
+      Search.city ? Search.city.id : null
+      );
   };
 
 

@@ -209,4 +209,16 @@ app.controller('ExplorerCtrl', function ($scope, $rootScope, $state, $stateParam
     return {title: titleStr, slug: object.slug};
   };
 
+  var url_query = window.location.search.substr(1).split('&')
+    .map(function(part){return part.split('=')})
+    .reduce(function(obj,ary){return (obj[ary[0]]=decodeURIComponent(ary[1])), obj}, {});
+
+  if ((Search.query.length === 0) && url_query.q && url_query.q.length > 0) {
+    Search.query = url_query.q
+    Search.filter(Search.query,
+      Search.cause ? Search.cause.id : null,
+      Search.skill ? Search.skill.id : null,
+      Search.city ? Search.city.id : null
+    );
+  }
 });
