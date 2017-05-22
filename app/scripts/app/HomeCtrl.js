@@ -12,7 +12,15 @@ app.controller('HomeCtrl', function($rootScope, $scope, $sce, $modal, $http, Res
 
   $scope.search.skill = '';
   $scope.search.cause = '';
+  $scope.medium = '';
 
+  $scope.loadData = function() {
+    $http.get(api + 'feed/').success(function(response) {
+      $scope.medium = response;
+    });
+  }
+
+  $scope.loadData();
 
   $scope.open_video = function (url) {
     $modal.open({

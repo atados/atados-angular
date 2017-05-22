@@ -20,6 +20,29 @@
     <atados-search></atados-search>
   </div>
 
+  <div class="we-are-what-we-do container">
+    <div class="col-xs-12">
+      <h3>Do nosso Blog</h3>
+      <h4>Acompanhe os últimos posts do nosso blog</h4>
+      <ul class="medium-posts" ng-repeat="post in medium">
+        <a href="{{post.link}}" target="_blank" class="test">
+          <li>
+            <div class="post-image" style="background-image: url({{post.image}});">
+            </div>
+            <p class="post-title">
+              {{post.title}}
+            </p>
+            <p class="post-content">
+              {{post.content}}
+            </p>
+          </li>
+      </ul>
+      <a href="https://medium.com/@atados" class="btn btn-lg btn-info ng-binding blog-button" target="_blank">
+        Veja mais do nosso blog
+      </a>
+    </div>
+  </div>
+
   <div id="landing-info">
     <div class="container">
       <div class="row">

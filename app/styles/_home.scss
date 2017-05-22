@@ -1,4 +1,52 @@
 #home {
+  .medium-posts {
+    list-style: none;
+    background: #efefef;
+    padding: 0;
+  }
+  .medium-posts li {
+    float: left;
+    background-color: #FFF !important;
+    width: 30%;
+    text-align: left;
+    margin-left: 2%;
+    margin-top: 20px;
+    color: #000;
+    border: 1px solid #b3b3b3;
+  }
+  .medium-posts li:hover {
+    box-shadow: 0px 0px 5px #000000;
+    -webkit-transition: all 0.2s;
+    -webkit-transform: scale(1.07);
+  }
+  .post-title {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0px 20px 0px 20px;
+    margin-top: 10px;
+    height: 50px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .post-content {
+    padding: 0px 20px 0px 20px;
+    height: 80px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+  .post-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center center;
+  }
+  .blog-button {
+    float: right;
+    margin-top: 30px;
+    margin-right: 4%;
+    margin-bottom: 40px;
+  }
   .jumbotron {
     margin-bottom: 0;
     height: 460px;
