@@ -295,9 +295,6 @@
 
 
             <div class="row step-control">
-              <div class="col-xs-12 text-right">
-                <small ng-if="!validation.valid">Preencha todos os campos corretamente para prosseguir.</small>
-              </div>
               <div class="col-xs-6 col-xs-push-6 text-right">
                 <divi ng-if="loadedNonprofit">
                   <button class="btn-success" type="button" ng-click="saveNonprofit()" ng-disabled="!validation.valid || saving">Salvar</button>
@@ -310,6 +307,9 @@
                     <button class="btn-success" type="button" ng-click="setStep(5)">Próximo passo</button>
                   </div>
                 </div>
+              </div>
+              <div class="col-xs-12 text-right">
+                <small ng-if="!validation.valid">Preencha todos os campos corretamente para liberar o botão de cadastro</small>
               </div>
             </div>
           </div>
