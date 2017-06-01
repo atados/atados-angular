@@ -2,6 +2,16 @@
   background: #F7FAFA;
 }
 
+.playlist {
+  margin-top: 40px;
+  text-align: center;
+  a {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #555;
+  }
+}
+
 .project-form, .nonprofit-form {
   padding: 30px 0;
   .menu {
@@ -66,7 +76,7 @@
     }
   }
   .top-content {
-    h2, h3 {
+    h2, h3, p {
       text-align: center;
     }
     h2 {
@@ -92,6 +102,9 @@
     &.nopd {
       margin-top: 5px;
     }
+  }
+  .no-margin {
+    margin-top: 0px;
   }
   fieldset {
     background: #f7fafa;
