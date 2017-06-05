@@ -1,7 +1,6 @@
 #home {
   .medium-posts {
     list-style: none;
-    background: #efefef;
     padding: 0;
   }
   .medium-posts li {
@@ -47,6 +46,15 @@
     margin-right: 4%;
     margin-bottom: 40px;
   }
+
+  @media (max-width: 767px) {
+    .medium-posts li {
+      width: 80%;
+      float: none;
+      margin: 0 auto;
+    }
+  }
+  
   .jumbotron {
     margin-bottom: 0;
     height: 460px;
