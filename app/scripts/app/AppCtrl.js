@@ -78,6 +78,10 @@ app.controller('AppCtrl', function($scope, $rootScope, $modal, $state, $location
     });
   };
 
+  $rootScope.closeLoginModal = function () {
+    $rootScope.modalInstance.close();
+  };
+
   $scope.openTermsModal = function() {
     $rootScope.modalInstance = $modal.open({
       templateUrl: '/partials/termsModal.html'

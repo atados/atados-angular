@@ -1,5 +1,8 @@
 <div class="modal-body">
-
+  <div class="row">
+    <div class="close" ng-click="closeLoginModal()">X</div>
+  </div>
+  <br>
   <div class="row">
     <a type="button" class="btn modalTab col-xs-6" ng-class="{active: volunteerActive}" ng-click="volunteerActive=true">Voluntário</a>
     <a type="button" class="btn modalTab col-xs-6" ng-class="{active: !volunteerActive}" ng-click="volunteerActive=false">ONG</a>
@@ -27,7 +30,7 @@
       </div>
       <div class="label label-important">{{ error }}</div>
       <div class="row">
-        <a ng-click="forgotPassword()" id="forgotPasswordLink" class="btn btn-link col-xs-offset-7 col-xs-4">Esqueci minha senha</a>
+        <a ng-click="forgotPassword()" id="forgotPasswordLink" class="btn btn-link">Esqueci minha senha</a>
       </div>
       <div class="row">
         <div class="checkbox col-xs-6">

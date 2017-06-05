@@ -19,6 +19,10 @@ app.controller('ProjectModalCtrl', function ($rootScope, $scope, $window,  $moda
     });
   };
 
+  $rootScope.closeTermsModal = function() {
+    $rootScope.modalInstance.close();
+  }
+
   $scope.ok = function () {
     if (!$scope.contractForm.phone || !$scope.contractForm.phone || !$scope.contractForm.email) {
       $window.alert('Preencha seu nome, telefone e email para participar desta vaga');

@@ -380,6 +380,7 @@ $modal-content-bg: #efefef;
   }
   #forgotPasswordLink {
     top: -15px;
+    text-align: center !important;
   }
 
   #signinButton {
@@ -1293,4 +1294,19 @@ $card-img-height: 170px;
 }
 .input-field-counter-padding {
   padding-right: 75px;
+}
+
+.modal-dialog {
+  max-width: 95%;
+  padding: 30px;
+}
+
+@media (max-width: 767px) {
+  .jumbotron-header h1 {
+    font-size: 30px !important;
+  }
+
+  .jumbotron-header p {
+    font-size: 20px !important;
+  }
 }
