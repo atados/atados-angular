@@ -1,0 +1,79 @@
+#landing-page {
+	padding-bottom: 50px;
+	float: none;
+	#banner {
+		height: 430px;
+		position: relative;
+		background-image: url(https://s3.amazonaws.com/atados-us/images/landing-banner.jpg);
+		background-size: cover;
+		background-position: center center;
+	}
+	.display-none {
+		display: none;
+	}
+	#banner h1 {
+		color: #FFF;
+		position: relative;
+		z-index: 1001;
+		margin-top: 115px;
+		font-size: 55px;
+	}
+	#banner h1:last-of-type {
+		font-weight: bold;
+		margin-top: 0px;
+	}
+	.banner-overlay {
+		width: 100%;
+		background: rgba(0, 0, 0, 0.3);
+		height: 100%;
+		position: absolute;
+		margin-left: -15px;
+		z-index: 1000;
+	}
+	#content {
+		margin-top: 60px;
+	}
+	@media (max-width: 767px) {
+	    #book {
+			display: none;
+		}
+	}
+	
+	#footer {
+		position: relative !important;
+	}
+	#landing-form {
+		background: #EEE;
+		padding-bottom: 35px;
+	}
+	.button-link {
+		text-align: center;
+		padding: 10px;
+		background: #009bd4;
+		color: #FFF;
+		text-decoration: none;
+		font-weight: bold;
+	}
+	img {
+		width: 100%;
+	}
+	h2 {
+		color: #e47f1e;
+	    font-size: 28px;
+	    font-weight: bold;
+	    text-align: center;
+	}
+	h3 {
+		color: #e47f1e;
+	    font-size: 20px;
+	    font-weight: bold;
+	    text-align: left;
+	    margin-top: 0px;
+	}
+	ul {
+		padding-left: 20px;
+	}
+	ul li {
+		padding: 3px 0px 3px 0px;
+	}
+}

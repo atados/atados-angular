@@ -52,6 +52,16 @@ app.config(function($provide, $stateProvider, $urlRouterProvider, $locationProvi
         }]
       }
     })
+    .state('root.guias', {
+      url: '/guias',
+      templateUrl: '/partials/landing-page.html',
+      controller: 'LandingPageCtrl',
+    })
+    .state('root.guias.landing', {
+      url: '/como-engajar-voluntarios',
+      templateUrl: '/partials/landing-page.html',
+      controller: 'LandingPageCtrl',
+    })
     .state('root.home', {
       url: '/',
       templateUrl: '/partials/home.html',
