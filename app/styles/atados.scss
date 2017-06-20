@@ -379,8 +379,10 @@ $modal-content-bg: #efefef;
     padding: 0 15px;
   }
   #forgotPasswordLink {
-    top: -15px;
-    text-align: center !important;
+    margin-top: -15px;
+    margin-bottom: 10px;
+    margin-right: -10px;
+    float: right;
   }
 
   #signinButton {
