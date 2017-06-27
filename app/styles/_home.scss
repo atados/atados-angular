@@ -3,6 +3,11 @@
     list-style: none;
     padding: 0;
   }
+  .banner-overlay {
+    width: 100%; 
+    position: absolute; 
+    height: 100%;
+  }
   .medium-posts li {
     float: left;
     background-color: #FFF !important;
