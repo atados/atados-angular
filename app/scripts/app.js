@@ -54,13 +54,18 @@ app.config(function($provide, $stateProvider, $urlRouterProvider, $locationProvi
     })
     .state('root.guias', {
       url: '/guias',
-      templateUrl: '/partials/landing-page.html',
-      controller: 'LandingPageCtrl',
+      abstract: true,
+      templateUrl: '/partials/landing-page-base.html',
     })
     .state('root.guias.landing', {
       url: '/como-engajar-voluntarios',
       templateUrl: '/partials/landing-page.html',
       controller: 'LandingPageCtrl',
+    })
+    .state('root.guias.landingcompany', {
+      url: '/voluntariado-empresarial',
+      templateUrl: '/partials/landing-company-page.html',
+      controller: 'LandingCompanyPageCtrl',
     })
     .state('root.home', {
       url: '/',
