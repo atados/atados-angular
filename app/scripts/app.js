@@ -77,6 +77,11 @@ app.config(function($provide, $stateProvider, $urlRouterProvider, $locationProvi
       templateUrl: '/partials/about.html',
       controller: 'AboutCtrl'
     })
+    .state('root.coral', {
+      url: '/edital-quadras',
+      templateUrl: '/partials/edital-quadras.html',
+      controller: 'EditalCoralCtrl'
+    })
     .state('root.contact', {
       url: '/contato',
       templateUrl: '/partials/contact.html',
