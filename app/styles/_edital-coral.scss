@@ -96,7 +96,7 @@
 			padding: 20px 65px 20px 65px;
 			border: 2px solid #e27d1d;
 			color: #e27d1d;
-			font-size: 25px;
+			font-size: 20px;
 			border-radius: 5px;
 			text-decoration: none !important;
 			-webkit-transition: all 0.5s;
@@ -124,7 +124,9 @@
 				color: #e27d1d;
 				text-decoration: underline;
 			}
-
+		}
+		.last-paragraph {
+			margin-bottom: 70px;
 		}
 		@media screen and (max-width: 460px) {
 			.edital-button {
