@@ -60,6 +60,13 @@ app.controller('SearchCtrl', function ($scope, $http, $location, $rootScope,
       }
     },
     {
+      'name': 'Grande Florianópolis',
+      'address': {
+        formatted_address: 'Grande Florianópolis, Florianópolis - SC, Brasil',
+        address_components: [{'long_name':'Grande Florianópolis','types':['colloquial_area']}],
+      }
+    },
+    {
       'name': 'Trabalho à Distância',
       'address': {
         formatted_address: '',
