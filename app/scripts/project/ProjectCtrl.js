@@ -159,9 +159,9 @@ app.controller('ProjectCtrl', function($scope, $rootScope, $state, $stateParams,
         if (window.location.hostname == 'www.atadoslocal.com.br') {
           var api_gdd = 'http://127.0.0.1:8001';
         } else if(window.location.hostname == 'homolog.atados.com.br') {
-          var api_gdd = 'http://api.homolog.global.good-deeds-day.org';
+          var api_gdd = 'https://api.homolog.global.good-deeds-day.org';
         } else {
-          var api_gdd = 'http://api.global.good-deeds-day.org';
+          var api_gdd = 'https://api.global.good-deeds-day.org';
         }
 
         $http.post(api_gdd+'/projects/'+$scope.project.gdd_refer+'/applies/apply/', {phone: volunteerPhone, username: volunteerName, email: volunteerEmail})
