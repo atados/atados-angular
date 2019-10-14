@@ -1,4 +1,4 @@
-www
+[DEPRECATED] www
 ==============
 
 [![Codeship](https://www.codeship.io/projects/ee40fd70-a87c-0131-8655-063dfab0229a/status)](https://codeship.io/projects/19144)
